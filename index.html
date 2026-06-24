@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<title>Cogniware</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+:root{
+  --navy:#050A18;--navy2:#080F1F;--navy3:#0D1830;--navy4:#112040;
+  --blue:#4D9FFF;--blue-dim:rgba(77,159,255,0.10);--blue-glow:rgba(77,159,255,0.20);--blue-bright:rgba(77,159,255,0.50);
+  --violet:#8B5CF6;--violet-dim:rgba(139,92,246,0.10);
+  --amber:#F59E0B;--amber-dim:rgba(245,158,11,0.10);
+  --red:#F87171;--red-dim:rgba(248,113,113,0.08);
+  --white:#FFFFFF;--w85:rgba(255,255,255,0.85);--w60:rgba(255,255,255,0.60);
+  --w30:rgba(255,255,255,0.30);--w12:rgba(255,255,255,0.12);--w06:rgba(255,255,255,0.06);
+  --paper:#F8F7F4;--paper2:#F0EEE9;--ink:#1A1A1A;--ink-60:rgba(26,26,26,0.60);--ink-30:rgba(26,26,26,0.30);
+  --border:#E8E5DF;
+  --serif:'DM Serif Display',serif;--sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+  /* Legacy aliases for light screens */
+  --teal:var(--blue);--teal-dim:var(--blue-dim);--teal-glow:var(--blue-glow);
+  --dark:var(--navy);--dark2:var(--navy2);--dark3:var(--navy3);
+  --border-dark:var(--w06);--white-80:var(--w85);--white-50:var(--w60);--white-20:var(--w30);--white-10:var(--w12);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--navy);color:var(--w85);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.35}
+.screen{min-height:100vh;min-height:-webkit-fill-available;display:flex;flex-direction:column;position:relative;z-index:1}
+.screen-dark{background:var(--navy);color:var(--white)}
+.screen-light{background:rgba(248,247,244,0.97);color:var(--ink)}
+/* TOP BAR */
+.top{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.top-dark{background:rgba(5,10,24,0.92);border-bottom:1px solid var(--w06);backdrop-filter:blur(12px)}
+.top-light{background:rgba(255,255,255,0.97);border-bottom:1px solid rgba(77,159,255,0.12)}
+.logo-mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:28px;height:28px;position:relative;flex-shrink:0}
+.logo-r1{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(77,159,255,0.2);animation:rpulse 4s ease-in-out infinite}
+.logo-r2{position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(77,159,255,0.45);animation:rpulse 4s ease-in-out infinite 0.7s}
+.logo-dot-c{position:absolute;inset:11px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px rgba(77,159,255,0.7)}
+@keyframes rpulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.1);opacity:1}}
+.logo-text{font-family:var(--serif);font-size:18px;letter-spacing:-0.01em}
+.logo-text-dark{color:var(--white)}.logo-text-light{color:var(--ink)}
+.top-r{font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.top-r-dark{color:var(--w30)}.top-r-light{color:var(--ink-60)}
+/* PROGRESS */
+.prog-wrap{padding:10px 24px 0;display:none;position:relative;z-index:1}
+.prog-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;font-weight:600;letter-spacing:0.04em}
+.prog-track{height:2px;border-radius:1px}
+.prog-fill{height:100%;background:var(--blue);border-radius:1px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
+/* PAGE */
+.page{max-width:500px;margin:0 auto;padding:24px 24px 80px;width:100%;position:relative;z-index:1}
+/* DARK SCREEN HERO */
+.dark-hero{text-align:center;padding:60px 0 48px;animation:fadeIn 0.8s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(800%)}}
+@keyframes mriscan{0%{top:4%;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:96%;opacity:0}}
+@keyframes dotpulse{0%{box-shadow:0 0 0 0 rgba(77,159,255,0.4)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes dotin{from{opacity:0;transform:translate(-50%,-50%) scale(0)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:500;padding:12px 28px;border-radius:100px;border:none;cursor:pointer;transition:all 0.4s ease;line-height:1;letter-spacing:0.01em}
+.btn-teal,.btn-primary{background:linear-gradient(135deg,var(--blue),#2B7FE0);color:var(--white);box-shadow:0 4px 20px rgba(77,159,255,0.25)}
+.btn-teal:hover,.btn-primary:hover{box-shadow:0 8px 32px rgba(77,159,255,0.4);transform:translateY(-1px);opacity:1}
+.btn-outline-dark{background:transparent;color:var(--w85);border:1px solid var(--w12)}
+.btn-outline-dark:hover{border-color:rgba(77,159,255,0.4);color:var(--blue)}
+.btn-outline-light{background:transparent;color:var(--ink-60);border:none;padding-left:0}
+.btn-outline-light:hover{color:var(--ink);background:transparent}
+.btn-dark{background:linear-gradient(135deg,var(--blue),#2B7FE0);color:var(--white);box-shadow:0 4px 20px rgba(77,159,255,0.2)}
+.btn-dark:hover{box-shadow:0 8px 32px rgba(77,159,255,0.35);transform:translateY(-1px)}
+.btn-sage{background:linear-gradient(135deg,var(--blue),#2B7FE0);color:var(--white)}
+.btn-sage:hover{opacity:0.88}
+.btn:disabled{opacity:0.35;cursor:not-allowed;transform:none!important}
+/* KEY CARD */
+.key-card{background:var(--navy3);border:1px solid var(--w06);border-radius:16px;padding:22px;margin-bottom:16px}
+.key-card-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.key-card-desc{font-size:12px;color:var(--w30);margin-bottom:14px;line-height:1.6;font-weight:300}
+.key-input{width:100%;font-family:var(--mono);font-size:12px;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--w06);border-radius:8px;color:var(--white);margin-bottom:8px}
+.key-input:focus{outline:none;border-color:var(--blue)}
+.key-status{font-size:11px;color:var(--w30)}.key-status.ok{color:var(--blue)}.key-status.err{color:var(--red)}
+/* TRANSITION CARD */
+.transition-card{background:var(--navy2);border:1px solid var(--w06);border-radius:18px;padding:36px;margin:28px 0;animation:fadeUp 0.5s ease}
+.transition-card-phase{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.transition-card-title{font-family:var(--serif);font-size:26px;color:var(--white);margin-bottom:12px;line-height:1.25}
+.transition-card-body{font-size:14px;color:var(--w60);line-height:1.75;font-weight:300}
+/* WHY CARD */
+.why-card{background:var(--navy2);border:1px solid var(--w06);border-radius:16px;padding:26px;margin-bottom:20px;animation:fadeUp 0.4s ease}
+.why-icon-wrap{width:48px;height:48px;background:var(--blue-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.why-title{font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:8px}
+.why-signal{font-size:13px;color:var(--blue);font-style:italic;margin-bottom:10px;font-weight:300}
+.why-body{font-size:13px;color:var(--w60);line-height:1.7;font-weight:300}
+/* WAVEFORM */
+.waveform{display:flex;align-items:center;gap:3px;height:24px}
+.waveform-bar{width:3px;border-radius:2px;background:var(--blue);animation:waveform 1.2s ease-in-out infinite}
+@keyframes waveform{0%,100%{transform:scaleY(0.3)}50%{transform:scaleY(1)}}
+.waveform-bar:nth-child(1){animation-delay:0s;height:8px}.waveform-bar:nth-child(2){animation-delay:0.1s;height:16px}
+.waveform-bar:nth-child(3){animation-delay:0.2s;height:24px}.waveform-bar:nth-child(4){animation-delay:0.3s;height:16px}
+.waveform-bar:nth-child(5){animation-delay:0.4s;height:8px}.waveform-bar:nth-child(6){animation-delay:0.2s;height:20px}
+.waveform-bar:nth-child(7){animation-delay:0.1s;height:12px}
+/* FORM ELEMENTS — LIGHT SCREENS */
+.ey{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.qt{font-family:var(--serif);font-size:24px;line-height:1.3;margin-bottom:8px;color:var(--ink);letter-spacing:-0.01em}
+.qs{font-size:13px;color:var(--ink-60);margin-bottom:16px;line-height:1.65;font-weight:300}
+.al{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.ab{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid rgba(77,159,255,0.15);border-radius:12px;cursor:pointer;font-size:14px;color:var(--ink-60);background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);text-align:left;width:100%;transition:all 0.3s;font-family:var(--sans);font-weight:400;box-shadow:0 1px 4px rgba(77,159,255,0.06)}
+.ab:hover{border-color:rgba(77,159,255,0.4);background:rgba(255,255,255,0.9);color:var(--ink);box-shadow:0 2px 8px rgba(77,159,255,0.08)}
+.ab.s{border-color:var(--blue);background:rgba(255,255,255,0.95);color:var(--ink);font-weight:500;box-shadow:inset 3px 0 0 var(--blue),0 4px 16px rgba(77,159,255,0.12)}
+.dot{width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(77,159,255,0.3);flex-shrink:0;transition:all 0.3s;background:rgba(255,255,255,0.5)}
+.ab.s .dot{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 3px rgba(77,159,255,0.15)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.inp{width:100%;font-size:13px;padding:11px 16px;border:1px solid rgba(77,159,255,0.2);border-radius:10px;background:rgba(255,255,255,0.8);backdrop-filter:blur(8px);color:var(--ink);font-family:var(--sans);margin-bottom:8px;box-shadow:0 1px 4px rgba(77,159,255,0.06)}
+.inp:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(77,159,255,0.1)}
+.fld{margin-bottom:13px}.fld label{display:block;font-size:11px;font-weight:600;color:var(--ink-60);margin-bottom:5px;letter-spacing:0.02em}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card-light{background:#fff;border:1px solid var(--border);border-radius:13px;padding:20px 22px;margin-bottom:13px}
+.card-soft{background:rgba(248,247,244,0.8);backdrop-filter:blur(8px);border:1px solid rgba(77,159,255,0.12);border-radius:14px;padding:18px 22px;margin-bottom:13px}
+/* TESTS */
+.sent-box{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--w60);background:var(--navy3);border-radius:10px;padding:14px 18px;margin-bottom:14px;line-height:1.6;border-left:2px solid var(--blue)}
+.ti{width:100%;font-size:14px;padding:11px 14px;border:1px solid var(--w06);border-radius:9px;background:var(--navy3);color:var(--white);font-family:var(--sans);margin-bottom:7px}
+.ti:focus{outline:none;border-color:var(--blue)}
+.timer{font-size:40px;font-weight:600;text-align:center;padding:12px 0;font-family:var(--mono);color:var(--blue)}
+.meter{height:3px;background:var(--w06);border-radius:2px;margin:8px 0;overflow:hidden}
+.mf{height:100%;background:linear-gradient(90deg,var(--blue),rgba(77,159,255,0.4));border-radius:2px;transition:width .15s}
+.rt-box{width:100%;height:200px;background:var(--navy2);border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;margin-bottom:14px;-webkit-user-select:none;border:1px solid var(--w06)}
+.rt-c{width:72px;height:72px;border-radius:50%;background:var(--w06);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--w60);transition:all .3s}
+.rt-c.go{background:var(--blue);color:var(--navy);animation:dotpulse 1.2s infinite;box-shadow:0 0 24px rgba(77,159,255,0.4)}
+.rt-c.soon{background:var(--red);color:var(--white)}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.wt{padding:18px;background:rgba(77,159,255,0.08);border-radius:10px;text-align:center;font-size:18px;font-weight:600;color:var(--ink);font-family:var(--serif);border:1px solid rgba(77,159,255,0.25)}
+.tag{display:inline-block;background:var(--blue-dim);color:var(--blue);padding:3px 10px;border-radius:50px;font-size:11px;margin:2px;font-weight:500}
+/* LOADING */
+.loading-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;padding:40px 24px}
+.loading-mri-brain{position:relative;width:160px;height:180px;margin:0 auto 32px}
+.loading-mri-line{position:absolute;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--blue),rgba(120,200,255,0.9),var(--blue),transparent);box-shadow:0 0 12px var(--blue),0 0 24px rgba(77,159,255,0.4);animation:mriscan 3s ease-in-out infinite}
+.loading-title{font-family:var(--serif);font-size:24px;color:var(--white);margin-bottom:8px}
+.loading-sub{font-size:13px;color:var(--w30);font-weight:300;max-width:280px;line-height:1.6}
+/* ARRIVAL */
+.arrival-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;text-align:center;padding:40px 24px;cursor:pointer}
+.arrival-label{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:28px;animation:fadeIn 1s ease}
+.arrival-title{font-family:var(--serif);font-size:clamp(36px,5vw,52px);line-height:1.15;color:var(--white);margin-bottom:20px;animation:fadeUp 0.8s ease 0.3s both;letter-spacing:-0.02em}
+.arrival-hint{font-size:13px;color:var(--w30);margin-top:48px;animation:fadeIn 1s ease 1.5s both;font-weight:300;letter-spacing:0.04em}
+/* PORTRAIT */
+.portrait-wrap{padding:48px 24px 60px;max-width:580px;margin:0 auto;animation:fadeIn 0.6s ease}
+.portrait-label{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.portrait-text{font-family:var(--serif);font-size:clamp(18px,2.5vw,24px);line-height:1.7;color:var(--w85);margin-bottom:40px}
+.portrait-continue{display:flex;align-items:center;gap:12px;justify-content:center}
+/* RESULTS */
+.results-wrap{background:var(--paper);min-height:100vh}
+.dom-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:14px;animation:fadeUp 0.4s ease both}
+.dom-card:nth-child(1){animation-delay:0s}.dom-card:nth-child(2){animation-delay:0.08s}
+.dom-card:nth-child(3){animation-delay:0.16s}.dom-card:nth-child(4){animation-delay:0.24s}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.dt{font-family:var(--serif);font-size:18px;color:var(--ink)}.ds{font-size:11px;color:var(--ink-60);margin-top:2px;font-weight:300}
+.db{padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600;flex-shrink:0;letter-spacing:0.04em}
+.bg-g{background:rgba(77,159,255,0.10);color:var(--blue)}
+.bg-m{background:rgba(139,92,246,0.10);color:var(--violet)}
+.bg-r{background:rgba(245,158,11,0.10);color:var(--amber)}
+.bg-n{background:rgba(139,92,246,0.08);color:var(--violet)}
+.sp-wrap{margin-bottom:16px}
+.sp-lr{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-30);margin-bottom:6px;font-weight:400;letter-spacing:0.02em}
+.sp-track{height:3px;background:var(--border);border-radius:2px;position:relative}
+.sp-fill{height:100%;border-radius:2px;opacity:0.3}
+.sp-dot{position:absolute;top:-5px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;transform:translateX(-50%);box-shadow:0 1px 4px rgba(0,0,0,0.12)}
+.narr{font-size:13px;color:var(--ink-60);line-height:1.8;margin-bottom:14px;font-weight:300}
+.tl{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-60);margin-bottom:8px}
+.tips{list-style:none;display:flex;flex-direction:column;gap:6px}
+.tips li{display:flex;gap:8px;font-size:12px;color:var(--ink-60);align-items:flex-start;font-weight:300}
+.tips li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--blue);margin-top:5px;flex-shrink:0;box-shadow:0 0 4px rgba(77,159,255,0.5)}
+.evid{font-size:11px;color:var(--ink-30);font-style:italic;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);line-height:1.6}
+.sdiv{display:flex;align-items:center;gap:12px;margin:24px 0 14px}
+.sdiv-l{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-30);white-space:nowrap}
+.sdiv-line{flex:1;height:.5px;background:var(--border)}
+/* APPOINTMENT */
+.appt-card{background:linear-gradient(135deg,rgba(77,159,255,0.06),rgba(139,92,246,0.03));border:1px solid rgba(77,159,255,0.2);border-radius:16px;padding:24px;margin-bottom:14px}
+.appt-title{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:6px}
+.appt-sub{font-size:12px;color:var(--ink-60);margin-bottom:16px;font-weight:300}
+.appt-item-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);margin-top:6px;flex-shrink:0;box-shadow:0 0 6px rgba(77,159,255,0.5)}
+/* DAY 1 */
+.day1-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;text-align:center;padding:40px 24px;animation:fadeIn 0.6s ease}
+.day1-label{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+.day1-title{font-family:var(--serif);font-size:clamp(40px,5vw,58px);line-height:1.05;color:var(--white);margin-bottom:16px;letter-spacing:-0.02em}
+.day1-sub{font-size:14px;color:var(--w60);max-width:400px;margin:0 auto 36px;line-height:1.8;font-weight:300}
+.day1-chart{width:100%;max-width:440px;background:var(--navy2);border:1px solid var(--w06);border-radius:16px;padding:26px;margin:0 auto 36px}
+.day1-chart-title{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--w30);margin-bottom:20px;text-align:left}
+.day1-track{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.day1-track:last-child{margin-bottom:0}
+.day1-track-label{font-size:11px;color:var(--w30);width:72px;text-align:right;font-weight:300;flex-shrink:0}
+.day1-track-line{flex:1;height:1px;background:var(--w06);position:relative}
+.day1-track-dot{position:absolute;left:0;top:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(77,159,255,0.15),0 0 14px rgba(77,159,255,0.5);animation:dotin 0.8s ease both}
+.day1-future{position:absolute;right:0;top:-10px;font-size:9px;color:var(--w12);font-family:var(--mono)}
+/* CRISIS */
+.crisis-box{background:var(--red-dim);border:1px solid rgba(248,113,113,0.25);border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:13px;color:#FCA5A5;line-height:1.65}
+/* MISC */
+.disc{font-size:11px;color:var(--ink-30);text-align:center;padding:18px 0 4px;border-top:.5px solid var(--border);margin-top:20px;line-height:1.65;font-weight:300}
+.mono{font-family:var(--mono);color:var(--blue);font-size:13px;font-weight:500}
+canvas{display:block;touch-action:none}
+
+/* Legacy class aliases for landing hero */
+.dark-hero{text-align:center;padding:60px 0 48px}
+.dark-hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.dark-hero-title{font-family:var(--serif);font-size:clamp(36px,5vw,54px);line-height:1.1;letter-spacing:-0.02em;color:var(--white);margin-bottom:18px}
+.dark-hero-title em{font-style:italic;color:var(--blue)}
+.dark-hero-sub{font-size:15px;color:var(--w60);line-height:1.8;font-weight:300;max-width:400px;margin:0 auto 32px}
+.page-dark{max-width:500px;margin:0 auto;padding:0 24px 60px;width:100%;position:relative;z-index:1}
+/* Loading spinner fallback */
+.loading-spinner{display:inline-block;width:38px;height:38px;border:2px solid var(--w06);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px}
+
+@media(max-width:768px){
+  .page{padding:16px 16px 60px}
+  .ab{padding:13px 14px;font-size:13px;transform:none!important}
+  .qt{font-size:20px}
+  .btn{padding:11px 22px;font-size:13px}
+  .why-card{padding:20px}
+  .why-title{font-size:18px}
+  #bg-canvas{opacity:0.15!important}
+  .screen-light{background:rgba(248,247,244,0.99)}
+}
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="bg-canvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.5"></canvas>
+<div id="app"></div>
+
+<script>
+var LOGO_DARK = '<div class="logo-icon"><div class="logo-r1"></div><div class="logo-r2"></div><div class="logo-dot-c"></div></div>';
+var LOGO_LIGHT = '<div class="logo-icon"><div class="logo-r1"></div><div class="logo-r2"></div><div class="logo-dot-c"></div></div>';
+
+var A = {
+  session:null,
+  st: {profile:{},answers:{},bio:{},cog:{},crisis:false},
+  steps:[], idx:0, key:'', scores:{},
+
+  $: function(id){ return document.getElementById(id); },
+  app: function(h){ A.$('app').innerHTML=h; },
+  prog: function(s,p){
+    var pw=A.$('pw'),ps=A.$('psec'),pp=A.$('ppct'),pf=A.$('pfill');
+    if(pw) pw.style.display='';
+    if(ps) ps.textContent=s;
+    if(pp) pp.textContent=Math.round(p)+'%';
+    if(pf) pf.style.width=p+'%';
+  },
+
+  topBar: function(dark, right){
+    var logo = dark ? LOGO_DARK : LOGO_LIGHT;
+    var textClass = dark ? 'logo-text-dark' : 'logo-text-light';
+    var topClass = dark ? 'top-dark' : 'top-light';
+    var rightClass = dark ? 'top-r-dark' : 'top-r-light';
+    return '<div class="top '+topClass+'">' +
+      '<div class="logo-mark" style="display:flex;align-items:center;gap:10px">' + logo + '<span class="logo-text '+textClass+'">Cogniware</span></div>' +
+      '<span class="top-r '+rightClass+'">'+(right||'')+'</span>' +
+    '</div>';
+  },
+
+  progressBar: function(section, pct, dark){
+    var bg = dark ? 'var(--navy)' : 'var(--paper)';
+    var textCol = dark ? 'color:var(--w30)' : 'color:var(--ink-60)';
+    var trackBg = dark ? 'background:var(--w06)' : 'background:var(--border)';
+    return '<div class="prog-wrap" id="pw" style="background:'+bg+'">' +
+      '<div class="prog-row" style="'+textCol+'"><span id="psec">'+section+'</span><span id="ppct">'+Math.round(pct)+'%</span></div>' +
+      '<div class="prog-track" style="'+trackBg+'"><div class="prog-fill" id="pfill" style="width:'+pct+'%"></div></div>' +
+    '</div>';
+  },
+
+  go: function(step){
+    var n=A.steps.length-1;
+    var pct=n>0?(A.idx/n)*100:0;
+    var labs={
+      landing:'Welcome',profile:'About you',medFollowup:'Medications',
+      branch:'Your focus',safety:'Before we begin',
+      phq9:'Mood',gad7:'Anxiety',sleep:'Sleep',
+      transition_q:'Getting started',transition_bio:'Physical tests',
+      typing:'Typing rhythm',reaction:'Reaction time',steadiness:'Hand steadiness',
+      word_show:'Memory',word_recall:'Word recall',digit:'Working memory',
+      fluency:'Verbal fluency',orientation:'Orientation',trail:'Attention',
+      context:'Today',reflection:'Final question',
+      loading:'Analysing',arrival:'Results',portrait:'Your portrait',
+      results:'Results',day1:'Your journey'
+    };
+    if(A['s_'+step]) A['s_'+step](pct, labs[step]||step);
+  },
+  next: function(){ A.idx++; if(A.idx<A.steps.length) A.go(A.steps[A.idx]); },
+  back: function(){ if(A.idx>0){ A.idx--; A.go(A.steps[A.idx]); } },
+
+  detectConds: function(text){
+    if(!text||!text.trim()) return ['none'];
+    var t=text.toLowerCase();
+    var map={parkinsons:["parkinson"],ms:["multiple sclerosis"],cerebralpalsy:["cerebral palsy"],wheelchair:["wheelchair","paralys"],pregnancy:["pregnan"],adhd:["adhd","attention deficit"],bipolar:["bipolar","manic"],depression:["depression","depressive"],anxiety:["anxiety","panic"],autism:["autism","autistic","asd"],schizophrenia:["schizophreni","psychosis"],dementia:["dementia","alzheimer"],blindness:["blind","visual impair"],stroke:["stroke"],essential_tremor:["essential tremor"]};
+    var found=[];
+    Object.keys(map).forEach(function(slug){ if(map[slug].some(function(k){ return t.indexOf(k)!==-1; })) found.push(slug); });
+    return found.length?found:['none'];
+  },
+
+  classifyMeds: function(medsText){
+    var t=(medsText||'').toLowerCase(); var classes=[];
+    var map=[
+      {keys:['prozac','fluoxetine','sertraline','zoloft','escitalopram','lexapro','citalopram','paroxetine','venlafaxine','effexor','duloxetine','cymbalta'],label:'SSRI/SNRI',note:'May cause initial insomnia or sedation, emotional blunting. Temporary in first 4 weeks.'},
+      {keys:['adderall','amphetamine','ritalin','methylphenidate','concerta','vyvanse','modafinil'],label:'Stimulant',note:'Increases alertness, may disrupt sleep. Reaction time may read faster than baseline.'},
+      {keys:['quetiapine','seroquel','olanzapine','zyprexa','risperidone','risperdal','aripiprazole','abilify','haloperidol','clozapine'],label:'Antipsychotic',note:'Significant sedation. May slow motor function — typing, gait, finger tap affected.'},
+      {keys:['lithium','lamotrigine','lamictal','valproate','depakote','carbamazepine'],label:'Mood stabiliser',note:'Lithium can cause tremor — affects spiral and finger tap. Cognitive slowing possible.'},
+      {keys:['propranolol','atenolol','metoprolol','bisoprolol'],label:'Beta blocker',note:'Suppresses tremor — tremor biomarkers read artificially low.'},
+      {keys:['levothyroxine','synthroid','liothyronine','thyroxine'],label:'Thyroid medication',note:'Under or over-dosed thyroid significantly affects energy, mood, weight, cognition.'},
+      {keys:['amlodipine','lisinopril','ramipril','losartan','enalapril','furosemide'],label:'Blood pressure',note:'Fatigue and dizziness common. May affect gait and balance scores.'},
+      {keys:['oestrogen','estrogen','estradiol','testosterone','progesterone','hrt','hormone replacement','gender affirming','finasteride'],label:'Hormonal/HRT/gender-affirming',note:'Significant mood, energy, sleep, cognitive effects. Standard binary norms may not apply.'},
+      {keys:['diazepam','valium','lorazepam','ativan','clonazepam','alprazolam','xanax','temazepam'],label:'Benzodiazepine',note:'Sedation and cognitive slowing. Significantly affects reaction time and memory.'},
+      {keys:['prednisone','prednisolone','dexamethasone'],label:'Corticosteroid',note:'Mood elevation or irritability, sleep disruption.'},
+      {keys:['gabapentin','neurontin','pregabalin','lyrica'],label:'Gabapentinoid',note:'Sedation and cognitive fog. Affects processing speed.'},
+      {keys:['contraceptive','microgynon','cerazette','nexplanon','mirena','depo'],label:'Hormonal contraceptive',note:'Mood effects vary by formulation. Sleep changes possible.'},
+      {keys:['tramadol','codeine','morphine','oxycodone','fentanyl','buprenorphine'],label:'Opioid',note:'Sedation and cognitive slowing. Affects most biomarkers.'},
+      {keys:['levodopa','carbidopa','sinemet','ropinirole','pramipexole'],label:"Parkinson's medication",note:"Motor function varies with medication cycle. On/off periods create very different readings."},
+      {keys:['metformin','insulin','glipizide'],label:'Diabetes medication',note:'Blood sugar fluctuations affect energy, concentration, mood.'}
+    ];
+    map.forEach(function(m){ if(m.keys.some(function(k){ return t.indexOf(k)!==-1; })) classes.push(m); });
+    return classes;
+  },
+
+  motorCtx: function(conds){
+    var monitor=['parkinsons','ms','stroke','essential_tremor','cerebralpalsy'];
+    if(conds.some(function(c){ return monitor.indexOf(c)!==-1; })) return 'MONITOR: interpret motor biomarkers as symptom status for known condition, not new pathology screening.';
+    if(conds.indexOf('wheelchair')!==-1||conds.indexOf('pregnancy')!==-1) return 'Gait/balance not administered due to physical situation.';
+    return 'Standard: compare against age and sex adjusted population norms.';
+  },
+
+  // ── LANDING ──
+  s_landing: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    
+    var saved=localStorage.getItem('cw_api_key')||''; A.key=saved;
+    A.app(
+      '<div class="screen screen-dark">' +
+      A.topBar(true) +
+      '<div class="page" style="padding-top:0">' +
+        '<div class="dark-hero">' +
+          '<div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:16px">Brain health intelligence</div>' +
+          '<h1 style="font-family:var(--serif);font-size:clamp(36px,5vw,54px);line-height:1.1;letter-spacing:-0.02em;color:var(--white);margin-bottom:18px">Your brain tells<br>a story. <em style=\'font-style:italic;color:var(--blue)\'>We listen.</em></h1>' +
+          '<p style="font-size:15px;color:var(--w60);line-height:1.8;font-weight:300;max-width:400px;margin:0 auto 32px">A clinical-grade brain health snapshot that adapts to your conditions, your medications, and your moment.</p>' +
+          '<button type="button" class="btn btn-teal" style="font-size:15px;padding:14px 36px" onclick="A.launch()">Begin assessment</button>' +
+'</div>' +
+        '<div class="key-card" id="key-card-wrap">' +
+          '<div class="key-card-label">Anthropic API key — required</div>' +
+          '<div class="key-card-desc">Claude interprets your results. Stored only in this browser, sent directly to Anthropic.</div>' +
+          '<input class="key-input" id="ki" type="password" placeholder="sk-ant-api03-..." value="'+saved+'">' +
+          '<div class="key-status'+(saved?' ok':'')+('" id="ks">'+(saved?'Key saved — ready to go.':'Paste your key above.'))+'</div>' +
+        '</div>' +
+        '<p style="font-size:11px;color:var(--white-20);text-align:center;margin-top:12px;font-weight:300">Screening tool — not a diagnosis. Share results with your clinician.</p>' +
+      '</div></div>'
+    );
+    var ki=A.$('ki');
+    if(ki) ki.addEventListener('input',function(e){
+      var v=e.target.value.trim(),ks=A.$('ks');
+      if(v.indexOf('sk-ant-')===0&&v.length>20){ A.key=v; localStorage.setItem('cw_api_key',v); if(ks){ks.textContent='Key saved — ready to go.';ks.className='key-status ok';} }
+      else if(v.length){ if(ks){ks.textContent='Should start with sk-ant-...';ks.className='key-status err';} }
+      else{ A.key=''; localStorage.removeItem('cw_api_key'); if(ks){ks.textContent='Paste your key above.';ks.className='key-status';} }
+    });
+  },
+
+  // ── AUTH HELPERS ──
+  authCall: function(action, email, password){
+    return fetch('/.netlify/functions/auth',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:action,email:email,password:password})
+    }).then(function(r){ return r.json(); });
+  },
+
+  profileCall: function(action, data){
+    return fetch('/.netlify/functions/profile',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+A.session},
+      body:JSON.stringify({action:action,data:data})
+    }).then(function(r){ return r.json(); });
+  },
+
+  saveAssessment: function(aiResult){
+    if(!A.session) return Promise.resolve();
+    var st=A.st;
+    var data={
+      branch: st.profile.branch||'general',
+      branch_label: st.profile.branchLabel||'General',
+      phq9_score: (st.answers.phq9||[]).reduce(function(a,b){ return a+b; },0),
+      phq9_answers: st.answers.phq9||[],
+      gad7_score: (st.answers.gad7||[]).reduce(function(a,b){ return a+b; },0),
+      gad7_answers: st.answers.gad7||[],
+      sleep_score: (st.answers.sleep||[]).reduce(function(a,b){ return a+b; },0),
+      sleep_answers: st.answers.sleep||[],
+      typing_wpm: st.bio.typingWpm||null,
+      typing_cv: st.bio.typingCV||null,
+      rt_median: st.bio.rtMedian||null,
+      rt_sd: st.bio.rtSD||null,
+      tremor_rms: st.bio.tremorRMS||null,
+      voice: st.bio.voice||null,
+      facial: st.bio.facial||null,
+      word_recall: st.cog.recall||null,
+      digit_span: st.cog.digitSpan||null,
+      fluency: st.cog.fluency||null,
+      orientation: st.cog.orientation||null,
+      trail_correct: st.cog.trail||null,
+      compare_slider: st._ctx.compare||null,
+      social_contact: st._ctx.social||null,
+      med_adherence: st._ctx.medAdherence||null,
+      reflection: st.reflection||'',
+      ai_result: aiResult||null,
+      crisis_flag: st.crisis||false
+    };
+    return A.profileCall('save_assessment', data).catch(function(e){ console.warn('Assessment save failed:', e); });
+  },
+
+  // ── AUTH SCREENS ──
+  s_auth: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh">'+A.topBar(true)+
+      '<div style="max-width:420px;margin:0 auto;padding:60px 24px">'+
+        '<div style="text-align:center;margin-bottom:40px">'+LOGO_DARK+'<h1 style="font-family:var(--serif);font-size:32px;color:var(--white);margin-top:16px;margin-bottom:8px">Welcome to Cogniware</h1>'+
+        '<p style="font-size:14px;color:var(--w60);font-weight:300">Sign in to save your results and track your brain health over time.</p></div>'+
+        '<div id="auth-tabs" style="display:flex;gap:0;margin-bottom:28px;background:var(--navy3);border-radius:10px;padding:4px">'+
+          '<button type="button" id="tab-login" onclick="A.__authTab(\'login\')" style="flex:1;padding:10px;border:none;border-radius:8px;background:var(--blue);color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans)">Sign in</button>'+
+          '<button type="button" id="tab-signup" onclick="A.__authTab(\'signup\')" style="flex:1;padding:10px;border:none;border-radius:8px;background:transparent;color:var(--w60);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans)">Create account</button>'+
+        '</div>'+
+        '<div class="fld"><label style="color:var(--w60);font-size:11px;font-weight:600;letter-spacing:0.04em">EMAIL ADDRESS</label>'+
+          '<input class="inp" id="auth-email" type="email" placeholder="you@example.com" style="background:var(--navy3);border-color:var(--w06);color:var(--white)"></div>'+
+        '<div class="fld"><label style="color:var(--w60);font-size:11px;font-weight:600;letter-spacing:0.04em">PASSWORD</label>'+
+          '<input class="inp" id="auth-pw" type="password" placeholder="Min. 8 characters" style="background:var(--navy3);border-color:var(--w06);color:var(--white)"></div>'+
+        '<p id="auth-err" style="font-size:12px;color:var(--red);margin-bottom:12px;display:none"></p>'+
+        '<button type="button" class="btn btn-teal" style="width:100%;padding:14px;font-size:15px;margin-bottom:12px" id="auth-btn" onclick="A.__authSubmit()">Sign in</button>'+
+        
+        '<button type="button" onclick="A.back()" style="width:100%;background:transparent;border:none;color:var(--w30);font-size:12px;cursor:pointer;font-family:var(--sans);padding:6px;margin-top:4px">← Back</button>'+
+      '</div></div>'
+    );
+    A.__authMode='login';
+
+
+    A.__authTab=function(mode){
+      A.__authMode=mode;
+      var isLogin=mode==='login';
+      var tl=A.$('tab-login'),ts=A.$('tab-signup'),btn=A.$('auth-btn');
+      if(tl){ tl.style.background=isLogin?'var(--blue)':'transparent'; tl.style.color=isLogin?'var(--white)':'var(--w60)'; }
+      if(ts){ ts.style.background=!isLogin?'var(--blue)':'transparent'; ts.style.color=!isLogin?'var(--white)':'var(--w60)'; }
+      if(btn) btn.textContent=isLogin?'Sign in':'Create account';
+    };
+
+    A.__authSubmit=function(){
+      var email=(A.$('auth-email').value||'').trim();
+      var pw=(A.$('auth-pw').value||'').trim();
+      var err=A.$('auth-err');
+      if(!email||!pw){ if(err){ err.textContent='Please enter your email and password.'; err.style.display=''; } return; }
+      if(pw.length<8){ if(err){ err.textContent='Password must be at least 8 characters.'; err.style.display=''; } return; }
+      var btn=A.$('auth-btn'); if(btn){ btn.textContent='Please wait...'; btn.disabled=true; }
+      A.authCall(A.__authMode, email, pw).then(function(data){
+        if(data.error||data.msg){
+          var msg=data.error||data.msg||'Authentication failed.';
+          if(err){ err.textContent=msg; err.style.display=''; }
+          if(btn){ btn.textContent=A.__authMode==='login'?'Sign in':'Create account'; btn.disabled=false; }
+          return;
+        }
+        // Success
+        A.session=data.access_token;
+        localStorage.setItem('cw_session', data.access_token);
+        // Pre-fill profile if returning user
+        A.profileCall('get_profile').then(function(profile){
+          if(profile&&profile.name){
+            A.st.profile.name=profile.name;
+            A.st.profile.age=profile.age;
+            A.st.profile.sex=profile.sex;
+            A.st.profile.country=profile.country;
+            A.st.profile.diagnoses=profile.diagnoses;
+            A.st.profile.medications=profile.medications;
+          }
+          A.next();
+        }).catch(function(){ A.next(); });
+      }).catch(function(e){
+        if(err){ err.textContent='Connection error. Please try again.'; err.style.display=''; }
+        if(btn){ btn.textContent=A.__authMode==='login'?'Sign in':'Create account'; btn.disabled=false; }
+      });
+    };
+  },
+
+  launch: function(){
+    var onNetlify = window.location.hostname && window.location.hostname.indexOf('.netlify.app') !== -1;
+    if(onNetlify) A.key='netlify';
+    // No key check here - we handle it gracefully at the results stage
+    A.steps=['consent','landing','profile','medFollowup','branch','safety','transition_q','phq9','gad7','sleep','transition_bio','typing','reaction','steadiness','voice','facial','word_show','word_recall','digit','fluency','orientation','trail','context','reflection','loading','arrival','portrait','results','day1'];
+    A.idx=2; A.go('auth');
+  },
+
+  // ── PROFILE ──
+  s_profile: function(pct,sec){
+    A.app(
+      '<div class="screen screen-light">' +
+      A.topBar(false) +
+      A.progressBar(sec,pct) +
+      '<div class="page">' +
+        '<div class="ey" style="margin-top:8px">About you</div>' +
+        '<p class="qt">A little about you first</p>' +
+        '<p class="qs">The assessment adapts based on what you share here. Nothing leaves this page.</p>' +
+        '<div class="g2">' +
+          '<div class="fld"><label>First name (optional)</label><input class="inp" id="pn" placeholder="e.g. Alex"></div>' +
+          '<div class="fld"><label>Age</label><input class="inp" id="pa" type="number" placeholder="e.g. 32"></div>' +
+        '</div>' +
+        '<div class="g2">' +
+          '<div class="fld"><label>Sex / Gender</label>' +
+            '<select class="inp" id="ps">' +
+              '<option value="">Select...</option>' +
+              '<option value="male">Male</option>' +
+              '<option value="female">Female</option>' +
+              '<option value="nonbinary">Non-binary</option>' +
+              '<option value="genderfluid">Gender fluid</option>' +
+              '<option value="transmasc">Transmasculine</option>' +
+              '<option value="transfem">Transfeminine</option>' +
+              '<option value="notspecified">Prefer not to say</option>' +
+            '</select>' +
+            '<p style="font-size:10px;color:var(--ink-30);margin-top:3px;font-weight:300">Used to adjust clinical norms.</p>' +
+          '</div>' +
+          '<div class="fld"><label>Country</label>' +
+            '<select class="inp" id="pc">' +
+              '<option value="">Select...</option>' +
+              '<option value="US">United States</option>' +
+              '<option value="GB">United Kingdom</option>' +
+              '<option value="CA">Canada</option>' +
+              '<option value="AU">Australia</option>' +
+              '<option value="IN">India</option>' +
+              '<option value="OTHER">Other</option>' +
+            '</select>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fld">' +
+          '<label>Known diagnoses (optional)</label>' +
+          '<input class="inp" id="pd" placeholder="e.g. Parkinson&#39;s, ADHD, Bipolar II...">' +
+          '<p style="font-size:10px;color:var(--ink-30);margin-top:3px;font-weight:300">The assessment silently adapts to what you enter here.</p>' +
+        '</div>' +
+        '<div class="g2">' +
+          '<div class="fld"><label>How long have you had these?</label>' +
+            '<select class="inp" id="pdur">' +
+              '<option value="">Select...</option>' +
+              '<option value="recent">Less than 6 months</option>' +
+              '<option value="1-2yr">1-2 years</option>' +
+              '<option value="several">Several years</option>' +
+              '<option value="longtime">More than 10 years</option>' +
+              '<option value="na">Not applicable</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="fld"><label>How well controlled right now?</label>' +
+            '<select class="inp" id="pctrl">' +
+              '<option value="">Select...</option>' +
+              '<option value="well">Well controlled</option>' +
+              '<option value="mostly">Mostly controlled</option>' +
+              '<option value="partial">Partially controlled</option>' +
+              '<option value="poorly">Poorly controlled</option>' +
+              '<option value="na">Not applicable</option>' +
+            '</select>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fld"><label>Current medications (optional)</label><input class="inp" id="pm" placeholder="e.g. Sertraline 50mg, Levodopa 100mg..."></div>' +
+        '<div class="fld"><label>Email address <span style="color:var(--blue);font-size:10px;font-weight:600">— to receive your results</span></label>'+
+        '<input class="inp" id="pemail" type="email" placeholder="your@email.com" value="'+(A.st.profile&&A.st.profile.email||'')+'"></div>' +
+        '<div class="btns"><button type="button" class="btn btn-dark" onclick="A.saveProfile()">Continue</button></div>' +
+      '</div></div>'
+    );
+  },
+
+  saveProfile: function(){
+    var diag=A.$('pd').value.trim();
+    var emailVal=(A.$('pemail')?A.$('pemail').value.trim():''); A.st.profile={name:A.$('pn').value.trim(),age:A.$('pa').value,sex:A.$('ps').value,country:A.$('pc').value||'US',diagnoses:diag,conditionDuration:A.$('pdur').value,conditionControl:A.$('pctrl').value,medications:A.$('pm').value.trim(),email:emailVal,conditions:A.detectConds(diag),branchLabel:'General overview'};
+    
+    if(A.session){ A.profileCall('save_profile',{name:A.st.profile.name,age:A.st.profile.age?parseInt(A.st.profile.age):null,sex:A.st.profile.sex,country:A.st.profile.country,diagnoses:A.st.profile.diagnoses,medications:A.st.profile.medications}).catch(function(){}); }
+    A.next();
+  },
+
+  // ── MED FOLLOWUP ──
+  s_medFollowup: function(pct,sec){
+    var meds=A.st.profile.medications||'';
+    if(!meds.trim()||meds.toLowerCase()==='none'){ A.st.profile.medDuration='na'; A.st.profile.medClassified=[]; A.next(); return; }
+    var opts=[{v:'adjusting',l:'Less than 4 weeks',d:'Adjusting — side effects may be temporary'},{v:'settling',l:'1-6 months',d:'Settling in — effects may still be changing'},{v:'stable',l:'More than 6 months',d:'Stable baseline with this medication'},{v:'changed',l:'Recently changed dose',d:'Within the last 4 weeks'},{v:'asneeded',l:'As needed / situational',d:'Taken only when required'}];
+    var btns=opts.map(function(o,i){ return '<button type="button" class="ab" id="md-'+i+'" onclick="A.__mdDur(\''+o.v+'\','+i+')"><span class="dot"></span><span><strong>'+o.l+'</strong><br><span style="font-size:11px;color:var(--ink-30);font-weight:300">'+o.d+'</span></span></button>'; }).join('');
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page"><div class="ey" style="margin-top:8px">Medications</div><p class="qt">How long have you been on your current medications?</p><p class="qs">This helps us interpret your results correctly.</p><div class="al">'+btns+'</div><div id="mc" style="display:none" class="btns"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button><button type="button" class="btn btn-dark" onclick="A.next()">Continue</button></div><div id="mn" class="btns"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button></div></div></div>');
+    A.__mdDur=function(val,i){ document.querySelectorAll('[id^="md-"]').forEach(function(b){ b.classList.remove('s'); }); var btn=A.$('md-'+i); if(btn) btn.classList.add('s'); A.st.profile.medDuration=val; A.st.profile.medClassified=A.classifyMeds(A.st.profile.medications||''); var c=A.$('mc'); if(c) c.style.display=''; var n=A.$('mn'); if(n) n.style.display='none'; };
+  },
+
+  // ── BRANCH ──
+  s_branch: function(pct,sec){
+    var bs=[{id:'mood',l:'Mood & emotions',d:'Low mood, depression, motivation'},{id:'anxiety',l:'Anxiety & stress',d:'Worry, tension, nervousness'},{id:'memory',l:'Memory & thinking',d:'Forgetfulness, cognitive changes'},{id:'movement',l:'Movement & motor',d:"Tremor, stiffness, Parkinson's"},{id:'bipolar',l:'Mood swings & energy',d:'Mood cycling, high energy'},{id:'thought',l:'Thought patterns',d:'Unusual perceptions, disorganised thinking'},{id:'asd',l:'Neurodevelopmental',d:'Autism, sensory and social patterns'},{id:'overview',l:'Full brain health snapshot',d:'All areas — most comprehensive'}];
+    var btns=bs.map(function(b){ return '<button type="button" class="ab" onclick="A.setBranch(\''+b.id+'\',\''+b.l.replace(/'/g,"\\'")+'\')" ><span class="dot"></span><span><strong>'+b.l+'</strong><br><span style="font-size:11px;color:var(--ink-30);font-weight:300">'+b.d+'</span></span></button>'; }).join('');
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page"><div class="ey" style="margin-top:8px">Your focus</div><p class="qt">What would you most like to understand today?</p><p class="qs">The assessment adapts to your selection and your conditions.</p><div class="al">'+btns+'</div><div class="btns"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button></div></div></div>');
+  },
+
+  setBranch: function(id,label){
+    A.st.profile.branch=id; A.st.profile.branchLabel=label;
+    var conds=A.st.profile.conditions||['none'];
+    var qm={mood:['phq9','sleep'],anxiety:['gad7','sleep'],memory:['phq9','sleep'],movement:['phq9'],bipolar:['phq9','gad7','sleep'],thought:['phq9','gad7'],asd:['phq9','gad7'],overview:['phq9','gad7','sleep']};
+    var qs=qm[id]||['phq9','gad7','sleep'];
+    if(conds.indexOf('bipolar')!==-1&&qs.indexOf('mdq')===-1) qs.push('mdq');
+    if(conds.indexOf('autism')!==-1&&qs.indexOf('aq10')===-1) qs.push('aq10');
+    if(conds.indexOf('schizophrenia')!==-1&&qs.indexOf('bprs')===-1) qs.push('bprs');
+    A.steps=['consent','landing','auth','profile','medFollowup','branch','safety','transition_q'].concat(qs).concat(['transition_bio','typing','reaction','steadiness','voice','facial','word_show','word_recall','digit','fluency','orientation','trail','context','reflection','loading','arrival','portrait','results','day1']);
+    A.next();
+  },
+
+  // ── SAFETY ──
+  s_safety: function(pct,sec){
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page"><div class="ey" style="margin-top:8px">Before we begin</div><p class="qt">A few things to know</p><div class="card-soft" style="margin-top:14px"><p style="font-size:13px;color:var(--ink-60);line-height:1.75;margin-bottom:10px;font-weight:300">Some questions may touch on difficult experiences. <strong style="font-weight:500;color:var(--ink)">You can skip any question at any time.</strong></p><p style="font-size:13px;color:var(--ink-60);line-height:1.75;font-weight:300">Some tests ask you to walk, tap, draw, or speak briefly. Skip options are always available.</p></div><div class="btns" style="margin-top:18px"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button><button type="button" class="btn btn-dark" onclick="A.next()">I understand — begin</button></div></div></div>');
+  },
+
+  // ── TRANSITION: QUESTIONNAIRE ──
+  s_transition_q: function(pct,sec){
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+
+      '<div class="page" style="padding-top:32px">'+
+        '<div class="transition-card">'+
+          '<div class="transition-card-phase">Phase 1 of 2 — Questionnaires</div>'+
+          '<div class="transition-card-title">How you\'ve been feeling</div>'+
+          '<div class="transition-card-body">We\'ll ask about your mood, anxiety, and sleep over the past two weeks. Answer as honestly as you can — there are no right or wrong answers, and nothing is judged here.<br><br>This takes about 3-4 minutes.</div>'+
+        '</div>'+
+        '<div style="display:flex;gap:10px;margin-top:8px">'+
+          '<button type="button" class="btn btn-outline-dark" onclick="A.back()">Back</button>'+
+          '<button type="button" class="btn btn-teal" onclick="A.next()">Begin questionnaires</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+  },
+
+  // ── TRANSITION: BIOMARKERS ──
+  s_transition_bio: function(pct,sec){
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+
+      '<div class="page" style="padding-top:32px">'+
+        '<div class="transition-card">'+
+          '<div class="transition-card-phase">Phase 2 of 2 — Physical tests</div>'+
+          '<div class="transition-card-title">What your body is doing</div>'+
+          '<div class="transition-card-body">These tests measure things questionnaires cannot — the rhythm of your body, not just what you report about it.<br><br>You\'ll be asked to type a sentence, tap a target, hold still, and complete a few short memory tasks. Each test takes under 60 seconds.</div>'+
+        '</div>'+
+        '<div style="display:flex;gap:10px;margin-top:8px">'+
+          '<button type="button" class="btn btn-outline-dark" onclick="A.back()">Back</button>'+
+          '<button type="button" class="btn btn-teal" onclick="A.next()">Begin physical tests</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+  },
+
+  // ── GENERIC QUESTIONNAIRE ──
+  _Q: function(id,name,intro,qs,opts,ci){
+    var ans=new Array(qs.length).fill(null),sel=new Array(qs.length).fill(-1),qi=0;
+    var n=A.steps.length-1,basePct=n>0?(A.idx/n)*100:0;
+    var r=function(){
+      var p=basePct+(qi/qs.length)*(n>0?100/n:0);
+      var btns=opts.map(function(o,i){ return '<button type="button" class="ab'+(sel[qi]===i?' s':'')+'" onclick="A.__qa('+i+','+o.v+','+(ci!=null?ci:-1)+')"><span class="dot"></span>'+o.l+'</button>'; }).join('');
+      A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(name+' — '+(qi+1)+'/'+qs.length,p)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">'+name+'</div><p class="qt">'+qs[qi]+'</p>'+(qi===0&&intro?'<p class="qs">'+intro+'</p>':'')+'<div class="al">'+btns+'</div><div class="btns"><button type="button" class="btn btn-outline-light" onclick="'+(qi>0?'A.__qb()':'A.back()')+'">Back</button>'+(ans[qi]!==null?'<button type="button" class="btn btn-dark" onclick="A.__qn()">Continue</button>':'')+'</div></div></div>');
+    };
+    A.__qa=function(i,v,c){ ans[qi]=v; sel[qi]=i; if(c>=0&&qi===c&&v>=2) A.st.crisis=true; r(); };
+    A.__qn=function(){ if(qi<qs.length-1){ qi++; r(); } else { A.st.answers[id]=ans; A.next(); } };
+    A.__qb=function(){ qi--; r(); };
+    r();
+  },
+
+  s_phq9: function(p,s){ A._Q('phq9','Mood','Over the last two weeks, how often:',['Little interest or pleasure in doing things','Feeling down, depressed, or hopeless','Trouble sleeping or sleeping too much','Feeling tired or low energy','Poor appetite or overeating','Feeling bad about yourself or like a failure','Trouble concentrating','Moving or speaking slowly, or unusual restlessness','Thoughts that you would be better off dead'],[{l:'Not at all',v:0},{l:'Several days',v:1},{l:'More than half the days',v:2},{l:'Nearly every day',v:3}],8); },
+  s_gad7: function(p,s){ A._Q('gad7','Anxiety','Over the last two weeks, how often:',["Feeling nervous, anxious, or on edge","Cannot stop or control worrying","Worrying too much about different things","Trouble relaxing","So restless it's hard to sit still","Easily annoyed or irritable","Feeling afraid something awful might happen"],[{l:'Not at all',v:0},{l:'Several days',v:1},{l:'More than half the days',v:2},{l:'Nearly every day',v:3}]); },
+
+  s_sleep: function(pct,sec){
+    var qs=['How many hours of sleep do you get each night on average?','How often do you have trouble falling asleep within 30 minutes?','How often do you wake during the night?','How would you rate your overall sleep quality?'];
+    var os=[[{l:'9+ hours',v:0},{l:'7-8 hours',v:0},{l:'5-6 hours',v:1},{l:'Less than 5 hours',v:2}],[{l:'Not at all',v:0},{l:'Less than once a week',v:1},{l:'Once or twice a week',v:2},{l:'Three or more times',v:3}],[{l:'Not at all',v:0},{l:'Less than once a week',v:1},{l:'Once or twice a week',v:2},{l:'Three or more times',v:3}],[{l:'Very good',v:0},{l:'Fairly good',v:0},{l:'Fairly bad',v:1},{l:'Very bad',v:2}]];
+    var ans=[null,null,null,null],sel=[-1,-1,-1,-1],qi=0,n=A.steps.length-1;
+    var r=function(){
+      var p=pct+(qi/4)*(n>0?100/n:0);
+      var btns=os[qi].map(function(o,i){ return '<button type="button" class="ab'+(sel[qi]===i?' s':'')+'" onclick="A.__sl('+i+','+o.v+')"><span class="dot"></span>'+o.l+'</button>'; }).join('');
+      A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar('Sleep — '+(qi+1)+'/4',p)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Sleep</div><p class="qt">'+qs[qi]+'</p><div class="al">'+btns+'</div><div class="btns"><button type="button" class="btn btn-outline-light" onclick="'+(qi>0?'A.__slb()':'A.back()')+'">Back</button>'+(ans[qi]!==null?'<button type="button" class="btn btn-dark" onclick="A.__sln()">Continue</button>':'')+'</div></div></div>');
+    };
+    A.__sl=function(i,v){ ans[qi]=v; sel[qi]=i; r(); };
+    A.__sln=function(){ if(qi<3){ qi++; r(); } else { A.st.answers.sleep=ans; A.next(); } };
+    A.__slb=function(){ qi--; r(); };
+    r();
+  },
+
+  // ── TYPING ──
+  s_typing: function(pct,sec){
+    var T="The early bird catches the worm but the second mouse gets the cheese.";
+    var kt=[],done=false;
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+A.progressBar(sec,pct,true)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="why-card">'+
+          '<div class="why-icon-wrap">'+
+            '<div class="waveform">'+[1,2,3,4,5,6,7].map(function(){ return '<div class="waveform-bar"></div>'; }).join('')+'</div>'+
+          '</div>'+
+          '<div class="why-title">Typing rhythm</div>'+
+          '<div class="why-signal">The rhythm between your keystrokes</div>'+
+          '<div class="why-body">The way you type — the timing between keystrokes — reflects cognitive load and motor function in ways you cannot consciously control. We record only timing, not what you type.</div>'+
+        '</div>'+
+        '<div class="sent-box" style="background:var(--dark2);border-color:var(--border-dark);border-left-color:var(--blue);color:var(--white-80)">"'+T+'"</div>'+
+        '<input class="ti" id="ti" style="background:var(--dark2);border-color:var(--border-dark);color:var(--white)" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Start typing here...">'+
+        '<p id="ts" style="font-size:11px;color:var(--white-50);margin-top:4px;font-weight:300">Timer begins on first keystroke.</p>'+
+        '<div class="btns" style="margin-top:14px"><button type="button" class="btn btn-outline-dark" onclick="A.back()">Back</button><button type="button" class="btn btn-teal" id="tn" style="display:none" onclick="A.next()">Continue</button></div>'+
+      '</div></div>'
+    );
+    var inp=A.$('ti'); if(inp) inp.focus();
+    if(inp){
+      inp.addEventListener('keydown',function(){ if(!done) kt.push(performance.now()); });
+      inp.addEventListener('input',function(){
+        if(done) return;
+        var pct2=Math.min(100,Math.round(inp.value.length/T.length*100));
+        var ts=A.$('ts'); if(ts) ts.textContent=pct2+'% — keep going...';
+        if(inp.value.length>=T.length-3){
+          done=true;
+          if(kt.length>=8){ var ik=kt.slice(1).map(function(t,j){ return t-kt[j]; }); var m=ik.reduce(function(a,b){ return a+b; },0)/ik.length; var sd=Math.sqrt(ik.reduce(function(a,b){ return a+Math.pow(b-m,2); },0)/(ik.length-1)); var ms=kt[kt.length-1]-kt[0]; A.st.bio.typingWpm=Math.min(Math.round(kt.length/5/(ms/60000)),250); A.st.bio.typingCV=Math.round(sd/m*100)/100; }
+          else { A.st.bio.typingWpm=0; A.st.bio.typingCV=0; }
+          inp.disabled=true; var ts2=A.$('ts'); if(ts2) ts2.textContent='Done.'; var tn=A.$('tn'); if(tn) tn.style.display='';
+        }
+      });
+    }
+  },
+
+  // ── REACTION ──
+  s_reaction: function(pct,sec){
+    var trial=0,wait=false,tid=null,stT=null,times=[],N=5;
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+A.progressBar(sec,pct,true)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="why-card">'+
+          '<div class="why-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#4D9FFF"/><circle cx="12" cy="12" r="8" stroke="#4D9FFF" stroke-width="1" opacity="0.4"/><circle cx="12" cy="12" r="11" stroke="#4D9FFF" stroke-width="0.5" opacity="0.2"/></svg></div>'+
+          '<div class="why-title">Reaction time</div>'+
+          '<div class="why-signal">How quickly your nervous system responds</div>'+
+          '<div class="why-body">Your reaction time is a window into how quickly your nervous system is processing information right now. Slowed responses can reflect fatigue, low mood, or medication effects.</div>'+
+        '</div>'+
+        '<div class="rt-box" id="ra" style="background:var(--dark2);border-color:var(--border-dark)"><div class="rt-c" id="rc">Wait...</div></div>'+
+        '<p id="rs" style="font-size:12px;color:var(--white-50);text-align:center;font-family:var(--mono)">Trial 1 of '+N+'</p>'+
+        '<div class="btns" style="margin-top:14px"><button type="button" class="btn btn-outline-dark" onclick="A.back()">Back</button></div>'+
+      '</div></div>'
+    );
+    var go=function(){ var c=A.$('rc'); if(!c) return; c.className='rt-c'; c.textContent='Wait...'; wait=true; tid=setTimeout(function(){ if(!wait) return; c.className='rt-c go'; c.textContent='NOW'; stT=performance.now(); wait=false; },1200+Math.random()*2000); };
+    var tap=function(){
+      if(wait){ clearTimeout(tid); var c=A.$('rc'); if(c){ c.className='rt-c soon'; c.textContent='Too soon'; } setTimeout(go,800); return; }
+      if(!stT) return;
+      var rt=performance.now()-stT; stT=null; times.push(rt); trial++;
+      var rs=A.$('rs'); if(rs) rs.textContent='Trial '+Math.min(trial+1,N)+' / '+N+' — '+Math.round(rt)+'ms';
+      if(trial<N){ setTimeout(go,700); }
+      else{
+        var s=[].concat(times).sort(function(a,b){ return a-b; }); var med=s[Math.floor(s.length/2)];
+        var mn=times.reduce(function(a,b){ return a+b; },0)/times.length;
+        var sd=Math.sqrt(times.reduce(function(a,b){ return a+Math.pow(b-mn,2); },0)/(times.length-1));
+        A.st.bio.rtMedian=Math.round(med); A.st.bio.rtSD=Math.round(sd);
+        var ra=A.$('ra'); if(ra) ra.innerHTML='<div style="text-align:center"><div style="font-family:var(--mono);font-size:36px;font-weight:500;color:var(--blue)">'+Math.round(med)+'<span style="font-size:16px;margin-left:2px">ms</span></div><div style="font-size:11px;color:var(--ink-30);margin-top:4px;font-weight:300">median reaction time</div></div>';
+        if(rs) rs.textContent=''; var btns=document.querySelector('.btns'); if(btns) btns.insertAdjacentHTML('beforeend','<button type="button" class="btn btn-dark" onclick="A.next()">Continue</button>');
+      }
+    };
+    var ra=A.$('ra'); if(ra){ ra.addEventListener('click',tap); ra.addEventListener('touchstart',function(e){ e.preventDefault(); tap(); },{passive:false}); }
+    go();
+  },
+
+  // ── STEADINESS ──
+  s_steadiness: function(pct,sec){
+    var smp=[],col=false,cd=8,iv=null;
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+A.progressBar(sec,pct,true)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="why-card">'+
+          '<div class="why-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12 Q8 8 12 12 Q16 16 20 12" stroke="#4D9FFF" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>'+
+          '<div class="why-title">Hand steadiness</div>'+
+          '<div class="why-signal">Micro-tremor in your resting hand</div>'+
+          '<div class="why-body">The steadiness of your resting hand carries information about tremor, motor control, and neurological baseline. Even micro-tremors invisible to the eye are detectable through the accelerometer.</div>'+
+        '</div>'+
+        '<p class="qs" style="color:var(--white-80)">Hold your phone to your chest with both hands. Stand still for 8 seconds.</p>'+
+        '<div class="timer" id="sst">8</div>'+
+        '<div class="meter"><div class="mf" id="ssf" style="width:0%"></div></div>'+
+        '<p id="sss" style="font-size:12px;color:var(--white-50);text-align:center;margin-bottom:16px;font-weight:300">Tap Begin when holding still.</p>'+
+        '<div class="btns" style="justify-content:center"><button type="button" class="btn btn-outline-dark" onclick="A.back()">Back</button><button type="button" class="btn btn-teal" id="ssb" onclick="A.__ssgo()">Begin</button></div>'+
+      '</div></div>'
+    );
+    A.__ssgo=function(){
+      var ssb=A.$('ssb'); if(ssb) ssb.disabled=true; smp=[]; col=true;
+      var om=function(e){ if(!col) return; var a=e.accelerationIncludingGravity; if(a) smp.push({x:a.x||0,y:a.y||0,z:a.z||0}); };
+      var finish=function(){
+        var rms=0;
+        if(smp.length>10){ var d=[]; for(var i=1;i<smp.length;i++){ var dx=smp[i].x-smp[i-1].x,dy=smp[i].y-smp[i-1].y,dz=smp[i].z-smp[i-1].z; d.push(Math.sqrt(dx*dx+dy*dy+dz*dz)); } rms=Math.sqrt(d.reduce(function(a,b){ return a+b*b; },0)/d.length); }
+        A.st.bio.tremorRMS=Math.round(rms*1000)/1000;
+        var s=A.$('sss'); if(s) s.textContent='Recorded.';
+        var b=A.$('ssb'); if(b) b.insertAdjacentHTML('afterend','<button type="button" class="btn btn-dark" onclick="A.next()">Continue</button>');
+      };
+      var start=function(){ window.addEventListener('devicemotion',om); iv=setInterval(function(){ cd--; var t=A.$('sst'),f=A.$('ssf'),s=A.$('sss'); if(t) t.textContent=cd; if(f) f.style.width=((8-cd)/8*100)+'%'; if(s&&cd>0) s.textContent='Hold still — '+cd+'s remaining...'; if(cd<=0){ clearInterval(iv); col=false; window.removeEventListener('devicemotion',om); finish(); } },1000); };
+      if(typeof DeviceMotionEvent!=='undefined'&&typeof DeviceMotionEvent.requestPermission==='function'){ DeviceMotionEvent.requestPermission().then(function(r){ if(r==='granted') start(); else { A.st.bio.tremorRMS=null; A.next(); } }).catch(function(){ A.st.bio.tremorRMS=null; A.next(); }); }
+      else if(window.DeviceMotionEvent) start();
+      else { A.st.bio.tremorRMS=null; var b=A.$('ssb'); if(b){ b.style.display='none'; b.insertAdjacentHTML('afterend','<button type="button" class="btn btn-dark" onclick="A.next()">Skip & continue</button>'); } }
+    };
+  },
+
+  // ── MEMORY TESTS ──
+  s_word_show: function(pct,sec){
+    var sets=[['River','Candle','Justice','Marble'],['Sunset','Bridge','Velvet','Chimney'],['Garden','Crystal','Hammer','Whisper']];
+    var set=sets[Math.floor(Math.random()*sets.length)]; A.st._ws=set; var t=12;
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Memory</div><p class="qt">Remember these four words</p><p class="qs">Study them carefully. You will be asked to recall them shortly.</p><div class="wg">'+set.map(function(w){ return '<div class="wt">'+w+'</div>'; }).join('')+'</div><p id="wt" style="font-size:12px;color:var(--ink-30);text-align:center;font-family:var(--mono)">Continuing in '+t+'s...</p></div></div>');
+    var iv=setInterval(function(){ t--; var el=A.$('wt'); if(el) el.textContent='Continuing in '+t+'s...'; if(t<=0){ clearInterval(iv); A.next(); } },1000);
+  },
+
+  s_word_recall: function(pct,sec){
+    var tgt=A.st._ws||['River','Candle','Justice','Marble'];
+    var dist=['Apple','Thunder','Pencil','Forest','Silver','Mirror'].filter(function(w){ return tgt.indexOf(w)===-1; }).slice(0,4);
+    var all=[].concat(tgt,dist).sort(function(){ return Math.random()-.5; }); var sel=[];
+    var r=function(){ var btns=all.map(function(w){ var isS=sel.indexOf(w)!==-1; return '<button type="button" class="ab'+(isS?' s':'')+'" onclick="A.__wt(\''+w+'\')"><span class="dot"></span>'+w+'</button>'; }).join(''); A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Memory recall</div><p class="qt">Which words did you see?</p><p class="qs">Select all that you remember.</p><div class="al">'+btns+'</div><div class="btns"><button type="button" class="btn btn-dark" onclick="A.__ws()">Submit</button></div></div></div>'); };
+    A.__wt=function(w){ var i=sel.indexOf(w); if(i===-1) sel.push(w); else sel.splice(i,1); r(); };
+    A.__ws=function(){ var c=0; tgt.forEach(function(w){ if(sel.indexOf(w)!==-1) c++; }); A.st.cog.recall=c; A.next(); };
+    r();
+  },
+
+  s_digit: function(pct,sec){
+    var seq=Array.from({length:5},function(){ return Math.floor(Math.random()*9)+1; }); var rev=[].concat(seq).reverse(); var cd=3;
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Working memory</div><p class="qt">Memorise this, then type it in reverse</p><div class="timer" id="ds" style="letter-spacing:0.2em">'+seq.join('  ')+'</div><p id="dst" style="font-size:12px;color:var(--ink-30);text-align:center;margin-bottom:14px;font-weight:300">Input appears in '+cd+'s</p><div id="di" style="display:none"><p style="font-size:12px;color:var(--ink-30);text-align:center;margin-bottom:8px;font-weight:300">Type in reverse order:</p><input class="ti" id="da" maxlength="15" placeholder="e.g. 3 7 1 4 2" style="text-align:center;font-family:var(--mono);font-size:20px;letter-spacing:.15em"><div class="btns" style="margin-top:10px"><button type="button" class="btn btn-dark" onclick="A.__dck()">Check</button></div></div></div></div>');
+    var rv=[].concat(rev);
+    var iv=setInterval(function(){ cd--; var s=A.$('dst'); if(s&&cd>0) s.textContent='Input appears in '+cd+'s'; if(cd<=0){ clearInterval(iv); var sq=A.$('ds'); if(sq) sq.textContent='?  ?  ?  ?  ?'; var d=A.$('di'); if(d) d.style.display=''; var st=A.$('dst'); if(st) st.style.display='none'; } },1000);
+    A.__dck=function(){ var val=(A.$('da').value||'').replace(/\s+/g,'').split('').map(Number); A.st.cog.digitSpan=val.length===rv.length&&val.every(function(x,i){ return x===rv[i]; }); A.next(); };
+  },
+
+  s_fluency: function(pct,sec){
+    var words=[],t=45,iv;
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Verbal fluency</div><p class="qt">Name as many animals as you can</p><p class="qs" style="font-weight:300">Type one and press Enter. 45 seconds.</p><div class="timer" id="ft">45</div><input class="ti" id="fi" type="text" placeholder="e.g. elephant..."><p id="fc" style="font-size:12px;color:var(--ink-30);font-family:var(--mono)">0 animals</p><div id="ftags" style="margin-top:8px"></div></div></div>');
+    var inp=A.$('fi'); if(inp) inp.focus();
+    var add=function(){ if(!inp) return; var v=inp.value.trim().toLowerCase().replace(/,/g,''); if(v&&words.indexOf(v)===-1){ words.push(v); var tags=A.$('ftags'); if(tags) tags.innerHTML=words.map(function(w){ return '<span class="tag">'+w+'</span>'; }).join(''); var fc=A.$('fc'); if(fc) fc.textContent=words.length+' animal'+(words.length===1?'':'s'); } inp.value=''; };
+    if(inp) inp.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===','){ e.preventDefault(); add(); } });
+    iv=setInterval(function(){ t--; var el=A.$('ft'); if(el) el.textContent=t; if(t<=0){ clearInterval(iv); add(); if(inp) inp.disabled=true; A.st.cog.fluency=words.length; var pg=document.querySelector('.page'); if(pg) pg.insertAdjacentHTML('beforeend','<div class="btns" style="margin-top:13px"><button type="button" class="btn btn-dark" onclick="A.next()">Continue</button></div>'); } },1000);
+  },
+
+  s_orientation: function(pct,sec){
+    var now=new Date();
+    var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var qs=[{q:'What day of the week is it?',ans:days[now.getDay()],opts:days},{q:'What month are we in?',ans:months[now.getMonth()],opts:months},{q:'What year is it?',ans:String(now.getFullYear()),opts:[String(now.getFullYear()-1),String(now.getFullYear()),String(now.getFullYear()+1),String(now.getFullYear()-2)].sort(function(){ return Math.random()-.5; })}];
+    var qi=0,score=0;
+    var r=function(){ var btns=qs[qi].opts.map(function(o){ return '<button type="button" class="ab" onclick="A.__or(\''+o+'\',\''+qs[qi].ans+'\')"><span class="dot"></span>'+o+'</button>'; }).join(''); A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec+' — '+(qi+1)+'/3',pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Orientation</div><p class="qt">'+qs[qi].q+'</p><div class="al">'+btns+'</div></div></div>'); };
+    A.__or=function(c,ans){ if(c===ans) score++; qi++; if(qi<qs.length) r(); else { A.st.cog.orientation=score; A.next(); } };
+    r();
+  },
+
+  s_trail: function(pct,sec){
+    var N=7,SZ=290;
+    var pos=[]; for(var i=0;i<N;i++){ var p,ok,a=0; do{ p={x:30+Math.random()*(SZ-60),y:30+Math.random()*(SZ-60)}; ok=pos.every(function(q){ return Math.hypot(q.x-p.x,q.y-p.y)>48; }); a++; }while(!ok&&a<100); pos.push(p); }
+    var nxt=1,stT=null,done=false;
+    A.app('<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+'<div class="page" style="padding-top:8px"><div class="ey" style="margin-top:8px">Attention</div><p class="qt">Tap 1 to '+N+' in order</p><p class="qs" style="font-weight:300">As quickly and accurately as you can.</p><canvas id="tc" width="'+SZ+'" height="'+SZ+'" style="width:100%;max-width:'+SZ+'px;margin:0 auto;border-radius:12px;background:var(--paper2);border:1px solid var(--border)"></canvas><p id="tst" style="font-size:11px;color:var(--ink-30);text-align:center;margin-top:8px;font-family:var(--mono)">Tap 1 to begin.</p><div class="btns" style="margin-top:12px"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button></div></div></div>');
+    var cv=A.$('tc'); if(!cv) return; var ctx=cv.getContext('2d');
+    var draw=function(){ ctx.clearRect(0,0,SZ,SZ); ctx.fillStyle='var(--paper2)'; ctx.fillRect(0,0,SZ,SZ); pos.forEach(function(p,i){ var n=i+1,dn=n<nxt,ac=n===nxt; ctx.beginPath(); ctx.arc(p.x,p.y,19,0,Math.PI*2); ctx.fillStyle=dn?'rgba(0,196,180,0.1)':ac?'#4D9FFF':'#fff'; ctx.fill(); ctx.strokeStyle=dn?'rgba(0,196,180,0.3)':ac?'#4D9FFF':'var(--border)'; ctx.lineWidth=1.5; ctx.stroke(); ctx.fillStyle=dn?'#4D9FFF':ac?'var(--dark)':'var(--ink-60)'; ctx.font=(ac?'600':'400')+' 13px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(n,p.x,p.y); }); };
+    draw();
+    var tap=function(e){ if(done) return; var rect=cv.getBoundingClientRect(); var sc=SZ/rect.width; var cx=(e.clientX-rect.left)*sc,cy=(e.clientY-rect.top)*sc; if(nxt===1) stT=performance.now(); var tg=pos[nxt-1]; if(Math.hypot(cx-tg.x,cy-tg.y)<26){ nxt++; draw(); if(nxt>N){ done=true; var el=(performance.now()-stT)/1000; A.st.cog.trail=true; A.st.cog.trailTime=Math.round(el*10)/10; var s=A.$('tst'); if(s) s.textContent='Completed in '+A.st.cog.trailTime+'s'; var btns=document.querySelector('.btns'); if(btns) btns.insertAdjacentHTML('beforeend','<button type="button" class="btn btn-dark" onclick="A.next()">Continue</button>'); } else { var s2=A.$('tst'); if(s2) s2.textContent='Tap '+nxt+'.'; } } };
+    cv.addEventListener('click',tap); cv.addEventListener('touchstart',function(e){ e.preventDefault(); var t=e.touches[0]; tap({clientX:t.clientX,clientY:t.clientY}); },{passive:false});
+  },
+
+  // ── CONTEXT ──
+  s_context: function(pct,sec){
+    var socialOpts=['0 days','1-2 days','3-4 days','5-7 days'];
+    var medOpts=[{v:'yes',l:'Yes, as prescribed'},{v:'missed_one',l:'Missed one dose'},{v:'missed_multi',l:'Missed multiple doses'},{v:'changed',l:'Changed dose or medication recently'},{v:'na',l:'Not on regular medication'}];
+    A.st._ctx={compare:0,social:null,medAdherence:null};
+    var sBtns=socialOpts.map(function(l,i){ return '<button type="button" class="ab" id="ctx-soc-'+i+'" onclick="A.__ctxSoc('+i+',\''+l+'\')"><span class="dot"></span>'+l+'</button>'; }).join('');
+    var mBtns=medOpts.map(function(o,i){ return '<button type="button" class="ab" id="ctx-med-'+i+'" onclick="A.__ctxMed(\''+o.v+'\','+i+')"><span class="dot"></span>'+o.l+'</button>'; }).join('');
+    A.app(
+      '<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="ey" style="margin-top:8px">Today</div>'+
+        '<p class="qt">Three quick questions about today</p>'+
+        '<p class="qs" style="font-weight:300">These help us interpret everything else more accurately.</p>'+
+        '<div class="fld" style="margin-top:4px">'+
+          '<label style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:12px;display:block">How does today compare to your usual self?</label>'+
+          '<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">'+
+            '<span style="font-size:11px;color:var(--ink-30);white-space:nowrap;font-weight:300">Much worse</span>'+
+            '<input type="range" id="ctx-r" min="-2" max="2" value="0" step="1" style="flex:1;accent-color:var(--blue)">'+
+            '<span style="font-size:11px;color:var(--ink-30);white-space:nowrap;font-weight:300">Much better</span>'+
+          '</div>'+
+          '<div id="ctx-cl" style="text-align:center;font-size:13px;font-weight:500;color:var(--blue)">About the same as usual</div>'+
+        '</div>'+
+        '<div class="fld" style="margin-top:18px">'+
+          '<label style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;display:block">Days you left the house or spent time with others this week?</label>'+
+          '<div class="al">'+sBtns+'</div>'+
+        '</div>'+
+        '<div class="fld">'+
+          '<label style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;display:block">Medication taken as prescribed today and yesterday?</label>'+
+          '<div class="al">'+mBtns+'</div>'+
+        '</div>'+
+        '<div id="ctx-cont" style="display:none;margin-top:16px" class="btns"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button><button type="button" class="btn btn-dark" onclick="A.next()">Continue</button></div>'+
+        '<div id="ctx-nocont" style="margin-top:16px" class="btns"><button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button></div>'+
+      '</div></div>'
+    );
+    var clabels={'-2':'Much worse than usual','-1':'Somewhat worse than usual','0':'About the same as usual','1':'Somewhat better than usual','2':'Much better than usual'};
+    var slider=A.$('ctx-r');
+    if(slider) slider.addEventListener('input',function(){ A.st._ctx.compare=parseInt(slider.value); var el=A.$('ctx-cl'); if(el) el.textContent=clabels[slider.value]||''; });
+    A.__ctxSoc=function(i,label){ document.querySelectorAll('[id^="ctx-soc-"]').forEach(function(b){ b.classList.remove('s'); }); var btn=A.$('ctx-soc-'+i); if(btn) btn.classList.add('s'); A.st._ctx.social=label; A.__ctxReady(); };
+    A.__ctxMed=function(val,i){ document.querySelectorAll('[id^="ctx-med-"]').forEach(function(b){ b.classList.remove('s'); }); var btn=A.$('ctx-med-'+i); if(btn) btn.classList.add('s'); A.st._ctx.medAdherence=val; A.__ctxReady(); };
+    A.__ctxReady=function(){ if(A.st._ctx.social&&A.st._ctx.medAdherence){ var c=A.$('ctx-cont'); if(c) c.style.display=''; var n=A.$('ctx-nocont'); if(n) n.style.display='none'; } };
+  },
+
+  // ── REFLECTION ──
+  s_reflection: function(pct,sec){
+    A.app(
+      '<div class="screen screen-light">'+A.topBar(false)+A.progressBar(sec,pct)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="ey" style="margin-top:8px">One last question</div>'+
+        '<p class="qt">Is there anything this assessment did not capture?</p>'+
+        '<p class="qs" style="font-weight:300">People know things about themselves that no test can measure. This goes directly into your interpretation.</p>'+
+        '<textarea id="refl" style="width:100%;min-height:120px;font-family:var(--sans);font-size:13px;padding:14px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;line-height:1.6;font-weight:300" placeholder="e.g. I have been under unusual stress this week, or my medication does not feel like it is working as well lately..."></textarea>'+
+        '<div class="btns" style="margin-top:16px">'+
+          '<button type="button" class="btn btn-outline-light" onclick="A.back()">Back</button>'+
+          '<button type="button" class="btn btn-dark" onclick="A.__reflDone()">See my results</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+    A.__reflDone=function(){ var el=A.$('refl'); A.st.reflection=(el?el.value:'').trim(); A.next(); };
+  },
+
+
+  // ── CONSENT ──
+  s_consent: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh">'+
+      A.topBar(true)+
+      '<div style="max-width:500px;margin:0 auto;padding:48px 24px 60px">'+
+        '<div style="text-align:center;margin-bottom:40px">'+
+          LOGO_DARK+
+          '<h1 style="font-family:var(--serif);font-size:32px;color:var(--white);margin-top:24px;margin-bottom:12px;line-height:1.25">A few minutes<br>about how you are doing</h1>'+
+          '<p style="font-size:15px;color:var(--white-80);font-weight:300;line-height:1.75;max-width:380px;margin:0 auto">This is a brain health check-in — a quiet space to understand what is going on with your mood, energy, sleep, and cognitive health. No appointments. No waiting rooms. Just you and the data.</p>'+
+        '</div>'+
+        '<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px">'+
+          '<div style="background:var(--dark2);border:1px solid var(--border-dark);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start">'+
+            '<div style="width:36px;height:36px;border-radius:10px;background:var(--teal-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">🔒</div>'+
+            '<div>'+
+              '<div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px">Your privacy comes first</div>'+
+              '<div style="font-size:13px;color:var(--white-50);font-weight:300;line-height:1.65">We never record your voice or save any video. If you use the camera or microphone, we extract only measurements — numbers that describe patterns, nothing identifiable. Nothing leaves your device except those numbers.</div>'+
+            '</div>'+
+          '</div>'+
+          '<div style="background:var(--dark2);border:1px solid var(--border-dark);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start">'+
+            '<div style="width:36px;height:36px;border-radius:10px;background:var(--teal-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">💬</div>'+
+            '<div>'+
+              '<div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px">This is not a diagnosis</div>'+
+              '<div style="font-size:13px;color:var(--white-50);font-weight:300;line-height:1.65">Think of it like a check engine light — it tells you something worth paying attention to, but your doctor is still the mechanic. Share your results with whoever supports your health.</div>'+
+            '</div>'+
+          '</div>'+
+          '<div style="background:var(--dark2);border:1px solid var(--border-dark);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start">'+
+            '<div style="width:36px;height:36px;border-radius:10px;background:var(--teal-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">🤝</div>'+
+            '<div>'+
+              '<div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px">You are in control</div>'+
+              '<div style="font-size:13px;color:var(--white-50);font-weight:300;line-height:1.65">Every test is optional. Skip anything that does not feel right. Stop at any time. The camera and microphone will only activate if you tap Begin — never automatically.</div>'+
+            '</div>'+
+          '</div>'+
+          '<div style="background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.15);border-radius:14px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start">'+
+            '<div style="font-size:18px;flex-shrink:0">❤️</div>'+
+            '<div style="font-size:13px;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.65">If you are in crisis or having thoughts of self-harm, please reach out to a crisis line or emergency services before continuing. In the US, call or text <strong style="color:var(--white)">988</strong>.</div>'+
+          '</div>'+
+        '</div>'+
+        '<button type="button" class="btn btn-teal btn-full" style="font-size:15px;padding:16px" onclick="A.next()">I understand — begin my assessment</button>'+
+        '<p style="font-size:11px;color:var(--white-20);text-align:center;margin-top:14px;font-weight:300;line-height:1.6">By continuing, you agree that this is a screening tool only. Results are processed on your device and interpreted by Claude (Anthropic). Nothing is stored on any server.</p>'+
+      '</div></div>'
+    );
+  },
+
+  // ── VOICE ANALYSIS ──
+  s_voice: function(pct,sec){
+    var PASSAGE = "The autumn leaves drifted past the window as she sat by the fire, thinking about nothing in particular and everything all at once. The clock on the wall ticked steadily, and outside the wind moved through the trees.";
+    var recording=false, audioCtx=null, analyser=null, source=null, stream=null;
+    var pauseCount=0, wordCount=0, lastActivityTime=null, inPause=false;
+    var rmsHistory=[], startTime=null, speechRecognition=null;
+
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+A.progressBar(sec,pct,true)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="why-card">'+
+          '<div class="why-icon-wrap">'+
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none">'+
+              '<rect x="9" y="2" width="6" height="12" rx="3" stroke="#4D9FFF" stroke-width="1.5"/>'+
+              '<path d="M5 10a7 7 0 0014 0" stroke="#4D9FFF" stroke-width="1.5" stroke-linecap="round"/>'+
+              '<line x1="12" y1="19" x2="12" y2="22" stroke="#4D9FFF" stroke-width="1.5" stroke-linecap="round"/>'+
+            '</svg>'+
+          '</div>'+
+          '<div class="why-title">Voice analysis</div>'+
+          '<div class="why-signal">Speech rate, pause patterns, and vocal energy</div>'+
+          '<div class="why-body">Read the passage below at your natural pace. We measure how fast you speak, how often you pause, and the rhythm of your vocal energy — all of which reflect cognitive and neurological state. No audio is recorded or stored.</div>'+
+        '</div>'+
+        '<div class="sent-box" style="background:var(--navy3);border-color:var(--w06);border-left-color:var(--blue);color:var(--w85)">"'+PASSAGE+'"</div>'+
+        '<div id="v-status" style="font-size:13px;color:var(--w60);margin-bottom:14px;font-weight:300;text-align:center">Tap Begin when ready — read naturally, at your normal pace.</div>'+
+        '<div id="v-meter" style="display:none;margin-bottom:16px">'+
+          '<div class="meter"><div class="mf" id="v-fill" style="width:0%"></div></div>'+
+          '<div style="display:flex;justify-content:space-between;margin-top:6px">'+
+            '<span id="v-words" style="font-family:var(--mono);font-size:11px;color:var(--blue)">0 words</span>'+
+            '<span id="v-time" style="font-family:var(--mono);font-size:11px;color:var(--w30)">0s</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="btns" id="v-btns" style="justify-content:center">'+
+          '<button type="button" class="btn btn-outline-dark" onclick="A.next()">Skip this test</button>'+
+          '<button type="button" class="btn btn-teal" id="v-start" onclick="A.__vStart()">Begin recording</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+
+    A.__vStart = function(){
+      var startBtn=A.$('v-start'); if(startBtn) startBtn.disabled=true;
+      var st=A.$('v-status'); if(st) st.textContent='Starting microphone...';
+
+      navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,sampleRate:44100},video:false}).then(function(str){
+        stream=str; recording=true; startTime=Date.now(); lastActivityTime=Date.now();
+
+        // Web Audio for RMS energy tracking
+        audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+        analyser=audioCtx.createAnalyser();
+        analyser.fftSize=2048;
+        source=audioCtx.createMediaStreamSource(str);
+        source.connect(analyser);
+
+        var timeDomain=new Float32Array(analyser.fftSize);
+        var meter=A.$('v-meter'); if(meter) meter.style.display='';
+        var btns=A.$('v-btns'); if(btns) btns.innerHTML='<button type="button" class="btn btn-teal" onclick="A.__vStop()">Done reading</button>';
+
+        // Speech recognition for word count — most reliable cross-browser metric
+        var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+        if(SR){
+          speechRecognition=new SR();
+          speechRecognition.continuous=true;
+          speechRecognition.interimResults=false;
+          speechRecognition.onresult=function(e){
+            for(var i=e.resultIndex;i<e.results.length;i++){
+              if(e.results[i].isFinal){
+                var words=e.results[i][0].transcript.trim().split(/\s+/).filter(function(w){ return w.length>0; });
+                wordCount+=words.length;
+                var wEl=A.$('v-words'); if(wEl) wEl.textContent=wordCount+' words';
+              }
+            }
+          };
+          speechRecognition.onerror=function(){}; // fail silently
+          try{ speechRecognition.start(); }catch(e){}
+        }
+
+        // RMS energy tracking every 80ms — for speech activity and pause detection
+        var elapsed=0;
+        var energyInterval=setInterval(function(){
+          if(!recording){ clearInterval(energyInterval); return; }
+          elapsed+=80;
+
+          analyser.getFloatTimeDomainData(timeDomain);
+
+          // Calculate RMS
+          var rms=0;
+          for(var i=0;i<timeDomain.length;i++) rms+=timeDomain[i]*timeDomain[i];
+          rms=Math.sqrt(rms/timeDomain.length);
+          rmsHistory.push(rms);
+
+          // Pause detection — silence threshold
+          var SILENCE_THRESHOLD=0.012;
+          var PAUSE_MIN_MS=400;
+          if(rms<SILENCE_THRESHOLD){
+            if(!inPause && (Date.now()-lastActivityTime)>PAUSE_MIN_MS){
+              inPause=true; pauseCount++;
+            }
+          } else {
+            inPause=false; lastActivityTime=Date.now();
+          }
+
+          // Update UI
+          var prog=Math.min(elapsed/30000*100,100);
+          var fill=A.$('v-fill'); if(fill) fill.style.width=prog+'%';
+          var timeEl=A.$('v-time'); if(timeEl) timeEl.textContent=Math.round(elapsed/1000)+'s';
+          var stEl=A.$('v-status'); if(stEl) stEl.textContent='Recording — read naturally...';
+
+          if(elapsed>=30000) A.__vStop();
+        },80);
+
+      }).catch(function(){
+        A.st.bio.voice=null;
+        A.next();
+      });
+    };
+
+    A.__vStop=function(){
+      recording=false;
+      if(speechRecognition){ try{ speechRecognition.stop(); }catch(e){} }
+      if(stream) stream.getTracks().forEach(function(t){ t.stop(); });
+      if(audioCtx) try{ audioCtx.close(); }catch(e){}
+
+      var durationSec=startTime?(Date.now()-startTime)/1000:30;
+
+      // Only keep metrics we can measure reliably
+      var speechRate=durationSec>5?Math.round(wordCount/(durationSec/60)):0;
+
+      // Mean RMS energy — proxy for vocal effort/loudness
+      var meanRMS=rmsHistory.length>0?rmsHistory.reduce(function(a,b){ return a+b; },0)/rmsHistory.length:0;
+
+      // RMS variability — proxy for prosody/expressiveness
+      var rmsSD=0;
+      if(rmsHistory.length>1){
+        var mean=meanRMS;
+        rmsSD=Math.sqrt(rmsHistory.reduce(function(a,b){ return a+Math.pow(b-mean,2); },0)/rmsHistory.length);
+      }
+
+      // Confidence flag — did we get enough signal?
+      var reliable = durationSec >= 10 && (wordCount > 5 || meanRMS > 0.01);
+
+      A.st.bio.voice={
+        speechRate: speechRate,           // wpm — reliable if SR worked
+        pauseCount: pauseCount,           // count — reliable
+        wordCount: wordCount,             // raw count
+        duration: Math.round(durationSec),
+        meanVocalEnergy: Math.round(meanRMS*10000)/10000,   // RMS proxy
+        vocalVariability: Math.round(rmsSD*10000)/10000,    // prosody proxy
+        reliable: reliable,               // flag for AI to weight accordingly
+        speechRecognitionWorked: wordCount>0
+      };
+
+      var stEl=A.$('v-status');
+      if(stEl) stEl.textContent=reliable?'Recorded — '+wordCount+' words in '+Math.round(durationSec)+'s.':'Recording complete.';
+      var btns=A.$('v-btns');
+      if(btns) btns.innerHTML='<button type="button" class="btn btn-teal" onclick="A.next()">Continue</button>';
+    };
+  },
+
+
+  // ── FACIAL ANALYSIS ──
+  s_facial: function(pct,sec){
+    var videoEl=null, stream=null, analysisInterval=null;
+    var blinkCount=0, lastEyeOpen=true, expressivitySamples=[], emotionCounts={};
+    var eyeOpennessSamples=[], elapsed=0;
+    var DURATION=30000;
+    var faceApiReady = typeof faceapi !== 'undefined';
+
+    A.app(
+      '<div class="screen screen-dark">'+A.topBar(true)+A.progressBar(sec,pct,true)+
+      '<div class="page" style="padding-top:8px">'+
+        '<div class="why-card">'+
+          '<div class="why-icon-wrap">'+
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none">'+
+              '<circle cx="12" cy="12" r="9" stroke="#4D9FFF" stroke-width="1.5"/>'+
+              '<circle cx="9" cy="10" r="1.5" fill="#4D9FFF"/>'+
+              '<circle cx="15" cy="10" r="1.5" fill="#4D9FFF"/>'+
+              '<path d="M8.5 15.5 Q12 18 15.5 15.5" stroke="#4D9FFF" stroke-width="1.5" stroke-linecap="round" fill="none"/>'+
+            '</svg>'+
+          '</div>'+
+          '<div class="why-title">Facial expression</div>'+
+          '<div class="why-signal">Blink rate, expressivity, and emotional tone</div>'+
+          '<div class="why-body">Blink rate, facial expressivity, and dominant emotional tone reflect neurological and psychiatric state. Reduced expressivity is an early Parkinson\'s marker. No video is stored — only landmark measurements.</div>'+
+        '</div>'+
+        '<div id="f-video-wrap" style="display:none;position:relative;max-width:260px;margin:0 auto 14px">'+
+          '<video id="f-vid" autoplay muted playsinline style="width:100%;border-radius:12px;background:#000;display:block"></video>'+
+          '<div id="f-overlay" style="position:absolute;top:8px;right:8px;background:rgba(0,196,180,0.9);border-radius:50px;padding:3px 10px;font-size:11px;font-weight:600;color:var(--dark)">LIVE</div>'+
+        '</div>'+
+        '<div class="meter" style="display:none" id="f-prog"><div class="mf" id="f-fill" style="width:0%"></div></div>'+
+        '<p id="f-status" style="font-size:12px;color:var(--white-50);text-align:center;margin-bottom:14px;font-weight:300">Look naturally at the screen when ready.</p>'+
+        '<div class="btns" id="f-btns" style="justify-content:center">'+
+          '<button type="button" class="btn btn-outline-dark" onclick="A.__fSkip()">Skip this test</button>'+
+          '<button type="button" class="btn btn-teal" id="f-start" onclick="A.__fStart()">Begin</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+
+    A.__fSkip = function(){
+      A.st.bio.facial = null;
+      if(stream) stream.getTracks().forEach(function(t){ t.stop(); });
+      clearInterval(analysisInterval);
+      A.next();
+    };
+
+    A.__fStart = function(){
+      var startBtn=A.$('f-start'); if(startBtn) startBtn.disabled=true;
+      var st=A.$('f-status'); if(st) st.textContent='Starting camera...';
+
+      navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240},audio:false}).then(function(str){
+        stream=str;
+        var wrap=A.$('f-video-wrap'); if(wrap) wrap.style.display='';
+        var prog=A.$('f-prog'); if(prog) prog.style.display='';
+        videoEl=A.$('f-vid');
+        videoEl.srcObject=str;
+
+        videoEl.addEventListener('loadedmetadata', function(){
+          var st2=A.$('f-status'); if(st2) st2.textContent='Recording for 30 seconds — look naturally at the screen.';
+          var btns=A.$('f-btns'); if(btns) btns.innerHTML='<button type="button" class="btn btn-teal" onclick="A.__fStop()">Done</button>';
+
+          if(faceApiReady){
+            // Load tiny face detector models from CDN
+            Promise.all([
+              faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights'),
+              faceapi.nets.faceLandmark68TinyNet.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights'),
+              faceapi.nets.faceExpressionNet.loadFromUri('https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights')
+            ]).then(function(){
+              analysisInterval = setInterval(A.__fAnalyse, 500);
+            }).catch(function(){
+              // face-api models failed — fallback to brightness analysis
+              analysisInterval = setInterval(A.__fFallback, 200);
+            });
+          } else {
+            // face-api not loaded — fallback
+            analysisInterval = setInterval(A.__fFallback, 200);
+          }
+        });
+
+      }).catch(function(){
+        A.__fSkip();
+      });
+    };
+
+    // face-api analysis frame
+    A.__fAnalyse = async function(){
+      if(!videoEl||!recording) return;
+      elapsed += 500;
+      A.__fUpdateProgress();
+
+      try{
+        var det = await faceapi.detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions())
+          .withFaceLandmarks(true)
+          .withFaceExpressions();
+
+        if(det){
+          // Eye openness via landmark distances
+          var lm = det.landmarks;
+          var le = lm.getLeftEye();
+          var re = lm.getRightEye();
+          var eyeH = function(pts){ return Math.abs(pts[1].y-pts[5].y)+Math.abs(pts[2].y-pts[4].y); };
+          var eyeW = function(pts){ return Math.abs(pts[0].x-pts[3].x); };
+          var lEAR = eyeH(le)/(2*eyeW(le));
+          var rEAR = eyeH(re)/(2*eyeW(re));
+          var EAR = (lEAR+rEAR)/2;
+          eyeOpennessSamples.push(EAR);
+
+          // Blink detection (EAR threshold)
+          var isOpen = EAR > 0.2;
+          if(lastEyeOpen && !isOpen) blinkCount++;
+          lastEyeOpen = isOpen;
+
+          // Expressivity — sum of non-neutral expressions
+          var exp = det.expressions;
+          var expressivity = (exp.happy||0)+(exp.sad||0)+(exp.angry||0)+(exp.fearful||0)+(exp.disgusted||0)+(exp.surprised||0);
+          expressivitySamples.push(expressivity);
+
+          // Dominant emotion
+          var dominant = 'neutral';
+          var maxVal = 0;
+          Object.keys(exp).forEach(function(k){ if(exp[k]>maxVal){ maxVal=exp[k]; dominant=k; } });
+          emotionCounts[dominant] = (emotionCounts[dominant]||0)+1;
+        }
+      } catch(e){}
+
+      if(elapsed >= DURATION) A.__fStop();
+    };
+
+    // Brightness fallback when face-api unavailable
+    var fbCanvas=null, fbCtx=null;
+    var lastBrightness=null;
+    A.__fFallback = function(){
+      elapsed += 200;
+      A.__fUpdateProgress();
+      if(!videoEl) return;
+      if(!fbCanvas){ fbCanvas=document.createElement('canvas'); fbCanvas.width=80; fbCanvas.height=60; fbCtx=fbCanvas.getContext('2d'); }
+      fbCtx.drawImage(videoEl,0,0,80,60);
+      var d=fbCtx.getImageData(0,0,80,60).data;
+      var bright=0,count=0;
+      for(var i=0;i<d.length;i+=16){ bright+=(d[i]+d[i+1]+d[i+2])/3; count++; }
+      bright=count>0?bright/count:0;
+      if(lastBrightness!==null){
+        var diff=Math.abs(bright-lastBrightness);
+        expressivitySamples.push(diff);
+        if(diff>8) blinkCount++;
+      }
+      lastBrightness=bright;
+      if(elapsed>=DURATION) A.__fStop();
+    };
+
+    var recording = true;
+    A.__fUpdateProgress = function(){
+      var pct2=Math.min(elapsed/DURATION*100,100);
+      var fill=A.$('f-fill'); if(fill) fill.style.width=pct2+'%';
+      var st=A.$('f-status'); if(st) st.textContent='Recording — '+Math.round(elapsed/1000)+'s / 30s';
+    };
+
+    A.__fStop = function(){
+      recording=false;
+      clearInterval(analysisInterval);
+      if(stream) stream.getTracks().forEach(function(t){ t.stop(); });
+
+      var durationMin=elapsed/60000;
+      var blinkRate=durationMin>0?Math.round(blinkCount/durationMin):0;
+      var meanExpressivity=expressivitySamples.length>0?expressivitySamples.reduce(function(a,b){ return a+b; },0)/expressivitySamples.length:0;
+      var meanEyeOpen=eyeOpennessSamples.length>0?eyeOpennessSamples.reduce(function(a,b){ return a+b; },0)/eyeOpennessSamples.length:null;
+
+      var dominantEmotion='neutral';
+      var maxCount=0;
+      Object.keys(emotionCounts).forEach(function(k){ if(emotionCounts[k]>maxCount){ maxCount=emotionCounts[k]; dominantEmotion=k; } });
+
+      A.st.bio.facial={
+        blinkRate: blinkRate,
+        expressivityIndex: Math.round(meanExpressivity*1000)/1000,
+        eyeOpenness: meanEyeOpen!==null?Math.round(meanEyeOpen*1000)/1000:null,
+        dominantEmotion: dominantEmotion,
+        faceApiUsed: faceApiReady && Object.keys(emotionCounts).length>0,
+        framesCaptured: expressivitySamples.length
+      };
+
+      var wrap=A.$('f-video-wrap'); if(wrap) wrap.style.display='none';
+      var st=A.$('f-status'); if(st) st.textContent='Recorded — '+blinkCount+' blinks detected.';
+      var btns=A.$('f-btns'); if(btns) btns.innerHTML='<button type="button" class="btn btn-teal" onclick="A.next()">Continue</button>';
+    };
+  },
+
+  // ── LOADING ──
+  s_loading: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh">'+A.topBar(true)+
+      '<div class="loading-wrap">'+
+        '<div class="loading-mri-brain">'+
+          '<svg width="160" height="180" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+            '<path d="M100 28 C80 26 60 34 46 50 C30 68 25 90 28 112 C31 134 42 152 56 162 C70 172 84 172 94 168 L100 166" stroke="rgba(77,159,255,0.3)" stroke-width="1.5" fill="none"/>'+
+            '<path d="M100 28 C120 26 140 34 154 50 C170 68 175 90 172 112 C169 134 158 152 144 162 C130 172 116 172 106 168 L100 166" stroke="rgba(77,159,255,0.3)" stroke-width="1.5" fill="none"/>'+
+            '<path d="M68 100 C76 96 88 94 100 94 C112 94 124 96 132 100" stroke="rgba(77,159,255,0.2)" stroke-width="1" fill="none"/>'+
+            '<path d="M55 125 C65 120 76 120 84 126" stroke="rgba(77,159,255,0.15)" stroke-width="1" fill="none"/>'+
+            '<path d="M116 126 C124 120 135 120 145 125" stroke="rgba(77,159,255,0.15)" stroke-width="1" fill="none"/>'+
+            '<path d="M72 70 C80 64 90 61 100 61 C110 61 120 64 128 70" stroke="rgba(77,159,255,0.15)" stroke-width="1" fill="none"/>'+
+            '<ellipse cx="100" cy="168" rx="12" ry="6" stroke="rgba(77,159,255,0.15)" stroke-width="1" fill="none"/>'+
+            '<line x1="100" y1="28" x2="100" y2="162" stroke="rgba(77,159,255,0.06)" stroke-width="1" stroke-dasharray="3 5"/>'+
+          '</svg>'+
+          '<div class="loading-mri-line"></div>'+
+        '</div>'+
+        '<div id="lh" class="loading-title">Reading your assessment...</div>'+
+        '<div id="ls" class="loading-sub">Mapping your responses across all domains.</div>'+
+      '</div></div>'
+    );
+    var msgs=[['Mapping your behaviour...','Comparing biomarkers with your questionnaire answers.'],['Building your portrait...','Looking at how all domains interact.'],['Adjusting for your profile...','Interpreting in context of your conditions and medications.'],['Almost ready...','Writing your personalised brain health snapshot.']];
+    var mi=0;
+    var iv=setInterval(function(){ mi=(mi+1)%msgs.length; var h=A.$('lh'),s=A.$('ls'); if(h) h.textContent=msgs[mi][0]; if(s) s.textContent=msgs[mi][1]; },2200);
+    A.callAI().then(function(r){ clearInterval(iv); A.st._aiResult=r; A.saveAssessment(r); A.next(); }).catch(function(e){
+      clearInterval(iv);
+      A.app('<div class="screen screen-dark">'+A.topBar(true)+'<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;padding:40px 24px"><p style="font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:12px">Could not reach the AI layer</p><p style="font-size:13px;color:var(--white-50);margin-bottom:24px;line-height:1.6;max-width:320px;font-weight:300">'+e.message+'</p><div style="display:flex;gap:10px"><button type="button" class="btn btn-outline-dark" onclick="A.s_loading()">Retry</button><button type="button" class="btn btn-teal" onclick="A.idx=0;A.steps=[\'landing\'];A.go(\'landing\')">Start over</button></div></div></div>');
+    });
+  },
+
+  // ── ARRIVAL ──
+  s_arrival: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh;cursor:pointer" onclick="A.next()">'+
+      A.topBar(true,'Results ready')+
+      '<div class="arrival-wrap">'+
+        '<div class="arrival-label">Brain health snapshot</div>'+
+        '<h1 class="arrival-title">Here is what we noticed<br>about you today.</h1>'+
+        '<div class="arrival-hint">Tap to continue</div>'+
+      '</div></div>'
+    );
+  },
+
+  // ── PORTRAIT ──
+  s_portrait: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    
+    var r=A.st._aiResult||{};
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh">'+A.topBar(true)+
+      '<div class="portrait-wrap">'+
+        '<div class="portrait-label">Your portrait</div>'+
+        '<div class="portrait-text">'+(r.overallSummary||'Your results are ready.')+'</div>'+
+        '<div class="portrait-continue">'+
+          '<button type="button" class="btn btn-teal" onclick="A.next()">See the full picture</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+  },
+
+  // ── RESULTS CARDS ──
+  s_results: function(){
+    var r=A.st._aiResult||{};
+    var sc=A.scores||{};
+    var crisis=r.crisisFlag||A.st.crisis;
+    var cols={good:'#4D9FFF',mild:'#8B5CF6',moderate:'#F59E0B',notable:'#8B5CF6'};
+    var bcs={good:'bg-g',mild:'bg-m',moderate:'bg-r',notable:'bg-n'};
+    var specs={phq9:['No depression','Severe depression'],gad7:['No anxiety','Severe anxiety'],sleep:['Good sleep','Poor sleep'],cognitive:['Typical range','Notable variation']};
+    var domCard=function(d){
+      var lr=specs[d.id]||['Low','High']; var col=cols[d.level]||cols.good;
+      return '<div class="dom-card"><div class="dh"><div><div class="dt">'+d.title+'</div><div class="ds">'+(d.subtitle||'')+'</div></div><span class="db '+(bcs[d.level]||'bg-g')+'">'+d.badge+'</span></div><div class="sp-wrap"><div class="sp-lr"><span>'+lr[0]+'</span><span>'+lr[1]+'</span></div><div class="sp-track"><div class="sp-fill" style="width:'+(d.spectrumPct||20)+'%;background:'+col+'"></div><div class="sp-dot" style="left:'+(d.spectrumPct||20)+'%;background:'+col+'"></div></div></div><p class="narr">'+(d.narrative||'')+'</p>'+(d.tips&&d.tips.length?'<div class="tl">What you can do</div><ul class="tips">'+d.tips.map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul>':'')+(d.evidence?'<p class="evid">'+d.evidence+'</p>':'')+'</div>';
+    };
+    var mhIds=['phq9','gad7','sleep','mdq','bprs'],ndIds=['aq10'],doms=r.domains||[];
+    var mh=doms.filter(function(d){ return mhIds.indexOf(d.id)!==-1; });
+    var nd=doms.filter(function(d){ return ndIds.indexOf(d.id)!==-1; });
+    var other=doms.filter(function(d){ return mhIds.indexOf(d.id)===-1&&ndIds.indexOf(d.id)===-1; });
+    var doms = r.domains||[];
+    var brainHtml = '<div style="position:relative;width:100vw;margin-left:calc(-50vw + 50%);height:260px;background:linear-gradient(180deg,var(--navy) 0%,var(--paper) 100%);overflow:hidden">' +
+      '<canvas id="results-brain-canvas" style="width:100%;height:100%;display:block"></canvas>' +
+      '<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:22px;pointer-events:none">' +
+        '<div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:8px">Brain health snapshot</div>' +
+        '<p style="font-family:var(--serif);font-size:clamp(22px,3vw,30px);color:var(--white);text-align:center;line-height:1.2;padding:0 24px;text-shadow:0 2px 20px rgba(5,10,24,0.9)">Here is where you are today</p>' +
+      '</div>' +
+    '</div>';
+    var html='<div class="screen screen-light">'+A.topBar(false,'Assessment complete')+brainHtml+'<div class="page" style="padding-top:20px">';
+    if(crisis) html+='<div class="crisis-box"><strong>We noticed something important.</strong> Some of your responses suggest you may be going through something serious. Please reach out to a crisis line or emergency services right now. In the US: call or text 988.</div>';
+    if(mh.length) html+='<div class="sdiv"><div class="sdiv-l">Mental health</div><div class="sdiv-line"></div></div>'+mh.map(domCard).join('');
+    if(other.length) html+='<div class="sdiv"><div class="sdiv-l">Other domains</div><div class="sdiv-line"></div></div>'+other.map(domCard).join('');
+    if(nd.length) html+='<div class="sdiv"><div class="sdiv-l">Neurodevelopmental</div><div class="sdiv-line"></div></div>'+nd.map(domCard).join('');
+    if(r.biomarkerNarrative) html+='<div class="sdiv"><div class="sdiv-l">Physical measurements</div><div class="sdiv-line"></div></div><div class="dom-card"><p class="narr">'+r.biomarkerNarrative+'</p></div>';
+    if(r.appointmentNotes&&r.appointmentNotes.length) html+='<div class="sdiv"><div class="sdiv-l">For your next appointment</div><div class="sdiv-line"></div></div><div class="appt-card"><div class="appt-title">What to bring to your clinician</div><div class="appt-sub">Based on today\'s assessment — worth mentioning at your next visit.</div><ul class="tips">'+r.appointmentNotes.map(function(n){ return '<li>'+n+'</li>'; }).join('')+'</ul></div>';
+    html+='<div class="btns" style="justify-content:center;margin-top:20px"><button type="button" class="btn btn-dark" onclick="A.next()">See your journey</button></div>';
+    html+='<div class="disc">Brain health snapshot — not a diagnosis. Share with your healthcare provider.</div>';
+    // Trigger 3D brain after DOM renders
+    setTimeout(function(){
+      if(window.initResultsBrain) window.initResultsBrain(doms);
+    }, 300);
+
+    // Send results email if user provided email
+    var userEmail = A.st.profile && A.st.profile.email;
+    if(userEmail && userEmail.indexOf('@') !== -1){
+      A.sendResultsEmail(r, userEmail);
+    }
+    html+='</div></div>';
+    A.app(html);
+  },
+
+  // ── DAY 1 ──
+  s_day1: function(){
+    var _pw=A.$('pw'); if(_pw) _pw.style.display='none';
+    
+    var sc=A.scores||{};
+    var domains=[{l:'Mood',k:'phq9'},{l:'Anxiety',k:'gad7'},{l:'Sleep',k:'sleep'},{l:'Cognition',k:'cognitive'}];
+    var trackRows=domains.map(function(d,i){ return '<div class="day1-track"><div class="day1-track-label">'+d.l+'</div><div class="day1-track-line"><div class="day1-track-dot" style="animation-delay:'+(i*0.15)+'s"></div>'+(i===0?'<div class="day1-future">30d →</div>':'')+'</div></div>'; }).join('');
+    A.app(
+      '<div class="screen screen-dark" style="min-height:100vh">'+A.topBar(true)+
+      '<div class="day1-wrap">'+
+        '<div style="margin-bottom:24px">'+LOGO_DARK+'</div>'+
+        '<div class="day1-label">Your journey begins</div>'+
+        '<h1 class="day1-title">This is day one.</h1>'+
+        '<p class="day1-sub">A single reading tells you where you are today. A series tells you who you are becoming.</p>'+
+        '<div class="day1-chart">'+
+          '<div class="day1-chart-title">30-day trend — starting today</div>'+
+          '<div class="day1-track">'+trackRows+'</div>'+
+        '</div>'+
+        '<p class="day1-note">"Cogniware is designed to track how this picture changes over time. Come back regularly. Bring these results to your care team."</p>'+
+        '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">'+
+          '<button type="button" class="btn btn-teal" onclick="A.s_landing()">Start new assessment</button>'+
+        '</div>'+
+      '</div></div>'
+    );
+  },
+
+  // ── AI CALL ──
+  callAI: function(){
+    var s=A.st,bio=s.bio,cog=s.cog,p=s.profile,ctx=s._ctx||{},reflText=s.reflection||'',conds=p.conditions||['none'];
+    var opts=['Not at all','Several days','More than half the days','Nearly every day'];
+    var scores={};
+    if(s.answers.phq9){ var t=s.answers.phq9.reduce(function(a,b){ return a+b; },0); scores.phq9={t:t,max:27,label:t<=4?'Minimal':t<=9?'Mild':t<=14?'Moderate':'Severe',level:t<=4?'good':t<=9?'mild':'moderate',pct:t<=4?8:t<=9?32:t<=14?58:84}; }
+    if(s.answers.gad7){ var t2=s.answers.gad7.reduce(function(a,b){ return a+b; },0); scores.gad7={t:t2,max:21,label:t2<=4?'Minimal':t2<=9?'Mild':t2<=14?'Moderate':'Severe',level:t2<=4?'good':t2<=9?'mild':'moderate',pct:t2<=4?8:t2<=9?35:t2<=14?62:90}; }
+    if(s.answers.sleep){ var t3=s.answers.sleep.reduce(function(a,b){ return a+b; },0); scores.sleep={t:t3,max:10,label:t3<=2?'Good':t3<=5?'Mild disruption':'Poor',level:t3<=2?'good':t3<=5?'mild':'moderate',pct:t3<=2?10:t3<=5?42:78}; }
+    A.scores=scores;
+    var phq9q=['Anhedonia','Low mood','Sleep','Energy','Appetite','Self-worth','Concentration','Psychomotor','Suicidal ideation'];
+    var gad7q=['Nervous/edge','Uncontrolled worry','Excessive worry','Relaxation','Restlessness','Irritable','Dread'];
+    var durationLabel={recent:'newly diagnosed <6mo','1-2yr':'1-2 years',several:'several years',longtime:'10+ years',na:'not applicable'}[p.conditionDuration||'na']||'?';
+    var controlLabel={well:'well controlled',mostly:'mostly controlled',partial:'partially controlled',poorly:'poorly controlled',na:'not applicable'}[p.conditionControl||'na']||'?';
+    var compareLabel={'-2':'much worse than usual','-1':'somewhat worse','0':'same as usual','1':'somewhat better','2':'much better than usual'}[String(ctx.compare||0)]||'same as usual';
+    var medClasses=p.medClassified||[];
+    var medDurLabel={adjusting:'adjusting <4wks (side effects likely temporary)',settling:'1-6mo settling',stable:'stable >6mo',changed:'recently changed <4wks',asneeded:'as needed',na:'not on medication'}[p.medDuration||'na']||'';
+    var medContext=medClasses.length?medClasses.map(function(m){ return '['+m.label+']: '+m.note; }).join(' | '):'None classified.';
+    var genderNote={transmasc:'Transmasculine — likely on gender-affirming testosterone. Binary norms do not apply.',transfem:'Transfeminine — likely on oestrogen/anti-androgens. Binary norms do not apply.',nonbinary:'Non-binary — binary sex norms do not apply.',genderfluid:'Gender fluid.'}[p.sex||'']||'';
+    var data='PROFILE: '+(p.name||'Anonymous')+', age '+(p.age||'?')+', sex/gender: '+(p.sex||'?')+(genderNote?' ('+genderNote+')':'')+', '+(p.country||'?')+'.\n';
+    data+='Diagnoses: '+(p.diagnoses||'none')+' ('+durationLabel+', '+controlLabel+').\n';
+    data+='Medications: '+(p.medications||'none')+' — '+medDurLabel+'.\nMEDICATION EFFECTS: '+medContext+'\n\n';
+    data+="TODAY'S CONTEXT (weight heavily):\n- Today vs usual self: "+compareLabel+'\n- Social contact last 7 days: '+(ctx.social||'not specified')+'\n- Medication adherence: '+(ctx.medAdherence||'not specified')+'\n';
+    if(reflText) data+='- THEIR OWN NOTE (most important data point): "'+reflText+'"\n';
+    data+='\nMotor context: '+A.motorCtx(conds)+'\n\n';
+    if(s.answers.phq9&&scores.phq9){ data+='PHQ-9 '+scores.phq9.t+'/27 ('+scores.phq9.label+'):\n'; s.answers.phq9.forEach(function(v,i){ data+='  '+phq9q[i]+': '+opts[v]+'\n'; }); data+='\n'; }
+    if(s.answers.gad7&&scores.gad7){ data+='GAD-7 '+scores.gad7.t+'/21 ('+scores.gad7.label+'):\n'; s.answers.gad7.forEach(function(v,i){ data+='  '+gad7q[i]+': '+opts[v]+'\n'; }); data+='\n'; }
+    if(s.answers.sleep&&scores.sleep) data+='Sleep '+scores.sleep.t+'/10 ('+scores.sleep.label+')\n\n';
+    data+='MOTOR BIOMARKERS:\n';
+    data+='  Typing: '+(bio.typingWpm||'?')+'wpm (norm 35-60), rhythm CV '+(bio.typingCV||'?')+' (norm <0.35)\n';
+    data+='  Reaction time: '+(bio.rtMedian||'?')+'ms (norm 250-350ms), SD '+(bio.rtSD||'?')+'ms\n';
+    data+='  Resting tremor RMS: '+(bio.tremorRMS!=null?bio.tremorRMS:'not captured')+'\n';
+    if(bio.tremorRMS!=null) data+='  Note: RMS captures tremor energy but cannot distinguish tremor type (Parkinson\'s vs essential tremor vs physiological). Interpret directionally only.\n';
+    data+='\n';
+    if(bio.voice){
+      data+='VOICE BIOMARKERS:\n';
+      data+='  Measurement reliability: '+(bio.voice.reliable?'sufficient':'low — weight these lightly')+'\n';
+      data+='  Speech recognition worked: '+(bio.voice.speechRecognitionWorked?'yes':'no — speech rate may be 0')+'\n';
+      if(bio.voice.speechRecognitionWorked){
+        data+='  Speech rate: '+bio.voice.speechRate+'wpm (norm 130-180wpm; slow speech correlates with depression/Parkinson\'s; fast with mania)\n';
+        data+='  Word count in '+bio.voice.duration+'s: '+bio.voice.wordCount+'\n';
+      }
+      data+='  Pause count: '+bio.voice.pauseCount+' pauses detected (elevated pause frequency correlates with word-finding difficulty)\n';
+      data+='  Mean vocal energy (RMS): '+bio.voice.meanVocalEnergy+' (proxy for vocal effort and loudness)\n';
+      data+='  Vocal variability: '+bio.voice.vocalVariability+' (proxy for prosody — very low may suggest flat affect)\n';
+      data+='  IMPORTANT: These are browser-based approximations collected in an uncontrolled environment. Treat as supporting context, not diagnostic signals. Weight questionnaire scores more heavily.\n\n';
+    } else {
+      data+='VOICE: not captured (skipped or microphone unavailable)\n\n';
+    }
+    if(bio.facial){
+      data+='FACIAL BIOMARKERS:\n';
+      data+='  Blink rate: '+bio.facial.blinkRate+'/min (norm 15-20; low=Parkinson\'s hypomimia/concentration; high=anxiety/dry eyes)\n';
+      data+='  Expressivity index: '+bio.facial.expressivityIndex+' (low=reduced facial movement, possible depression/Parkinson\'s)\n';
+      if(bio.facial.eyeOpenness!==null) data+='  Mean eye openness (EAR): '+bio.facial.eyeOpenness+' (norm >0.25; low=fatigue/drowsiness)\n';
+      data+='  Dominant emotional tone during recording: '+bio.facial.dominantEmotion+'\n';
+      data+='  Analysis method: '+(bio.facial.faceApiUsed?'face-api.js landmark detection (moderate confidence)':'brightness proxy — face-api models did not load (low confidence — treat as indicative only)')+'\n';
+      if(!bio.facial.faceApiUsed) data+='  IMPORTANT: Facial data used brightness fallback — blink rate and expressivity numbers are not reliable. Do not draw strong conclusions from these.\n';
+      data+='\n';
+    } else {
+      data+='FACIAL: not captured (skipped or camera unavailable)\n\n';
+    }
+    if(Object.keys(cog).length) data+='COGNITIVE: Recall '+(cog.recall!=null?cog.recall:'?')+'/4, Digit span '+(cog.digitSpan?'correct':'incorrect')+', Fluency '+(cog.fluency!=null?cog.fluency:'?')+' animals (norm 11+), Orientation '+(cog.orientation!=null?cog.orientation:'?')+'/3, Trail '+(cog.trail?'done '+cog.trailTime+'s':'incomplete')+'.\n\n';
+    var prompt='You are the clinical intelligence layer of Cogniware, a brain health assessment platform.\n\nCRITICAL INSTRUCTIONS:\n1. Read TODAY\'S CONTEXT first — it is the most important calibration data.\n2. If there is a personal reflection note, treat it as the most clinically significant data point.\n3. Factor medication effects listed into your interpretation of every biomarker and questionnaire score.\n4. For gender-affirming hormones or HRT: standard binary norms do not apply. Say so clearly.\n5. This is a SNAPSHOT — not a diagnosis. Frame everything as today and right now.\n6. Be specific to THIS person\'s actual data and numbers. Reference what they actually said.\n7. Write as a compassionate clinician who actually read the whole file — warm, honest, direct.\n\n'+data+'\nReturn ONLY valid JSON with no markdown:\n{"overallSummary":"4-5 sentences. Holistic portrait. Reference specific findings. Notice interactions. Address as you. Warm and direct — like a clinician speaking, not a computer reporting.","domains":[{"id":"phq9","title":"Mood","subtitle":"How you have been feeling emotionally","badge":"Mild","level":"mild","spectrumPct":32,"narrative":"2-3 sentences specific to THIS person. Reference their actual answers. Not generic.","tips":["specific tip under 15 words","another tip","third tip"],"evidence":"One sentence citing the instrument and what their score means."}],"biomarkerNarrative":"2 sentences interpreting physical measurements in context of questionnaire findings.","appointmentNotes":["Specific concrete thing to raise with clinician — under 20 words","Another","Third if warranted"],"closingNote":"2 warm forward-looking sentences.","crisisFlag":false}\nOnly include assessed domains: '+Object.keys(scores).join(', ')+'. level: good/mild/moderate/notable. Narratives under 60 words.';
+    // Use Netlify function if available (deployed), otherwise direct API with key
+    var endpoint = window.location.hostname === 'localhost' || window.location.protocol === 'file:' || !window.location.hostname.includes('netlify')
+      ? 'https://api.anthropic.com/v1/messages'
+      : '/.netlify/functions/interpret';
+    var isDirectAPI = endpoint.indexOf('anthropic') !== -1;
+    var fetchOpts = isDirectAPI
+      ? {method:'POST',headers:{'Content-Type':'application/json','x-api-key':A.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:4000,messages:[{role:'user',content:prompt}]})}
+      : {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})};
+    return fetch(endpoint, fetchOpts).then(function(resp){ if(!resp.ok) return resp.json().then(function(e){ throw new Error(e.error?e.error.message:(e.message||'API error '+resp.status)); }); return resp.json(); }).then(function(d){
+      // Handle both direct Anthropic response and our function response
+      var raw = d.content ? d.content.filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('') : (d.result||'');
+      var first=raw.indexOf('{'),last=raw.lastIndexOf('}');
+      if(first===-1||last===-1) throw new Error('No JSON in response — please retry.');
+      return JSON.parse(raw.slice(first,last+1));
+    });
+  },
+  sendResultsEmail: function(results, email){
+    var name = (A.st.profile && A.st.profile.name) || 'there';
+    var domains = results.domains || [];
+    var domainRows = domains.map(function(d){
+      return '<tr><td style="padding:10px 16px;border-bottom:1px solid #E5E7EB;font-family:Arial,sans-serif;font-size:14px;font-weight:600;color:#111827">'+d.title+'</td>'
+        +'<td style="padding:10px 16px;border-bottom:1px solid #E5E7EB;font-family:Arial,sans-serif;font-size:14px;color:#374151">'+d.badge+'</td>'
+        +'<td style="padding:10px 16px;border-bottom:1px solid #E5E7EB;font-family:Arial,sans-serif;font-size:13px;color:#6B7280">'+d.narrative+'</td></tr>';
+    }).join('');
+
+    var apptItems = (results.appointmentNotes||[]).map(function(n){
+      return '<li style="margin-bottom:8px;font-family:Arial,sans-serif;font-size:14px;color:#374151;line-height:1.6">'+n+'</li>';
+    }).join('');
+
+    var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#F3F4F6">'
+      +'<div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;margin-top:32px;margin-bottom:32px">'
+      +'<div style="background:#050A18;padding:40px 40px 32px;text-align:center">'
+        +'<div style="font-family:Georgia,serif;font-size:28px;color:#ffffff;letter-spacing:-0.5px;margin-bottom:6px">Cogniware</div>'
+        +'<div style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase">Brain Health Assessment</div>'
+      +'</div>'
+      +'<div style="padding:40px">'
+        +'<p style="font-family:Georgia,serif;font-size:22px;color:#111827;margin-bottom:8px">Hi '+name+',</p>'
+        +'<p style="font-family:Arial,sans-serif;font-size:15px;color:#6B7280;line-height:1.7;margin-bottom:32px">Here are your Cogniware brain health results from today&#39;s assessment.</p>'
+        +'<div style="background:#F0F7FF;border-left:4px solid #4D9FFF;border-radius:8px;padding:20px 24px;margin-bottom:32px">'
+          +'<div style="font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#4D9FFF;margin-bottom:10px">Your portrait today</div>'
+          +'<p style="font-family:Georgia,serif;font-size:16px;color:#111827;line-height:1.7;font-style:italic;margin:0">'+(results.overallSummary||'')+'</p>'
+        +'</div>'
+        +'<div style="font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-bottom:12px">Domain results</div>'
+        +'<table style="width:100%;border-collapse:collapse;margin-bottom:32px;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden">'
+          +'<tr style="background:#F9FAFB"><th style="padding:10px 16px;text-align:left;font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:1px;text-transform:uppercase">Domain</th>'
+          +'<th style="padding:10px 16px;text-align:left;font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:1px;text-transform:uppercase">Level</th>'
+          +'<th style="padding:10px 16px;text-align:left;font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:#9CA3AF;letter-spacing:1px;text-transform:uppercase">What this means</th></tr>'
+          +domainRows
+        +'</table>'
+        +(apptItems ? '<div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:24px;margin-bottom:32px">'
+          +'<div style="font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F59E0B;margin-bottom:12px">Bring to your next appointment</div>'
+          +'<ul style="margin:0;padding-left:20px">'+apptItems+'</ul>'
+        +'</div>' : '')
+        +'<div style="background:#F9FAFB;border-radius:8px;padding:20px 24px;margin-bottom:32px">'
+          +'<p style="font-family:Georgia,serif;font-size:15px;color:#374151;line-height:1.7;font-style:italic;margin:0">'+(results.closingNote||'')+'</p>'
+        +'</div>'
+        +'<div style="border-top:1px solid #E5E7EB;padding-top:24px;font-family:Arial,sans-serif;font-size:12px;color:#9CA3AF;line-height:1.6;text-align:center">'
+          +'This assessment is a screening tool, not a diagnosis. Results are for you to share with your healthcare provider. Cogniware does not replace clinical judgment.'
+          +'<br><br>If you are in crisis, please call or text <strong>988</strong> (US) or contact emergency services.'
+        +'</div>'
+      +'</div>'
+    +'</div></body></html>';
+
+    fetch('/.netlify/functions/email', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ to: email, name: name, html: html })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(d.error) console.warn('Email error:', d.error);
+    }).catch(function(e){ console.warn('Email failed:', e); });
+  },
+
+
+};
+
+// Restore session if exists
+var savedSession=localStorage.getItem('cw_session');
+if(savedSession) A.session=savedSession;
+A.steps=['consent','landing'];A.idx=0;A.go('consent');
+
+// ── RESULTS 3D BRAIN (loads when results page renders) ──
+window.initResultsBrain = function(domainData){
+  var canvas = document.getElementById('results-brain-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+  var wrap = canvas.parentElement;
+  var W = wrap.clientWidth, H = wrap.clientHeight || 280;
+
+  var renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
+  camera.position.set(0, 0, 4.2);
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0x0a1530, 2));
+  var bl = new THREE.PointLight(0x4D9FFF, 3, 10);
+  bl.position.set(2, 2, 2); scene.add(bl);
+  var vl = new THREE.PointLight(0x8B5CF6, 1.5, 10);
+  vl.position.set(-2, -1, 1); scene.add(vl);
+
+  var brainGroup = new THREE.Group();
+  scene.add(brainGroup);
+
+  function makeLobe(rx, ry, rz){
+    var geo = new THREE.SphereGeometry(1, 48, 32);
+    var pos = geo.attributes.position;
+    for(var i=0;i<pos.count;i++){
+      var x=pos.getX(i),y=pos.getY(i),z=pos.getZ(i);
+      var w = Math.sin(x*3.5+y*2)*Math.cos(z*3.5)*0.055 + Math.cos(x*2+z*3.5)*Math.sin(y*3.5)*0.04;
+      pos.setXYZ(i, x*rx+w, y*ry+w*0.7, z*rz+w*0.5);
+    }
+    geo.computeVertexNormals();
+    return geo;
+  }
+
+  var mat = new THREE.MeshPhongMaterial({color:0x0a1f40,emissive:0x041020,specular:0x4D9FFF,shininess:30,transparent:true,opacity:0.85});
+  var lm = new THREE.Mesh(makeLobe(1,0.92,0.85), mat);
+  lm.position.set(-0.52,0,0); brainGroup.add(lm);
+  var rm = new THREE.Mesh(makeLobe(1,0.92,0.85), mat.clone());
+  rm.position.set(0.52,0,0); brainGroup.add(rm);
+
+  // Cerebellum
+  var cg = new THREE.SphereGeometry(0.42,24,16);
+  var cbm = new THREE.Mesh(cg, mat.clone());
+  cbm.position.set(0,-0.78,-0.45);
+  brainGroup.add(cbm);
+
+  // Wireframe overlay
+  var wfm = new THREE.MeshBasicMaterial({color:0x4D9FFF,wireframe:true,transparent:true,opacity:0.04});
+  [lm,rm].forEach(function(m){
+    var wf = new THREE.Mesh(m.geometry.clone(), wfm.clone());
+    wf.position.copy(m.position); brainGroup.add(wf);
+  });
+
+  // Region highlight meshes
+  var regions = {
+    phq9:  {pos:[-0.2,0.5,0.75],  scale:[0.5,0.38,0.38],  color:0x8B5CF6, emissive:0x3a0f80},
+    gad7:  {pos:[-0.3,-0.1,0.2],  scale:[0.24,0.2,0.2],   color:0xF59E0B, emissive:0x7a4e00},
+    sleep: {pos:[0.05,-0.55,0.3], scale:[0.22,0.18,0.18],  color:0x4D9FFF, emissive:0x0d3a6e},
+    cognitive:{pos:[-0.4,-0.2,-0.1],scale:[0.33,0.17,0.22],color:0x4D9FFF, emissive:0x0d3a6e}
+  };
+  var regionMeshes = {};
+  var targetOp = {};
+  Object.keys(regions).forEach(function(k){
+    var r = regions[k];
+    var geo = new THREE.SphereGeometry(1,20,14);
+    var m = new THREE.MeshPhongMaterial({color:r.color,emissive:r.emissive,transparent:true,opacity:0,shininess:60});
+    var mesh = new THREE.Mesh(geo, m);
+    mesh.position.set(r.pos[0],r.pos[1],r.pos[2]);
+    mesh.scale.set(r.scale[0],r.scale[1],r.scale[2]);
+    brainGroup.add(mesh);
+    regionMeshes[k] = m;
+    targetOp[k] = 0;
+  });
+
+  // Activate regions based on domain scores passed in
+  if(domainData){
+    domainData.forEach(function(d){
+      if(regionMeshes[d.id]) targetOp[d.id] = d.spectrumPct > 20 ? 0.55 : 0.25;
+    });
+  }
+
+  brainGroup.scale.set(0.85,0.85,0.85);
+  brainGroup.rotation.x = 0.15;
+
+  var clock = new THREE.Clock();
+  var raf;
+  function animate(){
+    raf = requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+    brainGroup.rotation.y = t * 0.18;
+    brainGroup.position.y = Math.sin(t*0.4)*0.03;
+    bl.intensity = 2.5 + Math.sin(t*0.7)*0.5;
+    Object.keys(regionMeshes).forEach(function(k){
+      regionMeshes[k].opacity += (targetOp[k] - regionMeshes[k].opacity) * 0.04;
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Cleanup on navigation
+  window._brainRaf = raf;
+};
+
+// ── NEURAL PARTICLE BACKGROUND ──
+(function(){
+  var c=document.getElementById('bg-canvas');
+  if(!c) return;
+  var ctx=c.getContext('2d');
+  var nodes=[];
+  function resize(){ c.width=window.innerWidth; c.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  var isMobile=window.innerWidth<768; var nodeCount=isMobile?30:60; for(var i=0;i<nodeCount;i++) nodes.push({x:Math.random()*1600,y:Math.random()*1000,vx:(Math.random()-.5)*(isMobile?0.06:0.12),vy:(Math.random()-.5)*(isMobile?0.06:0.12),r:Math.random()*1.5+0.5});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){ ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.strokeStyle='rgba(77,159,255,'+(0.07*(1-d/140))+')'; ctx.lineWidth=0.5; ctx.stroke(); }
+      }
+      ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,nodes[i].r,0,Math.PI*2);
+      ctx.fillStyle='rgba(77,159,255,0.3)'; ctx.fill();
+      nodes[i].x+=nodes[i].vx; nodes[i].y+=nodes[i].vy;
+      if(nodes[i].x<0||nodes[i].x>c.width) nodes[i].vx*=-1;
+      if(nodes[i].y<0||nodes[i].y>c.height) nodes[i].vy*=-1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+<script type="module">
+import * as THREE from 'three';
+window.THREE = THREE;
+</script>
+</body>
+</html>
