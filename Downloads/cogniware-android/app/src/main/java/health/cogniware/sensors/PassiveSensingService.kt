@@ -258,6 +258,21 @@ class PassiveSensingService : Service() {
         }
 
         val ctx = contextProvider.currentContext()
+
+        // Fetch personal z-scores from BaselineEngine (IO-bound DB reads)
+        val latestGait = withContext(Dispatchers.IO) {
+            db.gaitDao().getLatestSession(patientId)
+        }
+        val latestKeystroke = withContext(Dispatchers.IO) {
+            db.keystrokeDao().getLatestSession(patientId)
+        }
+        val gaitZ = latestGait?.let {
+            withContext(Dispatchers.IO) { baselineEngine.zScoreGait(it).combined }
+        }
+        val keystrokeZ = latestKeystroke?.let {
+            withContext(Dispatchers.IO) { baselineEngine.zScoreKeystroke(it).combined }
+        }
+
         val input = RiskInput(
             patientId = patientId,
             timestampMs = System.currentTimeMillis(),
@@ -267,7 +282,9 @@ class PassiveSensingService : Service() {
             currentHrvMs = null,    // HRV not yet stored in TremorReading; extend when available
             baselineHrvMs = null,
             stepsToday = ctx.stepsTodaySoFar,
-            baselineSteps = 6000    // fallback baseline
+            baselineSteps = 6000,   // fallback baseline
+            gaitPersonalZScore = gaitZ,
+            keystrokePersonalZScore = keystrokeZ
         )
 
         // Route through InferenceEngineFactory — never call RiskScoreEngine.compute() directly

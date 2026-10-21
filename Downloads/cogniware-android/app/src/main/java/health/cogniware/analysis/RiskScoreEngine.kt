@@ -51,7 +51,14 @@ data class RiskInput(
 
     // ── Activity / fatigue ────────────────────────────────────────────────────
     val stepsToday: Int,
-    val baselineSteps: Int
+    val baselineSteps: Int,
+
+    // ── Personal baseline z-scores (from BaselineEngine) ─────────────────────
+    // Combined RMS z-score across gait features. Null until baseline is established.
+    // +1.0 = 1 std-dev worse than this patient's personal norm.
+    val gaitPersonalZScore: Double? = null,
+    // Combined RMS z-score across keystroke features. Null until baseline is established.
+    val keystrokePersonalZScore: Double? = null
 )
 
 data class RiskScore(
@@ -94,20 +101,43 @@ object RiskScoreEngine {
             .let { ratio -> if (ratio > 1.0) (ratio - 1.0) * 2.0 else 0.0 }
             .coerceIn(0.0, 1.0)
 
-        val weighted = tremorComponent      * 0.30 +
-                       wearOffComponent     * 0.25 +
-                       watchTremorComponent * 0.20 +
-                       hrvComponent         * 0.15 +
-                       fatigueComponent     * 0.10
+        // 6. Personal gait deviation component (0–1)
+        //    z > 0 means worse than patient's own baseline; z >= 3 maps to 1.0
+        val gaitPersonalComponent = input.gaitPersonalZScore
+            ?.let { z -> (z / 3.0).coerceIn(0.0, 1.0) }
+            ?: 0.0
+
+        // 7. Personal keystroke deviation component (0–1)
+        val keystrokePersonalComponent = input.keystrokePersonalZScore
+            ?.let { z -> (z / 3.0).coerceIn(0.0, 1.0) }
+            ?: 0.0
+
+        // Re-weight to include personal components (weights sum to 1.0):
+        //   subThresholdTremor  0.25 (was 0.30)
+        //   wearOffProximity    0.20 (was 0.25)
+        //   watchTremor         0.15 (was 0.20)
+        //   hrv                 0.10 (was 0.15)
+        //   fatigue             0.05 (was 0.10)
+        //   gaitPersonal        0.15 (new)
+        //   keystrokePersonal   0.10 (new)
+        val weighted = tremorComponent           * 0.25 +
+                       wearOffComponent          * 0.20 +
+                       watchTremorComponent      * 0.15 +
+                       hrvComponent              * 0.10 +
+                       fatigueComponent          * 0.05 +
+                       gaitPersonalComponent     * 0.15 +
+                       keystrokePersonalComponent * 0.10
 
         val score = (weighted * 100).toInt().coerceIn(0, 100)
 
         val components = mapOf(
-            "subThresholdTremor" to tremorComponent,
-            "wearOffProximity"   to wearOffComponent,
-            "watchTremor"        to watchTremorComponent,
-            "hrvDeviation"       to hrvComponent,
-            "fatigue"            to fatigueComponent
+            "subThresholdTremor"   to tremorComponent,
+            "wearOffProximity"     to wearOffComponent,
+            "watchTremor"          to watchTremorComponent,
+            "hrvDeviation"         to hrvComponent,
+            "fatigue"              to fatigueComponent,
+            "gaitPersonal"         to gaitPersonalComponent,
+            "keystrokePersonal"    to keystrokePersonalComponent
         )
         val dominant = components.maxByOrNull { it.value }?.key ?: "unknown"
 

@@ -278,6 +278,9 @@ interface KeystrokeDao {
 
     @Query("SELECT * FROM keystroke_sessions WHERE patientId = :patientId ORDER BY startMs DESC LIMIT 8")
     suspend fun getRecent(patientId: String): List<KeystrokeSession>
+
+    @Query("SELECT * FROM keystroke_sessions WHERE patientId = :patientId ORDER BY startMs DESC LIMIT 1")
+    suspend fun getLatestSession(patientId: String): KeystrokeSession?
 }
 
 @Dao
@@ -314,6 +317,9 @@ interface GaitDao {
 
     @Query("SELECT * FROM gait_sessions WHERE patientId = :patientId ORDER BY startMs DESC LIMIT 10")
     suspend fun getRecent(patientId: String): List<GaitSession>
+
+    @Query("SELECT * FROM gait_sessions WHERE patientId = :patientId ORDER BY startMs DESC LIMIT 1")
+    suspend fun getLatestSession(patientId: String): GaitSession?
 }
 
 @Dao
