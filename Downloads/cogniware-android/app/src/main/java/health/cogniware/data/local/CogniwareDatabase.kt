@@ -27,7 +27,7 @@ import kotlinx.serialization.json.Json
         TremorSession::class,
         RiskScoreRecord::class
     ],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -255,6 +255,14 @@ abstract class CogniwareDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_9_10 = object : Migration(9, 10) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE patient_profile ADD COLUMN diagnosisYear INTEGER NOT NULL DEFAULT 0")
+                database.execSQL("ALTER TABLE patient_profile ADD COLUMN hyStage TEXT NOT NULL DEFAULT ''")
+                database.execSQL("ALTER TABLE patient_profile ADD COLUMN primarySymptomType TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
         fun getInstance(context: Context): CogniwareDatabase {
             return instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(
@@ -262,7 +270,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
                     CogniwareDatabase::class.java,
                     "cogniware.db"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10)
                     .build()
                     .also { instance = it }
             }

@@ -4,59 +4,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="?attr/colorSurface">
 
+    <!-- ── App Bar ── -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/header_gradient"
-        app:elevation="0dp">
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_back_arrow"
-            app:title="Profile"
-            app:titleTextColor="@color/white"/>
+            android:layout_height="200dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="24dp">
+            <!-- Gradient header background -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/header_gradient"
+                android:fitsSystemWindows="true" />
 
-            <TextView
-                android:id="@+id/tv_avatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@drawable/circle_white_alpha"
+            <!-- Avatar + name centered in header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="👤"
-                android:textSize="36sp"/>
+                android:orientation="vertical"
+                android:paddingTop="48dp"
+                app:layout_collapseMode="parallax">
 
-            <TextView
-                android:id="@+id/tv_patient_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Patient"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                <!-- Avatar circle -->
+                <FrameLayout
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/profile_avatar_bg">
 
-            <TextView
-                android:id="@+id/tv_enrolled_since"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Enrolled —"
-                android:textColor="#CCFFFFFF"
-                android:textSize="12sp"/>
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="CW"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_display_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Patient"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_enrolled_since"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Enrolled —"
+                    android:textColor="#CCffffff"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:title="Profile"
+                app:titleTextColor="#FFFFFF" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- ── Scrollable content ── -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,87 +98,364 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Clinical details card -->
-            <androidx.cardview.widget.CardView
+            <!-- Card 1: Demographics -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/colorSurface">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
+                app:cardElevation="2dp">
 
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="CLINICAL DETAILS" style="@style/TextAppearance.Cogniware.SectionHeader"
-                        android:layout_marginBottom="12dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="horizontal" android:layout_marginBottom="8dp">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                            android:layout_weight="1" android:text="Diagnosis"
-                            android:textColor="@color/colorTextSecondary" android:textSize="13sp"/>
-                        <TextView android:id="@+id/tv_diagnosis_detail"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="—" android:textColor="@color/colorTextPrimary"
-                            android:textSize="13sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="DEMOGRAPHICS"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- Age bracket row (manual since include is tricky for multiple) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Age bracket"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_age_bracket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="horizontal" android:layout_marginBottom="8dp">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                            android:layout_weight="1" android:text="Stage"
-                            android:textColor="@color/colorTextSecondary" android:textSize="13sp"/>
-                        <TextView android:id="@+id/tv_stage"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="—" android:textColor="@color/colorTextPrimary"
-                            android:textSize="13sp" android:textStyle="bold"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- Sex row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Biological sex"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                            android:layout_weight="1" android:text="Clinician"
-                            android:textColor="@color/colorTextSecondary" android:textSize="13sp"/>
-                        <TextView android:id="@+id/tv_clinician"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="—" android:textColor="@color/colorTextPrimary"
-                            android:textSize="13sp" android:textStyle="bold"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- Dominant hand row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Dominant hand"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_dominant_hand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Active modules card -->
-            <androidx.cardview.widget.CardView
+            <!-- Card 2: Clinical Details -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="12dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/colorSurface">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="ACTIVE MODULES" style="@style/TextAppearance.Cogniware.SectionHeader"
-                        android:layout_marginBottom="12dp"/>
-                    <TextView android:id="@+id/tv_modules"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Tremor · Gait · Typing · HRV · Sleep"
-                        android:textColor="@color/colorTextPrimary" android:textSize="13sp"
-                        android:lineSpacingExtra="4dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                app:cardElevation="2dp">
 
-            <!-- Sign out -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="CLINICAL DETAILS"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+
+                    <!-- Diagnosis year -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Diagnosis year"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_diagnosis_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- H&Y stage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hoehn &amp; Yahr stage"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_hy_stage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- Primary symptom type -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Primary symptom type"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_primary_symptom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card 3: Emergency Contact -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="EMERGENCY CONTACT"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+
+                    <!-- Caregiver name -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Caregiver name"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_caregiver_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="?attr/colorOutline"
+                        android:alpha="0.2" />
+
+                    <!-- Caregiver phone -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Phone"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_caregiver_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card 4: Active Modules -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="ACTIVE MODULES"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+
+                    <TextView
+                        android:id="@+id/tv_modules"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tremor · Gait · Typing · HRV · Sleep · Steps"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="14sp"
+                        android:lineSpacingMultiplier="1.4" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Sign Out button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sign_out"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:text="Sign Out / Reset"
-                android:textColor="@color/colorError"
-                app:cornerRadius="8dp"
-                app:strokeColor="@color/colorError"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                android:text="Sign Out &amp; Clear Data"
+                android:textColor="@color/colorRiskHigh"
+                app:strokeColor="@color/colorRiskHigh" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

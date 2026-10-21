@@ -29,16 +29,16 @@ class ProfileActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(true)
-
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         binding.btnSignOut.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 try { db.profileDao().deleteAll() } catch (e: Exception) {}
                 withContext(Dispatchers.Main) {
-                    val intent = Intent(this@ProfileActivity, EnrollmentActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+                    startActivity(
+                        Intent(this@ProfileActivity, EnrollmentActivity::class.java)
+                            .apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
+                    )
                 }
             }
         }
@@ -48,18 +48,60 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun loadProfile() {
         lifecycleScope.launch {
-            val profile = withContext(Dispatchers.IO) {
-                db.profileDao().getAny()
-            }
+            val profile = withContext(Dispatchers.IO) { db.profileDao().getAny() }
             profile?.let { p ->
-                binding.tvPatientId.text = p.patientId
+                // Header
+                binding.tvDisplayName.text = p.patientId.take(8)
                 val enrollDate = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
                     .format(Date(p.enrolledAtMs))
                 binding.tvEnrolledSince.text = "Enrolled $enrollDate"
-                binding.tvDiagnosisDetail.text = p.primaryDiagnosis ?: "—"
-                binding.tvStage.text = p.diagnosisStage ?: "—"
-                binding.tvClinician.text = p.clinicianId ?: "—"
-                binding.tvModules.text = p.activeModules?.replace(",", " · ")?.ifBlank { "Tremor · Gait · Typing · HRV · Sleep · Steps" } ?: "Tremor · Gait · Typing · HRV · Sleep · Steps"
+
+                // Demographics
+                val ageBracket = when {
+                    p.yearOfBirth <= 0 -> "—"
+                    else -> {
+                        val age = 2026 - p.yearOfBirth
+                        when {
+                            age < 50  -> "Under 50"
+                            age < 60  -> "50–59"
+                            age < 70  -> "60–69"
+                            age < 80  -> "70–79"
+                            else      -> "80+"
+                        }
+                    }
+                }
+                binding.tvAgeBracket.text = ageBracket
+                binding.tvSex.text = when (p.biologicalSex.lowercase()) {
+                    "male"   -> "Male"
+                    "female" -> "Female"
+                    "other"  -> "Other"
+                    else     -> p.biologicalSex.ifBlank { "—" }
+                }
+                binding.tvDominantHand.text = when (p.dominantHand.lowercase()) {
+                    "right"         -> "Right"
+                    "left"          -> "Left"
+                    "ambidextrous"  -> "Ambidextrous"
+                    else            -> p.dominantHand.ifBlank { "—" }
+                }
+
+                // Clinical
+                binding.tvDiagnosisYear.text = if (p.diagnosisYear > 0) p.diagnosisYear.toString() else "—"
+                binding.tvHyStage.text = if (p.hyStage.isNotBlank()) "Stage ${p.hyStage}" else "—"
+                binding.tvPrimarySymptom.text = when (p.primarySymptomType.lowercase()) {
+                    "tremor_dominant"  -> "Tremor-dominant"
+                    "akinetic_rigid"   -> "Akinetic-rigid"
+                    "mixed"            -> "Mixed"
+                    else               -> p.primarySymptomType.ifBlank { "—" }
+                }
+
+                // Caregiver
+                binding.tvCaregiverName.text  = "—"  // field not yet in model
+                binding.tvCaregiverPhone.text = "—"  // field not yet in model
+
+                // Modules
+                binding.tvModules.text = p.activeModules
+                    .replace(",", " · ")
+                    .ifBlank { "Tremor · Gait · Typing · HRV · Sleep · Steps" }
             }
         }
     }

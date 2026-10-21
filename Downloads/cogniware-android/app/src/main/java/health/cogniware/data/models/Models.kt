@@ -257,6 +257,11 @@ data class PatientProfile(
     val baselinePhaseDays: Int = 90,    // days before prediction mode activates
     val clinicianId: String,
 
+    // Clinical classification (added v10)
+    val diagnosisYear: Int = 0,             // year of PD diagnosis, e.g. 2019
+    val hyStage: String = "",               // Hoehn & Yahr: "1","1.5","2","2.5","3","4","5"
+    val primarySymptomType: String = "",    // "tremor_dominant" / "akinetic_rigid" / "mixed"
+
     // Supabase auth
     val supabaseUserId: String = ""
 )
