@@ -21,11 +21,12 @@ import kotlinx.serialization.json.Json
         MedicationSchedule::class,
         DoseEvent::class,
         DiagnosisProfile::class,
+        PersonalBaseline::class,
         PostureBaseline::class,
         AssessmentSession::class,
         TremorSession::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -38,6 +39,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
     abstract fun medicationDao(): MedicationDao
     abstract fun diagnosisProfileDao(): DiagnosisProfileDao
+    abstract fun personalBaselineDao(): PersonalBaselineDao
     abstract fun postureBaselineDao(): PostureBaselineDao
     abstract fun assessmentSessionDao(): AssessmentSessionDao
     abstract fun tremorSessionDao(): TremorSessionDao
@@ -202,7 +204,21 @@ abstract class CogniwareDatabase : RoomDatabase() {
             }
         }
 
-        val MIGRATION_5_6 = object : Migration(5, 6) {
+        val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("""
+                    CREATE TABLE IF NOT EXISTS personal_baselines (
+                        featureKey TEXT NOT NULL PRIMARY KEY,
+                        n INTEGER NOT NULL DEFAULT 0,
+                        mean REAL NOT NULL DEFAULT 0.0,
+                        m2 REAL NOT NULL DEFAULT 0.0,
+                        lastUpdatedMs INTEGER NOT NULL DEFAULT 0
+                    )
+                """.trimIndent())
+            }
+        }
+
+                val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("""
                     CREATE TABLE IF NOT EXISTS tremor_sessions (
@@ -225,7 +241,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
                     CogniwareDatabase::class.java,
                     "cogniware.db"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
                     .build()
                     .also { instance = it }
             }
