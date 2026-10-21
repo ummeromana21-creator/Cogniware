@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import health.cogniware.BuildConfig
 import health.cogniware.data.local.CogniwareDatabase
+import health.cogniware.R
 import health.cogniware.databinding.ActivityMainBinding
 import health.cogniware.debug.DebugDataSeeder
 import health.cogniware.onboarding.EnrollmentActivity

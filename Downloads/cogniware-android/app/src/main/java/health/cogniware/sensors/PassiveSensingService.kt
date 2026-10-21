@@ -284,6 +284,8 @@ class PassiveSensingService : Service() {
             baselineHrvMs = null,
             stepsToday = ctx.stepsTodaySoFar,
             baselineSteps = 6000,   // fallback baseline
+            watchTremorPowerRatio = null,
+            watchDominantFreqHz = null,
             gaitPersonalZScore = gaitZ,
             keystrokePersonalZScore = keystrokeZ
         )

@@ -36,7 +36,7 @@ class WearDataListenerService : WearableListenerService() {
 
                 scope.launch {
                     // Insert into Room — PassiveSensingService reads latest row
-                    val db = health.cogniware.data.CogniwareDatabase.getInstance(applicationContext)
+                    val db = health.cogniware.data.local.CogniwareDatabase.getInstance(applicationContext)
                     db.tremorSessionDao().insert(session)
                 }
             }
