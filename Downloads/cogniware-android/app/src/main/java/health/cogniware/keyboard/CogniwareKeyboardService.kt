@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import health.cogniware.data.models.*
+import health.cogniware.analysis.BaselineEngine
 import health.cogniware.data.local.CogniwareDatabase
 import health.cogniware.sensors.ContextProvider
 import kotlinx.coroutines.*
@@ -60,11 +61,13 @@ class CogniwareKeyboardService : InputMethodService() {
 
     private lateinit var db: CogniwareDatabase
     private lateinit var contextProvider: ContextProvider
+    private lateinit var baselineEngine: BaselineEngine
 
     override fun onCreate() {
         super.onCreate()
         db = CogniwareDatabase.getInstance(applicationContext)
         contextProvider = ContextProvider.getInstance(applicationContext)
+        baselineEngine = BaselineEngine(db.personalBaselineDao())
         resetSession()
     }
 
@@ -174,6 +177,7 @@ class CogniwareKeyboardService : InputMethodService() {
         val session = computeSession()
         serviceScope.launch {
             db.keystrokeDao().insert(session)
+            baselineEngine.updateFromKeystroke(session)
         }
         resetSession()
     }
