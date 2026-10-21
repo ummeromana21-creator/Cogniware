@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+
+    <application
+        android:label="Cogniware Tremor"
+        android:theme="@android:style/Theme.DeviceDefault">
+
+        <service
+            android:name=".WearTremorService"
+            android:foregroundServiceType="health"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
