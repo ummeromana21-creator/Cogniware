@@ -25,7 +25,7 @@ import kotlinx.serialization.json.Json
         AssessmentSession::class,
         TremorSession::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -194,6 +194,14 @@ abstract class CogniwareDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE gait_sessions ADD COLUMN strideCvPercent REAL NOT NULL DEFAULT 0.0")
+                database.execSQL("ALTER TABLE keystroke_sessions ADD COLUMN pausePerLetterMs REAL NOT NULL DEFAULT 0.0")
+                database.execSQL("ALTER TABLE keystroke_sessions ADD COLUMN bilateralAsymmetryIndex REAL NOT NULL DEFAULT 0.0")
+            }
+        }
+
         val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("""
@@ -217,7 +225,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
                     CogniwareDatabase::class.java,
                     "cogniware.db"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .build()
                     .also { instance = it }
             }
