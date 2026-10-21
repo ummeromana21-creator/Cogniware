@@ -194,6 +194,13 @@ class CogniwareKeyboardService : InputMethodService() {
         val estimatedWpm = if (sessionDurationMs > 0)
             (totalKeystrokes / 5.0) / (sessionDurationMs / 60_000.0) else 0.0
 
+        val pausePerLetter = if (withinWordPauses.isEmpty()) 0.0 else withinWordPauses.average()
+        val evenIkis = ikiList.filterIndexed { i, _ -> i % 2 == 0 }
+        val oddIkis  = ikiList.filterIndexed { i, _ -> i % 2 == 1 }
+        val bilateralAsymmetry = if (evenIkis.isNotEmpty() && oddIkis.isNotEmpty()) {
+            val mE = evenIkis.average(); val mO = oddIkis.average()
+            if ((mE + mO) > 0) kotlin.math.abs(mE - mO) / ((mE + mO) / 2.0) else 0.0
+        } else 0.0
         val backspaceRate = if (totalKeystrokes > 0)
             (backspaceCount.toDouble() / totalKeystrokes) * 100.0 else 0.0
 
@@ -213,6 +220,8 @@ class CogniwareKeyboardService : InputMethodService() {
             wordBoundaryPauseMeanMs = wordBoundaryPauses.let { if (it.isEmpty()) 0.0 else it.average() },
             withinWordPauseMeanMs = withinWordPauses.let { if (it.isEmpty()) 0.0 else it.average() },
             longPauseCount = longPauseCount,
+            pausePerLetterMs = pausePerLetter,
+            bilateralAsymmetryIndex = bilateralAsymmetry,
             estimatedWpm = estimatedWpm,
             totalKeystrokes = totalKeystrokes,
             context = contextProvider.currentContext(),
