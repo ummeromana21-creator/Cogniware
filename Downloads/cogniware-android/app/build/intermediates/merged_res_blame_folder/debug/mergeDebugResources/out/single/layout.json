@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_questionnaire.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_questionnaire.xml"
+    },
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_main.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_main.xml"
+    },
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_pose_capture.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_pose_capture.xml"
+    },
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_permissions.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_permissions.xml"
+    },
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_enrollment.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_enrollment.xml"
+    },
+    {
+        "merged": "health.cogniware.app-mergeDebugResources-88:/layout/activity_profile.xml",
+        "source": "health.cogniware.app-main-91:/layout/activity_profile.xml"
+    }
+]

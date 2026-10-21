@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Cogniware" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorSurface</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorTextPrimary</item>
+        <item name="colorError">@color/colorError</item>
+    </style>
+
+    <style name="Theme.Cogniware.NoActionBar" parent="Theme.Cogniware" />
+
+    <!-- Toolbar -->
+    <style name="Widget.Cogniware.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/colorPrimaryLight</item>
+    </style>
+
+    <!-- Cards -->
+    <style name="Widget.Cogniware.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="cardBackgroundColor">@color/colorSurface</item>
+    </style>
+
+    <!-- Primary button -->
+    <style name="Widget.Cogniware.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">8dp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+
+    <!-- Base text appearance (required as parent) -->
+    <style name="TextAppearance.Cogniware" parent="TextAppearance.MaterialComponents.Body1"/>
+
+    <!-- Text styles -->
+    <style name="TextAppearance.Cogniware.MetricValue">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Cogniware.MetricLabel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="TextAppearance.Cogniware.SectionHeader">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+</resources>

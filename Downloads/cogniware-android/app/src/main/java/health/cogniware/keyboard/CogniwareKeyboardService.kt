@@ -205,6 +205,32 @@ class CogniwareKeyboardService : InputMethodService() {
             val mE = evenIkis.average(); val mO = oddIkis.average()
             if ((mE + mO) > 0) kotlin.math.abs(mE - mO) / ((mE + mO) / 2.0) else 0.0
         } else 0.0
+        // Pause per letter — within-word motor fluency
+        val pausePerLetter = withinWordPauses.let { if (it.isEmpty()) 0.0 else it.average() }
+
+        // Bilateral asymmetry — alternating IKIs proxy L/R hand timing difference
+        // Even-indexed IKIs ≈ one hand, odd-indexed ≈ other hand
+        val evenIkis = ikiList.filterIndexed { i, _ -> i % 2 == 0 }
+        val oddIkis  = ikiList.filterIndexed { i, _ -> i % 2 == 1 }
+        val bilateralAsymmetry = if (evenIkis.isNotEmpty() && oddIkis.isNotEmpty()) {
+            val mE = evenIkis.average(); val mO = oddIkis.average()
+            val combined = (mE + mO) / 2.0
+            if (combined > 0) kotlin.math.abs(mE - mO) / combined else 0.0
+        } else 0.0
+
+        // Pause per letter — within-word motor fluency
+        val pausePerLetter = withinWordPauses.let { if (it.isEmpty()) 0.0 else it.average() }
+
+        // Bilateral asymmetry — alternating IKIs proxy L/R hand timing difference
+        // Even-indexed IKIs ≈ one hand, odd-indexed ≈ other hand
+        val evenIkis = ikiList.filterIndexed { i, _ -> i % 2 == 0 }
+        val oddIkis  = ikiList.filterIndexed { i, _ -> i % 2 == 1 }
+        val bilateralAsymmetry = if (evenIkis.isNotEmpty() && oddIkis.isNotEmpty()) {
+            val mE = evenIkis.average(); val mO = oddIkis.average()
+            val combined = (mE + mO) / 2.0
+            if (combined > 0) kotlin.math.abs(mE - mO) / combined else 0.0
+        } else 0.0
+
         val backspaceRate = if (totalKeystrokes > 0)
             (backspaceCount.toDouble() / totalKeystrokes) * 100.0 else 0.0
 

@@ -114,6 +114,11 @@
             android:parentActivityName=".ui.MainActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.RiskHistoryActivity"
+            android:parentActivityName=".ui.MainActivity"
+            android:exported="false" />
+
         <!-- Wear OS data receiver -->
         <service
             android:name=".wear.WearDataListenerService"

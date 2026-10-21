@@ -24,9 +24,10 @@ import kotlinx.serialization.json.Json
         PersonalBaseline::class,
         PostureBaseline::class,
         AssessmentSession::class,
-        TremorSession::class
+        TremorSession::class,
+        RiskScoreRecord::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -43,6 +44,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
     abstract fun postureBaselineDao(): PostureBaselineDao
     abstract fun assessmentSessionDao(): AssessmentSessionDao
     abstract fun tremorSessionDao(): TremorSessionDao
+    abstract fun riskScoreDao(): RiskScoreDao
 
     companion object {
         @Volatile private var instance: CogniwareDatabase? = null
@@ -218,6 +220,25 @@ abstract class CogniwareDatabase : RoomDatabase() {
             }
         }
 
+
+        val MIGRATION_8_9 = object : Migration(8, 9) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("""
+                    CREATE TABLE IF NOT EXISTS risk_scores (
+                        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        patientId TEXT NOT NULL,
+                        timestampMs INTEGER NOT NULL,
+                        score INTEGER NOT NULL,
+                        level TEXT NOT NULL,
+                        dominantFactor TEXT NOT NULL,
+                        componentScoresJson TEXT NOT NULL DEFAULT ''
+                    )
+                """.trimIndent())
+                database.execSQL("CREATE INDEX IF NOT EXISTS idx_risk_patient ON risk_scores(patientId)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS idx_risk_time ON risk_scores(timestampMs)")
+            }
+        }
+
                 val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("""
@@ -241,7 +262,7 @@ abstract class CogniwareDatabase : RoomDatabase() {
                     CogniwareDatabase::class.java,
                     "cogniware.db"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
                     .build()
                     .also { instance = it }
             }

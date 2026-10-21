@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About You"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This helps us personalise your health monitoring. Your answers never leave your device except when syncing to your clinician."
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Dominant hand -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Which is your dominant hand?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <RadioGroup
+            android:id="@+id/rg_dominant_hand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/rb_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Right"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rb_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Left" />
+
+            <RadioButton
+                android:id="@+id/rb_ambidextrous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambidextrous" />
+        </RadioGroup>
+
+        <!-- Mobility and physical context -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you use any mobility aids? (select all that apply)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <CheckBox
+            android:id="@+id/cb_cane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walking cane or stick" />
+
+        <CheckBox
+            android:id="@+id/cb_walker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walker or rollator" />
+
+        <CheckBox
+            android:id="@+id/cb_wheelchair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wheelchair"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Physical impairments -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do any of these apply?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <CheckBox
+            android:id="@+id/cb_dominant_hand_disability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Injury, arthritis, or disability in dominant hand" />
+
+        <CheckBox
+            android:id="@+id/cb_vision_impairment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Significant vision impairment (beyond corrected vision)" />
+
+        <CheckBox
+            android:id="@+id/cb_hearing_impairment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Significant hearing impairment"
+            android:layout_marginBottom="32dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next: Posture Capture" />
+
+    </LinearLayout>
+</ScrollView>

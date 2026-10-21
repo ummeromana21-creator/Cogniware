@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import health.cogniware.BuildConfig
 import health.cogniware.R
 import health.cogniware.analysis.BaselineEngine
+import health.cogniware.data.models.RiskScoreRecord
 import health.cogniware.analysis.FreezeOfGaitDetector
 import health.cogniware.analysis.InferenceEngineFactory
 import health.cogniware.analysis.RiskInput
@@ -295,6 +296,22 @@ class PassiveSensingService : Service() {
             "[${InferenceEngineFactory.get().engineName}] level=${score.level} score=${score.score} dominant=${score.dominantFactor} " +
             "wearOff=$wearOffState (proximity=$wearOffProximityScore)"
         )
+
+        // Persist score to local DB for dashboard + history display
+        withContext(Dispatchers.IO) {
+            val componentsStr = score.componentScores.entries
+                .joinToString(",") { "${it.key}:${"%.3f".format(it.value)}" }
+            db.riskScoreDao().insert(
+                RiskScoreRecord(
+                    patientId = patientId,
+                    timestampMs = score.timestampMs,
+                    score = score.score,
+                    level = score.level.name,
+                    dominantFactor = score.dominantFactor,
+                    componentScoresJson = componentsStr
+                )
+            )
+        }
 
         // Build notification text, appending wear-off warning when relevant
         val wearOffSuffix = when (wearOffState) {

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "health.cogniware.app-mergeDebugResources-87:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/robin/.gradle/caches/9.6.0/transforms/4f7856b7a3c70a04bb3b16a71878c92e/transformed/appcompat-1.7.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    IME method configuration.
+    subtypes define the keyboard languages we support.
+    Cogniware doesn't render its own keyboard UI — it sits alongside
+    the user's existing keyboard and captures timing metadata only.
+-->
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="health.cogniware.ui.MainActivity"
+    android:isDefault="false">
+
+    <!-- English (US) -->
+    <subtype
+        android:label="@string/keyboard_name"
+        android:imeSubtypeMode="keyboard"
+        android:imeSubtypeLocale="en_US" />
+
+</input-method>

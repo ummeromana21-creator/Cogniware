@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_gradient"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Cogniware"
+            app:titleTextColor="@color/white">
+
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/profile_avatar_bg"
+                android:contentDescription="Profile"
+                android:src="@drawable/ic_person"/>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/circle_status_green"/>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:text="Monitoring active"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_diagnosis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_white_alpha"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:text="—"
+                android:textColor="@color/white"
+                android:textSize="11sp"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp"
+            android:paddingTop="12dp">
+
+            <!-- Alert banner -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_alert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#FFF3E0"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="14dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_alert_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="13sp"
+                        android:textColor="#E65100"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Baseline progress -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:id="@+id/tv_baseline_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+                    <ProgressBar
+                        android:id="@+id/progress_baseline"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="10dp"
+                        android:progressTint="@color/colorPrimary"
+                        android:progressBackgroundTint="#E0E0E0"
+                        android:max="100"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Risk Score Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_risk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/colorSurface">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <!-- Big score circle -->
+                    <FrameLayout
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="@drawable/circle_risk_bg">
+                        <TextView
+                            android:id="@+id/tv_risk_score"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="—"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+                    </FrameLayout>
+
+                    <!-- Labels -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="14dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RISK SCORE"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.12"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView
+                            android:id="@+id/tv_risk_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Low"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:id="@+id/tv_risk_dominant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No data yet"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorTextSecondary"
+                            android:layout_marginTop="2dp"/>
+                        <TextView
+                            android:id="@+id/tv_risk_updated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorTextHint"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                    <!-- History arrow -->
+                    <ImageButton
+                        android:id="@+id/btn_risk_history"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_chevron_right"
+                        android:contentDescription="Risk history"
+                        android:tint="@color/colorTextSecondary"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TODAY'S BIOMARKERS"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Row 1: Tremor + Gait -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorTremor"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Tremor" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_tremor_score"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorTremor" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:id="@+id/tv_tremor_label"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="RMS amplitude"/>
+                        <TextView android:id="@+id/tv_tremor_freq"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorGait"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Gait" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_gait_cadence"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorGait" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="steps/min"/>
+                        <TextView android:id="@+id/tv_gait_asym"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Row 2: Typing + HRV -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorTyping"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Typing" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_typing_wpm"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorTyping" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="WPM"/>
+                        <TextView android:id="@+id/tv_typing_iki"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorHrv"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="HRV" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_hrv"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorHrv" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="ms RMSSD"/>
+                        <TextView android:id="@+id/tv_hr"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Row 3: Sleep + Steps -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorSleep"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sleep" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_sleep_hours"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorSleep" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="hours last night"/>
+                        <TextView android:id="@+id/tv_sleep_deep"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="14dp">
+                        <View android:layout_width="32dp" android:layout_height="4dp"
+                            android:layout_marginBottom="6dp" android:background="@color/colorSteps"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Steps" android:textSize="11sp"
+                            android:textColor="@color/colorTextSecondary"/>
+                        <TextView android:id="@+id/tv_steps"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/colorSteps" android:text="—"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:textColor="@color/colorTextSecondary"
+                            android:text="today"/>
+                        <TextView android:id="@+id/tv_posture"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="11sp" android:layout_marginTop="4dp"
+                            android:textColor="@color/colorTextSecondary"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Medications button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_medications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="💊  Medications"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATA SYNC"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:padding="14dp"
+                    android:gravity="center_vertical">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:id="@+id/tv_sync_status"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="13sp" android:text="Auto-sync enabled (hourly)"/>
+                        <TextView android:id="@+id/tv_readings_count"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/colorTextSecondary"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_sync_now"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Sync Now"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Debug panel -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/colorSurfaceVariant"
+                app:cardElevation="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Debug Tools" android:textSize="13sp" android:textStyle="bold"
+                        android:textColor="@color/colorTyping" android:layout_marginBottom="8dp"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_seed_data"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Seed 14 Days of Simulated Data"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_clear_data"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Clear All Local Data" android:layout_marginTop="8dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Passively monitored. Data shared only with your clinician."
+                android:textSize="11sp"
+                android:textColor="@color/colorTextHint"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
