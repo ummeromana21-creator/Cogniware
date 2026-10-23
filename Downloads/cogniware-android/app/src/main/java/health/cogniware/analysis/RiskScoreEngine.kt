@@ -1,71 +1,29 @@
 package health.cogniware.analysis
 
-/**
- * RiskScoreEngine
- *
- * Combines multiple passive signals into a 0–100 risk score representing
- * the patient's current likelihood of experiencing a tremor episode or fall
- * in the next 30 minutes.
- *
- * Score interpretation:
- *   0–30:  Low — normal monitoring
- *   31–60: Elevated — log to database, subtle UI indicator
- *   61–80: High — notify patient: "Consider resting, avoid carrying hot liquids"
- *   81–100: Critical — notify patient + caregiver immediately
- *
- * Weights (tunable — will be replaced by ML model weights once training data exists):
- *   subThresholdTremorTrend  0.30  — rising sub-threshold FFT power in tremor band (phone accel)
- *   wearOffProximity         0.25  — how close we are to predicted wear-off time
- *   watchTremor              0.20  — raw tremor power ratio from paired Wear OS watch
- *   hrvDeviation             0.15  — HRV below patient's own baseline
- *   fatigueAccumulation      0.10  — step count + activity pattern suggesting fatigue
- *
- * All inputs are normalised to 0–1 before weighting.
- */
 data class RiskInput(
     val patientId: String,
     val timestampMs: Long,
-
-    // ── Phone accelerometer (sub-threshold, background) ───────────────────────
-    // Ratio of current 4-6Hz band power to patient's quiet baseline.
-    // 1.0 = at baseline, 2.0 = double baseline, etc.
     val subThresholdTremorRatio: Double,
-
-    // ── Medication timing ─────────────────────────────────────────────────────
-    // Minutes since last dose. Null if no dose logged yet.
     val minutesSinceLastDose: Double?,
-    // Expected duration of effect in minutes (from MedicationSchedule).
     val expectedDurationMinutes: Int?,
-
-    // ── Watch tremor (Wear OS accelerometer FFT) ──────────────────────────────
-    // Fraction of FFT power in 4–12 Hz band. Null if no watch paired.
     val watchTremorPowerRatio: Double?,
-    // Peak tremor frequency in Hz. Null if no watch or no tremor detected.
     val watchDominantFreqHz: Double?,
-
-    // ── Heart rate variability ────────────────────────────────────────────────
-    // Current HRV RMSSD in ms. Null if no wearable connected.
     val currentHrvMs: Double?,
-    // Patient's 30-day baseline HRV RMSSD in ms. Null if baseline not established.
     val baselineHrvMs: Double?,
-
-    // ── Activity / fatigue ────────────────────────────────────────────────────
     val stepsToday: Int,
     val baselineSteps: Int,
-
-    // ── Personal baseline z-scores (from BaselineEngine) ─────────────────────
-    // Combined RMS z-score across gait features. Null until baseline is established.
-    // +1.0 = 1 std-dev worse than this patient's personal norm.
     val gaitPersonalZScore: Double? = null,
-    // Combined RMS z-score across keystroke features. Null until baseline is established.
-    val keystrokePersonalZScore: Double? = null
+    val keystrokePersonalZScore: Double? = null,
+    val hyStage: String = "",
+    val dominantHand: String = "right",
+    val primarySymptomType: String = ""
 )
 
 data class RiskScore(
-    val score: Int,                              // 0–100
+    val score: Int,
     val level: RiskLevel,
-    val dominantFactor: String,                  // which factor contributed most
-    val componentScores: Map<String, Double>,    // for debugging/display
+    val dominantFactor: String,
+    val componentScores: Map<String, Double>,
     val timestampMs: Long
 )
 
@@ -75,60 +33,62 @@ object RiskScoreEngine {
 
     fun compute(input: RiskInput): RiskScore {
 
-        // 1. Sub-threshold phone tremor component (0–1)
-        //    ratio 1.0 → 0.0, ratio 2.0 → 0.5, ratio 3.0+ → 1.0
-        val tremorComponent = ((input.subThresholdTremorRatio - 1.0) / 2.0).coerceIn(0.0, 1.0)
+        val tremorBoost = when (input.primarySymptomType) {
+            "tremor_dominant" -> 1.10
+            "akinetic_rigid"  -> 0.90
+            else              -> 1.00
+        }
+        val motorBoost = when (input.primarySymptomType) {
+            "akinetic_rigid"  -> 1.10
+            "tremor_dominant" -> 0.90
+            else              -> 1.00
+        }
 
-        // 2. Wear-off proximity component (0–1)
+        val tremorComponent = (((input.subThresholdTremorRatio - 1.0) / 2.0) * tremorBoost)
+            .coerceIn(0.0, 1.0)
+
         val wearOffComponent = computeWearOffComponent(
             input.minutesSinceLastDose,
             input.expectedDurationMinutes
         )
 
-        // 3. Watch tremor component (0–1)
-        //    tremorPowerRatio 0.0 → 0.0 (no tremor), 0.3+ → 1.0 (significant tremor)
-        //    Null (no watch) → 0.0 (don't penalise unpaired patients)
-        val watchTremorComponent = input.watchTremorPowerRatio
-            ?.let { (it / 0.30).coerceIn(0.0, 1.0) }
-            ?: 0.0
+        val watchTremorComponent = (input.watchTremorPowerRatio
+            ?.let { (it / 0.30) * tremorBoost }
+            ?: 0.0).coerceIn(0.0, 1.0)
 
-        // 4. HRV deviation component (0–1)
         val hrvComponent = computeHrvComponent(input.currentHrvMs, input.baselineHrvMs)
 
-        // 5. Fatigue component (0–1)
         val fatigueComponent = (input.stepsToday.toDouble() / input.baselineSteps.coerceAtLeast(1))
             .coerceIn(0.0, 1.5)
             .let { ratio -> if (ratio > 1.0) (ratio - 1.0) * 2.0 else 0.0 }
             .coerceIn(0.0, 1.0)
 
-        // 6. Personal gait deviation component (0–1)
-        //    z > 0 means worse than patient's own baseline; z >= 3 maps to 1.0
-        val gaitPersonalComponent = input.gaitPersonalZScore
-            ?.let { z -> (z / 3.0).coerceIn(0.0, 1.0) }
-            ?: 0.0
+        val gaitPersonalComponent = (input.gaitPersonalZScore
+            ?.let { z -> (z / 3.0) * motorBoost }
+            ?: 0.0).coerceIn(0.0, 1.0)
 
-        // 7. Personal keystroke deviation component (0–1)
-        val keystrokePersonalComponent = input.keystrokePersonalZScore
-            ?.let { z -> (z / 3.0).coerceIn(0.0, 1.0) }
-            ?: 0.0
+        val keystrokePersonalComponent = (input.keystrokePersonalZScore
+            ?.let { z -> (z / 3.0) * motorBoost }
+            ?: 0.0).coerceIn(0.0, 1.0)
 
-        // Re-weight to include personal components (weights sum to 1.0):
-        //   subThresholdTremor  0.25 (was 0.30)
-        //   wearOffProximity    0.20 (was 0.25)
-        //   watchTremor         0.15 (was 0.20)
-        //   hrv                 0.10 (was 0.15)
-        //   fatigue             0.05 (was 0.10)
-        //   gaitPersonal        0.15 (new)
-        //   keystrokePersonal   0.10 (new)
-        val weighted = tremorComponent           * 0.25 +
-                       wearOffComponent          * 0.20 +
-                       watchTremorComponent      * 0.15 +
-                       hrvComponent              * 0.10 +
-                       fatigueComponent          * 0.05 +
-                       gaitPersonalComponent     * 0.15 +
+        val weighted = tremorComponent            * 0.25 +
+                       wearOffComponent           * 0.20 +
+                       watchTremorComponent       * 0.15 +
+                       hrvComponent               * 0.10 +
+                       fatigueComponent           * 0.05 +
+                       gaitPersonalComponent      * 0.15 +
                        keystrokePersonalComponent * 0.10
 
-        val score = (weighted * 100).toInt().coerceIn(0, 100)
+        val stageMult = when (input.hyStage.trim()) {
+            "1", "1.5"  -> 1.00
+            "2", "2.5"  -> 1.10
+            "3"         -> 1.20
+            "4"         -> 1.30
+            "5"         -> 1.40
+            else        -> 1.00
+        }
+
+        val rawScore = (weighted * stageMult * 100).toInt().coerceIn(0, 100)
 
         val components = mapOf(
             "subThresholdTremor"   to tremorComponent,
@@ -142,13 +102,13 @@ object RiskScoreEngine {
         val dominant = components.maxByOrNull { it.value }?.key ?: "unknown"
 
         val level = when {
-            score >= 81 -> RiskLevel.CRITICAL
-            score >= 61 -> RiskLevel.HIGH
-            score >= 31 -> RiskLevel.ELEVATED
-            else        -> RiskLevel.LOW
+            rawScore >= 81 -> RiskLevel.CRITICAL
+            rawScore >= 61 -> RiskLevel.HIGH
+            rawScore >= 31 -> RiskLevel.ELEVATED
+            else           -> RiskLevel.LOW
         }
 
-        return RiskScore(score, level, dominant, components, input.timestampMs)
+        return RiskScore(rawScore, level, dominant, components, input.timestampMs)
     }
 
     private fun computeWearOffComponent(
