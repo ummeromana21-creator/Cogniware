@@ -1,0 +1,509 @@
+{
+ "substance": "picrotoxin",
+ "retrieved": "2026-10-30",
+ "records": {
+  "pubchem": {
+   "source": "pubchem",
+   "query": "picrotoxin",
+   "parts": {
+    "compound": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/picrotoxin/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON",
+     "data": {
+      "PropertyTable": {
+       "Properties": [
+        {
+         "CID": 31304,
+         "MolecularFormula": "C30H34O13",
+         "ConnectivitySMILES": "CC(=C)C1C2C3C4(C(C1C(=O)O2)(CC5C4(O5)C(=O)O3)O)C.CC12C3C4C(C(C1(CC5C2(O5)C(=O)O3)O)C(=O)O4)C(C)(C)O",
+         "IUPACName": "(1R,3R,5S,8S,13R,14S)-1-hydroxy-14-(2-hydroxypropan-2-yl)-13-methyl-4,7,10-trioxapentacyclo[6.4.1.19,12.03,5.05,13]tetradecane-6,11-dione;(1R,5S,8S,13R,14R)-1-hydroxy-13-methyl-14-prop-1-en-2-yl-4,7,10-trioxapentacyclo[6.4.1.19,12.03,5.05,13]tetradecane-6,11-dione",
+         "Title": "Picrotoxin"
+        }
+       ]
+      }
+     }
+    },
+    "description": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/picrotoxin/description/JSON",
+     "data": {
+      "InformationList": {
+       "Information": [
+        {
+         "CID": 31304,
+         "Title": "Picrotoxin"
+        }
+       ]
+      }
+     }
+    },
+    "assays": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/picrotoxin/assaysummary/JSON",
+     "data": {
+      "Table": {
+       "Columns": {
+        "Column": [
+         "AID",
+         "Panel Member ID",
+         "SID",
+         "CID",
+         "Activity Outcome",
+         "Target Accession",
+         "Target GeneID",
+         "Activity Value [uM]",
+         "Activity Name",
+         "Assay Name",
+         "Assay Type",
+         "PubMed ID",
+         "RNAi"
+        ]
+       },
+       "Row": [
+        {
+         "Cell": [
+          "1346212",
+          "",
+          "376220130",
+          "31304",
+          "Inactive",
+          "EMB09144",
+          "",
+          "",
+          "",
+          "LOPAC HTS for Inhibitors of Aerobactin Synthetase IucA",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346472",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_775807",
+          "2565",
+          "",
+          "",
+          "Human GABAA receptor gamma1 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346475",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001191196",
+          "2557",
+          "",
+          "",
+          "Human GABAA receptor alpha4 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346476",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_000806",
+          "2563",
+          "",
+          "",
+          "Human GABAA receptor delta subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346480",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_150092",
+          "2567",
+          "",
+          "",
+          "Human GABAA receptor gamma3 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346485",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001159533",
+          "2743",
+          "",
+          "",
+          "Human glycine receptor beta subunit (Glycine receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346490",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001139512",
+          "2741",
+          "",
+          "",
+          "Human glycine receptor alpha1 subunit (Glycine receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346491",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_004952",
+          "2564",
+          "",
+          "",
+          "Human GABAA receptor epsilon subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346492",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_000803",
+          "2560",
+          "",
+          "",
+          "Human GABAA receptor beta1 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346496",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_000799",
+          "2556",
+          "",
+          "",
+          "Human GABAA receptor alpha3 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346504",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001107647",
+          "2555",
+          "",
+          "",
+          "Human GABAA receptor alpha2 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346512",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_055026",
+          "2568",
+          "",
+          "",
+          "Human GABAA receptor pi subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346513",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001158509",
+          "2558",
+          "",
+          "",
+          "Human GABAA receptor alpha5 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346515",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001178250",
+          "2562",
+          "",
+          "",
+          "Human GABAA receptor beta3 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346518",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001165413",
+          "2742",
+          "",
+          "",
+          "Human glycine receptor alpha2 subunit (Glycine receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346520",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001121120",
+          "",
+          "",
+          "",
+          "Human GABAA receptor alpha1 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346521",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_001099050",
+          "200959",
+          "",
+          "",
+          "Human GABAA receptor rho3 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346534",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_006520",
+          "8001",
+          "",
+          "",
+          "Human glycine receptor alpha3 subunit (Glycine receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346537",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_944493",
+          "2566",
+          "",
+          "",
+          "Human GABAA receptor gamma2 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346538",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_068711",
+          "2561",
+          "",
+          "",
+          "Human GABAA receptor beta2 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346541",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "NP_000802",
+          "2559",
+          "",
+          "",
+          "Human GABAA receptor alpha6 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347004",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "P24046",
+          "2569",
+          "",
+          "",
+          "Human GABAA receptor rho1 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347005",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "Q9UN88",
+          "55879",
+          "",
+          "",
+          "Human GABAA receptor theta subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347011",
+          "",
+          "178100875",
+          "31304",
+          "Active",
+          "P28476",
+          "2570",
+          "",
+          "",
+          "Human GABAA receptor rho2 subunit (GABAA receptors)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347384",
+          "",
+          "402404684",
+          "31304",
+          "Inactive",
+          "",
+          "",
+          "",
+          "",
+          "Cell-based high-throughput assay to identify small molecules that inhibit phospholipid biosynthesis in animal cells 4: screen of the LOPAC library.",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1963498",
+          "",
+          "496149185",
+          "31304",
+          "Inactive",
+          "",
+          "",
+          "",
+          "",
+          "HTS to identify compounds that affect the blood-brain barrier permeability in vitro",
+          "Other",
+          "",
+          ""
+         ]
+        }
+       ]
+      }
+     }
+    }
+   }
+  }
+ }
+}

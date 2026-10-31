@@ -1,0 +1,3 @@
+# Only needed for real Sign in with Apple (id_token verification).
+# Google / Meta / email run on the standard library.
+PyJWT>=2.8

@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metaverse Fly Lab — Maxime &amp; Hagrid</title>
+<style>
+  /* ============ HUD ============ */
+  :root { --bg:#0b0d12; --fg:#e8eaf0; --dim:#9aa0b2; --amber:#ffd23f; --teal:#2ee6c8; --red:#ff7a7a; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
+    font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; overflow:hidden; }
+  #c { display:block; width:100%; height:100dvh; touch-action:none; }
+  .hud { position:absolute; z-index:5; }
+  #title { left:16px; top:14px; pointer-events:none; }
+  #title h1 { margin:0; font-size:17px; letter-spacing:.2px; font-weight:700; }
+  #title p { margin:2px 0 0; font-size:12px; color:var(--dim); }
+  #status { right:16px; top:14px; background:#141824; border:1px solid #2a3048; border-radius:999px;
+    padding:6px 12px; font-size:12px; display:block; white-space:nowrap; overflow:hidden;
+    text-overflow:ellipsis; width:max-content; max-width:calc(100vw - 32px); }
+  #status .dot { display:inline-block; vertical-align:1px; margin-right:8px; }
+  #status .dot { width:9px; height:9px; border-radius:50%; background:var(--amber); }
+  #status.live .dot { background:#3ddc84; }
+  #status.live { border-color:#1f5c3a; }
+  #legend { left:16px; bottom:14px; display:flex; flex-direction:column; gap:6px; }
+  .lgroup { display:flex; gap:8px; align-items:center; }
+  .ltitle { font-size:10px; font-weight:700; letter-spacing:1px; min-width:56px; }
+  .chip { background:#141824; border:1px solid #2a3048; border-radius:6px; padding:5px 10px; font-size:12px; }
+  .chip b { font-weight:700; }
+  .chip .sw { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
+  .chip .fr { color:var(--dim); margin-left:6px; font-variant-numeric:tabular-nums; }
+  #hint { right:16px; bottom:14px; font-size:11px; color:var(--dim); text-align:right; pointer-events:none; }
+  #vr { left:50%; transform:translateX(-50%); bottom:14px; }
+  #vr button { cursor:pointer; }
+  #panel { right:16px; top:60px; width:248px; background:#141824; border:1px solid #2a3048; border-radius:10px; padding:10px 12px; }
+  #panel h2 { margin:0 0 4px; font-size:11px; letter-spacing:1px; color:var(--dim); display:flex; justify-content:space-between; align-items:center; }
+  #panelToggle { background:none; border:none; color:var(--dim); cursor:pointer; font-size:15px; padding:0 2px; line-height:1; }
+  #panel label { display:block; font-size:11px; color:var(--dim); margin:8px 0 3px; }
+  #panel select { width:100%; background:#1b2030; color:var(--fg); border:1px solid #2d3448; border-radius:6px; padding:6px; font:inherit; font-size:13px; }
+  #panel .btns { display:flex; gap:6px; margin-top:8px; }
+  #panel button.act { flex:1; background:#1b2030; color:var(--fg); border:1px solid #2d3448; border-radius:6px; padding:7px 2px; cursor:pointer; font-size:12px; white-space:nowrap; }
+  #panel button.act:hover:not(:disabled) { background:#242b3e; }
+  #panel button.act:disabled { opacity:0.45; cursor:default; }
+  #panel button.warn { border-color:#6b5a1a; color:#ffe58a; }
+  #amtWrap { display:flex; gap:8px; align-items:center; }
+  #amt { flex:1; accent-color:#ffd23f; }
+  #amtVal { font-size:12px; min-width:30px; text-align:right; font-variant-numeric:tabular-nums; }
+  #onboard { font-size:11px; color:#ffb3b3; min-height:15px; margin-top:6px; }
+  #trialBar { height:6px; background:#1b2030; border-radius:3px; margin-top:8px; overflow:hidden; display:none; }
+  #trialFill { height:100%; width:0; background:var(--amber); }
+  #results { margin-top:8px; font-size:11px; display:none; }
+  #results table { border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; }
+  #results td, #results th { border:1px solid #2d3448; padding:2px 4px; text-align:right; }
+  #results td:first-child, #results th:first-child { text-align:left; }
+  #results th { color:var(--dim); font-weight:600; }
+  #results caption { text-align:left; color:var(--dim); padding-bottom:3px; }
+  #err { display:none; position:absolute; z-index:20; left:12px; right:12px; top:64px;
+    background:#2a1215; border:1px solid #7a2a30; border-radius:8px; padding:10px 12px;
+    font:12px/1.5 ui-monospace,Menlo,monospace; white-space:pre-wrap; }
+  @media (max-width:600px) {
+    #title h1 { font-size:14px; } #title p { font-size:11px; }
+    #status { font-size:11px; padding:5px 9px; max-width:52vw; }
+    #legend { bottom:86px; }
+    #legend .chip { font-size:11px; padding:4px 8px; }
+    #hint { display:block; left:16px; right:auto; top:72px; bottom:auto; text-align:left; font-size:10px; }
+    #hintVR { display:none; }
+    #panel { right:8px; left:8px; top:auto; bottom:158px; width:auto; max-height:34dvh; overflow:auto; }
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="title" class="hud"><h1>Metaverse Fly Lab</h1><p>Maxime &amp; Hagrid · live from the connectome lab</p></div>
+<div id="status" class="hud"><span class="dot"></span><span id="statusText">connecting…</span></div>
+<div id="legend" class="hud">
+  <div class="lgroup"><span class="ltitle" style="color:#3ddc84">CONTROL</span>
+    <div class="chip"><span class="sw" style="background:#e8a33d"></span><b>M &#9792;</b><span class="fr" id="fr_cb">—</span></div>
+    <div class="chip"><span class="sw" style="background:#8a6a45"></span><b>H &#9794;</b><span class="fr" id="fr_cm">—</span></div>
+  </div>
+  <div class="lgroup"><span class="ltitle" style="color:#ffd23f">VARIABLE</span>
+    <div class="chip"><span class="sw" style="background:#e8a33d"></span><b>M &#9792;</b><span class="fr" id="fr_tb">—</span></div>
+    <div class="chip"><span class="sw" style="background:#8a6a45"></span><b>H &#9794;</b><span class="fr" id="fr_tm">—</span></div>
+  </div>
+</div>
+<div id="panel" class="hud">
+  <h2>EXPERIMENT · VARIABLE JAR <button id="panelToggle" title="collapse">–</button></h2>
+  <div id="panelBody">
+    <label for="drug">Drug (variable jar only)</label>
+    <select id="drug"><option value="">connecting…</option></select>
+    <label for="amt">Amount</label>
+    <div id="amtWrap"><input id="amt" type="range" min="0" max="2" step="0.1" value="0.5"><span id="amtVal">0.5</span></div>
+    <div class="btns">
+      <button class="act warn" id="bDose">Dose</button>
+      <button class="act" id="bWash">Washout</button>
+      <button class="act" id="bRestore">Restore</button>
+    </div>
+    <label for="steps">Trial steps</label>
+    <select id="steps"><option>200</option><option selected>400</option><option>800</option></select>
+    <div class="btns"><button class="act" id="bRun">Run trial</button></div>
+    <div id="trialBar"><div id="trialFill"></div></div>
+    <div id="onboard">on board: —</div>
+    <div id="results" style="display:block"><span style="color:var(--dim)">Run a trial to compare the jars.</span></div>
+  </div>
+</div>
+<div id="hint" class="hud">drag to orbit · scroll / pinch to zoom<br><span id="hintVR">put on a headset for VR</span></div>
+<div id="vr" class="hud"></div>
+<div id="err" class="hud"></div>
+<script type="importmap">
+{ "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { VRButton } from 'three/addons/webxr/VRButton.js';
+
+/* ================= 1. CONFIG ================= */
+const WS_URL = `ws://${location.hostname || 'localhost'}:8765`;
+const BENCH_Y = 0.8;                 // bench top surface (m)
+const JAR_X = 0.42;                      // jars sit at ±JAR_X
+const ARENA_K = 0.01;                // arena units (±10) -> jar metres (±0.10)
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= 2. ERROR OVERLAY ================= */
+const errBox = document.getElementById('err');
+function showErr(msg) { errBox.style.display = 'block'; errBox.textContent += msg + '\n'; }
+addEventListener('error', e => showErr('Error: ' + (e.message || e.error)));
+addEventListener('unhandledrejection', e => showErr('Rejected: ' + (e.reason && e.reason.message || e.reason)));
+
+/* ================= 3. RENDERER / SCENE / CAMERA ================= */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.xr.enabled = true;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0d12);
+scene.fog = new THREE.Fog(0x0b0d12, 6, 20);
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.02, 60);
+const rig = new THREE.Group();                 // headset-safe camera rig
+const narrowK = innerWidth / innerHeight < 0.9 ? 1.75 : 1;
+const TGT_X = innerWidth / innerHeight < 0.9 ? 0 : 0.14;
+const RIG_X = 0.62 * narrowK, RIG_Y = 1.26;
+rig.position.set(RIG_X, RIG_Y, 1.14 * narrowK);
+rig.add(camera);
+scene.add(rig);
+camera.lookAt(TGT_X, 0.96, 0);
+
+/* ================= 4. ENVIRONMENT (reflections for glass/metal) ================= */
+{
+  const env = new THREE.Scene();
+  env.background = new THREE.Color(0x0b0d12);
+  const panel = (c, w, h, x, y, z) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide }));
+    m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m);
+  };
+  panel(0xfff3e0, 5, 5, 0, 5, 0);        // warm skylight
+  panel(0x9db8ff, 4, 3, -5, 2, 1);       // cool left
+  panel(0xffc27a, 4, 3, 5, 2, -1);       // warm right
+  panel(0xffd23f, 6, 1, 0, 1, 5);        // amber strip
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(env, 0.04).texture;
+  pmrem.dispose();
+}
+
+/* ================= 5. LIGHTS ================= */
+scene.add(new THREE.HemisphereLight(0x8899bb, 0x221f18, 0.55));
+const key = new THREE.DirectionalLight(0xfff1dd, 2.6);
+key.position.set(2.2, 3.4, 1.6);
+key.castShadow = true;
+key.shadow.mapSize.set(1024, 1024);
+key.shadow.camera.left = key.shadow.camera.bottom = -1.4;
+key.shadow.camera.right = key.shadow.camera.top = 1.4;
+key.shadow.camera.far = 9;
+scene.add(key);
+const lampLight = new THREE.PointLight(0xffbe78, 4.2, 8, 2);
+lampLight.position.set(0, 1.9, 0.15);
+scene.add(lampLight);
+const rim = new THREE.DirectionalLight(0x7fb0ff, 0.7);
+rim.position.set(-2.5, 2.0, -2.0);
+scene.add(rim);
+
+/* ================= 6. HELPERS ================= */
+function canvasTex(w, h, draw) {
+  const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+  draw(cv.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(cv);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 4;
+  return t;
+}
+const M = {
+  std: (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, ...o }),
+};
+
+/* ================= 7. ROOM: floor, pillars, dust ================= */
+{
+  const floorTex = canvasTex(1024, 1024, (g, w, h) => {
+    g.fillStyle = '#10131a'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = '#1c2333'; g.lineWidth = 1;
+    for (let i = 0; i <= 32; i++) {
+      const p = i * w / 32;
+      g.beginPath(); g.moveTo(p, 0); g.lineTo(p, h); g.stroke();
+      g.beginPath(); g.moveTo(0, p); g.lineTo(w, p); g.stroke();
+    }
+    g.strokeStyle = '#2a3450'; g.lineWidth = 2;
+    for (let i = 0; i <= 8; i++) {
+      const p = i * w / 8;
+      g.beginPath(); g.moveTo(p, 0); g.lineTo(p, h); g.stroke();
+      g.beginPath(); g.moveTo(0, p); g.lineTo(w, p); g.stroke();
+    }
+    g.strokeStyle = '#8a6f2f'; g.lineWidth = 3;
+    g.beginPath(); g.arc(w / 2, h / 2, w * 0.16, 0, Math.PI * 2); g.stroke();
+  });
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(14, 72),
+    new THREE.MeshStandardMaterial({ map: floorTex, roughness: 0.85, metalness: 0.15 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.receiveShadow = true;
+  scene.add(floor);
+}
+const pillars = new THREE.Group();
+for (let i = 0; i < 8; i++) {
+  const a = i / 8 * Math.PI * 2 + 0.2 + Math.PI / 8;
+  const p = new THREE.Mesh(new THREE.BoxGeometry(0.35, 5.5, 0.35), M.std(0x141824, { roughness: 0.9 }));
+  p.position.set(Math.cos(a) * 6.5, 2.75, Math.sin(a) * 6.5);
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.16, 0.42),
+    new THREE.MeshStandardMaterial({ color: 0x111111, emissive: i % 2 ? 0xffb02e : 0x2ee6c8, emissiveIntensity: 2.2 }));
+  cap.position.y = 2.85;
+  p.add(cap);
+  const strip = new THREE.Mesh(new THREE.BoxGeometry(0.07, 2.4, 0.03),
+    new THREE.MeshStandardMaterial({ color: 0x111111, emissive: i % 2 ? 0xffb02e : 0x2ee6c8, emissiveIntensity: 1.6 }));
+  strip.position.set(-Math.cos(a) * 0.19, -0.6, -Math.sin(a) * 0.19);
+  p.add(strip);
+  pillars.add(p);
+}
+scene.add(pillars);
+let dust, dustBase;
+{
+  const N = 220;
+  dustBase = new Float32Array(N * 3);
+  const pos = new Float32Array(N * 3);
+  for (let i = 0; i < N; i++) {
+    dustBase[i * 3] = (Math.random() - 0.5) * 6;
+    dustBase[i * 3 + 1] = 0.3 + Math.random() * 2.6;
+    dustBase[i * 3 + 2] = (Math.random() - 0.5) * 6;
+  }
+  pos.set(dustBase);
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const dot = canvasTex(64, 64, (c) => {
+    const r = c.createRadialGradient(32, 32, 2, 32, 32, 30);
+    r.addColorStop(0, 'rgba(255,240,210,1)'); r.addColorStop(1, 'rgba(255,240,210,0)');
+    c.fillStyle = r; c.fillRect(0, 0, 64, 64);
+  });
+  dust = new THREE.Points(g, new THREE.PointsMaterial({
+    map: dot, size: 0.02, transparent: true, opacity: 0.45,
+    depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+  }));
+  scene.add(dust);
+}
+
+/* ================= 7b. ROOM SHELL + VIAL RACK (lab cues) ================= */
+{
+  const wallTex = canvasTex(512, 256, (g, w, h) => {
+    g.fillStyle = '#0d1118'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = '#1a2233'; g.lineWidth = 2;
+    for (let i = 0; i <= 4; i++) { const p = i * w / 4; g.beginPath(); g.moveTo(p, 0); g.lineTo(p, h); g.stroke(); }
+    g.beginPath(); g.moveTo(0, h * 0.62); g.lineTo(w, h * 0.62); g.stroke();
+  });
+  wallTex.wrapS = THREE.RepeatWrapping;
+  wallTex.repeat.set(8, 1);
+  const shell = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 9, 48, 1, true),
+    new THREE.MeshStandardMaterial({ map: wallTex, roughness: 0.95, side: THREE.BackSide }));
+  shell.position.y = 4.5;
+  scene.add(shell);
+  const rack = new THREE.Group();
+  const base = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.03, 0.12), M.std(0x1c2028, { roughness: 0.7 }));
+  base.position.y = 0.015;
+  base.castShadow = true;
+  rack.add(base);
+  const cols = [0xff5a5a, 0xffb02e, 0x3ddc84, 0x5aa9ff, 0x2ee6c8, 0xff8a5a];
+  for (let i = 0; i < 6; i++) {
+    const v = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.07, 12),
+      new THREE.MeshStandardMaterial({ color: 0x222831, roughness: 0.3, emissive: cols[i], emissiveIntensity: 0.9 }));
+    v.position.set(-0.085 + (i % 3) * 0.085, 0.065, i < 3 ? -0.028 : 0.028);
+    rack.add(v);
+  }
+  rack.position.set(0, BENCH_Y, -0.33);
+  scene.add(rack);
+  const rackTag = makeLabel('drug rack', '#5aa9ff');
+  rackTag.scale.set(0.09, 0.0225, 1);
+  rackTag.position.set(0, BENCH_Y + 0.17, -0.33);
+  scene.add(rackTag);
+}
+
+/* ================= 8. BENCH + LAMP ================= */
+{
+  const bench = new THREE.Group();
+  const wood = M.std(0x5a3d26, { roughness: 0.75 });
+  const top = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.075, 0.95), wood);
+  top.position.y = BENCH_Y - 0.0375;
+  top.castShadow = top.receiveShadow = true;
+  bench.add(top);
+  const strip = new THREE.Mesh(new THREE.BoxGeometry(1.66, 0.008, 0.008),
+    new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0xffb02e, emissiveIntensity: 1.4 }));
+  strip.position.set(0, BENCH_Y - 0.085, 0.472);
+  bench.add(strip);
+  const legG = new THREE.CylinderGeometry(0.035, 0.03, BENCH_Y - 0.075, 20);
+  const legM = M.std(0x23262e, { roughness: 0.45, metalness: 0.8 });
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+    const leg = new THREE.Mesh(legG, legM);
+    leg.position.set(sx * 0.78, (BENCH_Y - 0.075) / 2, sz * 0.4);
+    leg.castShadow = true;
+    bench.add(leg);
+  }
+  scene.add(bench);
+  const lamp = new THREE.Group();
+  const cord = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 1.3, 8), M.std(0x111111));
+  cord.position.set(0, 2.7, 0.15);
+  lamp.add(cord);
+  const shade = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.15, 32, 1, true),
+    M.std(0x1d4d3a, { roughness: 0.4, metalness: 0.3, side: THREE.DoubleSide }));
+  shade.position.set(0, 2.02, 0.15);
+  lamp.add(shade);
+  const glow = new THREE.Mesh(new THREE.CircleGeometry(0.145, 32),
+    new THREE.MeshBasicMaterial({ color: 0xffe2b0 }));
+  glow.rotation.x = Math.PI / 2;
+  glow.position.set(0, 1.955, 0.15);
+  lamp.add(glow);
+  const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.028, 16, 12),
+    new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0xffd9a0, emissiveIntensity: 3 }));
+  bulb.position.set(0, 1.94, 0.15);
+  lamp.add(bulb);
+  scene.add(lamp);
+}
+
+/* ================= 9. THE FLY JAR (lathe-turned glass) ================= */
+function makeJar(tagL1, tagL2, sealColor) {
+  const jar = new THREE.Group();
+  {
+  const profile = [
+    [0.0, 0.0], [0.09, 0.0], [0.12, 0.008], [0.145, 0.03], [0.156, 0.07],
+    [0.158, 0.11], [0.150, 0.16], [0.132, 0.21], [0.108, 0.25],
+    [0.094, 0.28], [0.092, 0.30], [0.098, 0.305], [0.098, 0.318], [0.090, 0.318],
+  ].map(([x, y]) => new THREE.Vector2(x, y));
+  const glass = new THREE.Mesh(
+    new THREE.LatheGeometry(profile, 64),
+    new THREE.MeshPhysicalMaterial({
+      color: 0xffffff, metalness: 0, roughness: 0.06,
+      transmission: 1.0, thickness: 0.03, ior: 1.5,
+      clearcoat: 0.3, envMapIntensity: 1.2, depthWrite: false,
+    }));
+  glass.castShadow = false;
+  jar.add(glass);
+  const lidM = M.std(0x2a2d34, { roughness: 0.35, metalness: 0.9 });
+  const lid = new THREE.Mesh(new THREE.CylinderGeometry(0.106, 0.106, 0.026, 48), lidM);
+  lid.position.y = 0.331;
+  lid.castShadow = true;
+  jar.add(lid);
+  const seal = new THREE.Mesh(new THREE.TorusGeometry(0.106, 0.004, 12, 64),
+    new THREE.MeshStandardMaterial({ color: 0x111111, emissive: sealColor, emissiveIntensity: 1.2 }));
+  seal.rotation.x = Math.PI / 2;
+  seal.position.y = 0.319;
+  jar.add(seal);
+  const knob = new THREE.Mesh(new THREE.SphereGeometry(0.02, 20, 14), lidM);
+  knob.position.y = 0.352;
+  jar.add(knob);
+  const inner = new THREE.PointLight(0xffe6c4, 1.2, 0.9, 2);
+  inner.position.set(0, 0.24, 0);
+  jar.add(inner);
+  const pad = new THREE.Mesh(new THREE.CylinderGeometry(0.145, 0.145, 0.005, 48),
+    M.std(0xbcc8c2, { roughness: 1.0 }));
+  pad.position.y = 0.004;
+  pad.receiveShadow = true;
+  jar.add(pad);
+  const tag = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.045, 0.002),
+    new THREE.MeshStandardMaterial({ map: canvasTex(256, 128, (g, w, h) => {
+      g.fillStyle = '#efe6d2'; g.fillRect(0, 0, w, h);
+      g.fillStyle = '#2a2018'; g.font = 'bold 34px system-ui,sans-serif'; g.textAlign = 'center';
+      g.fillText(tagL1, w / 2, 52);
+      g.font = '20px system-ui,sans-serif';
+      g.fillText(tagL2, w / 2, 94);
+    }), roughness: 0.9 }));
+  tag.position.set(0, 0.19, 0.148);
+  tag.rotation.x = -0.12;
+  jar.add(tag);
+  const aoTex = canvasTex(128, 128, (g) => {
+    const r = g.createRadialGradient(64, 64, 8, 64, 64, 62);
+    r.addColorStop(0, 'rgba(0,0,0,0.55)'); r.addColorStop(0.7, 'rgba(0,0,0,0.28)'); r.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = r; g.fillRect(0, 0, 128, 128);
+  });
+  const ao = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.46),
+    new THREE.MeshBasicMaterial({ map: aoTex, transparent: true, depthWrite: false }));
+  ao.rotation.x = -Math.PI / 2;
+  ao.position.y = 0.002;
+  jar.add(ao);
+  }
+  return jar;
+}
+const controlJar = makeJar('CONTROL', 'nothing added', 0x3ddc84);
+controlJar.position.set(-JAR_X, BENCH_Y, 0);
+scene.add(controlJar);
+const varJar = makeJar('VARIABLE', 'dosed here', 0xffb02e);
+varJar.position.set(JAR_X, BENCH_Y, 0);
+scene.add(varJar);
+
+/* ================= 10. BANANA SLICE ================= */
+function makeBanana() {
+  const banana = new THREE.Group();
+  {
+  const flesh = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.0085, 12, 24, Math.PI * 0.8),
+    M.std(0xe8c33a, { roughness: 0.55 }));
+  flesh.rotation.x = Math.PI / 2;
+  flesh.rotation.z = 0.6;
+  flesh.castShadow = true;
+  banana.add(flesh);
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(0.004, 10, 8), M.std(0x5a3a1a, { roughness: 0.8 }));
+  tip.position.set(0.02, 0.002, 0.008);
+  banana.add(tip);
+}
+  return banana;
+}
+const bananaC = makeBanana(); controlJar.add(bananaC);
+const bananaV = makeBanana(); varJar.add(bananaV);
+
+/* ================= 11. FLIES (Maxime + Hagrid) ================= */
+function makeLabel(text, dot) {
+  const tex = canvasTex(256, 64, (g, w, h) => {
+    g.fillStyle = 'rgba(10,12,18,0.85)';
+    g.beginPath(); g.roundRect(2, 6, w - 4, h - 12, 14); g.fill();
+    g.fillStyle = dot; g.beginPath(); g.arc(30, h / 2, 11, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#e8eaf0'; g.font = '600 27px system-ui,sans-serif'; g.textBaseline = 'middle';
+    g.fillText(text, 50, h / 2 + 1);
+  });
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+  s.scale.set(0.13, 0.0325, 1);
+  s.renderOrder = 10;
+  return s;
+}
+function makeFly({ body, eye, size, label, dot, li }) {
+  const S = 0.024 * size;
+  const f = new THREE.Group();
+  const chitin = M.std(body, { roughness: 0.45, emissive: body, emissiveIntensity: 0.35 });
+  const dark = M.std(new THREE.Color(body).multiplyScalar(0.55), { roughness: 0.5, emissive: body, emissiveIntensity: 0.25 });
+  const add = (mesh, x, y, z) => { mesh.position.set(x, y, z); mesh.castShadow = true; f.add(mesh); return mesh; };
+  const abdomen = add(new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), chitin), -0.62 * S, 0.24 * S, 0);
+  abdomen.scale.set(0.58 * S, 0.34 * S, 0.34 * S);
+  const thorax = add(new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), dark), 0, 0.27 * S, 0);
+  thorax.scale.set(0.42 * S, 0.32 * S, 0.32 * S);
+  add(new THREE.Mesh(new THREE.SphereGeometry(0.26 * S, 18, 14), dark), 0.44 * S, 0.29 * S, 0);
+  const eyeM = new THREE.MeshStandardMaterial({ color: eye, roughness: 0.2, emissive: eye, emissiveIntensity: 0.35 });
+  for (const sz of [-1, 1])
+    add(new THREE.Mesh(new THREE.SphereGeometry(0.155 * S, 16, 12), eyeM), 0.52 * S, 0.35 * S, sz * 0.14 * S);
+  const wingM = new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.32,
+    roughness: 0.2, side: THREE.DoubleSide, depthWrite: false });
+  const wings = [];
+  for (const sz of [-1, 1]) {
+    const pivot = new THREE.Group();
+    pivot.position.set(-0.05 * S, 0.5 * S, sz * 0.08 * S);
+    const wgeo = new THREE.PlaneGeometry(0.95 * S, 0.36 * S);
+    wgeo.translate(0, 0.475 * S * sz, 0);
+    const w = new THREE.Mesh(wgeo, wingM);
+    w.rotation.x = -Math.PI / 2;
+    pivot.add(w);
+    f.add(pivot);
+    wings.push({ pivot, side: sz });
+  }
+  const legM = M.std(0x1a1512, { roughness: 0.8 });
+  for (const sz of [-1, 1]) for (let j = -1; j <= 1; j++) {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.022 * S, 0.016 * S, 0.55 * S, 6), legM);
+    leg.position.set(j * 0.24 * S, -0.02 * S, sz * 0.2 * S);
+    leg.rotation.x = sz * 0.55;
+    leg.rotation.z = -j * 0.35;
+    f.add(leg);
+  }
+  const tag = makeLabel(label, dot);
+  tag.renderOrder = 11;
+  const leader = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]),
+    new THREE.LineBasicMaterial({ color: 0x8a90a0, transparent: true, opacity: 0.55 }));
+  f.userData.tag = tag; f.userData.leader = leader; f.userData.li = li;
+  f.userData.wings = wings;
+  return f;
+}
+const MAXIME = { body: 0x9a6a35, eye: 0xa31616, size: 1.0, label: 'Maxime ♀', dot: '#e8a33d', li: 0 };
+const HAGRID = { body: 0x4f3d2c, eye: 0x7a1010, size: 0.92, label: 'Hagrid ♂', dot: '#8a6a45', li: 1 };
+const flies = [
+  { key: 'banc', arena: 'control', jar: controlJar, obj: makeFly(MAXIME),
+    slot: null, pos: new THREE.Vector3(), angle: 0, phase: 0.0, frEl: document.getElementById('fr_cb') },
+  { key: 'malecns', arena: 'control', jar: controlJar, obj: makeFly(HAGRID),
+    slot: null, pos: new THREE.Vector3(), angle: 0, phase: 2.4, frEl: document.getElementById('fr_cm') },
+  { key: 'banc', arena: 'treatment', jar: varJar, obj: makeFly(MAXIME),
+    slot: null, pos: new THREE.Vector3(), angle: 0, phase: 4.2, frEl: document.getElementById('fr_tb') },
+  { key: 'malecns', arena: 'treatment', jar: varJar, obj: makeFly(HAGRID),
+    slot: null, pos: new THREE.Vector3(), angle: 0, phase: 5.5, frEl: document.getElementById('fr_tm') },
+];
+for (const fl of flies) { fl.jar.add(fl.obj); fl.jar.add(fl.obj.userData.tag); fl.jar.add(fl.obj.userData.leader); }
+
+/* ================= 12. LIVE LINK (fly-lab protocol, read-only) ================= */
+const statusEl = document.getElementById('status');
+const statusText = document.getElementById('statusText');
+let live = false, msgCount = 0;
+function setStatus(mode, text) {
+  statusEl.classList.toggle('live', mode === 'live');
+  statusText.textContent = text;
+}
+function pickSlots(helloFlies) {
+  const keys = Object.keys(helloFlies || {});
+  for (const fl of flies) {
+    fl.slot = keys.find(k => k === fl.arena + ':' + fl.key)
+      || keys.find(k => k.endsWith(':' + fl.key)) || null;
+  }
+}
+function applyState(st) {
+  live = true;
+  msgCount++;
+  if (msgCount === 1 || msgCount % 10 === 0) {
+    const txt = innerWidth < 600 ? `live · ${st.sps}/s` : `live · step ${st.t} · ${st.sps}/s`;
+    setStatus('live', txt);
+  }
+  const all = st.flies || {};
+  for (const fl of flies) {
+    const fs = all[fl.slot];
+    if (!fs || !fs.fly) continue;
+    fl.pos.set(fs.fly.x * ARENA_K, 0, -fs.fly.y * ARENA_K);
+    fl.angle = fs.fly.angle || 0;
+    if ((msgCount === 1 || msgCount % 10 === 0) && fs.rates && fs.rates.all != null)
+      fl.frEl.textContent = (100 * fs.rates.all).toFixed(2) + '%';
+  }
+  const anchorC = all[flies[0].slot];
+  if (anchorC && anchorC.banana)
+    bananaC.position.set(anchorC.banana.x * ARENA_K, 0.008, -anchorC.banana.y * ARENA_K);
+  const anchorV = all[flies[2].slot];
+  if (anchorV && anchorV.banana)
+    bananaV.position.set(anchorV.banana.x * ARENA_K, 0.008, -anchorV.banana.y * ARENA_K);
+  const tr = st.trial;
+  if (tr) {
+    trialBarEl.style.display = 'block';
+    trialFillEl.style.width = (100 * (tr.progress || 0)).toFixed(0) + '%';
+    bRunEl.disabled = true;
+  } else {
+    trialBarEl.style.display = 'none';
+    if (ws && ws.readyState === 1) bRunEl.disabled = false;
+  }
+  if (msgCount === 1 || msgCount % 10 === 0) {
+    const seen = {};
+    for (const fl of flies) {
+      const fs = all[fl.slot];
+      if (fl.arena === 'treatment' && fs && fs.drugs) Object.assign(seen, fs.drugs);
+    }
+    const names = Object.keys(seen).filter(d => seen[d] > 0.001);
+    onboardEl.textContent = names.length
+      ? 'on board: ' + names.map(d => `${d} ${seen[d].toFixed(2)}`).join(', ') : 'on board: —';
+  }
+}
+/* ================= 12b. EXPERIMENT PANEL ================= */
+const drugSel = document.getElementById('drug');
+const amtEl = document.getElementById('amt');
+const amtValEl = document.getElementById('amtVal');
+const bDoseEl = document.getElementById('bDose');
+const bWashEl = document.getElementById('bWash');
+const bRestoreEl = document.getElementById('bRestore');
+const stepsSel = document.getElementById('steps');
+const bRunEl = document.getElementById('bRun');
+const trialBarEl = document.getElementById('trialBar');
+const trialFillEl = document.getElementById('trialFill');
+const onboardEl = document.getElementById('onboard');
+const resultsEl = document.getElementById('results');
+const panelBodyEl = document.getElementById('panelBody');
+const panelToggle = document.getElementById('panelToggle');
+let ws = null, cmdId = 0;
+function setBtns(on) { for (const b of [bDoseEl, bWashEl, bRestoreEl, bRunEl]) b.disabled = !on; }
+function send(obj) {
+  if (!ws || ws.readyState !== 1) { setStatus('off', 'lab offline — command dropped'); return null; }
+  obj.id = 'm' + (++cmdId);
+  ws.send(JSON.stringify(obj));
+  return obj.id;
+}
+function fillDrugs(drugs) {
+  const names = Object.keys(drugs || {});
+  if (!names.length) return;
+  drugSel.innerHTML = '';
+  for (const n of names) { const o = document.createElement('option'); o.value = o.textContent = n; drugSel.appendChild(o); }
+  drugSel.value = names.includes('caffeine') ? 'caffeine' : names[0];
+}
+const fmt = (x, d) => (x == null || isNaN(x)) ? '—' : Number(x).toFixed(d);
+function showResult(m) {
+  const pf = m.per_fly && Object.keys(m.per_fly).length ? m.per_fly : { 'measured fly': m.metrics || {} };
+  let html = `<table><caption>${m.label || 'trial'} — control vs variable</caption>` +
+    `<tr><th>fly</th><th>act</th><th>fir%</th><th>ban</th></tr>`;
+  for (const [slot, v] of Object.entries(pf)) {
+    const short = String(slot).replace('control:', 'C:').replace('treatment:', 'V:');
+    html += `<tr><td>${short}</td><td>${fmt(v.activity, 3)}</td>` +
+      `<td>${fmt(v.firing_all != null ? 100 * v.firing_all : null, 2)}</td><td>${fmt(v.bananas, 0)}</td></tr>`;
+  }
+  resultsEl.innerHTML = html + '</table>';
+  resultsEl.style.display = 'block';
+}
+amtEl.oninput = () => { amtValEl.textContent = parseFloat(amtEl.value).toFixed(1); };
+bDoseEl.onclick = () => {
+  if (!drugSel.value) return;
+  send({ cmd: 'dose', drug: drugSel.value, amount: parseFloat(amtEl.value), target: 'treatment' });
+};
+bWashEl.onclick = () => send({ cmd: 'washout', target: 'treatment' });
+bRestoreEl.onclick = () => send({ cmd: 'restore', target: 'treatment' });
+bRunEl.onclick = () => send({ cmd: 'run_trial', steps: parseInt(stepsSel.value, 10), label: 'metaverse trial' });
+panelToggle.onclick = () => {
+  const hid = panelBodyEl.style.display === 'none';
+  panelBodyEl.style.display = hid ? '' : 'none';
+  panelToggle.textContent = hid ? '–' : '+';
+};
+if (innerWidth < 600) { panelBodyEl.style.display = 'none'; panelToggle.textContent = '+'; }
+function connect() {
+  setStatus('off', 'connecting…');
+  setBtns(false);
+  try { ws = new WebSocket(WS_URL); } catch { setStatus('off', 'offline — retrying…'); return void setTimeout(connect, 2000); }
+  ws.onopen = () => { setStatus('off', 'waiting for lab…'); setBtns(true); };
+  ws.onmessage = ev => {
+    let m;
+    try { m = JSON.parse(ev.data); } catch { return; }
+    if (m.type === 'hello') { pickSlots(m.flies); fillDrugs(m.drugs); }
+    else if (m.type === 'state') applyState(m);
+    else if (m.type === 'result') showResult(m);
+  };
+  ws.onclose = () => { live = false; setBtns(false); setStatus('off', 'offline — retrying…'); setTimeout(connect, 2000); };
+  ws.onerror = () => { try { ws.close(); } catch {} };
+}
+
+/* ================= 13. CONTROLS / VR / RESIZE ================= */
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(TGT_X, 0.96, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 0.25;
+controls.maxDistance = 4;
+controls.maxPolarAngle = 1.52;
+let interacted = false;
+canvas.addEventListener('pointerdown', () => { interacted = true; }, { once: true });
+document.getElementById('vr').appendChild(VRButton.createButton(renderer));
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ================= 14. MAIN LOOP ================= */
+const clock = new THREE.Clock();
+const tmpV = new THREE.Vector3();
+function ambientTarget(fl, t, out) {           // offline wander: never a frozen scene
+  const p = fl.phase;
+  out.set(0.06 * Math.sin(0.5 * t + p), 0, 0.06 * Math.sin(0.34 * t + 2 * p));
+  return out;
+}
+function animate() {
+  const dt = Math.min(clock.getDelta(), 0.1);
+  const t = clock.elapsedTime;
+  for (const fl of flies) {
+    const o = fl.obj;
+    if (live) tmpV.copy(fl.pos);
+    else ambientTarget(fl, t, tmpV);
+    const k = 1 - Math.exp(-dt * 6);
+    o.position.x += (tmpV.x - o.position.x) * k;
+    o.position.z += (tmpV.z - o.position.z) * k;
+    o.position.y = 0.012 + 0.028 + 0.012 * Math.sin(t * 0.9 + fl.phase);
+    if (live) {
+      let d = fl.angle - o.rotation.y;
+      while (d > Math.PI) d -= Math.PI * 2;
+      while (d < -Math.PI) d += Math.PI * 2;
+      o.rotation.y += d * k;
+    } else {
+      o.rotation.y = Math.atan2(-(tmpV.z - o.position.z), tmpV.x - o.position.x + 1e-6);
+    }
+    const tag = o.userData.tag, lead = o.userData.leader;
+    const ox = o.userData.li === 0 ? -0.058 : 0.058;
+    tag.position.set(o.position.x + ox, o.position.y + 0.055, o.position.z);
+    const lp = lead.geometry.attributes.position;
+    lp.setXYZ(0, o.position.x, o.position.y + 0.012, o.position.z);
+    lp.setXYZ(1, tag.position.x, tag.position.y - 0.014, tag.position.z);
+    lp.needsUpdate = true;
+    const flap = REDUCED ? 0.25 : Math.sin(t * 22 + fl.phase) * 0.55;
+    for (const w of o.userData.wings) w.pivot.rotation.x = w.side * (0.35 + flap);
+    o.rotation.z = REDUCED ? 0 : Math.sin(t * 1.3 + fl.phase) * 0.03;
+  }
+  bananaC.rotation.y = t * 0.15;
+  bananaV.rotation.y = -t * 0.12;
+  if (!REDUCED) {
+    const pos = dust.geometry.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      pos.array[i * 3] = dustBase[i * 3] + 0.15 * Math.sin(t * 0.12 + i);
+      pos.array[i * 3 + 1] = dustBase[i * 3 + 1] + 0.12 * Math.sin(t * 0.09 + i * 1.7);
+    }
+    pos.needsUpdate = true;
+  }
+  if (!REDUCED && !interacted && !renderer.xr.isPresenting) {
+    rig.position.x = RIG_X + 0.05 * Math.sin(t * 0.1);
+    rig.position.y = RIG_Y + 0.02 * Math.sin(t * 0.13);
+    camera.lookAt(TGT_X, 0.96, 0);
+  } else if (!renderer.xr.isPresenting) {
+    controls.update();
+  }
+  renderer.render(scene, camera);
+}
+
+/* ================= 15. BOOT ================= */
+try {
+  flies[0].obj.position.set(-0.04, 0.04, 0.02);
+  flies[1].obj.position.set(0.05, 0.04, -0.03);
+  flies[2].obj.position.set(0.04, 0.04, 0.03);
+  flies[3].obj.position.set(-0.05, 0.04, -0.02);
+  bananaC.position.set(0.03, 0.008, 0.04);
+  bananaV.position.set(-0.03, 0.008, -0.04);
+  renderer.setAnimationLoop(animate);
+  connect();
+} catch (e) {
+  showErr('Boot: ' + (e.message || e));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+005: compile_card verb - AI-written ask cards, validated against knowledge.json.
+Apply from the Fly Brain root:  patch -p1 < fly-patches/005-ask-compile.patch
+
+--- /dev/null
++++ b/card_compiler.py
+@@ -0,0 +1,196 @@
++"""card_compiler.py - compile an ask-box question into a run card or an
++explanation, using Muse Spark, then validated against knowledge.json.
++
++The AI writes the card; it never writes numbers. Every factual claim in the
++reply must trace to knowledge.json (filed papers, mechanisms) or the
++reference cache (retrieved datasets). Anything else is dropped and noted.
++Flies only: no human or medical advice, ever.
++"""
++import json
++import os
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++
++SYSTEM = """You compile questions for a virtual fruit-fly neuroscience lab into JSON cards.
++Reply with ONE JSON object only, no other text. Shapes:
++run: {"mode":"run","substance":<name>,"measure":<key>,"hypothesis":<1 sentence>,"prediction":"higher"|"lower"|"different","procedure":[<steps>],"expected_from":[<quotes>],"caveat":<string or null>}
++explain: {"mode":"explain","title":<string>,"paragraphs":[<plain sentences, one idea each>],"stages":[<sim stage names shown>],"refs":[<quotes>]}
++refuse: {"mode":"refuse","reason":<1 sentence>}
++Rules: substance must be one of the DOSABLE list; measure one of the MEASURES list.
++Use "explain" for anatomy, mechanism, pharmacokinetics, toxicology and why-questions.
++Use "refuse" for untestable topics and for anything about humans, medicine or dosing people.
++"you", one idea per sentence, everyday pictures for technical words.
++expected_from and refs must QUOTE the filed evidence or cached records below; never invent papers.
++The subjects are simulated flies (Maxime female, Hagrid male)."""
++
++
++def default_knowledge_path():
++    return os.path.join(HERE, 'metaverse-lab', 'ask', 'knowledge.json')
++
++
++def default_ref_dir():
++    return os.path.join(HERE, 'reference_cache')
++
++
++def load_knowledge(path=None):
++    with open(path or default_knowledge_path()) as f:
++        return json.load(f)
++
++
++def ref_lines(substance, ref_dir):
++    """Short quotable lines from the cached record, each tagged with source."""
++    import references
++    rec = references.lookup(substance, ref_dir or default_ref_dir())
++    if not rec:
++        return []
++    out = []
++    try:
++        props = rec['records']['pubchem']['parts']['compound']['data']['PropertyTable']['Properties'][0]
++        out.append(f"[pubchem] {props.get('Title')}: {props.get('MolecularFormula')} / {props.get('IUPACName')}")
++    except (KeyError, IndexError, TypeError):
++        pass
++    try:
++        descs = rec['records']['pubchem']['parts']['description']['data']['InformationList']['Information']
++        for d in descs[:2]:
++            for v in (d.get('Description') or [])[:1]:
++                out.append(f"[pubchem] {v}"[:400])
++    except (KeyError, IndexError, TypeError):
++        pass
++    return out
++
++
++def build_prompt(question, knowledge, substance=None, ref_dir=None):
++    dosable = [n for n, s in knowledge['substances'].items() if s.get('dosable')]
++    ev = []
++    for n in dosable:
++        for e in knowledge['substances'][n].get('evidence', []):
++            ev.append(f'{n}: {e}')
++    user = [f'Question: {question}', '',
++            'DOSABLE: ' + ', '.join(dosable),
++            'MEASURES: ' + ', '.join(f'{k} ({v})' for k, v in knowledge['measures'].items()),
++            'STAGES: ' + ', '.join(knowledge.get('stages', [])),
++            'UNTESTABLE: ' + '; '.join(f"{'/'.join(u['keys'])} ({u['why']})" for u in knowledge.get('untestable', [])),
++            '', 'FILED EVIDENCE:'] + ev
++    if substance:
++        user += ['',
++                 f'CACHED RECORDS for {substance} (quote with [pubchem] tag):'] + ref_lines(substance, ref_dir)
++    return SYSTEM, '\n'.join(user)
++
++
++def call_llm(system, user):
++    try:
++        import agent as _a
++        _a.load_env()
++    except Exception:
++        pass
++    key = os.environ.get('META_API_KEY', '')
++    if not key or key.startswith('your_'):
++        raise RuntimeError('no AI key (set META_API_KEY)')
++    try:
++        from openai import OpenAI
++    except ImportError:
++        raise RuntimeError("the 'openai' package is missing")
++    client = OpenAI(api_key=key, base_url=os.environ.get('META_BASE_URL', 'https://api.meta.ai/v1'),
++                    timeout=60)
++    r = client.chat.completions.create(model=os.environ.get('META_MODEL', 'muse-spark-1.3'),
++                                       max_tokens=900, temperature=0.2,
++                                       messages=[{'role': 'system', 'content': system},
++                                                 {'role': 'user', 'content': user}])
++    return r.choices[0].message.content
++
++
++def parse_reply(text):
++    start, end = text.find('{'), text.rfind('}')
++    if start < 0 or end <= start:
++        raise ValueError('no JSON object in reply')
++    return json.loads(text[start:end + 1])
++
++
++def resolve_substance(name, knowledge):
++    q = (name or '').lower().strip()
++    for n, s in knowledge['substances'].items():
++        if q == n.lower() or q in [a.lower() for a in s.get('aliases', [])]:
++            return n, s
++    return None, None
++
++
++def _grounded(quotes, allowed):
++    """Keep quotes that overlap a filed line; drop the rest. Returns (kept, dropped)."""
++    kept, dropped = [], []
++    flat = [a.lower() for a in allowed]
++    for q in quotes or []:
++        words = [w for w in q.lower().split() if len(w) > 4]
++        hit = any(sum(1 for w in words if w in a) >= 3 for a in flat) if words else False
++        (kept if hit else dropped).append(q)
++    return kept, dropped
++
++
++def validate_run(spec, knowledge, ref_dir):
++    notes = []
++    name, s = resolve_substance(spec.get('substance'), knowledge)
++    if not s:
++        return None, [f"unknown substance '{spec.get('substance')}'"]
++    if not s.get('dosable'):
++        return None, [f'{name} is not dosable: {s.get("not_modelled")}']
++    measure = spec.get('measure')
++    if measure not in knowledge['measures']:
++        notes.append(f"unknown measure '{measure}', using {s['expect']['measure']}")
++        measure = s['expect']['measure']
++    pred = spec.get('prediction')
++    if pred not in ('higher', 'lower', 'different'):
++        notes.append(f"unknown prediction '{pred}', using {s['expect']['direction']}")
++        pred = s['expect']['direction']
++    allowed = list(s.get('evidence', [])) + ref_lines(name, ref_dir)
++    kept, dropped = _grounded(spec.get('expected_from'), allowed)
++    if dropped:
++        notes.append(f'dropped {len(dropped)} unfiled citation(s)')
++    card = {'title': f'{name} vs control ({measure})',
++            'hypothesis': spec.get('hypothesis') or f'{name} changes {knowledge["measures"][measure]}.',
++            'control': {'name': 'control box', 'setup': [{'cmd': 'restore'}]},
++            'treatments': [{'name': f'{name} 0.5',
++                            'setup': [{'cmd': 'restore'}, {'cmd': 'dose', 'drug': name, 'amount': 0.5}]}],
++            'measure': measure, 'prediction': pred, 'repeats': 3, 'steps': 400, 'author': 'ask-ai',
++            'procedure': spec.get('procedure') or []}
++    return {'mode': 'run', 'substance': name, 'measure': measure, 'card': card,
++            'expect': {'direction': pred, 'why': s['expect']['why']},
++            'evidence': kept, 'caveat': spec.get('caveat') or s.get('not_modelled'),
++            'confidence': s.get('confidence'), 'mechanism': s.get('mechanism'),
++            'kind': s.get('kind'), 'notes': notes}, []
++
++
++def validate_explain(spec, knowledge, ref_dir):
++    stages = [st for st in (spec.get('stages') or []) if st in knowledge.get('stages', [])]
++    allowed = [e for n, s in knowledge['substances'].items() for e in s.get('evidence', [])]
++    name, _ = resolve_substance(spec.get('substance') or '', knowledge)
++    if name:
++        allowed += ref_lines(name, ref_dir)
++    kept, dropped = _grounded(spec.get('refs'), allowed)
++    notes = [f'dropped {len(dropped)} unfiled citation(s)'] if dropped else []
++    return {'mode': 'explain', 'title': spec.get('title') or 'Explainer',
++            'paragraphs': spec.get('paragraphs') or [], 'stages': stages,
++            'refs': kept, 'notes': notes}, []
++
++
++def compile_question(question, knowledge=None, ref_dir=None, llm_call=None):
++    """Full pipeline for the compile_card verb. Raises on failure (page falls back)."""
++    knowledge = knowledge or load_knowledge()
++    ref_dir = ref_dir or default_ref_dir()
++    q = (question or '').strip()
++    if not q:
++        raise ValueError('empty question')
++    system, user = build_prompt(q, knowledge)
++    spec = parse_reply((llm_call or call_llm)(system, user))
++    mode = spec.get('mode')
++    if mode == 'run':
++        card, problems = validate_run(spec, knowledge, ref_dir)
++    elif mode == 'explain':
++        card, problems = validate_explain(spec, knowledge, ref_dir)
++    elif mode == 'refuse':
++        raise ValueError(spec.get('reason') or 'not testable')
++    else:
++        raise ValueError(f"unknown mode '{mode}'")
++    if problems:
++        raise ValueError('; '.join(problems))
++    card['badge'] = 'ai'
++    card['question'] = q
++    return card
+
+--- /dev/null
++++ b/references.py
+@@ -0,0 +1,74 @@
++"""references.py - verbatim reference cache for the ask page.
++
++Each substance gets one JSON file with retrieved records, stored exactly as
++the source returned them plus source/url/date lines. Nothing here is
++hand-written and nothing is generated: the AI answers strictly from these
++records plus knowledge.json, and the page cites them.
++
++Sources wired now: PubChem (no key). CompTox and CTD are later: CompTox needs
++a free user key, CTD has no per-chemical REST.
++"""
++import json
++import os
++import urllib.parse
++import urllib.request
++
++SOURCES = ('pubchem',)
++TIMEOUT = 15
++
++
++def cache_path(outdir, substance):
++    safe = ''.join(c if c.isalnum() else '_' for c in substance.lower())
++    return os.path.join(outdir, safe + '.json')
++
++
++def lookup(substance, outdir):
++    """Cached record for a substance, or None when never prefetched."""
++    try:
++        with open(cache_path(outdir, substance)) as f:
++            return json.load(f)
++    except (OSError, ValueError):
++        return None
++
++
++def _get(url):
++    req = urllib.request.Request(url, headers={'User-Agent': 'flylab/1.0'})
++    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
++        return json.loads(r.read().decode('utf-8', 'replace'))
++
++
++def fetch_pubchem(name):
++    """Compound facts + description + assay summary, each best-effort."""
++    base = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug'
++    q = urllib.parse.quote(name)
++    rec = {'source': 'pubchem', 'query': name, 'parts': {}}
++    for part, url in [
++        ('compound', f'{base}/compound/name/{q}/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON'),
++        ('description', f'{base}/compound/name/{q}/description/JSON'),
++        ('assays', f'{base}/compound/name/{q}/assaysummary/JSON'),
++    ]:
++        try:
++            rec['parts'][part] = {'url': url, 'data': _get(url)}
++        except Exception as e:  # network or unknown name: recorded, not fatal
++            rec['parts'][part] = {'url': url, 'error': f'{type(e).__name__}: {e}'[:200]}
++    return rec
++
++
++def fetch_all(name):
++    return {'pubchem': fetch_pubchem(name)}
++
++
++def prefetch(names, outdir):
++    """Fetch and store one cache file per name. Returns {name: 'ok'|'empty'}."""
++    import datetime
++    os.makedirs(outdir, exist_ok=True)
++    status = {}
++    for name in names:
++        rec = {'substance': name,
++               'retrieved': datetime.date.today().isoformat(),
++               'records': fetch_all(name)}
++        ok = any('data' in p for p in rec['records']['pubchem']['parts'].values())
++        with open(cache_path(outdir, name), 'w') as f:
++            json.dump(rec, f, indent=1)
++        status[name] = 'ok' if ok else 'empty'
++    return status
+
+--- /dev/null
++++ b/prefetch_refs.py
+@@ -0,0 +1,26 @@
++"""Prefetch reference records for the ask page. Run once (needs internet):
++
++    python3 prefetch_refs.py [knowledge.json] [outdir]
++
++Stores one verbatim JSON file per dosable substance. The AI answers strictly
++from these files plus knowledge.json; rerun anytime to refresh dates.
++"""
++import json
++import os
++import sys
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++import references
++
++KNOW = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
++    os.path.dirname(os.path.abspath(__file__)), '..', 'metaverse-lab', 'ask', 'knowledge.json')
++OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(
++    os.path.dirname(os.path.abspath(__file__)), '..', 'reference_cache')
++
++with open(KNOW) as f:
++    knowledge = json.load(f)
++names = [n for n, s in knowledge['substances'].items() if s.get('dosable')]
++status = references.prefetch(names, OUT)
++for n, st in status.items():
++    print(f'{n}: {st}')
++print(f'{sum(1 for s in status.values() if s == "ok")}/{len(status)} cached in {OUT}')
+
+--- a/server.py
++++ b/server.py
+@@ -261,6 +261,9 @@
+             return {}
+         if c == 'list_notebook':
+             return {'notebook': self.notebook.list()}
++        if c == 'compile_card':
++            from card_compiler import compile_question
++            return compile_question(cmd.get('question', ''))
+         if c == 'get_experiment':
+             rec = self.notebook.load(str(cmd.get('exp')))
+             if rec is None: raise KeyError('no such experiment')

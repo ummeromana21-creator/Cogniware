@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Schematic cell-type card">
+  <rect width="400" height="300" fill="#e8e6da"/>
+  <g stroke="#4d5a3d" fill="none" stroke-width="3" stroke-linecap="round">
+    <circle cx="200" cy="150" r="34" fill="#4d5a3d" stroke="none" opacity="0.85"/>
+    <path d="M200 116 C 170 90, 140 85, 112 70"/>
+    <path d="M200 116 C 230 90, 260 85, 288 70"/>
+    <path d="M178 128 C 140 125, 115 140, 92 138"/>
+    <path d="M222 128 C 260 125, 285 140, 308 138"/>
+    <path d="M200 184 C 200 220, 185 245, 170 272"/>
+    <path d="M200 184 C 205 225, 220 250, 235 272"/>
+  </g>
+  <g fill="#4d5a3d" opacity="0.85">
+    <circle cx="112" cy="70" r="6"/><circle cx="288" cy="70" r="6"/>
+    <circle cx="92" cy="138" r="6"/><circle cx="308" cy="138" r="6"/>
+    <circle cx="170" cy="272" r="6"/><circle cx="235" cy="272" r="6"/>
+  </g>
+  <text x="200" y="292" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4d5a3d" opacity="0.7">schematic — per-type render not built yet</text>
+</svg>

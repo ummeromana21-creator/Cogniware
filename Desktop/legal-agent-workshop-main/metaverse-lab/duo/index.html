@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hagrid &amp; Maxime — A Fly Story · Fly Lab</title>
+<meta name="description" content="Story entry to the Fly Lab, starring Hagrid and Maxime. Browse the gallery free; sign in to open the lab.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%234d5a3d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 3h4M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 6h16v9H9l-5 4V6z"/></symbol>
+<symbol id="i-fly" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="3" ry="5"/><path d="M9 11C5 8 3 5 3 5s4-1 7 3M15 11c4-3 6-6 6-6s-4-1-7 3"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M19.5 4.5l-2 2M6.5 17.5l-2 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+</defs></svg>
+
+<div class="duo-hero" id="hero" data-light="day">
+  <header class="duo-top">
+    <div class="duo-brand">
+      <h1>Hagrid <span class="duo-amp">&amp;</span> Maxime</h1>
+      <p>A fly story · Fly Lab entry</p>
+    </div>
+    <nav class="duo-nav" aria-label="Lab sections">
+      <a href="../flies/"><svg class="duo-ic"><use href="#i-house"/></svg><span>Meet the flies</span></a>
+      <a href="../library/"><svg class="duo-ic"><use href="#i-layers"/></svg><span>Fly Atlas</span></a>
+      <a href="../ask/" data-gated><svg class="duo-ic"><use href="#i-chat"/></svg><span>Ask</span></a>
+      <a href="../study.html" data-gated><svg class="duo-ic"><use href="#i-flask"/></svg><span>Study</span></a>
+      <a href="profile.html" data-gated><svg class="duo-ic"><use href="#i-user"/></svg><span>Profile</span></a>
+    </nav>
+    <div class="duo-topright">
+      <button class="duo-iconbtn" id="lightBtn" aria-label="Toggle day and dusk" aria-pressed="false"><svg class="duo-ic"><use href="#i-sun"/></svg></button>
+      <a class="duo-userchip" id="userChip" hidden href="profile.html" title="Your profile"><svg class="duo-ic"><use href="#i-user"/></svg><span id="userName"></span></a>
+      <button class="duo-pillbtn" id="signinBtn">Sign in</button>
+      <button class="duo-pillbtn duo-ghost" id="signoutBtn" hidden>Sign out</button>
+    </div>
+  </header>
+
+  <main class="duo-page">
+    <section class="duo-story">
+      <div class="duo-storytext">
+        <p class="duo-eyebrow">Chapter one · the jar on the bench</p>
+        <h2 class="duo-serif">Two flies run this lab. You just got here.</h2>
+        <p><strong>Maxime</strong> is the careful one — a female BANC brain who
+        notices everything. <strong>Hagrid</strong> is the bold one — a male CNS
+        who walks straight at the question. Together they live in the glass jar
+        on the bench, and every experiment in this lab runs through them.</p>
+        <p class="duo-dim">Browse their story free. When you are ready to run
+        experiments, open the lab — that part needs an account.</p>
+        <div class="duo-ctarow">
+          <button class="duo-go" id="openLabBtn"><svg class="duo-ic"><use href="#i-lock"/></svg><span id="openLabLabel">Open the Lab · sign in</span></button>
+          <a class="duo-textlink" href="../flies/">Meet them in 3D first <svg class="duo-ic"><use href="#i-chev"/></svg></a>
+        </div>
+      </div>
+      <figure class="duo-art" aria-label="Illustration of Maxime and Hagrid in their jar">
+        <svg viewBox="0 0 320 240" role="img" aria-label="Two flies in a glass jar">
+          <ellipse cx="160" cy="212" rx="110" ry="12" class="duo-sh"/>
+          <rect x="60" y="30" width="200" height="180" rx="14" class="duo-jar"/>
+          <rect x="60" y="30" width="200" height="22" rx="11" class="duo-lid"/>
+          <g class="duo-fly-a">
+            <ellipse cx="125" cy="140" rx="14" ry="22"/>
+            <ellipse cx="112" cy="122" rx="10" ry="20" class="duo-wing"/>
+            <ellipse cx="138" cy="122" rx="10" ry="20" class="duo-wing"/>
+            <circle cx="119" cy="128" r="4" class="duo-eye"/><circle cx="131" cy="128" r="4" class="duo-eye"/>
+          </g>
+          <g class="duo-fly-b">
+            <ellipse cx="200" cy="150" rx="12" ry="19"/>
+            <ellipse cx="189" cy="134" rx="9" ry="17" class="duo-wing"/>
+            <ellipse cx="211" cy="134" rx="9" ry="17" class="duo-wing"/>
+            <circle cx="195" cy="139" r="3.5" class="duo-eye"/><circle cx="205" cy="139" r="3.5" class="duo-eye"/>
+          </g>
+          <text x="125" y="196" text-anchor="middle" class="duo-svglabel">Maxime</text>
+          <text x="200" y="200" text-anchor="middle" class="duo-svglabel">Hagrid</text>
+        </svg>
+        <figcaption>An illustration — the live 3D benches are inside the Study lab.</figcaption>
+      </figure>
+    </section>
+
+    <section class="duo-cast" aria-label="The protagonists">
+      <article class="duo-card" id="maximeCard">
+        <div class="duo-cardtop"><span class="duo-tag">Protagonist · BANC · female</span></div>
+        <h3 class="duo-serif">Maxime</h3>
+        <p class="duo-latin">The careful brain. Notices everything, forgives nothing.</p>
+        <ul class="duo-tight">
+          <li>Female connectome — every synapse mapped</li>
+          <li>Runs the control jar; sets the baseline</li>
+          <li>Ask her anything testable in <a href="../ask/" data-gated>Ask the flies</a></li>
+        </ul>
+        <a class="duo-cardlink" href="../flies/">See Maxime in 3D <svg class="duo-ic"><use href="#i-chev"/></svg></a>
+      </article>
+      <article class="duo-card" id="hagridCard">
+        <div class="duo-cardtop"><span class="duo-tag">Protagonist · Male CNS · male</span></div>
+        <h3 class="duo-serif">Hagrid</h3>
+        <p class="duo-latin">The bold walker. First into every experiment.</p>
+        <ul class="duo-tight">
+          <li>Male nervous system — brain to legs</li>
+          <li>Runs the variable jar; takes the treatment</li>
+          <li>Compare him in the <a href="../library/">Fly Atlas</a> — 66 regions</li>
+        </ul>
+        <a class="duo-cardlink" href="../flies/">See Hagrid in 3D <svg class="duo-ic"><use href="#i-chev"/></svg></a>
+      </article>
+    </section>
+
+    <section class="duo-gallery" aria-label="Moments from the bench">
+      <div class="duo-sechead">
+        <h3 class="duo-serif">Moments from the bench</h3>
+        <p class="duo-dim">Sketches from their week. The real specimens are one click away.</p>
+      </div>
+      <div class="duo-strip" id="galleryStrip">
+        <figure><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="8" y="8" width="184" height="104" rx="8" class="duo-frame"/><circle cx="70" cy="60" r="16" class="duo-blob"/><circle cx="130" cy="60" r="12" class="duo-blob duo-b2"/><path d="M70 60h60" class="duo-wire"/></svg><figcaption>Morning check-in — both jars live</figcaption></figure>
+        <figure><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="8" y="8" width="184" height="104" rx="8" class="duo-frame"/><path d="M30 90L80 40l30 30 40-45 20 20" class="duo-trace"/></svg><figcaption>Hagrid finds the sugar first, again</figcaption></figure>
+        <figure><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="8" y="8" width="184" height="104" rx="8" class="duo-frame"/><ellipse cx="100" cy="60" rx="46" ry="30" class="duo-blob"/><circle cx="92" cy="56" r="6" class="duo-eye"/><circle cx="110" cy="56" r="6" class="duo-eye"/></svg><figcaption>Maxime, mid-observation. Do not tap the glass.</figcaption></figure>
+        <figure><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="8" y="8" width="184" height="104" rx="8" class="duo-frame"/><path d="M40 90V55M80 90V40M120 90V62M160 90V48" class="duo-bars"/></svg><figcaption>Four runs in — the pattern holds</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="duo-labgate" id="labGate" aria-label="Open the lab">
+      <div class="duo-gatecard">
+        <div class="duo-gatehead">
+          <svg class="duo-ic duo-big"><use href="#i-lock"/></svg>
+          <div>
+            <h3 class="duo-serif" id="gateTitle">The lab is locked — for now</h3>
+            <p class="duo-dim" id="gateSub">One account opens every bench: the study pages and Ask the flies. Browsing this story stays free.</p>
+          </div>
+        </div>
+        <div class="duo-gatebody" id="gateLock">
+          <button class="duo-go" id="gateSignin">Sign in / Create account</button>
+          <p class="duo-fine">Email, or one-tap with Google, Meta, or Apple. No spam — this only signs you into the lab.</p>
+        </div>
+        <div class="duo-gatebody" id="gateOpen" hidden>
+          <p class="duo-welcome"><svg class="duo-ic"><use href="#i-check"/></svg><span id="gateWelcome">Welcome back — the benches are open.</span></p>
+          <div class="duo-lablinks" id="labLinks">
+            <a class="duo-lablink" href="../study.html"><svg class="duo-ic"><use href="#i-flask"/></svg><span>Study<small>computational lab</small></span></a>
+            <a class="duo-lablink" href="../ask/"><svg class="duo-ic"><use href="#i-chat"/></svg><span>Ask the flies<small>run it live</small></span></a>
+            <a class="duo-lablink" href="../ask/?q=how%20does%20caffeine%20affect%20Maxime%20and%20Hagrid"><svg class="duo-ic"><use href="#i-chev"/></svg><span>First question<small>caffeine vs the duo</small></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="duo-cite">
+    <strong>Hagrid &amp; Maxime</strong> — a story entry to the Fly Lab.
+    Specimens: Maxime (female, BANC) · Hagrid (male, Male CNS).
+    Continue: <a href="../flies/">Meet the flies</a> · <a href="../library/">Fly Atlas</a> ·
+    <a href="../ask/" data-gated>Ask the flies</a> · <a href="../study.html" data-gated>Study</a> ·
+    <a href="profile.html">Profile &amp; disclaimer</a>.
+  </footer>
+</div>
+
+<dialog class="duo-auth" id="authModal" aria-labelledby="authTitle">
+  <form method="dialog" class="duo-authhead">
+    <h3 class="duo-serif" id="authTitle">Open the Lab</h3>
+    <button class="duo-iconbtn" id="authClose" aria-label="Close" value="close">✕</button>
+  </form>
+  <div class="duo-authtabs" role="tablist">
+    <button role="tab" id="tabSignin" aria-selected="true">Sign in</button>
+    <button role="tab" id="tabSignup" aria-selected="false">Create account</button>
+  </div>
+  <div class="duo-providers">
+    <button class="duo-provider" id="btnGoogle"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6c-.3 1.4-1.1 2.5-2.3 3.3v2.8h3.7c2.2-2 3.2-5 3.2-8.1z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.4 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.3H1.8A11 11 0 0 0 1 11.5c0 1.8.4 3.4 1.2 5z"/><path fill="#EA4335" d="M12 5.5c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 2.1 15.1 1 12 1 7.6 1 3.7 3.5 1.8 7.2l3.8 2.9c.9-2.6 3.4-4.6 6.4-4.6z"/></svg><span>Continue with Google</span></button>
+    <button class="duo-provider" id="btnMeta"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0866FF" d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 1-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg><span>Continue with Meta</span></button>
+    <button class="duo-provider" id="btnApple"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.5 12.6c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3.1 2.4 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-3.6zM14.9 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 3 1 .1 2.1-.6 2.8-1.4z"/></svg><span>Continue with Apple</span></button>
+  </div>
+  <p class="duo-divider"><span>or with email</span></p>
+  <form id="authForm" novalidate>
+    <div class="duo-namerow" id="nameRow" hidden>
+      <label>First name
+        <input id="authFirst" type="text" autocomplete="given-name" placeholder="Ada">
+      </label>
+      <label>Last name
+        <input id="authLast" type="text" autocomplete="family-name" placeholder="Lovelace">
+      </label>
+    </div>
+    <label>Email
+      <input id="authEmail" type="email" autocomplete="email" placeholder="you@lab.edu" required>
+    </label>
+    <label>Password
+      <input id="authPass" type="password" autocomplete="current-password" placeholder="Strong password" required>
+    </label>
+    <ul class="duo-reqs" id="passReqs" aria-label="Password requirements" hidden></ul>
+    <label id="pass2Wrap" hidden>Confirm password
+      <input id="authPass2" type="password" autocomplete="new-password" placeholder="Repeat password">
+    </label>
+    <p class="duo-autherr" id="authError" role="alert" hidden></p>
+    <button class="duo-go duo-full" id="authSubmit" type="submit">Sign in</button>
+    <p class="duo-fine" id="demoNote">Demo mode: fill in your email above, then choose a provider — or use email + password. Add OAuth client IDs in <code>auth.js</code> for real Google/Meta/Apple sign-in.</p>
+  </form>
+</dialog>
+
+<script src="auth.js?v=3"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>

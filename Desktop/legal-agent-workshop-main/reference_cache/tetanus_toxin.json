@@ -1,0 +1,24 @@
+{
+ "substance": "tetanus_toxin",
+ "retrieved": "2026-10-30",
+ "records": {
+  "pubchem": {
+   "source": "pubchem",
+   "query": "tetanus_toxin",
+   "parts": {
+    "compound": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/tetanus_toxin/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON",
+     "error": "HTTPError: HTTP Error 404: PUGREST.NotFound"
+    },
+    "description": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/tetanus_toxin/description/JSON",
+     "error": "HTTPError: HTTP Error 404: PUGREST.NotFound"
+    },
+    "assays": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/tetanus_toxin/assaysummary/JSON",
+     "error": "HTTPError: HTTP Error 404: PUGREST.NotFound"
+    }
+   }
+  }
+ }
+}

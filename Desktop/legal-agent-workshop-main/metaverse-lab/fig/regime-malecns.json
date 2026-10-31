@@ -1,0 +1,27 @@
+{
+ "title": "Regime map, simulated malecns (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "malecns fly.npz sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11
+ ],
+ "params": {
+  "I_bg_grid": [
+   0.5,
+   2.5
+  ],
+  "noise_grid": [
+   0.1,
+   2.5
+  ],
+  "default": [
+   1.5,
+   0.5
+  ]
+ },
+ "xlabel": "noise (unitless)",
+ "dose": "unitless"
+}

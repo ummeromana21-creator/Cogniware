@@ -1,0 +1,53 @@
+--- a/experiments.py	2026-10-30 09:01:13
++++ b/experiments.py	2026-10-30 09:01:13
+@@ -32,7 +32,7 @@
+   NOT SUPPORTED  if hits <= half the runs, OR the gap is at least one wobble in the WRONG direction
+   CAN'T TELL YET otherwise (the honest answer is: run more repeats)
+ """
+-import json, math, os, re, time
++import json, math, os, random, re, time
+ 
+ MEASURES = {                      # key in TrialMeter.result() -> plain English
+     'activity':        'distance walked per step',
+@@ -126,6 +126,8 @@
+         return None, "prediction must be 'higher', 'lower' or 'different'"
+     c['repeats'] = int(max(3, min(10, int(c.get('repeats', 5)))))
+     c['steps'] = int(max(100, min(2000, int(c.get('steps', 400)))))
++    sb = c.get('seed_base')
++    c['seed_base'] = int(sb) if sb is not None else random.Random().randrange(1000000)
+     v = c.get('variables') or {}
+     c['variables'] = {'changed': str(v.get('changed', '')) or ', '.join(t['name'] for t in c['treatments']) + ' vs ' + c['control']['name'],
+                       'measured': list(v.get('measured') or [c['measure'], 'bananas', 'firing_all']),
+--- a/server.py	2026-10-30 09:01:13
++++ b/server.py	2026-10-30 09:01:13
+@@ -322,7 +322,7 @@
+         labels = self.fly_labels()
+         conds = [card['control']['name']] + [t['name'] for t in card['treatments']]
+         self.exp = {'id': eid, 'card': card, 'treat': {t['name']: t for t in card['treatments']}, 'plan': plan, 'i': 0, 'rec_runs': [],
+-                    'phase': 'setup', 'settle': 0, 'meters': None, 'n': 0,
++                    'phase': 'setup', 'settle': 0, 'meters': None, 'n': 0, 'seeds': [],
+                     'results': {c: {lab: [] for lab in labels} for c in conds},
+                     'rerun_of': rerun_of, 'pause_after': pause_after, 'fly_age': self.t, 'started': time.time()}
+         self.paused = False
+@@ -336,6 +336,12 @@
+             tname, rep = e['plan'][e['i']]
+             for f in self.flies.values():                          # every fly reset, every run
+                 self._apply(f, 'restore', {}); self._apply(f, 'reset_fly', {})
++            seed = int(e['card'].get('seed_base', 0)) + e['i'] * len(self.flies)
++            e['seeds'].append({'run': e['i'], 'condition': tname, 'repeat': rep + 1, 'seeds': {}})
++            for k, f in enumerate(self.flies.values()):            # every run gets its own seed, recorded
++                f.brain.rng = np.random.default_rng(seed + k)
++                f.world.rng = np.random.default_rng(seed + k + 1000000)
++                e['seeds'][-1]['seeds'][f.slot] = seed + k
+             for f in self.targets('control'):
+                 for a in e['card']['control']['setup']: self._apply(f, a['cmd'], dict(a))
+             for f in self.targets('treatment'):
+@@ -384,7 +390,7 @@
+                   'subject': ' + '.join(labels) + ' in control and treatment boxes',
+                   'flies': {f.slot: {'label': f.label, 'dataset': getattr(f.brain, 'wiring', '')} for f in self.flies.values()},
+                   'fly_age': e['fly_age'], 'rerun_of': e['rerun_of'], 'seconds': round(time.time() - e['started'], 1),
+-                  'rec_runs': e['rec_runs']}
++                  'rec_runs': e['rec_runs'], 'seeds': e['seeds']}
+         self.notebook.save(record)
+         try:
+             with open(os.path.join(self.notebook.path, e['id'] + '.md'), 'w') as f:

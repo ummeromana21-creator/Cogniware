@@ -1,0 +1,118 @@
+--- a/lab.html
++++ b/lab.html
+@@ -295,16 +295,65 @@
+ const screen2 = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 1.0125), new THREE.MeshBasicMaterial({ map:sigTex }));
+ screen2.position.set(2.1, 1.62, -2.18); screen2.rotation.y = -0.1; scene.add(screen2);
+ const bezel2 = new THREE.Mesh(new THREE.PlaneGeometry(1.86, 1.07), mat(0x11131a)); bezel2.position.set(2.1, 1.62, -2.185); bezel2.rotation.y = -0.1; scene.add(bezel2);
++let sigMode = 'live';   // 'live' (focused fly, L/R) or 'delta' (treatment minus control, per sex); key D toggles
++const SHORT = { 'nose':'nose', 'antennal lobe PNs':'PNs', 'lateral horn':'lateral horn', 'mushroom body':'mushroom body', 'central complex':'central cx', 'descending neurons':'descending', 'nerve cord':'nerve cord', 'legs':'legs' };
++function drawDelta(st) {
++  const W = sigCanvas.width, H = sigCanvas.height;
++  sig.fillStyle = '#e8eaf0'; sig.font = 'bold 30px system-ui, sans-serif'; sig.textBaseline = 'top'; sig.textAlign = 'left';
++  sig.fillText('SIGNAL DELTA  ·  treatment minus control, per stage, per sex (press D for live)', 28, 22);
++  const F = (st && st.flies) || {};
++  const need = ['control:banc', 'treatment:banc', 'control:malecns', 'treatment:malecns'];
++  const ok = need.every(k => F[k] && F[k].groups) && hello && hello.stages;
++  sig.font = '19px system-ui, sans-serif'; sig.fillStyle = '#8a90a0';
++  if (!ok) { sig.fillText('delta needs a connectome lab with all four flies reporting groups…', 28, 62); sigTex.needsUpdate = true; return; }
++  sig.fillText('rows: Maxime ♀ (top) vs Hagrid ♂ (bottom) · values in percentage points', 28, 60);
++  sig.fillText('amber = treatment fires more · teal = control fires more · averaged over left+right', 28, 82);
++  const stages = hello.stages.filter(s => F['control:banc'].groups[s]);
++  const rows = [['M ♀', 'banc'], ['H ♂', 'malecns']];
++  const x0 = 28, y0 = 150, rowH = 110;
++  const colw = (W - 56) / stages.length;
++  const vals = {};
++  let vmax = 1e-4;
++  for (const s of stages) {
++    vals[s] = rows.map(([label, key]) => {
++      const t = F['treatment:' + key].groups[s], c = F['control:' + key].groups[s];
++      const d = (t[0] + t[1]) / 2 - (c[0] + c[1]) / 2;
++      vmax = Math.max(vmax, Math.abs(d));
++      return d;
++    });
++  }
++  stages.forEach((s, i) => {
++    const x = x0 + i * colw + colw / 2, g = hello.groups[s] || {};
++    const bw = Math.min(64, colw / 2 - 12);
++    rows.forEach(([label, key], r) => {
++      const d = vals[s][r], y = y0 + r * rowH;
++      sig.fillStyle = '#1b2030'; sig.fillRect(x - bw, y, bw * 2, 26);
++      sig.fillStyle = '#3a3f4d'; sig.fillRect(x - 1, y, 2, 26);
++      const w = bw * Math.min(1, Math.abs(d) / vmax);
++      sig.fillStyle = d >= 0 ? '#ffd23f' : '#2ee6c8';
++      if (d >= 0) sig.fillRect(x, y, w, 26); else sig.fillRect(x - w, y, w, 26);
++      sig.textAlign = 'center'; sig.font = '14px system-ui, sans-serif'; sig.fillStyle = '#c9cdd8';
++      sig.fillText(`${label} ${d >= 0 ? '+' : ''}${(100 * d).toFixed(2)}pp`, x, y + 32);
++    });
++    sig.textAlign = 'center'; sig.font = 'bold 16px system-ui, sans-serif';
++    sig.fillStyle = '#' + STAGE_COLORS[hello.stages.indexOf(s) % STAGE_COLORS.length].toString(16).padStart(6, '0');
++    sig.fillText(SHORT[s] || s, x, y0 + 2 * rowH + 8);
++    sig.font = '13px system-ui, sans-serif'; sig.fillStyle = '#8a90a0';
++    sig.fillText(`${g.nL || 0} + ${g.nR || 0}`, x, y0 + 2 * rowH + 28);
++    if (i < stages.length - 1) { sig.fillStyle = '#3a3f4d'; sig.font = '22px system-ui, sans-serif'; sig.fillText('→', x + colw / 2, y0 + rowH / 2 - 10); }
++  });
++  sigTex.needsUpdate = true;
++}
+ function drawSignal(st) {
+   const W = sigCanvas.width, H = sigCanvas.height;
+   sig.fillStyle = '#0e1118'; sig.fillRect(0,0,W,H);
++  if (sigMode === 'delta') return drawDelta(st);
+   sig.fillStyle = '#e8eaf0'; sig.font = 'bold 30px system-ui, sans-serif'; sig.textBaseline = 'top'; sig.textAlign = 'left';
+-  sig.fillText('SIGNAL PATH  ·  the banana smell, stage by stage, nose → legs', 28, 22);
++  sig.fillText('SIGNAL PATH  ·  nose → legs (press D for delta)', 28, 22);
+   sig.font = '19px system-ui, sans-serif'; sig.fillStyle = '#8a90a0';
+   if (!st || !st.groups || !hello || !hello.stages) { sig.fillText('waiting for a connectome fly…', 28, 62); sigTex.needsUpdate = true; return; }
+   const bl = st.smell.left, br = st.smell.right, bside = bl > br * 1.05 ? 'LEFT' : br > bl * 1.05 ? 'RIGHT' : 'ahead';
+   sig.fillText(`smell at the antennae: left ${bl.toFixed(2)}, right ${br.toFixed(2)} → the banana is ${bside}.   blue = left-side neurons, orange = right-side.   LI = (near − far) / (near + far): +1 means "knows the side", 0 means the signal is gone`, 28, 60);
+-  const SHORT = { 'nose':'nose', 'antennal lobe PNs':'PNs', 'lateral horn':'lateral horn', 'mushroom body':'mushroom body', 'central complex':'central cx', 'descending neurons':'descending', 'nerve cord':'nerve cord', 'legs':'legs' };
+   const stages = hello.stages.filter(s => st.groups[s]);
+   const x0 = 28, bw = 36, bh = 290, y0 = 120, colw = (W - 56) / stages.length;
+   let vmax = 1e-4; for (const s of stages) vmax = Math.max(vmax, st.groups[s][0], st.groups[s][1]);
+@@ -553,7 +602,7 @@
+ const chatEl = document.getElementById('chat');
+ chatEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' && chatEl.value.trim()) { send({ cmd:'log', source:'user', text:chatEl.value.trim() }); chatEl.value = ''; } e.stopPropagation(); });
+ window.__lab = { send, act: (o) => act(o), pickables, get latest() { return latest; }, logLines, camera, comps, boxes, controls, connected: () => connected, state: () => latest, lastRecord: () => lastDone, get focus() { return focus; } };   // test hook
+-addEventListener('keydown', (e) => { if (['SELECT', 'INPUT', 'TEXTAREA'].includes(e.target.tagName) || e.target.isContentEditable || nb.classList.contains('open')) return; const k = e.key.toLowerCase(); if (k === 's') send({ cmd:'scramble', target:tgt() }); if (k === 'r') send({ cmd:'restore', target:tgt() }); if (k === 'b') { send({ cmd:'move_banana', target:tgt() }); clearTrail(); } if (k === 'w') send({ cmd:'washout', target:tgt() }); });
++addEventListener('keydown', (e) => { if (['SELECT', 'INPUT', 'TEXTAREA'].includes(e.target.tagName) || e.target.isContentEditable || nb.classList.contains('open')) return; const k = e.key.toLowerCase(); if (k === 's') send({ cmd:'scramble', target:tgt() }); if (k === 'r') send({ cmd:'restore', target:tgt() }); if (k === 'b') { send({ cmd:'move_banana', target:tgt() }); clearTrail(); } if (k === 'w') send({ cmd:'washout', target:tgt() }); if (k === 'd') sigMode = sigMode === 'live' ? 'delta' : 'live'; });
+ 
+ // ------------------------------------------------------------------ notebook & experiments
+ const nb = document.getElementById('nb'), nbList = document.getElementById('nbList'), nbNew = document.getElementById('nbNew'), nbCard = document.getElementById('nbCard');
+--- a/server.py
++++ b/server.py
+@@ -495,7 +495,7 @@
+                 time.sleep(1.0 / self.sps_cap - dt)
+ 
+     def _fly_state(self, f, full):
+-        """The per-fly part of a snapshot. full=True adds group firing by side (for the focused fly)."""
++        """The per-fly part of a snapshot. Group firing ships for every fly; full=True adds brain params (focused fly)."""
+         spiked, motor, sensory, dist = f.last
+         b, w, body, pharm = f.brain, f.world, f.body, f.pharm
+         r = b.rates(spiked) if full else {k: float(spiked[a:c].mean()) for k, (a, c) in b.regions.items()}
+@@ -509,13 +509,14 @@
+               'legs': [round(float(v), 4) for v in b.leg_rates] if hasattr(b, 'leg_rates') else None,
+               'scrambled': bool(b.scrambled), 'drugs': pharm.state()}
+         groups = getattr(b, 'groups', None) or {}
+-        if groups and full:
++        if groups:
+             import groups as G
+             inst = G.rates(groups, spiked, sides=True)
+             for k, (l, rr) in inst.items():
+                 pl, pr = f.group_avg.get(k, (l, rr))
+                 f.group_avg[k] = (pl + 0.08 * (l - pl), pr + 0.08 * (rr - pr))
+             st['groups'] = {k: [round(l, 4), round(rr, 4)] for k, (l, rr) in f.group_avg.items()}
++        if full:
+             st['params'] = {k: round(float(v), 4) for k, v in b.params.items()}
+         return st
+ 
+--- a/protocol.md
++++ b/protocol.md
+@@ -46,7 +46,8 @@
+ 
+ Besides the fields below, a connectome fly adds `groups` ({name: [rate_L, rate_R]}, leaky-averaged
+ firing per named group and side), `legs` (the six leg motor pools' integrated firing: front/middle/hind
+-left, then right) and `subject` (the key of the fly in the arena).
++left, then right) and `subject` (the key of the fly in the arena). Every fly in every box carries `groups`
++(not just the focused one), so clients can compare treatment against control per stage and per sex.
+ 
+ ```json
+ {"type":"state", "t":12345, "sps":78.2,

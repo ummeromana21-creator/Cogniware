@@ -1,0 +1,22 @@
+{
+ "title": "Population rates per stage, simulated banc (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc fly.npz sha1:e0f7404c",
+ "date": "2026-10-29",
+ "seed": 11,
+ "seeds": [
+  11
+ ],
+ "params": {
+  "I_bg": 1.6,
+  "noise": 0.5
+ },
+ "xlabel": "steps",
+ "dose": "unitless",
+ "bands": [
+  "baseline",
+  "dose caffeine 0.5 (unitless)",
+  "washout"
+ ]
+}

@@ -1,0 +1,5275 @@
+{
+ "substance": "amphetamine",
+ "retrieved": "2026-10-30",
+ "records": {
+  "pubchem": {
+   "source": "pubchem",
+   "query": "amphetamine",
+   "parts": {
+    "compound": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amphetamine/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON",
+     "data": {
+      "PropertyTable": {
+       "Properties": [
+        {
+         "CID": 3007,
+         "MolecularFormula": "C9H13N",
+         "ConnectivitySMILES": "CC(CC1=CC=CC=C1)N",
+         "IUPACName": "1-phenylpropan-2-amine",
+         "Title": "Amphetamine"
+        }
+       ]
+      }
+     }
+    },
+    "description": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amphetamine/description/JSON",
+     "data": {
+      "InformationList": {
+       "Information": [
+        {
+         "CID": 3007,
+         "Title": "Amphetamine"
+        },
+        {
+         "CID": 3007,
+         "Description": "1-phenylpropan-2-amine is a primary amine that is isopropylamine in which a hydrogen attached to one of the methyl groups has been replaced by a phenyl group.",
+         "DescriptionSourceName": "ChEBI",
+         "DescriptionURL": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:132233"
+        }
+       ]
+      }
+     }
+    },
+    "assays": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/amphetamine/assaysummary/JSON",
+     "data": {
+      "Table": {
+       "Columns": {
+        "Column": [
+         "AID",
+         "Panel Member ID",
+         "SID",
+         "CID",
+         "Activity Outcome",
+         "Target Accession",
+         "Target GeneID",
+         "Activity Value [uM]",
+         "Activity Name",
+         "Assay Name",
+         "Assay Type",
+         "PubMed ID",
+         "RNAi"
+        ]
+       },
+       "Row": [
+        {
+         "Cell": [
+          "1195",
+          "",
+          "48415560",
+          "3007",
+          "Active",
+          "",
+          "",
+          "",
+          "",
+          "DSSTox (FDAMDD) FDA Maximum (Recommended) Daily Dose Database",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1580",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that inhibit mitochondrial permeability transition (MitoPT)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1581",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen of Compounds to Block PAR4 - aPKC Interaction for Treatment of Neurodegeneration (Par4_PKC)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1582",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Yeast cell-based screen for Novel HDAC inhibitors using a PHO84-LacZ reporter gene (PHO84)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1583",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Assay to identify inhibitors of polyglutamine-induced caspase-3 activation (CASP3)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1584",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that inhibit in vitro mutant huntingtin aggregation (QA1)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1585",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that inhibit the ability of solid phase synthetic polyglutamine aggregates to elongate by incorporating solution-phase biotin-tagged, monomeric polyglutamine (QA3)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1586",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "A 2-Hybrid Test for Interactions Between Polyglutamine-Containing Proteins in the Yeast Nucleus  (Qn2Hy)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1587",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that increase the expression of EAAT-2 in rat spinal cord organotypic slice cultures (X4_EAAT2)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1588",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that reduce polyglutamine aggregation as measured by turbidity (QTHIO)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1589",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that reduce polyglutamine (polyQ) inclusions in nerve growth factor (NGF)-treated PC12 cells (SDS)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1590",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Cellular toxicity caused by inducible expressing of N-terminal huntingtin with expanded ployglutamine repeat (Htt-N63-148Q) in PC12 cells (ROSShtt)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1593",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Yeast cell-based screen for compounds that suppress polyglutamine aggregation in vivo (75Q-TubU)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that decrease glutamate induced motor neuron death measured by TUNEL staining for DNA degradation (MNGlu)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1595",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Suppression of Polyglutamine Toxicity in Whole Organism Drosophila Model of SCA1 (SCA1FLYe)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1596",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Protection from expanded polyglutamine huntingtin toxicity in PC12 cells (LDH100)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1597",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Suppression of Polyglutamine Toxicity in Whole Organism Drosophila Model of SCA1 (SCA1FLYp)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1598",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that selectively increase SMN2 splicing relative to SMN1 splicing (SMNLUC)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1599",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that correct neuronal dysfunction without cell death as induced by the expression of polyglutamine-expanded, N-terminal huntingtin in C. elegans mechanosensory neurons (HDELENEU)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1600",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Yeast Assay for Parkinson's Disease (YAPD)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1601",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that suppress mutant SOD1-mediated cell death (mSODtox)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1602",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that attenuate mutant SOD1 toxicity (mSOD1)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1603",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that selectively inhibit cytochrome c release from purified mitochondria (CytoCRel)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1604",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that inhibit polyglutamine induced protein aggregation (AGREG)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1605",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screening of compounds showing protective effect against cell death induced by familial amyotrophic lateral sclerosis (FALS)-linked mutantsuperoxide dismutase 1 (SOD1) (ALSOD1)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1606",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Protection from expanded polyglutamine huntingtin toxicity in PC12 cells (LDH20)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1607",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that promote the turnover of an expanded polyglutamine androgen receptor (AR112GFP)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1608",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Protection from expanded polyglutamine huntingtin toxicity in PC12 cells (LDH016)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1609",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Protection from expanded polyglutamine huntingtin toxicity in PC12 cells (LDH08)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1610",
+          "",
+          "8150111",
+          "3007",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Protection from expanded polyglutamine huntingtin toxicity in PC12 cells",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1612",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that increase glutamate transport activity in MN-1 cell line (GluUPTAKE)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1613",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that inhibit protein aggregation formed by mutant SOD1 (GFPSOD1)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1614",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Screen for compounds that reduce polyglutamine (polyQ) inclusions in nerve growth factor (NGF)-treated PC12 cells (GFPQ80)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1616",
+          "",
+          "8150111",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Yeast cell-based screen for compounds that suppress polyglutamine aggregation in vivo (75Q-TubH)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2062",
+          "",
+          "85209571",
+          "3007",
+          "Active",
+          "",
+          "",
+          "",
+          "",
+          "Ligands of bioamine (Class A) GPCRs",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3695",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P19327",
+          "",
+          "7.66",
+          "Ki",
+          "Evaluated for binding affinity towards rat cortical membranes at 5-hydroxytryptamine 1 receptor binding site by using [3H]-5-HT as a radioligand.",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3695",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28564",
+          "",
+          "7.66",
+          "Ki",
+          "Evaluated for binding affinity towards rat cortical membranes at 5-hydroxytryptamine 1 receptor binding site by using [3H]-5-HT as a radioligand.",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3695",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28565",
+          "",
+          "7.66",
+          "Ki",
+          "Evaluated for binding affinity towards rat cortical membranes at 5-hydroxytryptamine 1 receptor binding site by using [3H]-5-HT as a radioligand.",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3695",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30940",
+          "",
+          "7.66",
+          "Ki",
+          "Evaluated for binding affinity towards rat cortical membranes at 5-hydroxytryptamine 1 receptor binding site by using [3H]-5-HT as a radioligand.",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3696",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P19327",
+          "24473",
+          "7.66",
+          "Ki",
+          "Binding affinity for 5-hydroxytryptamine 1 receptor of rat prefrontal cortex",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3696",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28564",
+          "25075",
+          "7.66",
+          "Ki",
+          "Binding affinity for 5-hydroxytryptamine 1 receptor of rat prefrontal cortex",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3696",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28565",
+          "25323",
+          "7.66",
+          "Ki",
+          "Binding affinity for 5-hydroxytryptamine 1 receptor of rat prefrontal cortex",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "3696",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30940",
+          "60448",
+          "7.66",
+          "Ki",
+          "Binding affinity for 5-hydroxytryptamine 1 receptor of rat prefrontal cortex",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "4761",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08909",
+          "25187",
+          "10",
+          "Ki",
+          "Compound was tested for binding affinity towards 5-hydroxytryptamine 1C receptor from frontal cortical regions of male Sprague-Dawley rat homogenates, using [3H]mesulergine as radioligand",
+          "Confirmatory",
+          "1542100",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5000",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08909",
+          "25187",
+          "10",
+          "Ki",
+          "Compound was tested for binding affinity towards 5-hydroxytryptamine 2 (5-hydroxytryptamine-2) receptor from frontal cortical regions of male Sprague-Dawley rat homogenates, using [3H]-ketanserin as radioligand",
+          "Confirmatory",
+          "1542100",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5000",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14842",
+          "29595",
+          "10",
+          "Ki",
+          "Compound was tested for binding affinity towards 5-hydroxytryptamine 2 (5-hydroxytryptamine-2) receptor from frontal cortical regions of male Sprague-Dawley rat homogenates, using [3H]-ketanserin as radioligand",
+          "Confirmatory",
+          "1542100",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5000",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30994",
+          "29581",
+          "10",
+          "Ki",
+          "Compound was tested for binding affinity towards 5-hydroxytryptamine 2 (5-hydroxytryptamine-2) receptor from frontal cortical regions of male Sprague-Dawley rat homogenates, using [3H]-ketanserin as radioligand",
+          "Confirmatory",
+          "1542100",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5270",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08909",
+          "25187",
+          "43",
+          "Ki",
+          "Binding affinity to rat cortical membranes at 5-hydroxytryptamine 2 (5-HT2) receptor using [3H]KET as a radioligand",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5270",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14842",
+          "29595",
+          "43",
+          "Ki",
+          "Binding affinity to rat cortical membranes at 5-hydroxytryptamine 2 (5-HT2) receptor using [3H]KET as a radioligand",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5270",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30994",
+          "29581",
+          "43",
+          "Ki",
+          "Binding affinity to rat cortical membranes at 5-hydroxytryptamine 2 (5-HT2) receptor using [3H]KET as a radioligand",
+          "Confirmatory",
+          "3543362",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5299",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08909",
+          "25187",
+          "43",
+          "Ki",
+          "Displacement of [3H]ketanserin from rat prefrontal cortex 5-hydroxytryptamine 2 receptor",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5299",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14842",
+          "29595",
+          "43",
+          "Ki",
+          "Displacement of [3H]ketanserin from rat prefrontal cortex 5-hydroxytryptamine 2 receptor",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5299",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30994",
+          "29581",
+          "43",
+          "Ki",
+          "Displacement of [3H]ketanserin from rat prefrontal cortex 5-hydroxytryptamine 2 receptor",
+          "Confirmatory",
+          "3950904",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5535",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14842",
+          "29595",
+          "10",
+          "Ki",
+          "Displacement of [3H]ketanserin from NIH3T3 cells stably expressing rat 5-hydroxytryptamine 2A receptor",
+          "Confirmatory",
+          "10956215",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5725",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08909",
+          "25187",
+          "10",
+          "Ki",
+          "Displacement of [3H]mesulergine from A9 cells stably expressing rat 5-hydroxytryptamine 2C receptor",
+          "Confirmatory",
+          "10956215",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "5798",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30994",
+          "29581",
+          "5.37032",
+          "Kd",
+          "Affinity against serotonergic receptor in the isolated rat stomach fundus",
+          "Confirmatory",
+          "7310818",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P08909",
+          "25187",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P14842",
+          "29595",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P19327",
+          "24473",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28564",
+          "25075",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28565",
+          "25323",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30940",
+          "60448",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30994",
+          "29581",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P31388",
+          "64354",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P32305",
+          "65032",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35364",
+          "25689",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35365",
+          "79247",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35563",
+          "79246",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q62758",
+          "25324",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6404",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q9JJ16",
+          "58963",
+          "5.37032",
+          "Kd",
+          "5-hydroxytryptamine receptor binding affinity was determined in rats",
+          "Confirmatory",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P08909",
+          "25187",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P14842",
+          "29595",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P19327",
+          "24473",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28564",
+          "25075",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28565",
+          "25323",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30940",
+          "60448",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30994",
+          "29581",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P31388",
+          "64354",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P32305",
+          "65032",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35364",
+          "25689",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35365",
+          "79247",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35563",
+          "79246",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q62758",
+          "25324",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6406",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q9JJ16",
+          "58963",
+          "5.37032",
+          "Kd",
+          "Affinity against 5-hydroxytryptamine receptors in rat fundus model",
+          "Confirmatory",
+          "7365744",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P08909",
+          "25187",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P14842",
+          "29595",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P19327",
+          "24473",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28564",
+          "25075",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P28565",
+          "25323",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30940",
+          "60448",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P30994",
+          "29581",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P31388",
+          "64354",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P32305",
+          "65032",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35364",
+          "25689",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35365",
+          "79247",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35563",
+          "79246",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q62758",
+          "25324",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "6407",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q9JJ16",
+          "58963",
+          "5.37032",
+          "Kd",
+          "Affinity for 5-hydroxytryptamine receptor was determined using male Dawley rat fundus preparation",
+          "Confirmatory",
+          "7069716",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "23503",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Partition coefficient (logP)",
+          "Other",
+          "7310818",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "111355",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Stimulation of spontaneous locomotor activity of compound was measured in mice at a dose of 0.01 mmol/kg)",
+          "Other",
+          "7086822",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "111357",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Stimulation of spontaneous locomotor activity of compound was measured in mice at a dose of 0.02 mmol/kg)",
+          "Other",
+          "7086822",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "111358",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Stimulation of spontaneous locomotor activity of compound was measured in mice at a dose of 0.04 mmol/kg)",
+          "Other",
+          "7086822",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "118787",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Retention for passive avoidance learning in mice at dose 1.25 mg/kg",
+          "Other",
+          "7265121",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "118788",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Compound was tested for cognitive activity by measuring retention for passive avoidance learning in mice at dose 10 mg/kg",
+          "Other",
+          "7265121",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "118789",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Retention for passive avoidance learning in mice at dose 2.5 mg/kg",
+          "Other",
+          "7265121",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "118791",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Compound was tested for cognitive activity by measuring retention for passive avoidance learning in mice at dose 20 mg/kg i",
+          "Other",
+          "7265121",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "122556",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Modification of circling behavior in mice with unilateral striatal lesions produced by 6-hydroxydopamine injection was measured at a dose of 0.027 mmol/kg",
+          "Other",
+          "7086822",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "129302",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antinociceptive activity by measuring inhibition of acetylcholine writhing in mouse",
+          "Other",
+          "6681842",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "145543",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P10938",
+          "281413",
+          "740",
+          "Ki",
+          "Inhibitory activity against Norepinephrine N-methyl-transferase of bovine adrenal glands",
+          "Confirmatory",
+          "7143356",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "145544",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P10938",
+          "281413",
+          "740",
+          "Ki",
+          "Inhibitory activity against bovine adrenal norepinephrine N-methyl-transferase was determined",
+          "Confirmatory",
+          "7143366",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "145546",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P10938",
+          "281413",
+          "740",
+          "Ki",
+          "The inhibitory constant(Ki) value for Norepinephrine N-methyl-transferase was calculated",
+          "Confirmatory",
+          "7143357",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "167866",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Hyperthermic potency in rabbit relative to DOM",
+          "Other",
+          "7310818",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "173388",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Behavioral stimulant activity in rat by sc administration; Marked CNS stimulation",
+          "Other",
+          "6681842",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "173392",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Behavioral stimulant activity in rat by sc administration; Slight to moderate CNS stimulation",
+          "Other",
+          "6681842",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "175419",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Dose required to produce 50% hallucinogenic potency in rat was determined at a dose of 1 mg/kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "175420",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Dose required to produce 50% hallucinogenic potency in rat was determined at a dose of 1.5 mg/kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "175568",
+          "",
+          "103164180",
+          "3007",
+          "Inactive",
+          "",
+          "",
+          "",
+          "",
+          "Dose required to produce 50% hallucinogenic potency in rat was determined at a dose of 2 mg/kg; Disruption behavior",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "175573",
+          "",
+          "103164180",
+          "3007",
+          "Inactive",
+          "",
+          "",
+          "",
+          "",
+          "Dose required to produce 50% hallucinogenic potency in rat was determined at a dose of 3 mg/kg; Disruption behavior",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "178670",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antinociceptive activity by measuring in flamed paw pressure threshold in rat",
+          "Other",
+          "6681842",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "188586",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Number of rats responding out of 5 treated rats at a dose of 1 mg/Kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "188587",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Number of rats responding out of 5 treated rats at a dose of 1.5 mg/Kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "188589",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Number of rats responding out of 5 treated rats at a dose of 2 mg/Kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "188591",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Number of rats responding out of 5 treated rats at a dose of 3 mg/Kg",
+          "Other",
+          "7143352",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "204015",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q9R0C9",
+          "29336",
+          "50",
+          "Ki",
+          "Binding affinity towards sigma opioid receptor was determined in rat cerebral homogenate using [3H]haloperidol as radioligand",
+          "Confirmatory",
+          "1848295",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "227718",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Binding energy by using the equation deltaG obsd = -RT ln KD",
+          "Other",
+          "6094812",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "227926",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Equilibrium constant for DNB complex formation",
+          "Other",
+          "7310818",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "234846",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41595",
+          "3357",
+          "",
+          "",
+          "Affinity against 5-hydroxytryptamine 2B receptor in the isolated rat stomach fundus",
+          "Other",
+          "7310818",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "237685",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Lipophilicity determined as logarithm of the partition coefficient in the alkane/water system",
+          "Other",
+          "15857133",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "241172",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P11509",
+          "1548",
+          "3.5",
+          "IC50",
+          "Inhibitory concentration against human cytochrome P450 2A6",
+          "Confirmatory",
+          "15658857",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "241174",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P20852",
+          "13087",
+          "2.85",
+          "IC50",
+          "Inhibitory concentration against mouse cytochrome P450 2A5",
+          "Confirmatory",
+          "15658857",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "311367",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Permeability coefficient in human skin",
+          "Other",
+          "17827020",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "381244",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in Wistar albino rat assessed as mortality after 4 days",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "492967",
+          "",
+          "99302079",
+          "3007",
+          "Inactive",
+          "YP_016573",
+          "",
+          "",
+          "",
+          "A screen for compounds that inhibit the CapD enzyme of Bacillus anthracis",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "493162",
+          "",
+          "99302079",
+          "3007",
+          "Inactive",
+          "AAB59829",
+          "",
+          "",
+          "",
+          "A screen for compounds that inhibit processive DNA synthesis of vaccinia virus",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "539464",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "500",
+          "Solubility",
+          "Solubility of the compound in 0.1 M phosphate buffer at 600 uM at pH 7.4 after 24 hrs by LC/MS/MS analysis",
+          "Confirmatory",
+          "21055935",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "540209",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Volume of distribution at steady state in human after iv administration",
+          "Other",
+          "18426954",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "540210",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Clearance in human after iv administration",
+          "Other",
+          "18426954",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "540211",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Fraction unbound in human after iv administration",
+          "Other",
+          "18426954",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "540212",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Mean residence time in human after iv administration",
+          "Other",
+          "18426954",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "540213",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Half life in human after iv administration",
+          "Other",
+          "18426954",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "588211",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Literature-mined compound from Fourches et al multi-species drug-induced liver injury (DILI) dataset, effect in humans",
+          "Other",
+          "20014752",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "588212",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Literature-mined compound from Fourches et al multi-species drug-induced liver injury (DILI) dataset, effect in rodents",
+          "Other",
+          "20014752",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "588213",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Literature-mined compound from Fourches et al multi-species drug-induced liver injury (DILI) dataset, effect in non-rodents",
+          "Other",
+          "20014752",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "588220",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Literature-mined public compounds from Kruhlak et al phospholipidosis modelling dataset",
+          "Other",
+          "20020916",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625279",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for bilirubinemia",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625280",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for cholecystitis",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625281",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for cholelithiasis",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625282",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for cirrhosis",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625283",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for elevated liver function tests",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625284",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for hepatic failure",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625285",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for hepatic necrosis",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625286",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for hepatitis",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625287",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for hepatomegaly",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625288",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for jaundice",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625289",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for liver disease",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625290",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for liver fatty",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625291",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) score for liver function tests abnormal",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "625292",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug Induced Liver Injury Prediction System (DILIps) training set; hepatic side effect (HepSE) combined score",
+          "Other",
+          "22194678",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "681708",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O70594",
+          "",
+          "",
+          "",
+          "TP_TRANSPORTER: inhibition of TEA uptake (TEA: 20 uM, Amphetamine: 2500 uM) in OCTN2-expressing HRPE cells",
+          "Other",
+          "10454528",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "682029",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O88446",
+          "29504",
+          "42",
+          "IC50",
+          "TP_TRANSPORTER: inhibition of MPP+ uptake (MPP+: 1 uM) in OCT3-expressing HRPE cells",
+          "Confirmatory",
+          "9830022",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "682271",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O76082",
+          "",
+          "",
+          "",
+          "TP_TRANSPORTER: inhibition of TEA uptake (TEA: 20 uM, Amphetamine: 5000 uM) in OCTN2-expressing HeLa cells",
+          "Other",
+          "9618255",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "734186",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of UBR protein in rabbit reticulocyte lysates assessed as inhibition of Tyr-nsP4 substrate degradation measuring substrate half life at 2 mM",
+          "Other",
+          "23432203",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "734192",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of UBR protein in rabbit reticulocyte lysates assessed as inhibition of Tyr-nsP4 substrate degradation at 2 mM by immunoblotting analysis in presence of bestatin",
+          "Other",
+          "23432203",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "738999",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Pshychostimulant activity in gerbil assessed as increase in spontaneous locomotor activity at 5 mg/kg, ip after 30 mins",
+          "Other",
+          "23477943",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1097336",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Drug level in Homo sapiens (human) whole blood assessed as retention time by UPLC-TOF-MS analysis",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1133355",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Stimulation of dopamine receptor in Sprague-Dawley rat assessed as reduction in Dopa accumulation in at 1 mg/kg, sc by spectrofluorimetry",
+          "Other",
+          "722753",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135979",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "O55192",
+          "20538",
+          "1",
+          "IC50",
+          "Inhibition of noradrenaline transporter in NMRI albino mouse brain assessed as [3H]NA accumulation in hypothalamus after 5 mins",
+          "Confirmatory",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135980",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q60857",
+          "15567",
+          "45",
+          "IC50",
+          "Inhibition of 5-HT transporter in NMRI albino mouse brain assessed as [3H]5-HT accumulation in hypothalamus after 5 mins",
+          "Confirmatory",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135981",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antidepressant activity in ip dosed NMRI albino mouse assessed as inhibition of [3H]NA accumulation in hypothalamus after 0.5 hrs",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135982",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antidepressant activity in ip dosed NMRI albino mouse assessed as inhibition of [3H]5-HT accumulation in hypothalamus after 0.5 hrs",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135983",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antidepressant activity in ip dosed NMRI albino mouse assessed as inhibition of [3H]DA accumulation in hypothalamus after 0.5 hrs",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1135984",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Potentiation of 5-HTP-induced head twitches in ip dosed NMRI albino mouse administered 1 hr prior to 5-HTP challenge",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1136000",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Induction of hyperactivity in NMRI albino mouse at 2.5 mg/kg, ip in presence of pimozide",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1136001",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Induction of hyperactivity in NMRI albino mouse at 2.5 mg/kg, ip in presence of alpha-methyltyrosine",
+          "Other",
+          "22757",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1136504",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "1288.25",
+          "IC50",
+          "Inhibition of PNMT in rabbit adrenal gland using norepinephrine as substrate",
+          "Confirmatory",
+          "321782",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1145573",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q63380",
+          "",
+          "0.2",
+          "IC50",
+          "Inhibition of [3H]norepinephrine uptake at NET expressed in rat hypothalamic homogenate containing synaptosomes after 5 mins by scintillation counting analysis",
+          "Confirmatory",
+          "1271416",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1145574",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P23977",
+          "24898",
+          "0.96",
+          "IC50",
+          "Inhibition of [3H]dopamine uptake at dopamine transporter expressed in rat striatal homogenate after 5 mins by scintillation counting analysis",
+          "Confirmatory",
+          "1271416",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1201567",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in NMRI mouse assessed as induction of hyperactivity at 2 mg/kg, ip",
+          "Other",
+          "25793650",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1201568",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in NMRI mouse assessed as induction of exophtalmy at 2 mg/kg, ip",
+          "Other",
+          "25793650",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1201569",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in NMRI mouse assessed as induction of irritability at 2 mg/kg, ip",
+          "Other",
+          "25793650",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1210823",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity for OCT2 (unknown origin) over OCT1 (unknown origin)",
+          "Other",
+          "22407892",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1259408",
+          "",
+          "363895552",
+          "3007",
+          "Active",
+          "",
+          "",
+          "",
+          "",
+          "GENE-TOX mutagenicity studies",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1442363",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14842",
+          "29595",
+          "10",
+          "Ki",
+          "Displacement of [3H]ketanserin from rat 5HT2A expressed in mouse NIH/3T3 cell membranes after 30 mins by scintillation counting method",
+          "Confirmatory",
+          "28244748",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1474166",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Liver toxicity in human assessed as induction of drug-induced liver injury by measuring severity class index",
+          "Other",
+          "26948801",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1474167",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Liver toxicity in human assessed as induction of drug-induced liver injury by measuring verified drug-induced liver injury concern status",
+          "Other",
+          "26948801",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1692387",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Hypnotic activity in mouse assessed as phenobarbital induced sleep endurance time at 2 mg/kg, sc administered 30 mins prior to phenobarbital challenge and measured for 30 mins (Rvb = 27.4 +/- 2.3 min)",
+          "Other",
+          "32492595",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945666",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P00915",
+          "759",
+          "150",
+          "Ka",
+          "Binding affinity to human CA1 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945667",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P00918",
+          "760",
+          "150",
+          "Ka",
+          "Binding affinity to human CA2 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945668",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P07451",
+          "761",
+          "87.7",
+          "Ka",
+          "Binding affinity to human CA3 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945669",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P22748",
+          "762",
+          "0.094",
+          "Ka",
+          "Binding affinity to human CA4 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945670",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P35218",
+          "763",
+          "0.81",
+          "Ka",
+          "Binding affinity to human CA5a by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945671",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q9Y2D0",
+          "11238",
+          "2.56",
+          "Ka",
+          "Binding affinity to human CA5b by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945672",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P23280",
+          "765",
+          "150",
+          "Ka",
+          "Binding affinity to human CA6 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945673",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P43166",
+          "766",
+          "0.91",
+          "Ka",
+          "Binding affinity to human CA7 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945674",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q16790",
+          "768",
+          "150",
+          "Ka",
+          "Binding affinity to human CA9 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945675",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "O43570",
+          "771",
+          "0.64",
+          "Ka",
+          "Binding affinity to human CA12 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945676",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q8N1Q1",
+          "377677",
+          "24.1",
+          "Ka",
+          "Binding affinity to human CA13 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945677",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "Q9ULX7",
+          "23632",
+          "9.15",
+          "Ka",
+          "Binding affinity to human CA14 by phenol red dye based stopped flow CO2 hydration assay",
+          "Confirmatory",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945688",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in C57Bl6 mouse assessed as reduction in distance travel at 50 nmol/uL administered directly into lateral ventricle by open field test",
+          "Other",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945689",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in overnight fasted C57Bl6 mouse assessed as reduction in food intake at 50 nmol/uL administered directly into lateral ventricle measured for 2 hrs",
+          "Other",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1945690",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in overnight fasted C57Bl6 mouse assessed as reduction in food intake at 50 nmol/uL administered directly into lateral ventricle measured for 30 mins",
+          "Other",
+          "36244185",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961679",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O95342",
+          "8647",
+          "300",
+          "AC50",
+          "Compound was evaluated for inhibition of human ABCB11 in an in vitro assay with cellular components measured by filtration, liquid scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961681",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30542",
+          "134",
+          "17.9999",
+          "AC50",
+          "Binding affinity towards human ADORA1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961683",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P29274",
+          "135",
+          "10.9999",
+          "AC50",
+          "Binding affinity towards human ADORA2A in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961684",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P0DMS8",
+          "140",
+          "30",
+          "AC50",
+          "Binding affinity towards human ADORA3 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961686",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35348",
+          "148",
+          "30",
+          "AC50",
+          "Agonist activity at human ADRA1A in an in vitro cell-based assay (NIBR assay) measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961689",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35348",
+          "148",
+          "10",
+          "AC50",
+          "Binding affinity towards human ADRA1A in an in vitro assay with cellular components (NIBR assay) measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961691",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08913",
+          "150",
+          "30",
+          "AC50",
+          "Agonist activity at human ADRA2A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961692",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08913",
+          "150",
+          "30",
+          "AC50",
+          "Antagonist activity at human ADRA2A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961694",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P18089",
+          "151",
+          "30",
+          "AC50",
+          "Binding affinity towards human ADRA2B in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961695",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P18825",
+          "152",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human ADRA2C in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961697",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08588",
+          "153",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human ADRB1 in an in vitro assay measured by radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961698",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P07550",
+          "154",
+          "30",
+          "AC50",
+          "Agonist activity at human ADRB2 in an in vitro cell-based assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961699",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P07550",
+          "154",
+          "10",
+          "AC50",
+          "Binding affinity towards human ADRB2 in an in vitro assay with cellular components measured by radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961700",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P13945",
+          "155",
+          "30",
+          "AC50",
+          "Binding affinity towards human ADRB3 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961701",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30556",
+          "185",
+          "30",
+          "AC50",
+          "Binding affinity towards human AGTR1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961703",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P15207",
+          "24208",
+          "30",
+          "AC50",
+          "Agonist activity at rat Ar in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961705",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P15207",
+          "24208",
+          "30",
+          "AC50",
+          "Binding affinity towards rat Ar in an in vitro cell free assay measured by fluorescence polarization method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961707",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P37288",
+          "552",
+          "30",
+          "AC50",
+          "Binding affinity towards human AVPR1A in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961708",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30518",
+          "554",
+          "30",
+          "AC50",
+          "Binding affinity towards human AVPR2 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961709",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P46663",
+          "623",
+          "30",
+          "AC50",
+          "Binding affinity towards human BDKRB1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961710",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30411",
+          "624",
+          "30",
+          "AC50",
+          "Binding affinity towards human BDKRB2 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961711",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q02294",
+          "257648",
+          "10",
+          "AC50",
+          "Compound was evaluated for inhibition of rat Cacna1b in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961712",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P22002",
+          "24239",
+          "10",
+          "AC50",
+          "Compound was evaluated for inhibition of rat Cacna1c in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961714",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P32238",
+          "886",
+          "30",
+          "AC50",
+          "Binding affinity towards human CCKAR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961715",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P32239",
+          "887",
+          "30",
+          "AC50",
+          "Binding affinity towards human CCKBR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961720",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P11229",
+          "1128",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human CHRM1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961721",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08172",
+          "1129",
+          "30",
+          "AC50",
+          "Agonist activity at human CHRM2 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961722",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08172",
+          "1129",
+          "30",
+          "AC50",
+          "Antagonist activity at human CHRM2 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961724",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P20309",
+          "1131",
+          "30",
+          "AC50",
+          "Binding affinity towards human CHRM3 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961727",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P43681",
+          "1137",
+          "30",
+          "AC50",
+          "Binding affinity towards human CHRNA4 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961728",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21554",
+          "1268",
+          "30",
+          "AC50",
+          "Agonist activity at human CNR1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961729",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21554",
+          "1268",
+          "30",
+          "AC50",
+          "Antagonist activity at human CNR1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961730",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21554",
+          "1268",
+          "10",
+          "AC50",
+          "Binding affinity towards human CNR1 in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961732",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P34998",
+          "1394",
+          "30",
+          "AC50",
+          "Binding affinity towards human CRHR1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961733",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q13324",
+          "1395",
+          "30",
+          "AC50",
+          "Binding affinity towards human CRHR2 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961734",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21728",
+          "1812",
+          "30",
+          "AC50",
+          "Agonist activity at human DRD1 in an in vitro cell-based assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961738",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14416",
+          "1813",
+          "30",
+          "AC50",
+          "Binding affinity towards human DRD2 in an in vitro assay with cellular components measured by membrane filtration, scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961742",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P25101",
+          "1909",
+          "30",
+          "AC50",
+          "Binding affinity towards human EDNRA in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961743",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P24530",
+          "1910",
+          "30",
+          "AC50",
+          "Binding affinity towards human EDNRB in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961746",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P03372",
+          "",
+          "30",
+          "AC50",
+          "Agonist activity at human ESR1 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961747",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P03372",
+          "",
+          "30",
+          "AC50",
+          "Antagonist activity at human ESR1 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961748",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P03372",
+          "2099",
+          "30",
+          "AC50",
+          "Binding affinity towards human ESR1 in an in vitro cell free assay (NIBR assay) measured by fluorescence polarization method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961750",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q92731",
+          "2100",
+          "30",
+          "AC50",
+          "Binding affinity towards human ESR2 in an in vitro cell free assay measured by fluorescence polarization method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961753",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14867",
+          "2554",
+          "30",
+          "AC50",
+          "Agonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961753",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P18507",
+          "2566",
+          "30",
+          "AC50",
+          "Agonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961753",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P47869",
+          "2555",
+          "30",
+          "AC50",
+          "Agonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961753",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P47870",
+          "2561",
+          "30",
+          "AC50",
+          "Agonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961754",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P14867",
+          "2554",
+          "30",
+          "AC50",
+          "Antagonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961754",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P18507",
+          "2566",
+          "30",
+          "AC50",
+          "Antagonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961754",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P47869",
+          "2555",
+          "30",
+          "AC50",
+          "Antagonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961754",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P47870",
+          "2561",
+          "30",
+          "AC50",
+          "Antagonist activity at human GABRA1 in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961755",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P62813",
+          "29705",
+          "10",
+          "AC50",
+          "Binding affinity towards rat Gabra1 in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961758",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P62813",
+          "29705",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of rat Gabra1 in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961759",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P47871",
+          "2642",
+          "30",
+          "AC50",
+          "Binding affinity towards human GCGR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961760",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q92847",
+          "2693",
+          "30",
+          "AC50",
+          "Binding affinity towards human GHSR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961761",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P48546",
+          "2696",
+          "30",
+          "AC50",
+          "Binding affinity towards human GIPR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961762",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35439",
+          "24408",
+          "10",
+          "AC50",
+          "Binding affinity towards rat Grin1 in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961766",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35367",
+          "3269",
+          "30",
+          "AC50",
+          "Binding affinity towards human HRH1 in an in vitro assay measured by filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961767",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P25021",
+          "3274",
+          "10",
+          "AC50",
+          "Agonist activity at human HRH2 in an in vitro cell-based assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961770",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08908",
+          "3350",
+          "30",
+          "AC50",
+          "Agonist activity at human HTR1A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961771",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08908",
+          "3350",
+          "30",
+          "AC50",
+          "Antagonist activity at human HTR1A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961773",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P28223",
+          "3356",
+          "30",
+          "AC50",
+          "Agonist activity at human HTR2A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961774",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P28223",
+          "3356",
+          "30",
+          "AC50",
+          "Antagonist activity at human HTR2A in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961775",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P28223",
+          "3356",
+          "10",
+          "AC50",
+          "Binding affinity towards human HTR2A in an in vitro assay with cellular components measured by membrane filtration",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961776",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41595",
+          "3357",
+          "30",
+          "AC50",
+          "Agonist activity at human HTR2B in an in vitro cell-based assay (NIBR assay) measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961778",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41595",
+          "3357",
+          "30",
+          "AC50",
+          "Antagonist activity at human HTR2B in an in vitro cell-based assay measured by fluorescent imaging plate reader",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961780",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P28335",
+          "3358",
+          "30",
+          "AC50",
+          "Binding affinity towards human HTR2C in an in vitro assay with cellular components measured by radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961781",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P46098",
+          "3359",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human HTR3A in an in vitro assay with cellular components measured by membrane filtration, radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961785",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q12809",
+          "3757",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human KCNH2 in an in vitro assay with cellular components measured by membrane filtration, radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961788",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41968",
+          "4159",
+          "30",
+          "AC50",
+          "Binding affinity towards human MC3R in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961789",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P32245",
+          "4160",
+          "30",
+          "AC50",
+          "Binding affinity towards human MC4R in an in vitro assay with cellular components measured by scintillation proximity assay in vitro assay with cellular components",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961790",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O43193",
+          "2862",
+          "30",
+          "AC50",
+          "Binding affinity towards human MLNR in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961791",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P25929",
+          "4886",
+          "30",
+          "AC50",
+          "Binding affinity towards human NPY1R in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961792",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P49146",
+          "4887",
+          "30",
+          "AC50",
+          "Binding affinity towards human NPY2R in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961801",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O75469",
+          "8856",
+          "30",
+          "AC50",
+          "Agonist activity at human NR1I2 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961802",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "O75469",
+          "8856",
+          "30",
+          "AC50",
+          "Antagonist activity at human NR1I2 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961805",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P04150",
+          "",
+          "30",
+          "AC50",
+          "Agonist activity at human NR3C1 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961806",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P04150",
+          "",
+          "30",
+          "AC50",
+          "Antagonist activity at human NR3C1 in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961807",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P04150",
+          "2908",
+          "30",
+          "AC50",
+          "Binding affinity towards human NR3C1 in an in vitro cell free assay measured by filtration, radioactivity method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961808",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P30989",
+          "4923",
+          "30",
+          "AC50",
+          "Binding affinity towards human NTSR1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961809",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41143",
+          "4985",
+          "30",
+          "AC50",
+          "Binding affinity towards human OPRD1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961810",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P41145",
+          "4986",
+          "10",
+          "AC50",
+          "Binding affinity towards human OPRK1 in an in vitro assay with cellular components measured by membrane filtration, scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961815",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q08499",
+          "5144",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human PDE4D in an in vitro cell free assay measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961817",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P06401",
+          "5241",
+          "30",
+          "AC50",
+          "Agonist activity at human PGR in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961818",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P06401",
+          "5241",
+          "30",
+          "AC50",
+          "Antagonist activity at human PGR in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961819",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P06401",
+          "5241",
+          "30",
+          "AC50",
+          "Binding affinity towards human PGR in an in vitro cell free assay measured by fluorescence polarization method in vitro cell free assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961823",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P37231",
+          "5468",
+          "30",
+          "AC50",
+          "Agonist activity at human PPARG in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961824",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P37231",
+          "5468",
+          "30",
+          "AC50",
+          "Antagonist activity at human PPARG in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961825",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q63921",
+          "24693",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of rat Ptgs1 in an in vitro cell free assay measured by fluorescence spectroscopy",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961827",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35354",
+          "5743",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human PTGS2 in an in vitro cell free assay measured by fluorescence spectroscopy",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961837",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q99808",
+          "2030",
+          "30",
+          "AC50",
+          "Binding affinity towards human SLC29A1 in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961846",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21731",
+          "6915",
+          "30",
+          "AC50",
+          "Binding affinity towards human TBXA2R in an in vitro assay with cellular components measured by scintillation proximity assay",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961847",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q01959",
+          "6531",
+          "30",
+          "AC50",
+          "Binding affinity towards human SLC6A3 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961848",
+          "",
+          "103164180",
+          "3007",
+          "Active",
+          "P23975",
+          "6530",
+          "8.84",
+          "AC50",
+          "Binding affinity towards human SLC6A2 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961849",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P31645",
+          "6532",
+          "30",
+          "AC50",
+          "Binding affinity towards human SLC6A4 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961851",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35372",
+          "4988",
+          "30",
+          "AC50",
+          "Binding affinity towards human OPRM1 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961852",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21397",
+          "4128",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human MAOA in an in vitro cell free assay measured by fluorescence spectroscopy",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961853",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08908",
+          "3350",
+          "10",
+          "AC50",
+          "Binding affinity towards human HTR1A in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961855",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q14432",
+          "5139",
+          "30",
+          "AC50",
+          "Compound was evaluated for inhibition of human PDE3A in an in vitro cell free assay measured by time-resolved fluorescence resonance energy transfer method",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961856",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35462",
+          "1814",
+          "30",
+          "AC50",
+          "Binding affinity towards human DRD3 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961857",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P08172",
+          "1129",
+          "10",
+          "AC50",
+          "Binding affinity towards human CHRM2 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961858",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P35348",
+          "148",
+          "30",
+          "AC50",
+          "Antagonist activity at human ADRA1A in an in vitro cell-based assay measured by fluorescence spectroscopy",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961859",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "P21728",
+          "1812",
+          "10",
+          "AC50",
+          "Binding affinity towards human DRD1 in an in vitro assay with cellular components (NIBR assay) measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1961878",
+          "",
+          "103164180",
+          "3007",
+          "Unspecified",
+          "Q9Y5N1",
+          "11255",
+          "30",
+          "AC50",
+          "Binding affinity towards human HRH3 in an in vitro assay with cellular components measured by scintillation counting",
+          "Confirmatory",
+          "37468498",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2061329",
+          "",
+          "608004",
+          "3007",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Opportunistic Infection Cellular Data",
+          "Other",
+          "",
+          ""
+         ]
+        }
+       ]
+      }
+     }
+    }
+   }
+  }
+ }
+}

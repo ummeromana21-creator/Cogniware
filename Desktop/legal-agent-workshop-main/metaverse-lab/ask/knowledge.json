@@ -1,0 +1,966 @@
+{
+  "measures": {
+    "activity": "distance walked per step",
+    "bananas": "bananas found",
+    "firing_all": "share of all neurons firing per step",
+    "firing_peak": "peak share of neurons firing in one step",
+    "mean_abs_turn": "average turning strength",
+    "sleep": "fraction of steps the brain is quiet (sleep proxy)",
+    "synchrony": "fraction of steps with mass firing (over 15% at once)",
+    "tortuosity": "path length divided by displacement (wandering)",
+    "banana_dist": "average distance to the nearest banana",
+    "banana_near": "share of time within reach of a banana",
+    "firing.nose": "firing in the banana-smell receptor neurons",
+    "firing.dopamine neurons": "firing in the dopamine neurons",
+    "firing.octopamine neurons": "firing in the octopamine neurons",
+    "firing.acetylcholine neurons": "firing in the acetylcholine neurons",
+    "firing.GABA (inhibitory) neurons": "firing in the GABA (inhibitory) neurons",
+    "firing.legs": "firing in the leg motor neurons",
+    "firing.citrus ORNs": "firing in the citrus receptor neurons (OR19a -> DC1)"
+  },
+  "papers": [
+    [
+      "Suh et al. 2004 — CO2 sensed by Gr63a (ab1C) to the V glomerulus, drives aversion",
+      "unverified"
+    ],
+    [
+      "Hallem and Carlson 2006 — fruit-ester glomeruli including the banana set",
+      "cited in sim code"
+    ],
+    [
+      "Gaudry et al. 2013 — ORN same-side bias x1.3",
+      "cited in sim code"
+    ],
+    [
+      "Shiu et al. 2024 — LIF dynamics and transmitter sign convention",
+      "cited in sim code"
+    ],
+    [
+      "Dorkenwald et al. 2024 — FlyWire wiring diagram plus transmitters",
+      "cited in sim code"
+    ]
+  ],
+  "stages": [
+    "nose",
+    "antennal lobe PNs",
+    "lateral horn",
+    "mushroom body",
+    "central complex",
+    "descending neurons",
+    "nerve cord",
+    "legs"
+  ],
+  "substances": {
+    "aldicarb": {
+      "aliases": [
+        "temik"
+      ],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Xu et al. (2007) Biomol Eng 24:253 — aldicarb inhibits recombinant Drosophila acetylcholinesterase",
+        "carbamates inactivate acetylcholinesterase in insects and mammals (established insecticide class)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "acetylcholine acts longer at excitatory synapses, so firing rises"
+      },
+      "kind": "insecticide (carbamate)",
+      "mechanism": "inhibits acetylcholinesterase, prolonging acetylcholine action at excitatory synapses",
+      "not_modelled": "muscle and nerve-cord effects (see permethrin)",
+      "target": "firing.acetylcholine neurons",
+      "target_prediction": "different",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "amphetamine": {
+      "aliases": [
+        "adderall",
+        "dextroamphetamine"
+      ],
+      "confidence": "established in Drosophila (dopamine); inferred (octopamine)",
+      "dosable": true,
+      "evidence": [
+        "Freyberg et al. (2016) Nat Commun 7:10652 — amphetamine action on dopamine vesicles in the fly brain",
+        "Pizzo et al. (2013) Mol Psychiatry 18:824 — dDAT is the site of amphetamine action in Drosophila"
+      ],
+      "expect": {
+        "direction": "different",
+        "measure": "firing_all",
+        "why": "dopamine gain rises, but whether whole-brain firing follows is not obvious — the run decides"
+      },
+      "kind": "stimulant (monoamine releaser)",
+      "mechanism": "reverses the dopamine transporter, raising dopamine release",
+      "not_modelled": "dopamine as a slow modulator: here dopamine synapses simply release more",
+      "target": "firing.dopamine neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "established in Drosophila (dopamine); assumption (octopamine arm)",
+      "mechanism_confidence": "established in Drosophila (dopamine); assumption (octopamine arm)"
+    },
+    "atropine": {
+      "aliases": [
+        "belladonna"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "GtoPdb 2026.3.1: antagonist rows at mammalian M1–M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "lowers cholinergic drive, so firing falls"
+      },
+      "kind": "muscarinic antagonist",
+      "mechanism": "blocks muscarinic acetylcholine receptors, lowering cholinergic drive",
+      "not_modelled": "mammalian pharmacology mapped onto the fly DM1 receptor",
+      "target": "firing.acetylcholine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "bupropion": {
+      "aliases": [
+        "wellbutrin",
+        "zyban"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Stahl et al. (2004) — DAT/NET inhibition (mammalian)",
+        "Slemmer, Martin and Damaj (2000) — nicotinic antagonism (mammalian)",
+        "Porzgen et al. (2001) — dDAT, the fly counterpart"
+      ],
+      "expect": {
+        "direction": "different",
+        "measure": "firing_all",
+        "why": "dopamine up but acetylcholine down — mixed handles, unclear net effect"
+      },
+      "kind": "transporter inhibitor",
+      "mechanism": "blocks dopamine reuptake; also blocks nicotinic receptors",
+      "not_modelled": "no fly experiment with bupropion is cited: mammalian mechanisms mapped onto fly transporters",
+      "target": "firing.dopamine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "caffeine": {
+      "aliases": [
+        "coffee",
+        "espresso",
+        "energy drink",
+        "red bull",
+        "monster",
+        "tea"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Fredholm and Sandberg (1983) Br J Pharmacol 80:639 — methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "removes a brake on background drive, so firing rises"
+      },
+      "kind": "stimulant (adenosine antagonist)",
+      "mechanism": "removes a tonic brake on background excitatory drive",
+      "not_modelled": "mammalian pharmacology mapped onto the fly (see theophylline)",
+      "target": "firing_all",
+      "target_prediction": "higher",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "camphor": {
+      "aliases": [],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Xu, Blair and Clapham (2005) J Neurosci 25:8924 — camphor activates TRPV1 and inhibits TRPA1 (mammalian)"
+      ],
+      "expect": {
+        "direction": "different",
+        "measure": "bananas",
+        "why": "pushes TRP channels both ways, so the net effect on the banana signal is unclear — the run decides"
+      },
+      "kind": "TRP-channel modulator",
+      "mechanism": "activates TRPV1 channels and inhibits TRPA1 channels on sensory neurons (mixed action)",
+      "not_modelled": "mammalian channels mapped onto fly sensory drive; no fly camphor experiment is cited",
+      "target": "firing.nose",
+      "target_prediction": "higher",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "cinnamaldehyde": {
+      "aliases": [
+        "cinnamon",
+        "cinnamon oil"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Bandell et al. (2004) Neuron 41:849 — cinnamaldehyde activates mammalian TRPA1",
+        "Kang et al. (2010) Nature 464:597 — fly dTRPA1 neurons respond to cinnamaldehyde (taste route)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "drowns the banana signal in receptor noise, so fewer bananas are found"
+      },
+      "kind": "TRP-channel agonist (essential-oil component)",
+      "mechanism": "activates TRPA1 channels on sensory neurons, adding odour-independent receptor drive",
+      "not_modelled": "the demonstrated fly route is taste (Kang et al.), and taste is not wired — this maps TRPA1 activation onto smell-neuron drive by analogy with citronellal",
+      "target": "firing.nose",
+      "target_prediction": "higher",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "citronellal": {
+      "aliases": [
+        "citronella",
+        "lemongrass oil"
+      ],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Kwon et al. (2010) Curr Biol 20:1672 — fly TRPA1 in ORNs is required to avoid citronellal"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "drowns the banana signal in receptor noise, so fewer bananas are found"
+      },
+      "kind": "repellent (essential-oil component)",
+      "mechanism": "drives smell receptors regardless of odour present",
+      "not_modelled": "the aversion pathway itself: the lab tests whether the banana signal is drowned out",
+      "target": "firing.nose",
+      "target_prediction": "higher",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "cocaine": {
+      "aliases": [],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Bainton et al. (2000) Curr Biol 10:187 — dopamine modulates cocaine responses in Drosophila",
+        "Porzgen et al. (2001) — cocaine-sensitive dDAT"
+      ],
+      "expect": {
+        "direction": "different",
+        "measure": "firing_all",
+        "why": "dopamine stays longer, but the net firing effect is not obvious — the run decides"
+      },
+      "kind": "transporter inhibitor",
+      "mechanism": "blocks the dopamine transporter",
+      "not_modelled": "dopamine as a slow modulator (see amphetamine)",
+      "target": "firing.dopamine neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "deet": {
+      "aliases": [
+        "off",
+        "repel",
+        "diethyltoluamide"
+      ],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Ditzen, Pellegrino and Vosshall (2008) Science 319:1838 — DEET inhibits odour responses in fly ORNs",
+        "Lee, Kim and Montell (2010) Curr Biol 20:1672 — DEET sensed as bitter by taste neurons"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "masks the banana smell at the receptors, so fewer bananas are found"
+      },
+      "kind": "repellent (active ingredient)",
+      "mechanism": "inhibits odour responses of smell receptor neurons",
+      "not_modelled": "the contact (taste) route: gustatory neurons are wired but DEET-as-bitter is not dosed yet, so only smell-masking is tested",
+      "target": "firing.nose",
+      "target_prediction": "lower",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "dopamine": {
+      "aliases": [],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Bainton et al. (2000) Curr Biol 10:187 — dopamine signalling in Drosophila",
+        "Porzgen et al. (2001) — dDAT, the fly dopamine transporter"
+      ],
+      "expect": {
+        "direction": "different",
+        "measure": "firing_all",
+        "why": "dopamine gain rises, but whether whole-brain firing follows is not obvious — the run decides"
+      },
+      "kind": "amine (fly transmitter)",
+      "mechanism": "raises the fly's own dopamine drive (dose-the-transmitter-itself)",
+      "not_modelled": "dopamine as a slow modulator (see amphetamine)",
+      "target": "firing.dopamine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "ethanol": {
+      "aliases": [
+        "alcohol",
+        "beer",
+        "wine",
+        "vodka",
+        "whisky",
+        "whiskey",
+        "rum"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "boosts inhibition and damps excitation, so firing falls"
+      },
+      "kind": "depressant",
+      "mechanism": "potentiates GABA inhibition, depresses excitation, adds membrane noise",
+      "not_modelled": "the low-dose buzz phase: real flies show it through dopamine, which this brain lacks",
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "sedative",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "eugenol": {
+      "aliases": [
+        "clove",
+        "clove oil"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Enan (2001) Comp Biochem Physiol C — eugenol acts via octopamine receptors in insects (PMID 11701389)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "raises octopamine drive, so firing rises"
+      },
+      "kind": "octopamine modulator (essential-oil component)",
+      "mechanism": "activates octopamine receptors, raising octopaminergic drive",
+      "not_modelled": "any TRP-channel actions are not modelled",
+      "target": "firing.octopamine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "inferred from other animals",
+      "mechanism_confidence": "inferred from other animals"
+    },
+    "imidacloprid": {
+      "aliases": [
+        "neonicotinoid"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "PMID 15182942 — loop-C determinants of imidacloprid selectivity in Drosophila SAD/Dalpha2 hybrid receptors",
+        "Zhang et al. (2000) J Neurochem 75:1294 — imidacloprid IC50 2.3 nM at Drosophila AChR (ChEMBL 37)",
+        "Kagabu et al. (2000) J Med Chem 43:5003 — imidacloprid Ki 2.1 nM at Drosophila nAChR (ChEMBL 37)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "activates excitatory synapses at this dose (higher doses desensitise them — biphasic)"
+      },
+      "kind": "insecticide (neonicotinoid)",
+      "mechanism": "activates nicotinic acetylcholine receptors, then desensitises them at higher concentration (biphasic)",
+      "not_modelled": "muscle and nerve-cord effects (see permethrin)",
+      "target": "firing.acetylcholine neurons",
+      "target_prediction": "different",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "isoflurane": {
+      "aliases": [
+        "anaesthetic",
+        "anesthetic"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "boosts inhibition and cuts background drive (anaesthesia)"
+      },
+      "kind": "volatile anaesthetic",
+      "mechanism": "potentiates GABA inhibition, reduces background drive",
+      "not_modelled": null,
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "sedative",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "limonene": {
+      "aliases": [
+        "citrus oil",
+        "orange oil",
+        "lemon oil"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Abdelgaleil, Mohamed, Badawy and El-arami (2009) J Chem Ecol 35:518–525 — monoterpene (incl. limonene) inhibition of grain-pest acetylcholinesterase (details via citing sources; primary not read)",
+        "Dweck et al. (2013) Curr Biol — limonene activates Or19a ai2A neurons targeting the DC1 glomerulus (oviposition cue, not long-range attraction)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "acetylcholine acts longer at excitatory synapses, so firing rises"
+      },
+      "kind": "monoterpene (essential-oil component)",
+      "mechanism": "inhibits acetylcholinesterase, prolonging acetylcholine action at excitatory synapses; excites citrus-sensing ORNs (OR19a -> DC1 route)",
+      "not_modelled": "citrus-oviposition behavior is not modelled — only OR19a-neuron firing and the enzyme route are tested",
+      "target": "firing.citrus ORNs",
+      "target_prediction": "higher",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "established in Drosophila (citrus ORNs); inferred from other animals (enzyme route)",
+      "mechanism_confidence": "established in Drosophila (citrus ORNs); inferred from other animals (enzyme route)"
+    },
+    "melatonin": {
+      "aliases": [],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Farooqi, Ali and Amir (2022) Chronobiol Med 4:24–28 — mini-review: insects synthesise melatonin via the vertebrate serotonin pathway"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "damps background drive, so firing falls"
+      },
+      "kind": "sleep/circadian signal",
+      "mechanism": "damps background excitatory drive (sleep signal)",
+      "not_modelled": "the fly receptor pathway is unknown and no melatonin receptor is modelled — the sleep effect maps directly onto background drive; fly circadian link thin",
+      "target": "firing_all",
+      "target_prediction": "lower",
+      "behavior": "activity",
+      "drug_class": "sedative",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "morphine": {
+      "aliases": [
+        "opioid",
+        "opiate"
+      ],
+      "confidence": "not testable yet",
+      "dosable": false,
+      "evidence": [
+        "Alliance of Genome Resources 9.2.0 orthology: human OPRM1/OPRD1/OPRK1 → Drosophila AstC-R2 (FBgn0036789), moderate confidence (5/9 methods); AstC-R2 is an allatostatin C receptor (SSTR2 family), not an opioid receptor"
+      ],
+      "expect": null,
+      "kind": "opioid (mammalian)",
+      "mechanism": "opioid-receptor agonist in mammals; flies have no opioid receptors",
+      "not_modelled": "flies have no opioid receptors; closest Alliance hit for OPRM1 is AstC-R2 (FBgn0036789), an allatostatin/somatostatin-family GPCR at moderate confidence (5/9 methods) — distant similarity only, so morphine has no handle."
+    },
+    "muscarine": {
+      "aliases": [
+        "amanita"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "muscarine is the defining muscarinic agonist (textbook pharmacology); fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "raises cholinergic drive, so firing rises"
+      },
+      "kind": "muscarinic agonist",
+      "mechanism": "activates muscarinic acetylcholine receptors, raising cholinergic drive",
+      "not_modelled": "mammalian pharmacology mapped onto the fly DM1 receptor; no fly muscarine experiment is cited",
+      "target": "firing.acetylcholine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "nicotine": {
+      "aliases": [
+        "tobacco",
+        "cigarette",
+        "vape",
+        "nicorette"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "activates excitatory synapses at this dose (higher doses desensitise them — biphasic)"
+      },
+      "kind": "nicotinic agonist",
+      "mechanism": "activates excitatory synapses, then desensitises them at higher concentration",
+      "not_modelled": null,
+      "target": "firing_all",
+      "target_prediction": "higher",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "octopamine": {
+      "aliases": [],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Roeder (2005) Annu Rev Entomol 50:447 — octopamine as the insect arousal amine"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "raises octopamine drive, so firing rises"
+      },
+      "kind": "arousal amine (fly transmitter)",
+      "mechanism": "raises the fly's own octopamine drive (dose-the-transmitter-itself)",
+      "not_modelled": "blood-borne (neurohormonal) octopamine is not modelled — only synaptic drive",
+      "target": "firing.octopamine neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "paraquat": {
+      "aliases": [
+        "gramoxone"
+      ],
+      "confidence": "not testable yet",
+      "dosable": false,
+      "evidence": [
+        "Chaudhuri et al. (2007) J Neurosci 27:2457 — paraquat replicates parkinsonian symptoms with dopaminergic neuron loss in Drosophila",
+        "CTD chemical–gene interactions in Drosophila (PMIDs 17440995, 23046578)"
+      ],
+      "expect": null,
+      "kind": "herbicide (dopamine-neuron toxin)",
+      "mechanism": "selectively destroys dopaminergic neurons through oxidative damage",
+      "not_modelled": "per-type neuron loss: the sim cannot lesion one transmitter class, so paraquat cannot be dosed (needs a Tier 2 lesion handle)"
+    },
+    "pentylenetetrazole": {
+      "aliases": [
+        "ptz",
+        "metrazol"
+      ],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Mohammad, Singh and Sharma (2009) BMC Syst Biol 3:11 — Drosophila PTZ plasticity model",
+        "CTD chemical–gene interactions in Drosophila (PMID 21503142)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "removes inhibition, so firing and mass-firing events rise"
+      },
+      "kind": "GABA blocker (convulsant)",
+      "mechanism": "blocks GABA-A inhibition, releasing excitatory drive",
+      "not_modelled": "kindling (repeated-dose sensitisation) is not modelled",
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "permethrin": {
+      "aliases": [
+        "pyrethroid",
+        "pyrethrin",
+        "raid",
+        "nix"
+      ],
+      "confidence": "established in Drosophila",
+      "dosable": true,
+      "evidence": [
+        "Soderlund et al. (2002) Toxicology 171:3 — pyrethroid action on insect sodium channels",
+        "Pittendrigh et al. (1997) — para sodium-channel mutations confer resistance in Drosophila"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "holds sodium channels open: repetitive firing at this dose (very high doses block and silence)"
+      },
+      "kind": "insecticide (pyrethroid class)",
+      "mechanism": "holds sodium channels open: repetitive firing, then conduction block at high dose",
+      "not_modelled": "muscle and nerve-cord effects: the body is driven only by descending neurons",
+      "target": "firing_all",
+      "target_prediction": "higher",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "established in Drosophila",
+      "mechanism_confidence": "established in Drosophila"
+    },
+    "phenobarbital": {
+      "aliases": [
+        "luminal"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Misra et al. (2011) Genes Dev — CncC/Maf drives the fly transcriptional response to phenobarbital (PMID 21896655)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "boosts inhibition and cuts background drive, so firing falls"
+      },
+      "kind": "barbiturate",
+      "mechanism": "potentiates GABA inhibition and damps background excitatory drive",
+      "not_modelled": "slow tolerance dynamics are not modelled; washout restores baseline exactly",
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "sedative",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "picaridin": {
+      "aliases": [
+        "icaridin",
+        "kbr"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Bohbot and Dickens (2010) PLoS ONE 5:e12138 — picaridin modulates odour receptors"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "dulls odour responses, so fewer bananas are found"
+      },
+      "kind": "repellent (active ingredient)",
+      "mechanism": "reduces odour responses of smell receptor neurons",
+      "not_modelled": "any taste route",
+      "target": "firing.nose",
+      "target_prediction": "lower",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "inferred from other animals",
+      "mechanism_confidence": "inferred from other animals"
+    },
+    "picrotoxin": {
+      "aliases": [
+        "ptx"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "removes inhibition, so firing and mass-firing events rise"
+      },
+      "kind": "GABA blocker",
+      "mechanism": "blocks inhibitory transmission",
+      "not_modelled": null,
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "piperine": {
+      "aliases": [
+        "black pepper"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "TRP-mediation review (Molecules 2021, 26:1627) — piperine activates TRPV1 (capsaicin pocket) and TRPA1 (mammalian)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "drowns the banana signal in receptor noise, so fewer bananas are found"
+      },
+      "kind": "TRP-channel agonist",
+      "mechanism": "activates TRPV1 and TRPA1 channels on sensory neurons, adding odour-independent receptor drive",
+      "not_modelled": "fly data are thin: mammalian TRP pharmacology mapped onto fly sensory drive",
+      "target": "firing.nose",
+      "target_prediction": "higher",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "pmd": {
+      "aliases": [
+        "lemon eucalyptus",
+        "ole"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Drapeau et al. (2009) and mosquito work: PMD activates ORNs; direct fly receptor work is thin"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "bananas",
+        "why": "drives smell receptors as noise, drowning the banana signal"
+      },
+      "kind": "repellent (active ingredient)",
+      "mechanism": "excites smell receptors independently of food odour",
+      "not_modelled": "the aversion pathway (see citronellal)",
+      "target": "firing.nose",
+      "target_prediction": "higher",
+      "behavior": "banana_dist",
+      "drug_class": "smell",
+      "effect_confidence": "inferred from other animals",
+      "mechanism_confidence": "inferred from other animals"
+    },
+    "scopolamine": {
+      "aliases": [
+        "hyoscine"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "GtoPdb 2026.3.1: antagonist rows at mammalian M1–M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "lowers cholinergic drive, so firing falls"
+      },
+      "kind": "muscarinic antagonist",
+      "mechanism": "blocks muscarinic acetylcholine receptors, lowering cholinergic drive",
+      "not_modelled": "mammalian pharmacology mapped onto the fly DM1 receptor",
+      "target": "firing.acetylcholine neurons",
+      "target_prediction": "different",
+      "behavior": "firing_all",
+      "drug_class": "modulator",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "sodium chloride": {
+      "aliases": [
+        "salt",
+        "table salt",
+        "nacl"
+      ],
+      "confidence": "not testable yet",
+      "dosable": false,
+      "evidence": [
+        "Zhang, Ni and Montell (2013) Science 340:1334 — salt taste in Drosophila"
+      ],
+      "expect": null,
+      "kind": "food/mineral",
+      "mechanism": "tasted by gustatory neurons (attractive low, aversive high)",
+      "not_modelled": "taste: gustatory neurons are wired but salt is a contact stimulus, not a dose"
+    },
+    "sucrose": {
+      "aliases": [
+        "sugar",
+        "table sugar",
+        "glucose",
+        "honey",
+        "soda"
+      ],
+      "confidence": "not testable yet",
+      "dosable": false,
+      "evidence": [
+        "Dahanukar et al. (2007) Neuron 56:503 — sweet taste receptors in Drosophila"
+      ],
+      "expect": null,
+      "kind": "food",
+      "mechanism": "tasted by sweet neurons on legs and proboscis",
+      "not_modelled": "taste and feeding: gustatory neurons are wired but sugar is a contact stimulus, not a dose. Sugar can only be the banana smell, not a dose"
+    },
+    "tetanus_toxin": {
+      "aliases": [
+        "tetanus",
+        "lockjaw"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "lower",
+        "measure": "activity",
+        "why": "legs stop while the brain keeps firing (brain/body split)"
+      },
+      "kind": "motor blocker",
+      "mechanism": "motor neurons fire but release nothing onto muscle",
+      "not_modelled": null,
+      "target": "firing.legs",
+      "target_prediction": null,
+      "behavior": "activity",
+      "drug_class": "toxin",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "theobromine": {
+      "aliases": [
+        "chocolate",
+        "cocoa"
+      ],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Fredholm and Sandberg (1983) Br J Pharmacol 80:639 — methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+        "Fredholm et al. (1982) Eur J Pharmacol — xanthine derivatives as adenosine receptor antagonists (mammalian)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "lifts the adenosine brake on background drive, so firing rises (less than caffeine)"
+      },
+      "kind": "stimulant (methylxanthine)",
+      "mechanism": "blocks adenosine receptors, lifting a tonic brake on background excitatory drive (weaker than caffeine)",
+      "not_modelled": "mammalian pharmacology mapped onto the fly: no fly theobromine experiment is cited",
+      "target": "firing_all",
+      "target_prediction": "higher",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "theophylline": {
+      "aliases": [],
+      "confidence": "inferred",
+      "dosable": true,
+      "evidence": [
+        "Fredholm and Sandberg (1983) Br J Pharmacol 80:639 — methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+        "GtoPdb 2026.3.1: theophylline rows at the adenosine A1 receptor (mammalian)"
+      ],
+      "expect": {
+        "direction": "higher",
+        "measure": "firing_all",
+        "why": "lifts the adenosine brake on background drive, so firing rises (more than caffeine)"
+      },
+      "kind": "stimulant (methylxanthine)",
+      "mechanism": "blocks adenosine receptors, lifting a tonic brake on background excitatory drive (stronger than caffeine)",
+      "not_modelled": "phosphodiesterase inhibition (a second theophylline action) is not modelled; mammalian mapping as with theobromine",
+      "target": "firing_all",
+      "target_prediction": "higher",
+      "behavior": "activity",
+      "drug_class": "stimulant",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    },
+    "ttx": {
+      "aliases": [
+        "tetrodotoxin",
+        "pufferfish"
+      ],
+      "confidence": "sim mechanism, no paper attached",
+      "dosable": true,
+      "evidence": [],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "blocked neurons cannot spike, so firing falls"
+      },
+      "kind": "sodium-channel blocker",
+      "mechanism": "blocks sodium channels so affected neurons cannot fire",
+      "not_modelled": null,
+      "target": "firing_all",
+      "target_prediction": "lower",
+      "behavior": [
+        "activity",
+        "firing_all"
+      ],
+      "drug_class": "toxin",
+      "effect_confidence": "assumption",
+      "mechanism_confidence": "assumption"
+    },
+    "vigabatrin": {
+      "aliases": [
+        "sabril"
+      ],
+      "confidence": "insect evidence",
+      "dosable": true,
+      "evidence": [
+        "Ben-Menachem (2011) Acta Neurol Scand Suppl 124(192):5 — vigabatrin irreversibly inhibits GABA transaminase (mammalian review)",
+        "CTD chemical–gene cotreatment rows in Drosophila (PMID 21503142)"
+      ],
+      "expect": {
+        "direction": "lower",
+        "measure": "firing_all",
+        "why": "more synaptic GABA means stronger inhibition, so firing falls"
+      },
+      "kind": "GABA-raising antiepileptic",
+      "mechanism": "raises synaptic GABA by irreversibly blocking its breakdown enzyme (GABA transaminase)",
+      "not_modelled": "irreversibility is not modelled: real recovery needs new enzyme over days, but washout here restores baseline exactly",
+      "target": "firing.GABA (inhibitory) neurons",
+      "target_prediction": "different",
+      "behavior": "activity",
+      "drug_class": "sedative",
+      "effect_confidence": "literature-assisted",
+      "mechanism_confidence": "literature-assisted"
+    }
+  },
+  "untestable": [
+    {
+      "keys": [
+        "learn",
+        "memory",
+        "remember",
+        "plasticity",
+        "train"
+      ],
+      "why": "synaptic weights are static; nothing learns or remembers yet"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watch the run — Fly Study</title>
+<link rel="stylesheet" href="../../feather.css">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<script type="importmap">{ "imports": { "three": "../../vendor/three/three.module.js", "three/addons/": "../../vendor/three/" } }</script>
+</head>
+<body>
+<header class="top" id="shellBar"><span id="status" class="status">connecting…</span></header>
+<main id="picker" hidden>
+  <h2>Pick a recorded run</h2>
+  <div id="picklist" class="picklist"></div>
+</main>
+<main id="player" hidden>
+  <div class="stage">
+    <div class="glwrap"><canvas id="gl"></canvas><div id="glerr" class="glerr" hidden></div></div>
+    <aside class="side">
+      <label>Recording <select id="runSel"></select></label>
+      <label>Speed <select id="speedSel"><option value="10">10 steps/s</option><option value="20" selected>20 steps/s</option><option value="40">40 steps/s</option><option value="100">100 steps/s</option></select></label>
+      <div class="transport">
+        <button id="playBtn" class="go">Play</button>
+        <button id="restartBtn">Restart</button>
+        <!-- Record video paused: <button id="recBtn">Record video</button> -->
+      </div>
+      <div id="clock" class="clock">step 0 / 0</div>
+      <h3>Groups (firing/step, teal = now, grey = run max)</h3>
+      <div id="bars"></div>
+      <h3>Run totals</h3>
+      <div id="scalars" class="dim"></div>
+    </aside>
+  </div>
+  <div class="strip">
+    <input id="scrub" type="range" min="0" max="399" value="0" step="1" aria-label="scrub steps">
+    <canvas id="raster" width="400" height="180"></canvas>
+    <p class="dim">Raster: 2000 sampled neurons × 400 steps, decoded from the record. Brightness on the brain = recorded group firing — nothing painted. Control means drawn from the same record.</p>
+  </div>
+</main>
+<footer><p id="err" class="err"></p></footer>
+<script src="../../duo/auth.js"></script>
+<script src="../../feather.js"></script>
+<script type="module" src="player.js"></script>
+</body>
+</html>

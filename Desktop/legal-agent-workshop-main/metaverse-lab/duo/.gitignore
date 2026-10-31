@@ -1,0 +1,3 @@
+duo-auth.sqlite3
+.duo-secret
+__pycache__/

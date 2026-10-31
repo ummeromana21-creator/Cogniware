@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Fly experimenter helper: setup, run, test, review, verify.
+set -euo pipefail
+cd "$(dirname "$0")"
+
+load_env() { if [ -f .env ]; then set -a; . ./.env; set +a; fi; }
+need_venv() {
+  if [ ! -x .venv/bin/python ]; then
+    echo "no .venv here yet: run ./helper setup first" >&2; exit 1
+  fi
+}
+
+case "${1:-}" in
+  setup)
+    python3 -m venv .venv
+    .venv/bin/pip install -r requirements.txt
+    echo setup-ok
+    ;;
+  run)
+    need_venv; load_env; shift
+    .venv/bin/python -m lab_agent "$@"
+    ;;
+  test)
+    # Offline suite: stdlib only, works with or without .venv.
+    if [ -x .venv/bin/python ]; then PY=.venv/bin/python; else PY=python3; fi
+    "$PY" -m unittest discover -s tests -t . -p 'test_*.py'
+    ;;
+  review)
+    load_env; shift
+    if [ -x .venv/bin/python ]; then PY=.venv/bin/python; else PY=python3; fi
+    "$PY" -m scripts.review "$@"
+    ;;
+  verify)
+    echo "verification layer is Later scope; nothing to run yet"
+    ;;
+  *)
+    echo "usage: ./helper {setup|run|test|review|verify}" >&2; exit 1
+    ;;
+esac

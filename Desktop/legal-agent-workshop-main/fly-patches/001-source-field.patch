@@ -1,0 +1,132 @@
+--- a/experiments.py
++++ b/experiments.py
+@@ -134,6 +134,17 @@
+     c['constraints'] = list(c.get('constraints') or ['reset before every run', 'no human intervention during a run',
+                                                        f"{c['repeats']} independent runs per condition"])
+     c['author'] = str(c.get('author', 'human'))[:40]
++    src = c.get('source')
++    if src is None:
++        c['source'] = None
++    else:
++        if not isinstance(src, dict):
++            return None, "source must be an object {citation, claim, direction}"
++        if src.get('direction') not in ('higher', 'lower', 'different'):
++            return None, "source.direction must be 'higher', 'lower' or 'different'"
++        c['source'] = {'citation': str(src.get('citation', ''))[:200],
++                       'claim': str(src.get('claim', ''))[:500],
++                       'direction': src['direction']}
+     return c, None
+ 
+ 
+@@ -146,6 +157,8 @@
+     csetup = ', '.join(describe_action(a) for a in ctrl['setup']) or 'nothing'
+     lines = [f"Two glass boxes side by side, each holding {who}: the CONTROL box and the TREATMENT box. "
+              f"They run at the same time, for the same {card['steps']} steps, with the same kind of banana."]
++    if card.get('source'):
++        lines.insert(0, f"Testing the cited claim ({card['source']['citation']}): {card['source']['claim']}")
+     for t in card['treatments']:
+         tsetup = ', '.join(describe_action(a) for a in t['setup']) or 'nothing'
+         lines.append(f"\"{t['name']}\" vs \"{ctrl['name']}\": reset every fly (restore); the control box gets: {csetup}; the "
+@@ -162,6 +175,25 @@
+     if a['cmd'] == 'scramble': return "scramble her synapses"
+     if a['cmd'] == 'washout': return "wash out all drugs"
+     return a['cmd']
++
++
++def matches_claim(card, verdict):
++    """One line comparing the verdict with the cited claim, or None without a source."""
++    src = card.get('source')
++    if not src:
++        return None
++    direction, citation, pred = src['direction'], src['citation'], card['prediction']
++    if verdict == 'SUPPORTED' and pred == direction:
++        return f"Matches the cited claim ({citation}): yes — treatment went {pred}, as claimed."
++    if verdict == 'SUPPORTED':
++        return (f"Matches the cited claim ({citation}): no — the card predicted {pred} and held, "
++                f"but the paper claims {direction}.")
++    if verdict == 'NOT SUPPORTED':
++        return f"Matches the cited claim ({citation}): no — the boxes did not differ as claimed."
++    if verdict == 'MIXED':
++        return (f"Matches the cited claim ({citation}): partly — the sexes differ; "
++                f"see the per-fly verdicts.")
++    return f"Matches the cited claim ({citation}): unclear — the runs did not settle it."
+ 
+ 
+ def analyse(card, results):
+@@ -190,8 +222,15 @@
+         else:
+             overall = 'MIXED'; note = "the sexes differ: " + "; ".join(f"{f}: {v}" for f, v in verdicts.items()) + "."
+         texts.append(f"Overall: {overall} — {note}")
++        match = matches_claim(card, overall)
++        if match:
++            texts.append(match)
+         return "\n".join(texts), overall, {'per_fly': details, 'verdicts': verdicts}
+-    return analyse_one(card, results)
++    txt, v, det = analyse_one(card, results)
++    match = matches_claim(card, v)
++    if match:
++        txt += f"\n{match}"
++    return txt, v, det
+ 
+ 
+ def analyse_one(card, results):
+@@ -311,6 +350,8 @@
+ 
+     def markdown(self, record):
+         c = record['card']
++        src = c.get('source')
++        srcline = [f"*Source:* {src['citation']} — \"{src['claim']}\" (claims {src['direction']})", ""] if src else []
+         s = [f"# {c['title']}", "", f"*Hypothesis:* {c['hypothesis']}", "", f"*Description:* {c['description']}", "",
+              f"*Subject:* {record['subject']}  ·  *Date:* {record['date']}  ·  *Fly age:* {record.get('fly_age')} steps  ·  *By:* {c['author']}", "",
+              "## Steps", ""] + [f"{i+1}. {l}" for i, l in enumerate(steps_text(c))] + ["",
+@@ -336,4 +377,5 @@
+             for name, runs in record['results'].items():
+                 s.append(row(name, runs, width))
+         s += ["", "## Analysis", "", record['analysis'], "", f"## Verdict: {record['verdict']}", ""]
++        s[6:6] = srcline
+         return "\n".join(s)
+--- a/lab.html
++++ b/lab.html
+@@ -73,6 +73,10 @@
+     <label>Primary measurement</label><select id="fMeasure"></select>
+     <label>Prediction (treatment compared with sober)</label>
+     <select id="fPred"><option value="higher">higher</option><option value="lower">lower</option><option value="different">different (either way)</option></select>
++    <label>Cited claim (optional)</label><input id="fCite" type="text" placeholder="Suh et al. 2004, Nature">
++    <label>Claim in one sentence (optional)</label><input id="fClaim" type="text" placeholder="CO2 avoidance needs the V glomerulus.">
++    <label>Paper claims treatment is…</label>
++    <select id="fDir"><option value="higher">higher</option><option value="lower">lower</option><option value="different">different (either way)</option></select>
+     <div class="row"><div style="flex:1"><label>Repeats per condition</label><input id="fRep" type="number" min="3" max="10" value="5"></div><div style="flex:1"><label>Steps per run</label><input id="fSteps" type="number" min="100" max="2000" step="50" value="400"></div></div>
+     <div class="row" style="margin-top:10px"><button id="fPropose" class="green" style="flex:1">Write the card</button></div>
+   </div>
+@@ -571,7 +575,7 @@
+ function cardHtml(card, steps, extra='') {
+   const m = hello?.measures || {};
+   return `<div class="card"><h3>${esc(card.title)}</h3>
+-    <p><b>Hypothesis:</b> ${esc(card.hypothesis)}</p>${card.description ? `<p><b>Description:</b> ${esc(card.description)}</p>` : ''}
++    <p><b>Hypothesis:</b> ${esc(card.hypothesis)}</p>${card.description ? `<p><b>Description:</b> ${esc(card.description)}</p>` : ''}${card.source ? `<p><b>Source:</b> ${esc(card.source.citation)} — “${esc(card.source.claim)}” (claims ${esc(card.source.direction)})</p>` : ''}
+     <p><b>Steps:</b></p><ol>${steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+     <p><b>Variables:</b> changed — ${esc(card.variables.changed)}; measured — ${card.variables.measured.map(k => esc(m[k] || k)).join(', ')}; held constant — ${card.variables.held.map(esc).join(', ')}</p>
+     <p><b>Constraints:</b></p><ul>${card.constraints.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+@@ -619,7 +623,8 @@
+   const card = { title: document.getElementById('fTitle').value, hypothesis: document.getElementById('fHyp').value, description: document.getElementById('fDesc').value,
+     control: { name: 'sober', setup: [] }, treatments: [{ name: tname, setup }],
+     measure: document.getElementById('fMeasure').value, prediction: document.getElementById('fPred').value,
+-    repeats: +document.getElementById('fRep').value, steps: +document.getElementById('fSteps').value, author: 'human' };
++    repeats: +document.getElementById('fRep').value, steps: +document.getElementById('fSteps').value, author: 'human',
++    source: document.getElementById('fCite').value.trim() ? { citation: document.getElementById('fCite').value.trim(), claim: document.getElementById('fClaim').value.trim(), direction: document.getElementById('fDir').value } : null };
+   ownProposal = true;
+   sendAsk({ cmd:'propose_experiment', card }, (a) => { ownProposal = false; if (!a.ok) { addLog('lab', '✗ ' + a.error); return; } renderProposal(a.data.id, a.data.card, a.data.steps); });
+ };
+--- a/agent.py
++++ b/agent.py
+@@ -85,7 +85,9 @@
+   measure (one of the keys listed under MEASURES in the intro: walking and banana measures, firing overall, and
+            "where in the nervous system" measures such as firing.mushroom body, firing.legs, firing.dopamine neurons),
+   prediction ("higher" | "lower" | "different": treatment vs control), repeats (3-10, use 5), steps (use 400),
+-  variables {"changed": "...", "measured": [...], "held": [...]}, constraints ["..."], author "Muse".
++  variables {"changed": "...", "measured": [...], "held": [...]}, constraints ["..."], author "Muse",
++  source {"citation": "...", "claim": "the exact published claim", "direction": "higher"|"lower"|"different"} — include whenever
++  a paper sent you here; the verdict will say whether the run matched it.
+ The card's control condition is what the CONTROL box gets (usually nothing); each treatment is what the TREATMENT box
+ gets. Both flies sit in both boxes, so one card already compares female and male: the record comes back with a
+ verdict per fly and an overall verdict (SUPPORTED / NOT SUPPORTED / MIXED when the sexes differ).

@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Flies — Fly Study</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%234d5a3d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+:root{
+  --bg:#f6f1e7; --panel:#fbf8f1; --line:#e7e0d1; --ink:#1b1a17; --muted:#6d685d;
+  --sage:#4d5a3d; --sage-ink:#ffffff; --sage-tint:#e9ebdc; --chip:#efeadd;
+  --shadow:60,48,28; --ease:cubic-bezier(.22,.8,.24,1);
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --sans:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+}
+.hero[data-light="dusk"]{
+  --bg:#14170f; --panel:#1b1f15; --line:#2d3324; --ink:#f2ecdf; --muted:#a8a392;
+  --sage:#a9b98a; --sage-ink:#14170f; --sage-tint:#283020; --chip:#262b1d;
+  --shadow:0,0,0;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; overflow:hidden; background:var(--bg); color:var(--ink);
+  font-family:var(--sans); -webkit-font-smoothing:antialiased; transition:background .6s}
+button{font-family:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--sage); outline-offset:2px}
+.ic{width:20px; height:20px; flex:none}
+.hero{position:relative; height:100vh; height:100dvh; overflow:hidden; display:grid;
+  grid-template-columns:196px minmax(0,1fr) clamp(300px,27vw,356px);
+  grid-template-rows:minmax(0,1fr);
+  background:var(--bg); color:var(--ink); transition:background .6s, color .6s}
+#gl{position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:none; display:block}
+/* ---------- sidebar ---------- */
+.sidebar{display:flex; flex-direction:column; padding:22px 12px 18px 24px; border-right:1px solid var(--line); min-height:0}
+.brand{font-family:var(--serif); font-size:26px; letter-spacing:-.01em; margin:0; font-weight:500}
+.brand small{display:block; font-family:var(--sans); font-size:11.5px; color:var(--muted); letter-spacing:.02em; margin-top:2px}
+.nav{list-style:none; margin:20px 0 12px; padding:0; display:flex; flex-direction:column; gap:2px}
+.nav a{display:flex; gap:16px; align-items:flex-start; padding:7px 10px; border-radius:10px;
+  text-decoration:none; color:inherit; font-size:14.5px}
+.nav a:hover{background:var(--chip)}
+.nav a[aria-current="page"]{background:var(--sage-tint)}
+.nav a .ic{margin-top:1px}
+.nav small{display:block; font-size:12px; color:var(--muted); margin-top:3px}
+.sourcenote{margin-top:auto; font-size:11.5px; line-height:1.5; color:var(--muted); padding:0 10px}
+.sourcenote a{color:inherit}
+/* ---------- centre ---------- */
+.main{display:grid; grid-template-rows:auto minmax(0,1fr); padding:48px 18px 14px 26px; min-width:0; min-height:0}
+.tabs{display:flex; gap:10px; margin:0; padding:0; list-style:none}
+.tab{width:130px; padding:8px 8px 11px; display:grid; justify-items:center; gap:2px;
+  background:var(--panel); border:1px solid var(--line); border-radius:8px; cursor:pointer;
+  transition:transform .25s var(--ease), background .3s, border-color .3s}
+.tab:hover{transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--sage-tint); border-color:color-mix(in srgb, var(--sage) 45%, transparent)}
+.tab svg{width:58px; height:52px}
+.tab .nm{font-family:var(--serif); font-size:15.5px}
+.tab .lt{font-family:var(--serif); font-style:italic; font-size:12.5px; color:var(--muted)}
+#stage{position:relative; min-height:0; touch-action:none; cursor:grab; user-select:none; -webkit-user-select:none}
+#stage.dragging{cursor:grabbing}
+.ground{position:absolute; left:50%; bottom:15%; width:min(62%,460px); height:44px;
+  transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(var(--shadow),.22), transparent);
+  transition:opacity .3s, transform .3s}
+.hero.switching .ground{opacity:0; transform:translateX(-50%) scaleX(.4)}
+.loader{position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+  display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--muted);
+  opacity:0; transition:opacity .3s; pointer-events:none}
+.loader.show{opacity:1}
+.loader .ring{width:30px; height:30px; border-radius:50%;
+  border:1.5px solid var(--line); border-top-color:var(--sage); animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fallback{position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+  text-align:center; color:var(--muted); font-size:13px; max-width:280px}
+.fallback svg{width:120px; height:104px; display:block; margin:0 auto 8px}
+.hint{position:absolute; top:6px; right:4px; display:flex; align-items:center; gap:7px;
+  font-size:11.5px; color:var(--muted); margin:0; transition:opacity .5s}
+.hint.gone{opacity:0}
+.hint .ic{width:16px; height:16px}
+.rail{position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:6;
+  display:grid; gap:9px}
+.rail button{width:38px; height:38px; border-radius:50%; background:var(--panel);
+  border:1px solid var(--line); cursor:pointer; display:grid; place-items:center;
+  transition:border-color .2s, transform .1s, background .3s}
+.rail button:hover{border-color:var(--sage)}
+.rail button:active{transform:scale(.92)}
+.rail button[aria-pressed="true"]{background:var(--sage); color:var(--sage-ink); border-color:var(--sage)}
+.rail .ic{width:17px; height:17px}
+.parttip{position:absolute; z-index:6; pointer-events:none; font-size:12px; font-weight:700;
+  letter-spacing:.01em; background:var(--panel); border:1px solid var(--line); border-radius:999px;
+  padding:4px 12px; white-space:nowrap; transform:translateY(-50%);
+  box-shadow:0 2px 10px rgba(var(--shadow),.18)}
+.parttip[hidden]{display:none}
+.turn{position:absolute; bottom:46px; left:50%; transform:translateX(-50%); z-index:6;
+  display:flex; align-items:center; gap:2px; background:var(--panel);
+  border:1px solid var(--line); border-radius:999px; padding:3px 6px; font-size:13px}
+.turn button{border:0; background:none; cursor:pointer; border-radius:999px;
+  min-width:30px; height:26px; display:grid; place-items:center; font-size:13px}
+.turn button:hover{background:var(--chip)}
+.turn .ic{width:16px; height:16px}
+.turn .lbl{padding:0 4px; color:var(--muted)}
+.caption{position:absolute; bottom:0; left:0; right:0; text-align:center; margin:0;
+  font-family:var(--serif); font-style:italic; font-size:clamp(16px,1.55vw,20px)}
+/* ---------- right sheet ---------- */
+.info{display:grid; grid-template-rows:auto minmax(0,1fr); gap:16px; padding:13px 26px 14px 0; min-width:0; min-height:0}
+.toprow{display:flex; gap:10px; align-items:center}
+.search{flex:1; height:32px; display:flex; align-items:center; gap:8px; padding:0 10px;
+  background:var(--panel); border:1px solid var(--line); border-radius:8px}
+.search .ic{width:15px; height:15px; color:var(--muted)}
+.search input{flex:1; min-width:0; border:0; background:none; color:inherit; font-size:11.5px; font-family:inherit}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:none}
+.search:focus-within{border-color:var(--sage)}
+.iconbtn{width:32px; height:32px; border-radius:50%; background:var(--panel);
+  border:1px solid var(--line); cursor:pointer; display:grid; place-items:center; flex:none}
+.iconbtn:hover{border-color:var(--sage)}
+.iconbtn .ic{width:16px; height:16px}
+.avatar{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.avatar .ic{width:15px; height:15px}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:6px;
+  padding:22px 20px 16px; overflow-y:auto; min-height:0; scrollbar-width:thin}
+.card::-webkit-scrollbar{width:6px}
+.card::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px}
+.card article{display:flex; flex-direction:column; min-height:100%}
+.eyebrow{font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0}
+h1{font-family:var(--serif); font-weight:500; font-size:clamp(40px,4.2vw,54px);
+  line-height:1; letter-spacing:-.025em; margin:8px 0 0}
+h1 .sex{font-size:.42em; font-style:italic; color:var(--muted); letter-spacing:0; margin-left:8px}
+.tax{display:grid; grid-template-columns:repeat(2,1fr); gap:6px; margin-top:14px}
+.tax div{background:var(--chip); border-radius:8px; padding:6px 8px; min-width:0}
+.tax .k{display:block; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700}
+.tax .v{display:block; margin-top:2px; font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.lineage{font-size:11.5px; color:var(--muted); margin:8px 0 0}
+.tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+.tags span{font-size:11.5px; padding:6px 13px; border-radius:999px; background:var(--chip)}
+.desc{font-size:13.5px; line-height:1.55; text-wrap:pretty; margin:14px 0 0}
+h2{font-family:var(--serif); font-weight:400; font-size:21px; margin:20px 0 4px;
+  border-top:1px solid var(--line); padding-top:14px}
+.trait{display:grid; grid-template-columns:22px 92px 1fr; gap:16px; align-items:start;
+  font-size:13px; padding:7px 0}
+.trait .ic{width:18px; height:18px; color:var(--sage); margin-top:1px}
+.trait .k{color:var(--muted)}
+.trait .v{min-width:0}
+.homerow{display:flex; gap:12px; align-items:flex-start; font-size:13px; padding:7px 0}
+.homerow .ic{width:18px; height:18px; color:var(--sage); flex:none; margin-top:1px}
+.closeup{margin-top:auto; display:grid; grid-template-columns:76px 1fr 18px; gap:14px; align-items:center;
+  padding:10px; border:1px solid var(--line); border-radius:8px; background:none; cursor:pointer;
+  text-align:left; width:100%; transition:border-color .2s, background .2s; color:inherit; margin-bottom:0}
+.card article > .closeup{margin-top:auto}
+.closeup:hover{border-color:var(--sage); background:var(--sage-tint)}
+.closeup .lens{display:block; width:76px; height:76px; border-radius:50%; border:1px solid var(--line);
+  background-size:520%}
+.closeup .ct{display:block; font-family:var(--serif); font-weight:500; font-size:18px}
+.closeup p{font-size:11.5px; color:var(--muted); margin:4px 0 0; line-height:1.45}
+.closeup .ic{width:18px; height:18px; transition:transform .3s var(--ease)}
+.closeup[aria-pressed="true"]{border-color:var(--sage); background:var(--sage-tint)}
+.closeup[aria-pressed="true"] .ic{transform:rotate(180deg)}
+.swap-out{opacity:0; transform:translateY(-6px); transition:opacity .2s ease-in, transform .2s ease-in}
+.swap-in{animation:rise .6s var(--ease) backwards}
+@keyframes rise{from{opacity:0; transform:translateY(12px)}}
+/* ---------- focus mode ---------- */
+.hero.focus .sidebar{opacity:0; transform:translateX(-24px); pointer-events:none}
+.hero.focus .info{opacity:0; transform:translateX(24px); pointer-events:none}
+.hero.focus .tabs{opacity:0; transform:translateY(-16px); pointer-events:none}
+.sidebar,.info,.tabs{transition:opacity .5s var(--ease), transform .5s var(--ease)}
+/* ---------- phone top bar ---------- */
+.phonetop{display:none}
+/* ---------- tablet ---------- */
+@media (max-width:1100px){
+  .hero{grid-template-columns:minmax(0,1fr) clamp(280px,36vw,340px)}
+  .sidebar{display:none}
+  .main{padding-left:20px}
+}
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  .hero{display:flex; flex-direction:column; height:100dvh}
+  .phonetop{display:flex; align-items:center; gap:10px; padding:10px 14px 0}
+  .phonetop .brand{font-size:21px; margin-right:auto}
+  .phonetop .iconbtn{border-radius:50%}
+  .psearch{position:absolute; top:52px; left:14px; right:14px; z-index:8; display:none;
+    background:var(--panel); border:1px solid var(--sage); border-radius:8px; padding:0 10px; height:36px}
+  .psearch.show{display:flex; align-items:center; gap:8px}
+  .psearch input{flex:1; border:0; background:none; color:inherit; font-size:13px; font-family:inherit}
+  .psearch input:focus{outline:none}
+  .main{flex:1; min-height:0; padding:10px 14px 6px; grid-template-rows:auto minmax(0,1fr)}
+  .tabs{gap:8px}
+  .tab{flex:1; width:auto; grid-template-columns:44px 1fr; grid-template-rows:auto auto;
+    justify-items:start; align-items:center; padding:6px 10px; column-gap:10px}
+  .tab svg{width:44px; height:40px; grid-row:1/3}
+  .tab .nm{font-size:15px}
+  .tab .lt{font-size:12px}
+  .hint{display:none}
+  .ground{bottom:17%; height:30px}
+  .rail button{width:34px; height:34px}
+  .rail{gap:7px}
+  .turn{bottom:30px}
+  .caption{font-size:15px}
+  .info{padding:0; display:block; position:relative; z-index:7}
+  .info .toprow{display:none}
+  .card{max-height:40dvh; border-radius:16px 16px 0 0; border-left:0; border-right:0; border-bottom:0;
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom))}
+  h1{font-size:34px}
+  h2{font-size:19px}
+  .tax{grid-template-columns:repeat(2,1fr)}
+  .hero.focus .info{transform:translateY(100%); opacity:1}
+  .hero.focus .phonetop{opacity:0; pointer-events:none}
+  .phonetop{transition:opacity .5s var(--ease)}
+}
+/* ---------- short viewports ---------- */
+@media (max-height:620px) and (min-width:761px){
+  .main{padding-top:20px}
+  .sidebar{padding-top:14px}
+  .sourcenote{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important; transition-duration:.001s !important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4"/><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M8 15h8"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v9H9l-5 4V6z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V6a1.5 1.5 0 0 1 3 0v5V4.5a1.5 1.5 0 0 1 3 0V11v-5.5a1.5 1.5 0 0 1 3 0V12c0 4-2.5 7-6 7-2.4 0-4-1-5.2-3.2L3.6 13a1.5 1.5 0 0 1 2.5-1.6L8 14"/></symbol>
+    <symbol id="i-ccw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a8 8 0 1 1 2 6"/><path d="M4 4v6h6"/></symbol>
+    <symbol id="i-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10a8 8 0 1 0-2 6"/><path d="M20 4v6h-6"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="7" rx="1"/><path d="M7 9v3M11 9v4M15 9v3M19 9v4"/></symbol>
+    <symbol id="i-nodes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="10" cy="18" r="2.5"/><path d="M8 7l7.5 1M7 8.5L9.5 16M16.5 10l-4.5 6"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 9 12 4 20 4c0 9-5 15-14 15"/><path d="M5 19c3-5 7-9 12-11"/></symbol>
+    <symbol id="i-dna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c0 6 10 6 10 12M17 3C17 9 7 9 7 15"/><path d="M7 15c0 3 2.5 4.5 5 6M17 15c0 3-2.5 4.5-5 6M8.5 6.5h7M8.5 12h7"/></symbol>
+    <symbol id="i-cycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12a7 7 0 0 1-12.2 4.7M5 12a7 7 0 0 1 12.2-4.7"/><path d="M17 3v4h-4M7 21v-4h4"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7l9 9-7 7-9-9V4z"/><circle cx="9" cy="9" r="1.6"/></symbol>
+    <symbol id="flyglyph" viewBox="0 0 58 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="20" cy="18" rx="13" ry="6.5" transform="rotate(-28 20 18)" opacity=".55"/>
+      <ellipse cx="38" cy="18" rx="13" ry="6.5" transform="rotate(28 38 18)" opacity=".55"/>
+      <ellipse cx="29" cy="30" rx="7" ry="12"/>
+      <circle cx="29" cy="13" r="5.5"/>
+      <path d="M24 32l-7 4M24 37l-6 6M34 32l7 4M34 37l6 6" opacity=".7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="hero" id="hero" data-light="day">
+  <canvas id="gl"></canvas>
+
+  <aside class="sidebar" aria-label="Portal">
+    <p class="brand">Fly Guide<small>Meet the flies</small></p>
+    <nav aria-label="Pages"><ul class="nav">
+      <li><a href="../study.html"><svg class="ic"><use href="#i-flask"/></svg><span>Study<small>Computational lab</small></span></a></li>
+      <li><a href="../library/"><svg class="ic"><use href="#i-layers"/></svg><span>Fly Atlas<small>66 brain regions</small></span></a></li>
+      <li><a href="../ask/"><svg class="ic"><use href="#i-chat"/></svg><span>Ask the flies<small>Run it live</small></span></a></li>
+      <li><a href="./" aria-current="page"><svg class="ic"><use href="#i-eye"/></svg><span>Meet the flies<small>Maxime · Hagrid</small></span></a></li>
+    </ul></nav>
+    <p class="sourcenote">Neuron counts from the <a href="../library/">Fly Atlas</a> wiring: BANC (female) + Male CNS.</p>
+  </aside>
+
+  <div class="phonetop">
+    <p class="brand">Fly Guide</p>
+    <button id="phoneSearchBtn" class="iconbtn" aria-label="Search flies"><svg class="ic"><use href="#i-search"/></svg></button>
+    <button class="iconbtn" aria-label="Notifications"><svg class="ic"><use href="#i-bell"/></svg></button>
+    <button class="iconbtn avatar" aria-label="Account"><svg class="ic"><use href="#i-user"/></svg></button>
+    <div class="psearch" id="phoneSearchWrap">
+      <svg class="ic" style="width:15px;height:15px;color:var(--muted)"><use href="#i-search"/></svg>
+      <input id="phoneSearchInput" type="text" placeholder="Try “maxime” or “hagrid”…" aria-label="Search flies">
+    </div>
+  </div>
+
+  <section class="main" aria-label="Specimen stage">
+    <ul class="tabs" id="tablist" role="tablist" aria-label="Flies">
+      <li><button class="tab" id="tab-maxime" role="tab" aria-selected="false" data-fly="0">
+        <svg aria-hidden="true"><use href="#flyglyph"/></svg>
+        <span class="nm">Maxime</span><span class="lt">D. melanogaster ♀</span>
+      </button></li>
+      <li><button class="tab" id="tab-hagrid" role="tab" aria-selected="true" data-fly="1">
+        <svg aria-hidden="true"><use href="#flyglyph"/></svg>
+        <span class="nm">Hagrid</span><span class="lt">D. melanogaster ♂</span>
+      </button></li>
+    </ul>
+    <div id="stage" tabindex="0" role="application"
+         aria-label="Interactive 3D fly. Drag to rotate, scroll to zoom, double-click to reset.">
+      <div class="ground" id="ground"></div>
+      <div class="loader" id="loader"><span class="ring"></span><span>Preparing the specimen…</span></div>
+      <div class="fallback" id="fallback" hidden>
+        <svg aria-hidden="true"><use href="#flyglyph"/></svg>
+        <span id="fallbackText">WebGL is unavailable, so here is the specimen card instead.</span>
+      </div>
+      <p class="hint" id="hint"><svg class="ic"><use href="#i-hand"/></svg>Drag to turn · scroll to zoom · hover for names</p>
+      <div class="parttip" id="partTip" aria-hidden="true" hidden></div>
+      <div class="rail" role="toolbar" aria-label="View controls">
+        <button id="zin" aria-label="Zoom in" aria-pressed="false"><svg class="ic"><use href="#i-plus"/></svg></button>
+        <button id="zout" aria-label="Zoom out" aria-pressed="false"><svg class="ic"><use href="#i-minus"/></svg></button>
+        <button id="expand" aria-label="Expand view" aria-pressed="false"><svg class="ic"><use href="#i-expand"/></svg></button>
+        <button id="lightBtn" aria-label="Toggle day and dusk" aria-pressed="false"><svg class="ic"><use href="#i-sun"/></svg></button>
+        <button id="labelBtn" aria-label="Toggle body-part labels" aria-pressed="true"><svg class="ic"><use href="#i-tag"/></svg></button>
+      </div>
+      <div class="turn" role="group" aria-label="Turn the specimen">
+        <button id="ccw" aria-label="Turn left 90 degrees"><svg class="ic"><use href="#i-ccw"/></svg></button>
+        <button id="spin360" aria-label="Spin once around"><span class="lbl">360°</span></button>
+        <button id="cw" aria-label="Turn right 90 degrees"><svg class="ic"><use href="#i-cw"/></svg></button>
+      </div>
+      <p class="caption" id="caption"></p>
+    </div>
+  </section>
+
+  <section class="info" aria-label="Fly details">
+    <div class="toprow">
+      <label class="search"><svg class="ic"><use href="#i-search"/></svg>
+        <input id="searchInput" type="text" placeholder="Search species, habitats, or regions…" autocomplete="off" aria-label="Search flies">
+      </label>
+      <button class="iconbtn" aria-label="Notifications"><svg class="ic"><use href="#i-bell"/></svg></button>
+      <button class="iconbtn avatar" aria-label="Account"><svg class="ic"><use href="#i-user"/></svg></button>
+    </div>
+    <div class="card"><article id="detail" aria-live="polite"></article></div>
+  </section>
+</div>
+
+<script type="importmap">{ "imports": { "three": "../vendor/three/three.module.js" } }</script>
+<script type="module">
+import * as THREE from 'three';
+
+// =====================================================================
+// 1. CONFIG + FLY DATA (atlas numbers from ../library/data.json hub sums)
+// =====================================================================
+const HOME_YAW = 0.75, HOME_PITCH = 0.12;   // three-quarter view, head right
+const ZMIN = 0.55, ZMAX = 3.4, CLOSEUP_Z = 2.6;
+const SWITCH_MS = 780;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const FLIES = [
+  {
+    name: 'Maxime', sex: '♀ female', latin: 'Drosophila melanogaster',
+    family: 'DROSOPHILIDAE',
+    tax: [['Order', 'Diptera'], ['Family', 'Drosophilidae'], ['Genus', 'Drosophila'], ['Species', 'melanogaster']],
+    lineage: 'Animalia › Arthropoda › Insecta › Diptera',
+    tags: ['Female', 'BANC brain', 'Keen forager'],
+    desc: 'Maxime is our female fly, wired from the BANC connectome — every one of her 157,789 neurons mapped, joined by 3.0 million connections. Larger than Hagrid, with a pale striped abdomen tapering to a point, she walks open ground probing for yeast with her sponge-like proboscis, watching it all through two brick-red compound eyes.',
+    traits: [
+      ['i-nodes', 'Neurons', '157,789 mapped'],
+      ['i-pulse', 'Synapses', '23.6 million'],
+      ['i-grid', 'Brain regions', '66 entries · 8 hubs · 58 neuropils'],
+      ['i-ruler', 'Body length', '≈ 2.5 mm · ≈ 1 mg'],
+    ],
+    home: 'A glass jar on the bench — her wild cousins haunt every orchard and compost heap.',
+    caption: 'Striped, sharp-eyed, and first to the banana.',
+    closeup: 'Each eye packs ≈ 800 hexagonal facets, every one its own lens — the brick-red shimmer is screening pigment between them.',
+    lensPos: '30% 25%',
+  },
+  {
+    name: 'Hagrid', sex: '♂ male', latin: 'Drosophila melanogaster',
+    family: 'DROSOPHILIDAE',
+    tax: [['Order', 'Diptera'], ['Family', 'Drosophilidae'], ['Genus', 'Drosophila'], ['Species', 'melanogaster']],
+    lineage: 'Animalia › Arthropoda › Insecta › Diptera',
+    tags: ['Male', 'Male-CNS brain', 'Wing singer'],
+    desc: 'Hagrid is our male fly, wired from the Male CNS connectome — about 166,700 neurons and 9.0 million connections, the fullest map in the lab. Smaller and darker than Maxime, with a blunt soot-tipped abdomen and a comb of black bristles on each foreleg, he courts by vibrating one wing into song.',
+    traits: [
+      ['i-nodes', 'Neurons', '166,700 mapped'],
+      ['i-pulse', 'Synapses', '89.9 million'],
+      ['i-grid', 'Brain regions', '66 entries · 8 hubs · 58 neuropils'],
+      ['i-ruler', 'Body length', '≈ 2.0 mm · under 1 mg'],
+    ],
+    home: 'The same glass jar — he guards his corner of the banana.',
+    caption: 'He sings his courtship with one wing.',
+    closeup: 'The foreleg sex comb — a row of dark bristles found only on males, used to hold the female during courtship.',
+    lensPos: '62% 30%',
+  },
+];
+const SPECIES_ROWS = [
+  ['i-dna', 'Genome', '4 chromosome pairs · ≈ 13,600 genes'],
+  ['i-cycle', 'Life cycle', 'Egg to adult in ≈ 10 days at 25 °C'],
+  ['i-eye', 'Senses', 'Tastes with its feet · smells with its antennae'],
+];
+// Hex-facet tile for the close-up lens (inline SVG, no assets).
+const FACET = 'url("data:image/svg+xml,' +
+  '%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2748%27%3E' +
+  '%3Crect width=%2748%27 height=%2748%27 fill=%27%237c1f1f%27/%3E%3Cg fill=%27%23c0392b%27%3E' +
+  '%3Ccircle cx=%276%27 cy=%276%27 r=%275%27/%3E%3Ccircle cx=%2718%27 cy=%276%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2730%27 cy=%276%27 r=%275%27/%3E%3Ccircle cx=%2742%27 cy=%276%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%270%27 cy=%2716%27 r=%275%27/%3E%3Ccircle cx=%2712%27 cy=%2716%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2724%27 cy=%2716%27 r=%275%27/%3E%3Ccircle cx=%2736%27 cy=%2716%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2748%27 cy=%2716%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%276%27 cy=%2726%27 r=%275%27/%3E%3Ccircle cx=%2718%27 cy=%2726%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2730%27 cy=%2726%27 r=%275%27/%3E%3Ccircle cx=%2742%27 cy=%2726%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%270%27 cy=%2736%27 r=%275%27/%3E%3Ccircle cx=%2712%27 cy=%2736%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2724%27 cy=%2736%27 r=%275%27/%3E%3Ccircle cx=%2736%27 cy=%2736%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2748%27 cy=%2736%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%276%27 cy=%2746%27 r=%275%27/%3E%3Ccircle cx=%2718%27 cy=%2746%27 r=%275%27/%3E' +
+  '%3Ccircle cx=%2730%27 cy=%2746%27 r=%275%27/%3E%3Ccircle cx=%2742%27 cy=%2746%27 r=%275%27/%3E' +
+  '%3C/g%3E%3C/svg%3E")';
+
+// Hover hotspots: invisible proxies over each body part (model space).
+// kind ball: r (+optional scale); kind box: size [w,h,d]. mirror adds ±X.
+const PARTS = [
+  { text: 'Head', kind: 'ball', pos: [0, 0.10, 0.72], r: 0.34 },
+  { text: 'Compound eye', kind: 'ball', pos: [0.24, 0.16, 0.70], r: 0.24, mirror: true },
+  { text: 'Antenna', kind: 'ball', pos: [0.13, 0.0, 1.14], r: 0.22, mirror: true },
+  { text: 'Thorax', kind: 'ball', pos: [0, 0.06, 0.18], r: 0.5, scale: [0.9, 0.88, 1.1] },
+  { text: 'Wing', kind: 'box', pos: [0.30, 0.47, -1.05], size: [0.55, 0.26, 1.1], mirror: true },
+  { text: 'Haltere', kind: 'ball', pos: [0.48, 0.30, -0.46], r: 0.19, mirror: true },
+  { text: 'Abdomen', kind: 'ball', pos: [0, 0.02, -0.55], r: 0.5, scale: [0.95, 0.9, 1.5] },
+  { text: 'Leg', kind: 'box', pos: [0.5, -0.9, 0.1], size: [0.55, 1.4, 0.9], mirror: true },
+];
+// Renders nothing (no color, no depth) but still raycasts.
+const PROXY_MAT = new THREE.MeshBasicMaterial({
+  transparent: true, opacity: 0, depthWrite: false, colorWrite: false,
+});
+
+// =====================================================================
+// 2. HELPERS + DOM
+// =====================================================================
+const $ = (id) => document.getElementById(id);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const easeInCubic = (t) => t * t * t;
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+const outBack = (t) => 1 + 2.2 * Math.pow(t - 1, 3) + 1.2 * Math.pow(t - 1, 2);
+const damp = (rate, dt) => 1 - Math.exp(-dt * rate);
+
+const hero = $('hero'), stage = $('stage'), canvas = $('gl'), loader = $('loader'),
+  fallback = $('fallback'), fallbackText = $('fallbackText'), hint = $('hint'),
+  caption = $('caption'), detail = $('detail'), tablist = $('tablist');
+const tabs = [0, 1].map((i) => tablist.querySelector(`[data-fly="${i}"]`));
+
+let booted = false;   // first frame rendered
+function showFallback(msg) {
+  loader.classList.remove('show');
+  if (msg) fallbackText.textContent = msg;
+  fallback.hidden = false;
+}
+// Readable card instead of a black stage if boot fails.
+addEventListener('error', (e) => { if (!booted) showFallback('This specimen could not be prepared: ' + (e.message || 'script error')); });
+addEventListener('unhandledrejection', (e) => { if (!booted) showFallback('This specimen could not be prepared: ' + (e.reason || 'load error')); });
+
+// =====================================================================
+// 3. CODE-DRAWN TEXTURES (no assets: CanvasTexture only)
+// =====================================================================
+function makeTex(w, h, draw, srgb = true) {
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+}
+// Abdomen: cuticle base + transverse dark bands. Canvas bottom = rear tip
+// (lathe v=0 at the first profile point).
+function abdomenTex(male) {
+  return makeTex(256, 256, (g, w, h) => {
+    const base = g.createLinearGradient(0, 0, 0, h);
+    base.addColorStop(0, '#d3ab74'); base.addColorStop(1, '#bd9260');
+    g.fillStyle = base; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#2b2320';
+    // bands widen toward the rear (larger y = rear)
+    const bands = male  // fractions from the rear tip; male rear is solid dark
+      ? [[0.00, 0.45], [0.52, 0.60], [0.68, 0.74], [0.84, 0.88]]
+      : [[0.04, 0.17], [0.22, 0.32], [0.38, 0.46], [0.54, 0.60], [0.70, 0.74], [0.85, 0.88]];
+    for (const [a, b] of bands) g.fillRect(0, h * (1 - b), w, h * (b - a));
+    // speckle for cuticle variation
+    g.fillStyle = 'rgba(60,40,20,0.08)';
+    for (let i = 0; i < 700; i++) g.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5);
+  });
+}
+// Thorax: tan with faint longitudinal stripes (constant-u lines).
+const thoraxTex = () => makeTex(256, 256, (g, w, h) => {
+  g.fillStyle = '#b28a5c'; g.fillRect(0, 0, w, h);
+  g.fillStyle = 'rgba(70,50,28,0.35)';
+  for (const x of [0.30, 0.42, 0.58, 0.70]) g.fillRect(w * x - 3, 0, 6, h);
+  g.fillStyle = 'rgba(255,235,200,0.10)';
+  for (const x of [0.24, 0.36, 0.48, 0.60, 0.72]) g.fillRect(w * x - 2, 0, 4, h);
+  g.fillStyle = 'rgba(60,40,20,0.10)';
+  for (let i = 0; i < 600; i++) g.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5);
+});
+// Compound eye: offset rows of ommatidia facets, shaded per facet.
+const eyeTex = () => makeTex(256, 256, (g, w, h) => {
+  g.fillStyle = '#7c1f1f'; g.fillRect(0, 0, w, h);
+  const r = 7, dx = 13, dy = 11;
+  for (let row = 0, y = 0; y < h + dy; y += dy, row++) {
+    for (let x = (row % 2) * dx / 2; x < w + dx; x += dx) {
+      const grad = g.createRadialGradient(x - 2, y - 2, 1, x, y, r);
+      grad.addColorStop(0, '#d95f4a'); grad.addColorStop(0.55, '#b03227'); grad.addColorStop(1, '#6e1a14');
+      g.fillStyle = grad;
+      g.beginPath(); g.arc(x, y, r, 0, 7); g.fill();
+    }
+  }
+});
+// Wing membrane: faint tint + veins. Canvas bottom = leading edge,
+// left = wing base (u=0), right = tip.
+const wingTex = () => makeTex(256, 128, (g, w, h) => {
+  g.clearRect(0, 0, w, h);
+  g.fillStyle = 'rgba(240,240,235,0.22)'; g.fillRect(0, 0, w, h);
+  g.strokeStyle = 'rgba(80,68,56,0.9)'; g.lineCap = 'round';
+  g.lineWidth = 6;  // leading edge (costa)
+  g.beginPath(); g.moveTo(2, h - 3); g.lineTo(w - 4, 6); g.stroke();
+  g.lineWidth = 3.5;  // longitudinal veins fanning from the base
+  const base = [6, h - 8];
+  for (const ty of [0.10, 0.32, 0.54, 0.76, 0.94]) {
+    g.beginPath(); g.moveTo(...base);
+    g.quadraticCurveTo(w * 0.4, h * ty + 8, w - 3, h * ty); g.stroke();
+  }
+  g.lineWidth = 2;  // crossveins
+  g.beginPath(); g.moveTo(w * 0.30, h * 0.72); g.lineTo(w * 0.30, h * 0.92); g.stroke();
+  g.beginPath(); g.moveTo(w * 0.55, h * 0.42); g.lineTo(w * 0.55, h * 0.62); g.stroke();
+});
+
+// =====================================================================
+// 4. FLY BUILDER (procedural Drosophila; faces +Z, up +Y)
+// =====================================================================
+const V3 = (x, y, z) => new THREE.Vector3(x, y, z);
+function limb(a, b, r1, r2, mat) {
+  const dir = V3(0, 0, 0).subVectors(b, a);
+  const len = dir.length();
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r2, r1, len, 10), mat);
+  m.position.copy(a).addScaledVector(dir, 0.5);
+  m.quaternion.setFromUnitVectors(V3(0, 1, 0), dir.normalize());
+  return m;
+}
+function ball(r, mat, x, y, z, w = 32, h = 24) {
+  const m = new THREE.Mesh(new THREE.SphereGeometry(r, w, h), mat);
+  m.position.set(x, y, z);
+  return m;
+}
+
+// Wing blade: Shape in XY (x = base→tip, +y = trailing), UVs remapped to
+// the bounding box so the vein texture spans base→tip, leading→trailing.
+function wingGeo(mirror) {
+  const X = (v) => v * mirror;
+  const s = new THREE.Shape();
+  s.moveTo(X(0), 0.10);
+  s.quadraticCurveTo(X(0.7), 0.30, X(1.25), 0.12);
+  s.quadraticCurveTo(X(1.6), 0.02, X(1.7), -0.06);
+  s.quadraticCurveTo(X(1.1), -0.20, X(0.5), -0.22);
+  s.quadraticCurveTo(X(0.15), -0.22, X(0), -0.12);
+  s.closePath();
+  const g = new THREE.ShapeGeometry(s, 12);
+  g.computeBoundingBox();
+  const bb = g.boundingBox, sx = bb.max.x - bb.min.x, sy = bb.max.y - bb.min.y;
+  const pos = g.attributes.position, uv = g.attributes.uv;
+  for (let i = 0; i < uv.count; i++)
+    uv.setXY(i, (pos.getX(i) - bb.min.x) / sx, (pos.getY(i) - bb.min.y) / sy);
+  g.rotateX(-Math.PI / 2);   // lay flat: length ±X, leading edge +Z
+  g.rotateX(-0.15);          // slight blade pitch, leading edge up
+  return g;
+}
+
+function buildFly(male) {
+  const model = new THREE.Group();
+  // Shared material roles.
+  const cuticle = new THREE.MeshStandardMaterial({ color: 0xbb9160, roughness: 0.6, metalness: 0.02 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x241d18, roughness: 0.7 });
+  const legMat = new THREE.MeshStandardMaterial({ color: 0x5a4630, roughness: 0.7 });
+  const paleMat = new THREE.MeshStandardMaterial({ color: 0xd9c9a8, roughness: 0.5 });
+  const eyeMap = eyeTex();
+  const eyeMat = new THREE.MeshStandardMaterial({
+    map: eyeMap, bumpMap: eyeMap, bumpScale: 0.6,
+    roughness: 0.32, metalness: 0.05,
+  });
+  const abdomenMat = new THREE.MeshStandardMaterial({ map: abdomenTex(male), roughness: 0.55, metalness: 0.03 });
+  const thoraxMat = new THREE.MeshStandardMaterial({ map: thoraxTex(), roughness: 0.6, metalness: 0.02 });
+  const wingMat = new THREE.MeshStandardMaterial({
+    map: wingTex(), transparent: true, opacity: 0.62, roughness: 0.15,
+    metalness: 0, side: THREE.DoubleSide, depthWrite: false,
+  });
+
+  // Abdomen: lathe from a traced profile (female pointed, male blunt).
+  const prof = male  // [0,0] first: closes the rear tip (open lathes show a hole)
+    ? [[0, 0], [0.10, 0.02], [0.28, 0.10], [0.40, 0.35], [0.44, 0.65], [0.42, 0.95], [0.36, 1.20], [0.26, 1.35]]
+    : [[0, 0], [0.18, 0.08], [0.34, 0.30], [0.44, 0.60], [0.47, 0.90], [0.42, 1.20], [0.34, 1.40], [0.22, 1.50]];
+  const abd = new THREE.Mesh(
+    new THREE.LatheGeometry(prof.map(([x, y]) => new THREE.Vector2(x, y)), 48), abdomenMat);
+  abd.geometry.rotateX(Math.PI / 2);   // axis → +Z, tip at z=0
+  abd.position.set(0, 0.02, male ? -1.22 : -1.32);
+  model.add(abd);
+
+  // Thorax + head.
+  const thorax = ball(0.5, thoraxMat, 0, 0.06, 0.18);
+  thorax.geometry.rotateX(Math.PI / 2);  // stripes run front-to-back
+  thorax.scale.set(0.86, 0.86, 1.10);
+  model.add(thorax);
+  const head = ball(0.36, cuticle, 0, 0.10, 0.72);
+  head.scale.set(1.12, 0.92, 0.88);
+  model.add(head);
+
+  // Compound eyes + ocelli + antennae + proboscis.
+  for (const sx of [1, -1]) {
+    const eye = ball(0.27, eyeMat, sx * 0.20, 0.15, 0.70);
+    eye.scale.set(0.82, 1.0, 0.95);  // seated into the head, less googly
+    model.add(eye);
+    const fun = ball(0.055, legMat, sx * 0.11, 0.02, 1.00);
+    fun.scale.set(1, 1.2, 0.8);
+    model.add(fun, ball(0.03, legMat, sx * 0.09, 0.06, 0.96));
+    model.add(limb(V3(sx * 0.11, 0.02, 1.03), V3(sx * 0.22, -0.08, 1.36), 0.011, 0.007, dark));
+  }
+  model.add(ball(0.028, dark, 0, 0.42, 0.62));
+  model.add(ball(0.028, dark, 0.06, 0.40, 0.58), ball(0.028, dark, -0.06, 0.40, 0.58));
+  const prob = new THREE.Mesh(new THREE.ConeGeometry(0.07, 0.2, 16), legMat);
+  prob.position.set(0, -0.20, 0.92); prob.rotation.x = Math.PI * 0.75;
+  model.add(prob);
+
+  // Wings: dihedral group > yaw group > blade.
+  for (const sx of [1, -1]) {
+    const dihedral = new THREE.Group(), yaw = new THREE.Group();
+    const blade = new THREE.Mesh(wingGeo(sx), wingMat);
+    blade.renderOrder = 2;
+    blade.scale.set(1.18, 1, 1.28);  // broader blade, past the abdomen tip
+    yaw.add(blade);
+    yaw.rotation.y = sx * 1.35;  // swept back over the abdomen
+    dihedral.add(yaw);
+    dihedral.rotation.z = sx * 0.06;  // lying flatter
+    dihedral.position.set(sx * 0.13, 0.40, -0.10);
+    model.add(dihedral);
+    // Halteres (Diptera signature): stalk + knob behind each wing.
+    model.add(limb(V3(sx * 0.26, 0.26, -0.30), V3(sx * 0.48, 0.30, -0.46), 0.018, 0.014, paleMat));
+    model.add(ball(0.055, paleMat, sx * 0.48, 0.30, -0.46));
+  }
+
+  // Legs: femur / tibia / tarsus posed per pair; males get a sex comb.
+  const pairs = [[0.38, 0.12], [0.14, 0.0], [-0.12, -0.14]];
+  pairs.forEach(([z, dz], pi) => {
+    for (const sx of [1, -1]) {
+      const hip = V3(sx * 0.24, -0.20, z), knee = V3(sx * 0.60, -0.58, z + dz),
+        ankle = V3(sx * 0.44, -1.00, z + dz * 1.5 + 0.05), foot = V3(sx * 0.42, -1.30, z + 0.14);
+      model.add(limb(hip, knee, 0.042, 0.034, legMat));
+      model.add(limb(knee, ankle, 0.028, 0.022, legMat));
+      model.add(limb(ankle, foot, 0.016, 0.010, legMat));
+      if (male && pi === 0) {  // foreleg sex comb
+        const comb = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.16, 0.03), dark);
+        comb.position.set(sx * 0.42, -0.39, z + 0.10);
+        comb.rotation.z = sx * 0.7;
+        model.add(comb);
+      }
+    }
+  });
+
+  // Bristles (macrochaetae): thorax dorsum, scutellum, head.
+  const bristle = (x, y, z) => {
+    const b = new THREE.Mesh(new THREE.ConeGeometry(0.008, 0.16, 6), dark);
+    b.position.set(x, y, z); b.rotation.x = -0.95;
+    model.add(b);
+  };
+  for (const sx of [1, -1]) {
+    bristle(sx * 0.12, 0.56, -0.05); bristle(sx * 0.18, 0.54, -0.25);
+    bristle(sx * 0.10, 0.58, 0.15); bristle(sx * 0.08, 0.46, -0.38);
+    bristle(sx * 0.15, 0.40, 0.72);
+  }
+
+  if (male) model.scale.setScalar(0.82);  // true relative size (≈2.0 vs 2.5 mm)
+  model.traverse((o) => { if (o.isMesh) o.frustumCulled = false; });
+  return model;
+}
+
+// =====================================================================
+// 5. RENDERER, SCENE, RIGS, FRAMING, MAIN LOOP
+// =====================================================================
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+} catch (err) {
+  showFallback('WebGL is unavailable in this browser, so the 3D specimen cannot be shown.');
+  throw err;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;  // r160 has no NeutralTM
+renderer.toneMappingExposure = 1.05;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(26, 1, 0.1, 100);
+camera.position.set(0, 0, 5);
+camera.lookAt(0, 0, 0);
+
+const hemi = new THREE.HemisphereLight(0xfff6e8, 0x8a7a5f, 0.8);
+const key = new THREE.DirectionalLight(0xfff4e2, 1.6);
+key.position.set(2.5, 4, 5);
+const rim = new THREE.DirectionalLight(0xbfd8ff, 0.7);
+rim.position.set(-4, 2, -3);
+scene.add(hemi, key, rim);
+const DAY = { hemi: 0.8, key: 1.6, keyC: new THREE.Color(0xfff4e2), rim: 0.7, exp: 1.05 };
+const DUSK = { hemi: 0.25, key: 2.6, keyC: new THREE.Color(0xffc98a), rim: 1.9, exp: 1.0 };
+let duskW = 0, duskTarget = 0;  // eased 0..1
+
+const HOME_Q = new THREE.Quaternion()
+  .setFromEuler(new THREE.Euler(HOME_PITCH, HOME_YAW, 0, 'YXZ'));
+const YAXIS = V3(0, 1, 0), XAXIS = V3(1, 0, 0);
+
+// pivot (slide/scale/idle) > spin (user rotation) > holder (normalize) > model
+const rigs = [null, null];
+let normScale = 0;  // shared: female radius → 1, male keeps relative size
+function buildRig(i) {
+  if (!normScale && i === 1) buildRig(0);  // female sets the shared scale
+  if (rigs[i]) return rigs[i];
+  const pivot = new THREE.Group(), spin = new THREE.Group(), holder = new THREE.Group();
+  const model = buildFly(i === 1);
+  const proxies = [];
+  for (const p of PARTS) {
+    for (const sx of (p.mirror ? [1, -1] : [1])) {
+      const g = p.kind === 'box'
+        ? new THREE.BoxGeometry(p.size[0], p.size[1], p.size[2])
+        : new THREE.SphereGeometry(p.r, 12, 10);
+      const m = new THREE.Mesh(g, PROXY_MAT);
+      m.position.set(p.pos[0] * sx, p.pos[1], p.pos[2]);
+      if (p.scale) m.scale.set(p.scale[0], p.scale[1], p.scale[2]);
+      m.frustumCulled = false;
+      m.userData.part = p.text;
+      model.add(m);
+      proxies.push(m);
+    }
+  }
+  holder.add(model);
+  holder.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(holder);
+  const center = box.getCenter(new THREE.Vector3());
+  model.position.sub(center);
+  holder.updateMatrixWorld(true);
+  if (i === 0) {
+    box.setFromObject(holder);
+    normScale = 1 / box.getBoundingSphere(new THREE.Sphere()).radius;
+  }
+  holder.scale.setScalar(normScale);
+  spin.quaternion.copy(HOME_Q);
+  spin.add(holder); pivot.add(spin); scene.add(pivot);
+  pivot.visible = false;
+  rigs[i] = { pivot, spin, holder, model, proxies };
+  return rigs[i];
+}
+
+// ---- state ----
+let active = 1;  // Hagrid by default (mirrors the reference: second tab)
+let zoom = 1, zoomTarget = 1;
+let velX = 0, velY = 0;          // inertia (rad/s about world Y / X)
+let turnQueue = 0;               // queued yaw from the turn pill
+let resetting = false;
+let switching = null;            // { from, to, t0, dir, outBase }
+let lastInteract = -10, idleW = 0;
+let closeupBtn = null;
+
+// ---- framing: origin renders at the stage centre via setViewOffset ----
+let heroW = 1, heroH = 1, stageL = 0, stageT = 0, stageW = 1, stageH = 1;
+let tCx = 0, tCy = 0, tPx = 100, cx = 0, cy = 0, px = 100;
+function measure() {
+  const hb = hero.getBoundingClientRect(), sb = stage.getBoundingClientRect();
+  heroW = hb.width; heroH = hb.height;
+  stageL = sb.left - hb.left; stageT = sb.top - hb.top;
+  stageW = sb.width; stageH = sb.height;
+  const focus = hero.classList.contains('focus');
+  if (focus) {
+    tCx = heroW / 2; tCy = heroH * 0.5;
+    tPx = Math.min(heroW * 0.5, heroH * 0.6) * 1.16;
+  } else {
+    tCx = stageL + stageW / 2; tCy = stageT + stageH * 0.44;
+    tPx = Math.min(stageW * 0.5, stageH * 0.6) * 1.16;
+  }
+  renderer.setSize(heroW, heroH, false);
+  camera.aspect = heroW / heroH;
+  camera.updateProjectionMatrix();
+}
+new ResizeObserver(measure).observe(hero);
+new ResizeObserver(measure).observe(stage);
+
+const zinBtn = $('zin'), zoutBtn = $('zout');
+function applyYaw(rig, a) {
+  rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(YAXIS, a));
+}
+
+const clock = new THREE.Clock();
+function tick() {
+  requestAnimationFrame(tick);
+  const dt = Math.min(clock.getDelta(), 0.05);
+  const t = clock.elapsedTime;
+  const rig = rigs[active];
+
+  // Eased framing + zoom.
+  const k7 = damp(7, dt);
+  cx += (tCx - cx) * k7; cy += (tCy - cy) * k7; px += (tPx - px) * k7;
+  zoom += (zoomTarget - zoom) * damp(6, dt);
+  const fovR = THREE.MathUtils.degToRad(camera.fov);
+  camera.position.z = heroH / (2 * Math.tan(fovR / 2) * px * zoom);
+  camera.setViewOffset(heroW, heroH, heroW / 2 - cx, heroH / 2 - cy, heroW, heroH);
+
+  // Dusk easing.
+  duskW += (duskTarget - duskW) * damp(4, dt);
+  hemi.intensity = DAY.hemi + (DUSK.hemi - DAY.hemi) * duskW;
+  key.intensity = DAY.key + (DUSK.key - DAY.key) * duskW;
+  key.color.copy(DAY.keyC).lerp(DUSK.keyC, duskW);
+  rim.intensity = DAY.rim + (DUSK.rim - DAY.rim) * duskW;
+  renderer.toneMappingExposure = DAY.exp + (DUSK.exp - DAY.exp) * duskW;
+
+  if (switching) stepSwitch(performance.now());
+
+  if (rig) {
+    // Inertia + turn queue + reset-to-home.
+    if (!switching) {
+      if (velX !== 0 || velY !== 0) {
+        rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(YAXIS, velX * dt));
+        rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(XAXIS, velY * dt));
+        const d = Math.exp(-dt * 4.5);
+        velX *= d; velY *= d;
+        if (Math.abs(velX) < 1e-4) velX = 0;
+        if (Math.abs(velY) < 1e-4) velY = 0;
+      }
+      if (turnQueue !== 0) {
+        const step = turnQueue * damp(4.2, dt);
+        applyYaw(rig, step);
+        turnQueue -= step;
+        if (Math.abs(turnQueue) < 1e-4) turnQueue = 0;
+      }
+      if (resetting) {
+        rig.spin.quaternion.slerp(HOME_Q, damp(6, dt));
+        if (rig.spin.quaternion.angleTo(HOME_Q) < 0.002 && Math.abs(zoomTarget - 1) < 1e-6) {
+          rig.spin.quaternion.copy(HOME_Q);
+          resetting = false;
+        }
+      }
+    }
+    // Idle life: slow sway eased in after 1.8 s + constant hover.
+    if (!REDUCED) {
+      const target = (t - lastInteract > 1.8 && !switching) ? 1 : 0;
+      idleW += (target - idleW) * damp(2, dt);
+      rig.pivot.rotation.y = Math.sin(t * 0.55) * 0.16 * idleW;
+      rig.pivot.rotation.x = Math.sin(t * 0.9) * 0.03 * idleW;
+      rig.pivot.position.y = Math.sin(t * 1.3 + active) * 0.028;
+    }
+  }
+
+  zinBtn.setAttribute('aria-pressed', String(zoom >= 1));
+  zoutBtn.setAttribute('aria-pressed', String(zoom < 1));
+  if (closeupBtn) closeupBtn.setAttribute('aria-pressed', String(zoom > 2.2));
+
+  renderer.render(scene, camera);
+  if (!booted) {
+    booted = true;
+    loader.classList.remove('show');
+  }
+}
+
+// =====================================================================
+// 6. INPUT + CONTROLS
+// =====================================================================
+function interact() {
+  lastInteract = clock.elapsedTime;
+  hint.classList.add('gone');
+  resetting = false;
+  hideTip();
+}
+function resetView() {
+  zoomTarget = 1; turnQueue = 0; velX = 0; velY = 0;
+  resetting = true;
+  interact();
+}
+
+// ---- free rotation with inertia + two-finger pinch ----
+const pointers = new Map();
+let pinchD = 0, lastPX = 0, lastPY = 0, lastPT = 0;
+let tapX = 0, tapY = 0, tapT = 0;
+stage.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('button')) { interact(); return; }  // let rail/pill clicks through
+  tapX = e.clientX; tapY = e.clientY; tapT = performance.now();
+  stage.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  if (pointers.size === 1) {
+    lastPX = e.clientX; lastPY = e.clientY; lastPT = performance.now();
+    velX = 0; velY = 0;
+    stage.classList.add('dragging');
+  } else if (pointers.size === 2) {
+    const [a, b] = [...pointers.values()];
+    pinchD = Math.hypot(a[0] - b[0], a[1] - b[1]);
+  }
+  interact();
+});
+stage.addEventListener('pointermove', (e) => {
+  if (!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, [e.clientX, e.clientY]);
+  const rig = rigs[active];
+  if (pointers.size === 2) {
+    const [a, b] = [...pointers.values()];
+    const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (pinchD > 0) zoomTarget = clamp(zoomTarget * d / pinchD, ZMIN, ZMAX);
+    pinchD = d;
+    interact();
+    return;
+  }
+  if (!stage.classList.contains('dragging') || !rig || switching) return;
+  const dx = e.clientX - lastPX, dy = e.clientY - lastPY;
+  const now = performance.now(), dts = Math.max((now - lastPT) / 1000, 1e-3);
+  lastPX = e.clientX; lastPY = e.clientY; lastPT = now;
+  const k = Math.PI / Math.max(260, px * 1.6);
+  rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(YAXIS, dx * k));
+  rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(XAXIS, dy * k));
+  velX = 0.75 * velX + 0.25 * (dx * k / dts);
+  velY = 0.75 * velY + 0.25 * (dy * k / dts);
+  interact();
+});
+function endPointer(e) {
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchD = 0;
+  if (pointers.size === 0) stage.classList.remove('dragging');
+  // Tap (no hover on touch): name the part briefly.
+  if (e.type === 'pointerup' && e.clientX !== undefined && !e.target.closest('button') &&
+      Math.hypot(e.clientX - tapX, e.clientY - tapY) < 8 &&
+      performance.now() - tapT < 350) {
+    const part = partAt(e.clientX, e.clientY);
+    if (part) {
+      moveTip(e.clientX, e.clientY, part);
+      clearTimeout(tipTimer);
+      tipTimer = setTimeout(hideTip, 1600);
+    }
+  }
+}
+stage.addEventListener('pointerup', endPointer);
+stage.addEventListener('pointercancel', endPointer);
+
+// ---- wheel zoom ----
+stage.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  zoomTarget = clamp(zoomTarget * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0016)), ZMIN, ZMAX);
+  interact();
+}, { passive: false });
+
+// ---- double-click / keyboard ----
+stage.addEventListener('dblclick', (e) => { if (!e.target.closest('button')) resetView(); });
+stage.addEventListener('keydown', (e) => {
+  const rig = rigs[active];
+  if (!rig || switching) return;
+  const step = 0.18;
+  if (e.key === 'ArrowLeft') { applyYaw(rig, -step); interact(); }
+  else if (e.key === 'ArrowRight') { applyYaw(rig, step); interact(); }
+  else if (e.key === 'ArrowUp') {
+    rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(XAXIS, -step)); interact();
+  } else if (e.key === 'ArrowDown') {
+    rig.spin.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(XAXIS, step)); interact();
+  } else if (e.key === '+' || e.key === '=') { zoomTarget = clamp(zoomTarget * 1.2, ZMIN, ZMAX); interact(); }
+  else if (e.key === '-' || e.key === '_') { zoomTarget = clamp(zoomTarget / 1.2, ZMIN, ZMAX); interact(); }
+  else if (e.key === '0') resetView();
+  else return;
+  e.preventDefault();
+});
+
+// ---- hover hotspots: raycast the invisible proxies, name the part ----
+const partTip = $('partTip'), labelBtn = $('labelBtn');
+let labelsOn = true, tipTimer = 0;
+const raycaster = new THREE.Raycaster();
+const _ndc = new THREE.Vector2();
+function partAt(clientX, clientY) {
+  const rig = rigs[active];
+  if (!labelsOn || switching || !rig) return null;
+  const hb = hero.getBoundingClientRect();  // canvas covers the whole hero
+  _ndc.set(((clientX - hb.left) / hb.width) * 2 - 1, -((clientY - hb.top) / hb.height) * 2 + 1);
+  raycaster.setFromCamera(_ndc, camera);
+  const hits = raycaster.intersectObjects(rig.proxies, false);
+  return hits.length ? hits[0].object.userData.part : null;
+}
+function moveTip(clientX, clientY, text) {
+  const sb = stage.getBoundingClientRect();
+  partTip.textContent = text;
+  partTip.hidden = false;
+  partTip.style.left = '0px';
+  partTip.style.top = `${clientY - sb.top}px`;
+  const w = partTip.offsetWidth;
+  let x = clientX - sb.left + 14;
+  if (x + w > sb.width - 6) x = clientX - sb.left - 14 - w;
+  partTip.style.left = `${x}px`;
+}
+function hideTip() { partTip.hidden = true; }
+stage.addEventListener('pointermove', (e) => {
+  if (e.pointerType === 'touch') return;
+  if (stage.classList.contains('dragging')) { hideTip(); return; }
+  const part = partAt(e.clientX, e.clientY);
+  if (part) moveTip(e.clientX, e.clientY, part);
+  else hideTip();
+});
+stage.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'touch') hideTip(); });
+
+// ---- rail buttons ----
+zinBtn.addEventListener('click', () => { zoomTarget = clamp(zoomTarget * 1.35, ZMIN, ZMAX); interact(); });
+zoutBtn.addEventListener('click', () => { zoomTarget = clamp(zoomTarget / 1.35, ZMIN, ZMAX); interact(); });
+$('expand').addEventListener('click', () => {
+  const on = hero.classList.toggle('focus');
+  $('expand').setAttribute('aria-pressed', String(on));
+  measure();  // hero size unchanged: retarget framing manually
+  interact();
+});
+labelBtn.addEventListener('click', () => {
+  labelsOn = !labelsOn;
+  labelBtn.setAttribute('aria-pressed', String(labelsOn));
+  interact();
+});
+$('lightBtn').addEventListener('click', () => {
+  const dusk = hero.dataset.light !== 'dusk';
+  hero.dataset.light = dusk ? 'dusk' : 'day';
+  document.body.style.background = dusk ? '#14170f' : '';
+  duskTarget = dusk ? 1 : 0;
+  $('lightBtn').setAttribute('aria-pressed', String(dusk));
+  interact();
+});
+addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (hero.classList.contains('focus')) {
+      hero.classList.remove('focus');
+      $('expand').setAttribute('aria-pressed', 'false');
+      measure();
+    }
+    $('phoneSearchWrap').classList.remove('show');
+  }
+});
+
+// ---- turn pill ----
+$('ccw').addEventListener('click', () => { turnQueue -= Math.PI / 2; interact(); });
+$('cw').addEventListener('click', () => { turnQueue += Math.PI / 2; interact(); });
+$('spin360').addEventListener('click', () => { turnQueue += Math.PI * 2; interact(); });
+
+// ---- search: Enter jumps to the matching fly ----
+function searchTo(q) {
+  q = q.trim().toLowerCase();
+  if (/max|♀|female|banc/.test(q)) selectTab(0);
+  else if (/hag|♂|male|cns/.test(q)) selectTab(1);
+}
+$('searchInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') searchTo(e.target.value);
+});
+$('phoneSearchInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { searchTo(e.target.value); $('phoneSearchWrap').classList.remove('show'); }
+});
+$('phoneSearchBtn').addEventListener('click', () => {
+  const w = $('phoneSearchWrap');
+  w.classList.toggle('show');
+  if (w.classList.contains('show')) $('phoneSearchInput').focus();
+});
+
+// =====================================================================
+// 7. TABS + SWITCH + INFO SHEET
+// =====================================================================
+tabs.forEach((tab, i) => tab.addEventListener('click', () => selectTab(i)));
+tablist.addEventListener('keydown', (e) => {
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  const i = 1 - active;  // two tabs: either arrow toggles
+  selectTab(i);
+  tabs[i].focus();
+  e.preventDefault();
+});
+
+function selectTab(i) {
+  tabs.forEach((t, j) => t.setAttribute('aria-selected', String(i === j)));
+  if (i === active || switching) return;
+  interact();
+  startSwitch(i);
+}
+
+function startSwitch(to) {
+  const from = active, dir = Math.sign(to - from);
+  buildRig(to);
+  const inn = rigs[to], out = rigs[from];
+  inn.spin.quaternion.copy(HOME_Q);
+  inn.pivot.visible = true;
+  zoom = 1; zoomTarget = 1;
+  turnQueue = 0; velX = 0; velY = 0; resetting = false;
+  if (REDUCED) {  // instant swap
+    out.pivot.visible = false;
+    active = to;
+    swapInfo(to);
+    return;
+  }
+  switching = { from, to, t0: performance.now(), dir, outBase: out.spin.quaternion.clone() };
+  hero.classList.add('switching');
+  swapInfo(to);
+}
+
+function stepSwitch(now) {
+  const { from, to, t0, dir, outBase } = switching;
+  const t = Math.min((now - t0) / SWITCH_MS, 1);
+  const slide = stageW * 0.95 / px;
+  const out = rigs[from], inn = rigs[to];
+  // Outgoing: first 60%, ease-in.
+  const e = easeInCubic(Math.min(t / 0.6, 1));
+  out.pivot.scale.setScalar(Math.max(1 - e, 1e-4));
+  out.pivot.position.x = -dir * e * slide;
+  out.spin.quaternion.copy(outBase).multiply(
+    new THREE.Quaternion().setFromAxisAngle(YAXIS, -dir * e * 1.4));
+  // Incoming: full duration, ease-out + back-overshoot.
+  const e2 = easeOutCubic(t), s = outBack(t) * (0.25 + 0.75 * e2);
+  inn.pivot.scale.setScalar(Math.max(s, 1e-4));
+  inn.pivot.position.x = dir * (1 - e2) * slide;
+  inn.spin.quaternion.copy(HOME_Q).multiply(
+    new THREE.Quaternion().setFromAxisAngle(YAXIS, dir * (1 - e2) * 1.6));
+  if (t >= 1) {
+    out.pivot.visible = false;
+    out.pivot.position.x = 0; out.pivot.scale.setScalar(1);
+    inn.pivot.position.x = 0; inn.pivot.scale.setScalar(1);
+    inn.spin.quaternion.copy(HOME_Q);
+    active = to;
+    switching = null;
+    hero.classList.remove('switching');
+  }
+}
+
+function infoHTML(i) {
+  const f = FLIES[i];
+  const rows = (list) => list.map(([icon, label, value]) =>
+    `<div class="trait"><svg class="ic" aria-hidden="true"><use href="#${icon}"/></svg>` +
+    `<span class="k">${label}</span><span class="v">${value}</span></div>`).join('');
+  return `<p class="eyebrow">${f.family}</p>` +
+    `<h1>${f.name}<span class="sex">${f.sex}</span></h1>` +
+    `<div class="tax">` + f.tax.map(([k, v]) =>
+      `<div><span class="k">${k}</span><span class="v">${v}</span></div>`).join('') + `</div>` +
+    `<p class="lineage">${f.lineage}</p>` +
+    `<div class="tags">` + f.tags.map((t) => `<span>${t}</span>`).join('') + `</div>` +
+    `<p class="desc">${f.desc}</p>` +
+    `<h2>Key traits</h2>` + rows(f.traits) +
+    `<h2>The species</h2>` + rows(SPECIES_ROWS) +
+    `<h2>Home</h2>` +
+    `<div class="homerow"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><span>${f.home}</span></div>` +
+    `<button class="closeup" id="closeup" aria-pressed="false">` +
+    `<span class="lens" aria-hidden="true"></span>` +
+    `<span><span class="ct">Close-up Detail</span><p>${f.closeup}</p></span>` +
+    `<svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></button>`;
+}
+
+function renderInfo(i) {
+  detail.innerHTML = infoHTML(i);
+  closeupBtn = $('closeup');
+  const lens = closeupBtn.querySelector('.lens');
+  lens.style.backgroundImage = FACET;
+  lens.style.backgroundPosition = FLIES[i].lensPos;
+  closeupBtn.setAttribute('aria-pressed', String(zoom > 2.2));
+  closeupBtn.addEventListener('click', () => {
+    zoomTarget = zoomTarget > 1.8 ? 1 : CLOSEUP_Z;
+    interact();
+  });
+}
+
+function swapInfo(to) {
+  [...detail.children].forEach((el) => el.classList.add('swap-out'));
+  setTimeout(() => {
+    renderInfo(to);
+    caption.textContent = FLIES[to].caption;
+    [...detail.children].forEach((el, idx) => {
+      el.style.animationDelay = `${idx * 45}ms`;
+      el.classList.add('swap-in');
+    });
+  }, REDUCED ? 0 : 200);
+}
+
+// =====================================================================
+// 8. BOOT
+// =====================================================================
+function boot() {
+  measure();
+  cx = tCx; cy = tCy; px = tPx;  // settled framing on first frame
+  renderInfo(active);
+  caption.textContent = FLIES[active].caption;
+  loader.classList.add('show');
+  try {
+    buildRig(active);
+    rigs[active].pivot.visible = true;
+  } catch (err) {
+    showFallback('This specimen could not be prepared: ' + (err && err.message ? err.message : err));
+    return;
+  }
+  setTimeout(() => { try { buildRig(1 - active); } catch { /* loader covers it */ } }, 30);
+  tick();
+}
+boot();
+</script>
+</body>
+</html>

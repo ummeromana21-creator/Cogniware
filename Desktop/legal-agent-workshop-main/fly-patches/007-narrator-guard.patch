@@ -1,0 +1,16 @@
+007: narrator falls back cleanly on empty AI replies (no traceback).
+Apply from the Fly Brain root:  patch -p1 < fly-patches/007-narrator-guard.patch
+
+--- a/narrator.py
++++ b/narrator.py
+@@ -81,7 +81,9 @@
+                                           "simulated in a lab. You narrate what you sense; you do not control anything "
+                                           "and you never talk about humans or medicine. Reply with the sentence only."},
+                               {"role": "user", "content": prompt}])
+-                text = r.choices[0].message.content.strip().strip('"')
++                text = (r.choices[0].message.content or "").strip().strip('"')
++                if not text:
++                    raise ValueError("empty reply from AI")
+                 with self.lock:
+                     self.thought = text[:110]
+             except Exception as e:

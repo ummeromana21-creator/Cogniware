@@ -1,0 +1,272 @@
+{
+ "id": "exp-scramble-rec-2026-10-30",
+ "card": {
+  "title": "Scramble wiring",
+  "hypothesis": "Shuffled wiring changes whole-brain firing.",
+  "control": {
+   "name": "control box",
+   "setup": [
+    {
+     "cmd": "restore"
+    }
+   ]
+  },
+  "treatments": [
+   {
+    "name": "scrambled",
+    "setup": [
+     {
+      "cmd": "scramble"
+     }
+    ]
+   }
+  ],
+  "measure": "firing_all",
+  "prediction": "different",
+  "repeats": 3,
+  "steps": 400,
+  "description": "",
+  "variables": {
+   "changed": "scrambled vs control box",
+   "measured": [
+    "firing_all",
+    "bananas",
+    "firing_all"
+   ],
+   "held": [
+    "same boxes, same bananas",
+    "same run length (400 steps)",
+    "every fly reset before every run",
+    "control and treatment boxes run at the same time"
+   ]
+  },
+  "constraints": [
+   "reset before every run",
+   "no human intervention during a run",
+   "3 independent runs per condition"
+  ],
+  "author": "human",
+  "source": null
+ },
+ "results": {
+  "control box": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07565856262399988,
+     "tortuosity": 3.053833435801414,
+     "mean_abs_turn": 0.04082189831300639,
+     "firing_all": 0.016321384887412957,
+     "firing_peak": 0.02837333400934159,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07609803378688436,
+     "tortuosity": 2.210902646183675,
+     "mean_abs_turn": 0.0475283175194636,
+     "firing_all": 0.016236857448871597,
+     "firing_peak": 0.0281071557586397,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07189159202783042,
+     "tortuosity": 2.4620928904459425,
+     "mean_abs_turn": 0.04610115254879929,
+     "firing_all": 0.016229220668107412,
+     "firing_peak": 0.035331993991976625,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.09854301445157491,
+     "tortuosity": 14.914388824141266,
+     "mean_abs_turn": 0.059612925245892255,
+     "firing_all": 0.01935811337732452,
+     "firing_peak": 0.036838632273545294,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.10033268310123836,
+     "tortuosity": 7.2123833881126025,
+     "mean_abs_turn": 0.057355233479756865,
+     "firing_all": 0.019163122375524894,
+     "firing_peak": 0.040101979604079185,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.09684052742636513,
+     "tortuosity": 6.848241973109168,
+     "mean_abs_turn": 0.049873053627088666,
+     "firing_all": 0.019381433713257346,
+     "firing_peak": 0.037048590281943614,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ]
+  },
+  "scrambled": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.1604066289356805,
+     "tortuosity": 5.945336194429631,
+     "mean_abs_turn": 0.038559934156946835,
+     "firing_all": 0.022060441475641505,
+     "firing_peak": 0.06532141023772253,
+     "synchrony": 0.0,
+     "scrambled": true
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.15844583257081635,
+     "tortuosity": 6.874559603908683,
+     "mean_abs_turn": 0.04990324110491201,
+     "firing_all": 0.022725332564373965,
+     "firing_peak": 0.05720297359131499,
+     "synchrony": 0.0,
+     "scrambled": true
+    },
+    {
+     "steps": 400,
+     "bananas": 28,
+     "activity": 0.14908371750711735,
+     "tortuosity": 25.824003398187482,
+     "mean_abs_turn": 0.04137957209255547,
+     "firing_all": 0.022406172166627596,
+     "firing_peak": 0.05478835660280501,
+     "synchrony": 0.0,
+     "scrambled": true
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.3430144134091996,
+     "tortuosity": 123.96917280564693,
+     "mean_abs_turn": 0.043932862705551086,
+     "firing_all": 0.052106808638272335,
+     "firing_peak": 0.13653269346130772,
+     "synchrony": 0.0,
+     "scrambled": true
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.3427581109902488,
+     "tortuosity": 27.709371656851477,
+     "mean_abs_turn": 0.05513638047967106,
+     "firing_all": 0.053116721655668823,
+     "firing_peak": 0.11197960407918417,
+     "synchrony": 0.0,
+     "scrambled": true
+    },
+    {
+     "steps": 400,
+     "bananas": 3,
+     "activity": 0.32469730484652104,
+     "tortuosity": 14.553740195286144,
+     "mean_abs_turn": 0.08909905473235995,
+     "firing_all": 0.05024940011997603,
+     "firing_peak": 0.12289142171565687,
+     "synchrony": 0.0,
+     "scrambled": true
+    }
+   ]
+  }
+ },
+ "analysis": "=== Maxime (female) ===\nControl box: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nScrambled: share of all neurons firing per step averaged 0.022 over 3 runs (from 0.022 to 0.023) \u2014 38% more than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.006) is 25.8\u00d7 the run-to-run wobble (0.000).\nVerdict for scrambled: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.\n=== Hagrid (male) ===\nControl box: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nScrambled: share of all neurons firing per step averaged 0.052 over 3 runs (from 0.050 to 0.053) \u2014 169% more than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.033) is 31.5\u00d7 the run-to-run wobble (0.001).\nVerdict for scrambled: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.\nOverall: SUPPORTED \u2014 both sexes agree: supported in each.",
+ "verdict": "SUPPORTED",
+ "details": {
+  "per_fly": {
+   "Maxime (female)": [
+    {
+     "treatment": "scrambled",
+     "control_mean": 0.016262487668130658,
+     "treatment_mean": 0.022397315402214357,
+     "gap": 0.006134827734083699,
+     "wobble": 0.00023790241125509106,
+     "hits": 3,
+     "of": 3,
+     "verdict": "SUPPORTED",
+     "values": [
+      0.022060441475641505,
+      0.022725332564373965,
+      0.022406172166627596
+     ],
+     "control_values": [
+      0.016321384887412957,
+      0.016236857448871597,
+      0.016229220668107412
+     ]
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "treatment": "scrambled",
+     "control_mean": 0.019300889822035584,
+     "treatment_mean": 0.051824310137972396,
+     "gap": 0.032523420315936816,
+     "wobble": 0.0010318934331845619,
+     "hits": 3,
+     "of": 3,
+     "verdict": "SUPPORTED",
+     "values": [
+      0.052106808638272335,
+      0.053116721655668823,
+      0.05024940011997603
+     ],
+     "control_values": [
+      0.01935811337732452,
+      0.019163122375524894,
+      0.019381433713257346
+     ]
+    }
+   ]
+  },
+  "verdicts": {
+   "Maxime (female)": "SUPPORTED",
+   "Hagrid (male)": "SUPPORTED"
+  }
+ },
+ "date": "2026-10-30",
+ "seeds": {
+  "control box / Maxime (female) / run 1": 2200,
+  "control box / Maxime (female) / run 2": 2201,
+  "control box / Maxime (female) / run 3": 2202,
+  "control box / Hagrid (male) / run 1": 2203,
+  "control box / Hagrid (male) / run 2": 2204,
+  "control box / Hagrid (male) / run 3": 2205,
+  "scrambled / Maxime (female) / run 1": 2206,
+  "scrambled / Maxime (female) / run 2": 2207,
+  "scrambled / Maxime (female) / run 3": 2208,
+  "scrambled / Hagrid (male) / run 1": 2209,
+  "scrambled / Hagrid (male) / run 2": 2210,
+  "scrambled / Hagrid (male) / run 3": 2211
+ },
+ "simulated": true,
+ "label": {
+  "git_commit": "a5de1ab",
+  "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8"
+ },
+ "subject": "Maxime (female) + Hagrid (male) in control and treatment boxes"
+}

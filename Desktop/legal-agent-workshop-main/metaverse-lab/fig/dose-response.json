@@ -1,0 +1,82 @@
+{
+ "title": "Dose\u2013response per substance per sex, simulated (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11,
+  12,
+  13
+ ],
+ "params": {
+  "substances": [
+   "caffeine",
+   "ethanol",
+   "isoflurane"
+  ],
+  "doses": [
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "repeats": 3
+ },
+ "xlabel": "dose (unitless)",
+ "dose": "unitless",
+ "results": {
+  "caffeine": {
+   "banc": 160.6,
+   "malecns": 84.8
+  },
+  "ethanol": {
+   "banc": -14.6,
+   "malecns": -49.9
+  },
+  "isoflurane": {
+   "banc": -86.1,
+   "malecns": -89.9
+  }
+ },
+ "verdicts": {
+  "caffeine": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.042 over 3 runs (from 0.042 to 0.042) \u2014 161% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.026) is 433.6\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.036 over 3 runs (from 0.035 to 0.036) \u2014 85% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.016) is 184.9\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   }
+  },
+  "ethanol": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.014 over 3 runs (from 0.014 to 0.014) \u2014 15% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.002) is 33.5\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.010 over 3 runs (from 0.010 to 0.010) \u2014 50% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.010) is 142.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  },
+  "isoflurane": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 86% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.014) is 86.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 90% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.017) is 79.2\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  }
+ }
+}

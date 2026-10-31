@@ -1,0 +1,3307 @@
+{
+ "substance": "ttx",
+ "retrieved": "2026-10-30",
+ "records": {
+  "pubchem": {
+   "source": "pubchem",
+   "query": "ttx",
+   "parts": {
+    "compound": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ttx/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON",
+     "data": {
+      "PropertyTable": {
+       "Properties": [
+        {
+         "CID": 11174599,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "(1R,5R,6R,7R,9S,11S,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "Tetrodotoxin"
+        },
+        {
+         "CID": 6324668,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "(1R,5R,6R,7R,9S,11S,12R,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "Araregai toxin"
+        },
+        {
+         "CID": 4490623,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "Tetrodotoxin (citrate free)"
+        },
+        {
+         "CID": 16220031,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "(5R,11S,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "Npc487163"
+        },
+        {
+         "CID": 16759596,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "(1R,5R,6R,9S,11R,13S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "(1R,5R,6R,9S,11R,13S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol"
+        },
+        {
+         "CID": 54592379,
+         "MolecularFormula": "C11H17N3O8",
+         "ConnectivitySMILES": "C(C1(C2C3C(N=C(NC34C(C1OC(C4O)(O2)O)O)N)O)O)O",
+         "IUPACName": "(1S,5R,6R,7S,9S,11R,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol",
+         "Title": "(1S,5R,6R,7S,9S,11R,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol"
+        }
+       ]
+      }
+     }
+    },
+    "description": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ttx/description/JSON",
+     "data": {
+      "InformationList": {
+       "Information": [
+        {
+         "CID": 11174599,
+         "Title": "Tetrodotoxin"
+        },
+        {
+         "CID": 6324668,
+         "Title": "Araregai toxin"
+        },
+        {
+         "CID": 6324668,
+         "Description": "Tetrodotoxin is a quinazoline alkaloid that is a marine toxin isolated from fish such as puffer fish. It has been shown to exhibit potential neutotoxicity due to its ability to block voltage-gated sodium channels. It has a role as a voltage-gated sodium channel blocker, a neurotoxin, an animal metabolite, a marine metabolite and a bacterial metabolite. It is a quinazoline alkaloid, an azatetracycloalkane and an oxatetracycloalkane. It is a conjugate base of a tetrodotoxin(1+).",
+         "DescriptionSourceName": "ChEBI",
+         "DescriptionURL": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:9506"
+        },
+        {
+         "CID": 4490623,
+         "Title": "Tetrodotoxin (citrate free)"
+        },
+        {
+         "CID": 16220031,
+         "Title": "Npc487163"
+        },
+        {
+         "CID": 16759596,
+         "Title": "(1R,5R,6R,9S,11R,13S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol"
+        },
+        {
+         "CID": 54592379,
+         "Title": "(1S,5R,6R,7S,9S,11R,12S,13S,14S)-3-amino-14-(hydroxymethyl)-8,10-dioxa-2,4-diazatetracyclo[7.3.1.17,11.01,6]tetradec-3-ene-5,9,12,13,14-pentol"
+        }
+       ]
+      }
+     }
+    },
+    "assays": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ttx/assaysummary/JSON",
+     "data": {
+      "Table": {
+       "Columns": {
+        "Column": [
+         "AID",
+         "Panel Member ID",
+         "SID",
+         "CID",
+         "Activity Outcome",
+         "Target Accession",
+         "Target GeneID",
+         "Activity Value [uM]",
+         "Activity Name",
+         "Assay Name",
+         "Assay Type",
+         "PubMed ID",
+         "RNAi"
+        ]
+       },
+       "Row": [
+        {
+         "Cell": [
+          "146836",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04775",
+          "24766",
+          "0.0140000000",
+          "IC50",
+          "Inhibition of Na+ influx in chinese hamster ovary cells expressing rat brain sodium channel type IIA",
+          "Confirmatory",
+          "8295214",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "205296",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04775",
+          "24766",
+          "0.0040000000",
+          "IC50",
+          "In vitro inhibition of [14C]- guanidinium influx in Chinese hamster ovary (CHO) cells expressing rat brain sodium channel type IIA (CNaIIA-1)",
+          "Confirmatory",
+          "9685245",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "383536",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of electrical field stimulation-induced neurogenic contractions in New Zealand white rabbit gastric fundus smooth muscle",
+          "Other",
+          "17590241",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "406933",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "",
+          "",
+          "Inhibition of human sodium Nav1.5 channel expressed in HEK293 cells assessed as inhibition of veratridine-induced late sodium current elicited at -30 mV from holding potential of -110 mV at 10 uM by patch clamp technique",
+          "Other",
+          "18529044",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "406934",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "",
+          "",
+          "Inhibition of human sodium Nav1.5 channel expressed in HEK293 cells assessed as inhibition of veratridine-induced late sodium current elicited at -30 mV from holding potential of -90 mV at 10 uM by patch clamp technique",
+          "Other",
+          "18529044",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "406935",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of veratridine-induced diastolic contracture in Wistar rat atrium assessed as inhibition of systolic isometric tension of at 1 uM 15 mins",
+          "Other",
+          "18529044",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "406936",
+          "",
+          "103585628",
+          "11174599",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of global ischemia-induced diastolic contracture in isolated Langendorff perfused guinea pig model heart at 1 uM after 15 mins",
+          "Other",
+          "18529044",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "420741",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "",
+          "",
+          "Inhibition of human Nav1.5 channel expressed in HEK293 cells assessed as blockade of veratridine-induced late inward sodium current elicited at -30 mV from holding potential -110 mV at 10 uM by patch clamp method",
+          "Other",
+          "19514733",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "420742",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "",
+          "",
+          "Inhibition of human Nav1.5 channel expressed in HEK293 cells assessed as blockade of veratridine-induced late inward sodium current elicited at -30 mV from holding potential -90 mV at 10 uM by patch clamp method",
+          "Other",
+          "19514733",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "420743",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cardioprotective activity in Wistar rat atrium assessed as inhibition of veratridine-induced diastolic contracture at 1 uM administered 15 mins before veratridine challenge",
+          "Other",
+          "19514733",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "420744",
+          "",
+          "103585628",
+          "11174599",
+          "Inconclusive",
+          "",
+          "",
+          "",
+          "",
+          "Cardioprotective activity in Langendorff-perfused guinea pig heart assessed as inhibition of global ischemia-induced diastolic contracture at 1 uM",
+          "Other",
+          "19514733",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "599097",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q15858",
+          "",
+          "0.0060000000",
+          "IC50",
+          "Inhibition of human NaV1.7 expressed in HEK293 cells by [14C]guanidinium influx assay",
+          "Confirmatory",
+          "21570288",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726284",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9UI33",
+          "11280",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.9 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726285",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q15858",
+          "",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.7 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726286",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9Y5Y9",
+          "6336",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.8 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726287",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.5 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726288",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9UQD0",
+          "6334",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.6 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726289",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P35499",
+          "6329",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.4 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726290",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q99250",
+          "6326",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.2 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726291",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9NY46",
+          "6328",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.3 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "726292",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P35498",
+          "6323",
+          "0.0300000000",
+          "IC50",
+          "Inhibition of voltage-gated Na channel 1.1 (unknown origin)",
+          "Confirmatory",
+          "23121096",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1105312",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "D0E0C1",
+          "",
+          "",
+          "",
+          "Inhibition of Nav channel in Periplaneta americana (American cockroach) DUM neurons at 300 nM measured at holding potential -90 mV depolarized to -10 mV after 10 min by whole cell patch clamp assay relative to control",
+          "Other",
+          "21447641",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1125602",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "",
+          "",
+          "0.0021000000",
+          "EC50",
+          "Inhibition of Nav in mouse Neuro-2a cells assessed as inhibition of ouabain and veratridine-induced cytotoxicity after 24 hrs by WST-8 assay",
+          "Confirmatory",
+          "24654947",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1125602",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "Inhibition",
+          "Inhibition of Nav in mouse Neuro-2a cells assessed as inhibition of ouabain and veratridine-induced cytotoxicity after 24 hrs by WST-8 assay",
+          "Confirmatory",
+          "24654947",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1129298",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Neuroprotective activity in oxygen/glucose deprivation-induced Wistar rat hippocampal slice assessed as inhibition of cell death by measuring ATP level at 1 uM",
+          "Other",
+          "24601592",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1277326",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Neuroprotective activity against veratradine-induced neuronal cell death in bovine chromaffin cells assessed as cell viability at 1 uM after 24 hrs by LDH release assay relative to control",
+          "Other",
+          "26774037",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1278103",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Inhibition of 5-HT-induced contraction in Sprague-Dawley rat ileum at 0.3 uM incubated for 10 mins",
+          "Other",
+          "26820556",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339905",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04774",
+          "81574",
+          "0.0100000000",
+          "IC50",
+          "Inhibition of rat NaV1.1",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339906",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04775",
+          "24766",
+          "0.0100000000",
+          "IC50",
+          "Inhibition of rat NaV1.2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339907",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P08104",
+          "497770",
+          "0.0150000000",
+          "IC50",
+          "Inhibition of rat NaV1.3",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339908",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P35499",
+          "6329",
+          "0.0250000000",
+          "IC50",
+          "Inhibition of human NaV1.4",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339909",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P15389",
+          "25665",
+          "2.0000000000",
+          "IC50",
+          "Inhibition of rat NaV1.5",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339910",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9WTU3",
+          "20273",
+          "0.0060000000",
+          "IC50",
+          "Inhibition of mouse NaV1.6",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339911",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q15858",
+          "",
+          "0.0250000000",
+          "IC50",
+          "Inhibition of human NaV1.7",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339912",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q62968",
+          "29571",
+          "50.0000000000",
+          "IC50",
+          "Inhibition of rat NaV1.8",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1339913",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "O88457",
+          "29701",
+          "1.0000000000",
+          "IC50",
+          "Inhibition of rat NaV1.9",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1392256",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "30.0000000000",
+          "MNTD",
+          "Cytotoxicity against human MDA-MB-231 cells assessed as reduction in cell viability after 24 hrs by MTS assay",
+          "Confirmatory",
+          "29673714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1392259",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q14524",
+          "6331",
+          "",
+          "",
+          "Inhibition of neonatal Nav1.5 in human MDA-MB-231 cells assessed as reduction in inward sodium peak current at 30 uM at -100 mV holding potential after 5 to 10 mins by whole cell patch clamp method relative to control",
+          "Other",
+          "29673714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1392261",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Anti-invasive activity against human MDA-MB-231 cells at 30 uM after 24 hrs by Hema staining based microscopic method relative to control",
+          "Other",
+          "29673714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432156",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antagonist activity at VSSC in mouse Neuro2a cells assessed as inhibition of peak current at holding potential of -100mV at 100 nM by patch-clamp method",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432158",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q99250",
+          "6326",
+          "",
+          "",
+          "Antagonist activity at human Nav1.2 expressed in HEK293T cells assessed as inhibition of VTD-induced peak current by measuring peak current at 30 nM by whole cell patch clamp method (Rvb = 82 +/- 5.1%)",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432159",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q99250",
+          "6326",
+          "",
+          "",
+          "Antagonist activity at human Nav1.2 expressed in HEK293T cells assessed as inhibition of VTD-induced sustained current by measuring sustained current at 30 nM by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432160",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q99250",
+          "6326",
+          "",
+          "",
+          "Antagonist activity at human Nav1.2 expressed in HEK293T cells assessed as inhibition of VTD-induced tail current by measuring tail current at 30 nM at holding potential of -100mV by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432164",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9UQD0",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.6 expressed in HEK293T cells assessed as inhibition of VTD-induced peak current at 30 nM by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432165",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9UQD0",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.6 expressed in HEK293T cells assessed as inhibition of VTD-induced sustained current at 30 nM by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432166",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9UQD0",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.6 expressed in HEK293T cells assessed as inhibition of VTD-induced tail current at 30 nM at holding potential of -100mV by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432170",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q15858",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.7 expressed in HEK293T cells assessed as inhibition of VTD-induced peak current at 30 nM by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432171",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q15858",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.7 expressed in HEK293T cells assessed as inhibition of VTD-induced sustained current at 30 nM by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1432172",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q15858",
+          "",
+          "",
+          "",
+          "Antagonist activity at human Nav1.7 expressed in HEK293T cells assessed as inhibition of VTD-induced tail current at 30 nM at holding potential of -100mV by whole cell patch clamp method relative to control",
+          "Other",
+          "28143690",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525384",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q01118",
+          "6332",
+          "0.0360000000",
+          "IC50",
+          "Inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525388",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P35498",
+          "6323",
+          "0.0041000000",
+          "IC50",
+          "Inhibition of human Nav1.1 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525389",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q99250",
+          "6326",
+          "0.0140000000",
+          "IC50",
+          "Inhibition of human Nav1.2 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525390",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9NY46",
+          "6328",
+          "0.0053000000",
+          "IC50",
+          "Inhibition of human Nav1.3 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525391",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P35499",
+          "6329",
+          "0.0076000000",
+          "IC50",
+          "Inhibition of human Nav1.4 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525392",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q14524",
+          "6331",
+          "1.0000000000",
+          "IC50",
+          "Inhibition of human Nav1.5 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525393",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9UQD0",
+          "6334",
+          "0.0023000000",
+          "IC50",
+          "Inhibition of human Nav1.6 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525394",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9Y5Y9",
+          "6336",
+          "30.0000000000",
+          "IC50",
+          "Inhibition of human Nav1.8 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525395",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.1 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525396",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.2 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525397",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.3 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525398",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.4 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525399",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.5 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525400",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.6 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525401",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.8 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525446",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "Q9UI33",
+          "11280",
+          "30.0000000000",
+          "IC50",
+          "Inhibition of human Nav1.9 expressed in HEK293 cells by electrophysiology assay",
+          "Confirmatory",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525447",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index, ratio of IC50 for inhibition of human Nav1.9 expressed in HEK293 cells by electrophysiology assay to IC50 for inhibition of human Nav1.7 expressed in HEK293 cells by electrophysiology assay",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525448",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Analgesic activity in sc dosed rat model of formalin-induced pain",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525449",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Analgesic activity in sc dosed rat model of pain by writhing test",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1525450",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Analgesic activity in sc dosed rat model of SNL-induced pain",
+          "Other",
+          "31012583",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594735",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "",
+          "",
+          "0.0019000000",
+          "EC50",
+          "Inhibition of NaV in mouse Neuro2a cells assessed as suppression of ouabain/veratridine-induced reduction in cell viability measured after 20 hrs by WST8 assay",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594735",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "Inhibition",
+          "Inhibition of NaV in mouse Neuro2a cells assessed as suppression of ouabain/veratridine-induced reduction in cell viability measured after 20 hrs by WST8 assay",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "F1LQQ7",
+          "64155",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "O08562",
+          "78956",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "O88420",
+          "29710",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "O88457",
+          "29701",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04774",
+          "81574",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P04775",
+          "24766",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P08104",
+          "497770",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P15389",
+          "25665",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "P15390",
+          "25722",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594737",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q62968",
+          "29571",
+          "0.0018000000",
+          "Kd",
+          "Displacement of [3H]saxitoxin from NaV in rat brain membranes",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594738",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in ip dosed mouse",
+          "Other",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594739",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "",
+          "",
+          "0.0041000000",
+          "ED50",
+          "Inhibition of NaV in frog skeletal muscle fiber assessed as blockade of sodium current measured after 10 mins by voltage-clamp method",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1635769",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Neuroprotective activity in rat cortical motor neurons assessed as reversal of veratridine-induced cytotoxicity at 1 uM preincubated for 24 hrs followed by coincubation with veratridine for 24 hrs by MTT assay",
+          "Other",
+          "27280380",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656797",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human A549 cells assessed as effect on cell viability at 10 to 30 uM measured after 24 hrs by MTT assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656798",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human H460 cells assessed as effect on cell viability at 10 to 30 uM measured after 24 hrs by MTT assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656799",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human U87MG cells assessed as effect on cell viability at 10 to 30 uM measured after 24 hrs by MTT assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656800",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human U87MG cells assessed as effect on cell viability at 10 to 30 uM measured after 24 hrs by SRB assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656801",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human A549 cells assessed as reduction in cell viability at 30 uM measured after 24 hrs by MTT assay relative to control",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656802",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Cytotoxicity against human H460 cells assessed as reduction in cell viability at 30 uM measured after 24 hrs by MTT assay relative to control",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656806",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antimigratory activity against human A549 cells assessed as reduction in cell migration at 10 uM measured after 24 hrs by scratch wound healing assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656807",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antimigratory activity against human H460 cells assessed as reduction in cell migration at 10 uM measured after 24 hrs by scratch wound healing assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656808",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antimigratory activity against human U87MG cells assessed as reduction in cell migration at 10 uM measured after 6 hrs by scratch wound healing assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656809",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Induction of cell migration in human A549 cells at 30 uM measured after 24 hrs by scratch wound healing assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656810",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Induction of cell migration in human U87MG cells at 30 uM measured after 6 hrs by scratch wound healing assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656812",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "Activity",
+          "Antiinvasive activity against human H460 cells assessed as reduction in cell invasion measured after 24 hrs using Diff-quick staining by light microscopy based Boyden chamber assay",
+          "Confirmatory",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656815",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antiinvasive activity against human U87MG cells assessed as reduction in cell invasion at 10 to 30 uM measured after 24 hrs using Diff-quick staining by light microscopy based Boyden chamber assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1656816",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Antiinvasive activity against human A549 cells assessed as reduction in cell invasion at 10 to 30 uM measured after 24 hrs using Diff-quick staining by light microscopy based Boyden chamber assay",
+          "Other",
+          "31937477",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1877744",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "",
+          "",
+          "0.0016900000",
+          "IC50",
+          "Neuroprotective activity in primary neocortical neuron (unknown origin) assessed as inhibition of 4-AP-induced spontaneous calcium channel oscillation amplitude measured after 15 min by Fluo-4AM dye based fluorescence assay",
+          "Confirmatory",
+          "34957832",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1877745",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "",
+          "",
+          "0.0049300000",
+          "IC50",
+          "Neuroprotective activity in primary neocortical neuron (unknown origin) assessed as inhibition of 4-AP-induced spontaneous calcium channel oscillation frequency measured after 15 min by Fluo-4AM dye based fluorescence assay",
+          "Confirmatory",
+          "34957832",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1887114",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in ddY mouse assessed as animal death at 200 ng, IP and measured after 18.6 mins",
+          "Other",
+          "35994072",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1887115",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in ddY mouse assessed as animal death at 250 ng, IP and measured at 9.5 min",
+          "Other",
+          "35994072",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2126819",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q14524",
+          "",
+          "4.1100000000",
+          "IC50",
+          "Inhibition of Nav1.5 (unknown origin) expressed in HEK293 cells by FLIPR tetra high-throughput cellular screening system",
+          "Confirmatory",
+          "39248591",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2133186",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9NY46",
+          "",
+          "0.0040000000",
+          "IC50",
+          "Inhibition of human Nav1.3 expressed in CHO cells under resting state by automated patch clamp electrophysiology analysis",
+          "Confirmatory",
+          "37329714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2133187",
+          "",
+          "103585628",
+          "11174599",
+          "Active",
+          "Q9NY46",
+          "",
+          "0.0010000000",
+          "IC50",
+          "Inhibition of human Nav1.3 expressed in CHO cells under inactivated state by automated patch clamp electrophysiology analysis",
+          "Confirmatory",
+          "37329714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2133188",
+          "",
+          "103585628",
+          "11174599",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity ratio of IC50 for human Nav1.3 expressed in CHO cells under resting state to IC50 for human Nav 1.3 expressed in CHO cells under inactivated state by automated patch clamp electrophysiology analysis",
+          "Other",
+          "37329714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2133189",
+          "",
+          "103585628",
+          "11174599",
+          "Inconclusive",
+          "Q14524",
+          "",
+          "",
+          "IC50",
+          "Inhibition of human Nav1.5 expressed in CHO cells under tonic pulse 1 by automated patch clamp electrophysiology analysis",
+          "Confirmatory",
+          "37329714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2133190",
+          "",
+          "103585628",
+          "11174599",
+          "Inconclusive",
+          "Q14524",
+          "",
+          "",
+          "IC50",
+          "Inhibition of human Nav1.5 expressed in CHO cells under phasic pulse 1 by automated patch clamp electrophysiology analysis",
+          "Confirmatory",
+          "37329714",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1259407",
+          "",
+          "363907274",
+          "6324668",
+          "Inactive",
+          "",
+          "",
+          "",
+          "",
+          "CCRIS mutagenicity studies",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346731",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_036779",
+          "24766",
+          "",
+          "",
+          "Rat Nav1.2 (Voltage-gated sodium channels)",
+          "Other",
+          "15815630",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346737",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_000325",
+          "6329",
+          "",
+          "",
+          "Human Nav1.4 (Voltage-gated sodium channels)",
+          "Other",
+          "8058462",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346745",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_062138",
+          "29701",
+          "",
+          "",
+          "Rat Nav1.9 (Voltage-gated sodium channels)",
+          "Other",
+          "10594087",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346749",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_002968",
+          "6335",
+          "",
+          "",
+          "Human Nav1.7 (Voltage-gated sodium channels)",
+          "Other",
+          "7720699",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346750",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_035453",
+          "20273",
+          "",
+          "",
+          "Mouse Nav1.6 (Voltage-gated sodium channels)",
+          "Other",
+          "9698304",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346756",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_001189364",
+          "6323",
+          "",
+          "",
+          "Human Nav1.1 (Voltage-gated sodium channels)",
+          "Other",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346760",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_058943",
+          "29571",
+          "",
+          "",
+          "Rat Nav1.8 (Voltage-gated sodium channels)",
+          "Other",
+          "8538791",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346772",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_001153634",
+          "25665",
+          "",
+          "",
+          "Rat Nav1.5 (Voltage-gated sodium channels)",
+          "Other",
+          "2175715",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346772",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_001153634",
+          "25665",
+          "",
+          "",
+          "Rat Nav1.5 (Voltage-gated sodium channels)",
+          "Other",
+          "8967455",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346779",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_579823",
+          "78956",
+          "",
+          "",
+          "Rat Nav1.7 (Voltage-gated sodium channels)",
+          "Other",
+          "9169448",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346781",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_037310",
+          "25722",
+          "",
+          "",
+          "Rat Nav1.4 (Voltage-gated sodium channels)",
+          "Other",
+          "2559760",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346787",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_001075146",
+          "6328",
+          "",
+          "",
+          "Human Nav1.3 (Voltage-gated sodium channels)",
+          "Other",
+          "11122339",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346791",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_110502",
+          "81574",
+          "",
+          "",
+          "Rat Nav1.1 (Voltage-gated sodium channels)",
+          "Other",
+          "9437003",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1346797",
+          "",
+          "135652722",
+          "6324668",
+          "Active",
+          "NP_062139",
+          "29710",
+          "",
+          "",
+          "Rat Nav1.6 (Voltage-gated sodium channels)",
+          "Other",
+          "9603190",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1365278",
+          "",
+          "404693482",
+          "6324668",
+          "Unspecified",
+          "P14842",
+          "",
+          "",
+          "",
+          "Antagonist activity at 5-HT2A receptor in Sprague-Dawley rat ielum assessed as reduction in 5-HT-evoked contraction at 0.3 uM",
+          "Other",
+          "28943244",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1420146",
+          "",
+          "404693482",
+          "6324668",
+          "Active",
+          "Q15858",
+          "",
+          "0.0186000000",
+          "IC50",
+          "Inhibition of Nav1.7 (unknown origin) by electrophysiology assay",
+          "Confirmatory",
+          "30139550",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1420160",
+          "",
+          "404693482",
+          "6324668",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Toxicity in mouse assessed as mortality",
+          "Other",
+          "30139550",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594735",
+          "",
+          "404693482",
+          "6324668",
+          "Active",
+          "",
+          "",
+          "0.1100000000",
+          "EC50",
+          "Inhibition of NaV in mouse Neuro2a cells assessed as suppression of ouabain/veratridine-induced reduction in cell viability measured after 20 hrs by WST8 assay",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1594735",
+          "",
+          "404693482",
+          "6324668",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "Inhibition",
+          "Inhibition of NaV in mouse Neuro2a cells assessed as suppression of ouabain/veratridine-induced reduction in cell viability measured after 20 hrs by WST8 assay",
+          "Confirmatory",
+          "31117524",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1676149",
+          "",
+          "461530095",
+          "16220031",
+          "Active",
+          "Q14524",
+          "6331",
+          "0.0019000000",
+          "EC50",
+          "Inhibition of NaV1.5 (unknown origin)",
+          "Confirmatory",
+          "32896120",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "880",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "AAC39835",
+          "6002",
+          "",
+          "",
+          "qHTS Assay for Inhibitors of RGS12 GoLoco Motif Activity (Red Fluorophore)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "880",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_002060",
+          "2770",
+          "",
+          "",
+          "qHTS Assay for Inhibitors of RGS12 GoLoco Motif Activity (Red Fluorophore)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "881",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "O15296",
+          "247",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of 15-hLO-2 (15-human lipoxygenase 2)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "894",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_000851",
+          "3248",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of HPGD (15-Hydroxyprostaglandin Dehydrogenase)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1030",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "AAP35567",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Aldehyde Dehydrogenase 1 (ALDH1A1)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1379",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAA05005",
+          "",
+          "",
+          "Potency",
+          "Counterscreen for Luciferase (Kinase-Glo TM) Inhibition",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1452",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_000688",
+          "239",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of 12-hLO (12-human lipoxygenase)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1457",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "P97697",
+          "83523",
+          "",
+          "Potency",
+          "qHTS Assay for Identifying the Cell-Membrane Permeable IMPase Inhibitors: Potentiation with Lithium",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1460",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "AAI14949",
+          "4137",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of Tau Fibril Formation, Thioflavin T Binding",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1463",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "",
+          "",
+          "",
+          "Potency",
+          "Counterscreen qHTS for Inhibitors of Tau Fibril Formation, Fluorescence Polarization",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1467",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "CAA29232",
+          "2717",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Human alpha-Galactosidase at pH 4.5.",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1468",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "AAI14949",
+          "4137",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of Tau Fibril Formation, Fluorescence Polarization",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1469",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_001121649",
+          "7068",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of the Interaction of Thyroid Hormone Receptor and Steroid Receptor Coregulator 2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1471",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_002102",
+          "3064",
+          "",
+          "",
+          "qHTS Multiplex Assay to Identify Dual Action Probes in a Cell Model of Huntington: Cytoprotection (ATP)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1476",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "3I06_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Promiscuous and Specific Inhibitors of Cruzain (without detergent)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1477",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Compounds Blocking the Interaction Between CBF-beta and RUNX1 for the Treatment of Acute Myeloid Leukemia",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1478",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "3I06_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Promiscuous and Specific Inhibitors of Cruzain (with detergent)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1479",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_001121649",
+          "7068",
+          "",
+          "Potency",
+          "Total Fluorescence Counterscreen for Inhibitors of the Interaction of Thyroid Hormone Receptor and Steroid Receptor Coregulator 2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1490",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "AAG24257",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Bacillus subtilis Sfp phosphopantetheinyl transferase (PPTase)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1766",
+          "",
+          "26755738",
+          "16759596",
+          "Inconclusive",
+          "NP_000235",
+          "4221",
+          "31.6228000000",
+          "Potency",
+          "qHTS Assay for Inhibitors Targeting the Menin-MLL Interaction in MLL Related Leukemias: Competition With Fluorescein Labeled MLL-derived Peptide",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1766",
+          "",
+          "26755738",
+          "16759596",
+          "Inconclusive",
+          "NP_005924",
+          "4297",
+          "31.6228000000",
+          "Potency",
+          "qHTS Assay for Inhibitors Targeting the Menin-MLL Interaction in MLL Related Leukemias: Competition With Fluorescein Labeled MLL-derived Peptide",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1768",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_000235",
+          "4221",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors Targeting the Menin-MLL Interaction in MLL Related Leukemias: Competition With Texas Red Labeled MLL-derived Mutant Peptide",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1768",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_005924",
+          "4297",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors Targeting the Menin-MLL Interaction in MLL Related Leukemias: Competition With Texas Red Labeled MLL-derived Mutant Peptide",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1865",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "",
+          "",
+          "",
+          "Potency",
+          "Quantitative High-Throughput Screen for Regulators of Epigenetic Control",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1948",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Compounds that Induce Erasure of Genomic Imprints",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2101",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAA02545",
+          "2629",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors and Activators of N370S glucocerebrosidase as a Potential Chaperone Treatment of Gaucher Disease",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2107",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "CAA29232",
+          "2717",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors and Activators of Human alpha-Galactosidase From Spleen Homogenate",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2112",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_000143",
+          "2548",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors and Activators of Human alpha-Glucosidase From Spleen Homogenate",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2314",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAC78637",
+          "",
+          "",
+          "",
+          "Cycloheximide Counterscreen for Small Molecule Inhibitors of Shiga Toxin",
+          "Screening",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2314",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAC78638",
+          "",
+          "",
+          "",
+          "Cycloheximide Counterscreen for Small Molecule Inhibitors of Shiga Toxin",
+          "Screening",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2315",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAC78637",
+          "",
+          "",
+          "",
+          "A qHTS for Small Molecule Inhibitors of Shiga Toxin",
+          "Screening",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2315",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "BAC78638",
+          "",
+          "",
+          "",
+          "A qHTS for Small Molecule Inhibitors of Shiga Toxin",
+          "Screening",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2451",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "2ISV_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Fructose-1,6-bisphosphate Aldolase from Giardia Lamblia",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2472",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_002037",
+          "2597",
+          "",
+          "",
+          "qHTS Assay for Inhibitors of Fructose-1,6-bisphosphate Aldolase from Giardia Lamblia: Coupling assay counterscreen",
+          "Screening",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2517",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "1DE9_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of the Human Apurinic/apyrimidinic Endonuclease 1 (APE1)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2528",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_000048",
+          "641",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Bloom's syndrome helicase (BLM)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2546",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_035411",
+          "19885",
+          "",
+          "Potency",
+          "VP16 counterscreen qHTS for inhibitors of ROR gamma transcriptional activity",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2549",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "2WWY_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of RecQ-Like Dna Helicase 1 (RECQ1)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2551",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_035411",
+          "19885",
+          "",
+          "Potency",
+          "qHTS for inhibitors of ROR gamma transcriptional activity",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "485281",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "3F32_A",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Identification of Novel General Anesthetics",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "485290",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "1JY1_A",
+          "",
+          "70.7946000000",
+          "Potency",
+          "qHTS Assay for Inhibitors of Tyrosyl-DNA Phosphodiesterase (TDP1)",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "504327",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_066564",
+          "2648",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of GCN5L2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "504332",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "CAQ07474",
+          "",
+          "",
+          "Potency",
+          "qHTS Assay for Inhibitors of Histone Lysine Methyltransferase G9a",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "504847",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_001017535",
+          "7421",
+          "",
+          "Potency",
+          "Inhibitors of the vitamin D receptor (VDR): qHTS",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "588579",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "NP_057302",
+          "51426",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of Polymerase Kappa",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "602332",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "CAQ08732",
+          "",
+          "",
+          "Potency",
+          "qHTS for Inducers of the Endoplasmic Reticulum Stress Response (ERSR) in Human Glioma: qHTS",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "720532",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "B45705",
+          "",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of binding or entry into cells for Marburg Virus",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "720533",
+          "",
+          "26755738",
+          "16759596",
+          "Inactive",
+          "",
+          "",
+          "",
+          "Potency",
+          "qHTS for Inhibitors of binding or entry into cells for Lassa Virus",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347082",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "",
+          "956586",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lassa (LASV) Arenavirus: LASV Primary Screen - GLuc reporter signal",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347082",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "P13699",
+          "956584",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lassa (LASV) Arenavirus: LASV Primary Screen - GLuc reporter signal",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347083",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "",
+          "956586",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lassa (LASV) Arenavirus: Viability assay - alamar blue signal for LASV Primary Screen",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347083",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "P13699",
+          "956584",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lassa (LASV) Arenavirus: Viability assay - alamar blue signal for LASV Primary Screen",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347085",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "",
+          "956592",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lymphocytic Choriomeningitis Arenaviruses (LCMV): Viability assay - alamar blue signal for LCMV Primary Screen",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347085",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "P09992",
+          "956592",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lymphocytic Choriomeningitis Arenaviruses (LCMV): Viability assay - alamar blue signal for LCMV Primary Screen",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347086",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "",
+          "956592",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lymphocytic Choriomeningitis Arenaviruses (LCMV): LCMV Primary Screen - GLuc reporter signal",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1347086",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "P09992",
+          "956592",
+          "",
+          "",
+          "qHTS for Inhibitors of the Functional Ribonucleoprotein Complex (vRNP) of Lymphocytic Choriomeningitis Arenaviruses (LCMV): LCMV Primary Screen - GLuc reporter signal",
+          "Confirmatory",
+          "31786250",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1671190",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "",
+          "239",
+          "",
+          "Potency",
+          "Primary qHTS assay for inhibitors of human arachidonate 12S-lipoxygenase (ALOX12): Round 2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1671190",
+          "",
+          "26755739",
+          "16759596",
+          "Inactive",
+          "P18054",
+          "239",
+          "",
+          "Potency",
+          "Primary qHTS assay for inhibitors of human arachidonate 12S-lipoxygenase (ALOX12): Round 2",
+          "Confirmatory",
+          "",
+          ""
+         ]
+        }
+       ]
+      }
+     }
+    }
+   }
+  }
+ }
+}

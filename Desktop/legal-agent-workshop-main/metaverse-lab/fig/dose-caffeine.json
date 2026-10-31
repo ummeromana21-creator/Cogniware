@@ -1,0 +1,46 @@
+{
+ "title": "caffeine dose\u2013response per sex, simulated (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11,
+  12,
+  13
+ ],
+ "params": {
+  "substance": "caffeine",
+  "doses": [
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "repeats": 3
+ },
+ "xlabel": "dose (unitless)",
+ "dose": "unitless",
+ "results": {
+  "caffeine": {
+   "banc": 160.6,
+   "malecns": 84.8
+  }
+ },
+ "verdicts": {
+  "caffeine": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.042 over 3 runs (from 0.042 to 0.042) \u2014 161% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.026) is 433.6\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.036 over 3 runs (from 0.035 to 0.036) \u2014 85% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.016) is 184.9\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   }
+  }
+ }
+}

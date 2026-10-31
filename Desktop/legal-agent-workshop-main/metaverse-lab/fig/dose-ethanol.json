@@ -1,0 +1,46 @@
+{
+ "title": "ethanol dose\u2013response per sex, simulated (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11,
+  12,
+  13
+ ],
+ "params": {
+  "substance": "ethanol",
+  "doses": [
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "repeats": 3
+ },
+ "xlabel": "dose (unitless)",
+ "dose": "unitless",
+ "results": {
+  "ethanol": {
+   "banc": -14.6,
+   "malecns": -49.9
+  }
+ },
+ "verdicts": {
+  "ethanol": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.014 over 3 runs (from 0.014 to 0.014) \u2014 15% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.002) is 33.5\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.010 over 3 runs (from 0.010 to 0.010) \u2014 50% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.010) is 142.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  }
+ }
+}

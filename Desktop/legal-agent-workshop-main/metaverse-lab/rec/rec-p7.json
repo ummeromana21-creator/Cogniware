@@ -1,0 +1,272 @@
+{
+ "id": "exp-p7-rec-2026-10-30",
+ "card": {
+  "title": "Smell path (P7)",
+  "hypothesis": "Flies steer toward the banana by smell, so the treatment box catches differently.",
+  "control": {
+   "name": "control box",
+   "setup": [
+    {
+     "cmd": "restore"
+    }
+   ]
+  },
+  "treatments": [
+   {
+    "name": "treatment box",
+    "setup": [
+     {
+      "cmd": "restore"
+     }
+    ]
+   }
+  ],
+  "measure": "bananas",
+  "prediction": "different",
+  "repeats": 3,
+  "steps": 400,
+  "description": "",
+  "variables": {
+   "changed": "treatment box vs control box",
+   "measured": [
+    "bananas",
+    "bananas",
+    "firing_all"
+   ],
+   "held": [
+    "same boxes, same bananas",
+    "same run length (400 steps)",
+    "every fly reset before every run",
+    "control and treatment boxes run at the same time"
+   ]
+  },
+  "constraints": [
+   "reset before every run",
+   "no human intervention during a run",
+   "3 independent runs per condition"
+  ],
+  "author": "human",
+  "source": null
+ },
+ "results": {
+  "control box": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07441543713948713,
+     "tortuosity": 2.303556154904642,
+     "mean_abs_turn": 0.049338012081570924,
+     "firing_all": 0.016156401903808237,
+     "firing_peak": 0.032277281686302596,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.0732236524528346,
+     "tortuosity": 2.4497794596065776,
+     "mean_abs_turn": 0.04183196747966576,
+     "firing_all": 0.016190735729360094,
+     "firing_peak": 0.02872823834361077,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 22,
+     "activity": 0.07658597276072239,
+     "tortuosity": 2.8062489761378515,
+     "mean_abs_turn": 0.04739332364173606,
+     "firing_all": 0.016216466293594623,
+     "firing_peak": 0.030534447901945004,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.09867886454526674,
+     "tortuosity": 9.544366147379597,
+     "mean_abs_turn": 0.05710798774845898,
+     "firing_all": 0.019252894421115788,
+     "firing_peak": 0.040341931613677266,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.10523905574330128,
+     "tortuosity": 7.8966024526667935,
+     "mean_abs_turn": 0.0513347002689261,
+     "firing_all": 0.019050224955009003,
+     "firing_peak": 0.04131373725254949,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.10272825678862697,
+     "tortuosity": 5.004477896457207,
+     "mean_abs_turn": 0.057106322532054034,
+     "firing_all": 0.019130233953209348,
+     "firing_peak": 0.035752849430113975,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ]
+  },
+  "treatment box": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07494883592851362,
+     "tortuosity": 2.9214741748654673,
+     "mean_abs_turn": 0.04427473904332146,
+     "firing_all": 0.016277718979143024,
+     "firing_peak": 0.025705213924925058,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07772587692449347,
+     "tortuosity": 2.156584131312162,
+     "mean_abs_turn": 0.04865340569172986,
+     "firing_all": 0.01598482783971,
+     "firing_peak": 0.027796614466154168,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07471730134066779,
+     "tortuosity": 2.5533572097085133,
+     "mean_abs_turn": 0.04202151265810244,
+     "firing_all": 0.01583706722268346,
+     "firing_peak": 0.032150530138349315,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 12,
+     "activity": 0.09955232652886488,
+     "tortuosity": 11.038363395882554,
+     "mean_abs_turn": 0.057015829298179596,
+     "firing_all": 0.01926889622075585,
+     "firing_peak": 0.0440251949610078,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.10531971147325132,
+     "tortuosity": 5.67236966093326,
+     "mean_abs_turn": 0.053476291669067,
+     "firing_all": 0.019187177564487103,
+     "firing_peak": 0.037744451109778046,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 15,
+     "activity": 0.10310340842571969,
+     "tortuosity": null,
+     "mean_abs_turn": 0.056616907106945294,
+     "firing_all": 0.019449700059988004,
+     "firing_peak": 0.035722855428914214,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ]
+  }
+ },
+ "analysis": "=== Maxime (female) ===\nControl box: bananas found averaged 7.33 over 3 runs (from 0.000 to 22.00).\nTreatment box: bananas found averaged 0.000 over 3 runs (from 0.000 to 0.000) \u2014 100% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (7.33) is 0.8\u00d7 the run-to-run wobble (8.98).\nVerdict for treatment box: CAN'T TELL YET \u2014 the gap is smaller than the run-to-run wobble, or too few runs agreed \u2014 more repeats would settle it.\n=== Hagrid (male) ===\nControl box: bananas found averaged 0.000 over 3 runs (from 0.000 to 0.000).\nTreatment box: bananas found averaged 9.00 over 3 runs (from 0.000 to 15.00) \u2014 nan% more than control box. 2 of 3 runs were on the predicted side of the control box average; the gap (9.00) is 1.6\u00d7 the run-to-run wobble (5.61).\nVerdict for treatment box: CAN'T TELL YET \u2014 the gap is smaller than the run-to-run wobble, or too few runs agreed \u2014 more repeats would settle it.\nOverall: CAN'T TELL YET \u2014 neither sex gave a clear answer yet.",
+ "verdict": "CAN'T TELL YET",
+ "details": {
+  "per_fly": {
+   "Maxime (female)": [
+    {
+     "treatment": "treatment box",
+     "control_mean": 7.333333333333333,
+     "treatment_mean": 0.0,
+     "gap": -7.333333333333333,
+     "wobble": 8.981462390205987,
+     "hits": 3,
+     "of": 3,
+     "verdict": "CAN'T TELL YET",
+     "values": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "control_values": [
+      0.0,
+      0.0,
+      22.0
+     ]
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "treatment": "treatment box",
+     "control_mean": 0.0,
+     "treatment_mean": 9.0,
+     "gap": 9.0,
+     "wobble": 5.612486080161912,
+     "hits": 2,
+     "of": 3,
+     "verdict": "CAN'T TELL YET",
+     "values": [
+      12.0,
+      0.0,
+      15.0
+     ],
+     "control_values": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   ]
+  },
+  "verdicts": {
+   "Maxime (female)": "CAN'T TELL YET",
+   "Hagrid (male)": "CAN'T TELL YET"
+  }
+ },
+ "date": "2026-10-30",
+ "seeds": {
+  "control box / Maxime (female) / run 1": 2300,
+  "control box / Maxime (female) / run 2": 2301,
+  "control box / Maxime (female) / run 3": 2302,
+  "control box / Hagrid (male) / run 1": 2303,
+  "control box / Hagrid (male) / run 2": 2304,
+  "control box / Hagrid (male) / run 3": 2305,
+  "treatment box / Maxime (female) / run 1": 2306,
+  "treatment box / Maxime (female) / run 2": 2307,
+  "treatment box / Maxime (female) / run 3": 2308,
+  "treatment box / Hagrid (male) / run 1": 2309,
+  "treatment box / Hagrid (male) / run 2": 2310,
+  "treatment box / Hagrid (male) / run 3": 2311
+ },
+ "simulated": true,
+ "label": {
+  "git_commit": "a5de1ab",
+  "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8"
+ },
+ "subject": "Maxime (female) + Hagrid (male) in control and treatment boxes"
+}

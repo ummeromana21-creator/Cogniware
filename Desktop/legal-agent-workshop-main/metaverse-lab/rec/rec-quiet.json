@@ -1,0 +1,277 @@
+{
+ "id": "exp-quiet-rec-2026-10-30",
+ "card": {
+  "title": "Quiet brain",
+  "hypothesis": "Turning down background drive lowers whole-brain firing.",
+  "control": {
+   "name": "control box",
+   "setup": [
+    {
+     "cmd": "restore"
+    }
+   ]
+  },
+  "treatments": [
+   {
+    "name": "quiet",
+    "setup": [
+     {
+      "cmd": "restore"
+     },
+     {
+      "cmd": "set_param",
+      "key": "I_bg",
+      "value": 0.8
+     }
+    ]
+   }
+  ],
+  "measure": "firing_all",
+  "prediction": "lower",
+  "repeats": 3,
+  "steps": 400,
+  "description": "",
+  "variables": {
+   "changed": "quiet vs control box",
+   "measured": [
+    "firing_all",
+    "bananas",
+    "firing_all"
+   ],
+   "held": [
+    "same boxes, same bananas",
+    "same run length (400 steps)",
+    "every fly reset before every run",
+    "control and treatment boxes run at the same time"
+   ]
+  },
+  "constraints": [
+   "reset before every run",
+   "no human intervention during a run",
+   "3 independent runs per condition"
+  ],
+  "author": "human",
+  "source": null
+ },
+ "results": {
+  "control box": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07531409208807965,
+     "tortuosity": 2.030021270459536,
+     "mean_abs_turn": 0.04264857123722322,
+     "firing_all": 0.016339304387504847,
+     "firing_peak": 0.027917028436709783,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07067428954972022,
+     "tortuosity": 2.463522665147641,
+     "mean_abs_turn": 0.05074370728805661,
+     "firing_all": 0.016261478937061515,
+     "firing_peak": 0.025337634435860547,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.07532093936655855,
+     "tortuosity": 2.0842522053046237,
+     "mean_abs_turn": 0.045438798015238716,
+     "firing_all": 0.015951983344846616,
+     "firing_peak": 0.029419034279956145,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 24,
+     "activity": 0.09948388654057856,
+     "tortuosity": 5.623756584231948,
+     "mean_abs_turn": 0.05366704648011364,
+     "firing_all": 0.019304379124175163,
+     "firing_peak": 0.04048590281943611,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.10078612084975376,
+     "tortuosity": 36.26119679060921,
+     "mean_abs_turn": 0.045538717288291085,
+     "firing_all": 0.019236982603479297,
+     "firing_peak": 0.0350749850029994,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 22,
+     "activity": 0.09689915652520455,
+     "tortuosity": 4.524194758236587,
+     "mean_abs_turn": 0.055226203862112015,
+     "firing_all": 0.019024865026994596,
+     "firing_peak": 0.036166766646670664,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ]
+  },
+  "quiet": {
+   "Maxime (female)": [
+    {
+     "steps": 400,
+     "bananas": 50,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.0033106553688786932,
+     "firing_peak": 0.010330251158192269,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 78,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.0030700175550893907,
+     "firing_peak": 0.00940496485813333,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.003052208962601956,
+     "firing_peak": 0.011502702976760103,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.0052791391721655635,
+     "firing_peak": 0.021457708458308338,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.005284658068386322,
+     "firing_peak": 0.021601679664067185,
+     "synchrony": 0.0,
+     "scrambled": false
+    },
+    {
+     "steps": 400,
+     "bananas": 0,
+     "activity": 0.02250000089406967,
+     "tortuosity": 1.0,
+     "mean_abs_turn": 0.0,
+     "firing_all": 0.005737867426514701,
+     "firing_peak": 0.019454109178164366,
+     "synchrony": 0.0,
+     "scrambled": false
+    }
+   ]
+  }
+ },
+ "analysis": "=== Maxime (female) ===\nControl box: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nQuiet: share of all neurons firing per step averaged 0.003 over 3 runs (from 0.003 to 0.003) \u2014 81% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.013) is 73.6\u00d7 the run-to-run wobble (0.000).\nVerdict for quiet: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.\n=== Hagrid (male) ===\nControl box: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nQuiet: share of all neurons firing per step averaged 0.005 over 3 runs (from 0.005 to 0.006) \u2014 72% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.014) is 64.6\u00d7 the run-to-run wobble (0.000).\nVerdict for quiet: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.\nOverall: SUPPORTED \u2014 both sexes agree: supported in each.",
+ "verdict": "SUPPORTED",
+ "details": {
+  "per_fly": {
+   "Maxime (female)": [
+    {
+     "treatment": "quiet",
+     "control_mean": 0.016184255556470992,
+     "treatment_mean": 0.0031442939621900133,
+     "gap": -0.01303996159428098,
+     "wobble": 0.00017721930034689584,
+     "hits": 3,
+     "of": 3,
+     "verdict": "SUPPORTED",
+     "values": [
+      0.0033106553688786932,
+      0.0030700175550893907,
+      0.003052208962601956
+     ],
+     "control_values": [
+      0.016339304387504847,
+      0.016261478937061515,
+      0.015951983344846616
+     ]
+    }
+   ],
+   "Hagrid (male)": [
+    {
+     "treatment": "quiet",
+     "control_mean": 0.019188742251549686,
+     "treatment_mean": 0.0054338882223555285,
+     "gap": -0.013754854029194158,
+     "wobble": 0.00021282330009010566,
+     "hits": 3,
+     "of": 3,
+     "verdict": "SUPPORTED",
+     "values": [
+      0.0052791391721655635,
+      0.005284658068386322,
+      0.005737867426514701
+     ],
+     "control_values": [
+      0.019304379124175163,
+      0.019236982603479297,
+      0.019024865026994596
+     ]
+    }
+   ]
+  },
+  "verdicts": {
+   "Maxime (female)": "SUPPORTED",
+   "Hagrid (male)": "SUPPORTED"
+  }
+ },
+ "date": "2026-10-30",
+ "seeds": {
+  "control box / Maxime (female) / run 1": 2000,
+  "control box / Maxime (female) / run 2": 2001,
+  "control box / Maxime (female) / run 3": 2002,
+  "control box / Hagrid (male) / run 1": 2003,
+  "control box / Hagrid (male) / run 2": 2004,
+  "control box / Hagrid (male) / run 3": 2005,
+  "quiet / Maxime (female) / run 1": 2006,
+  "quiet / Maxime (female) / run 2": 2007,
+  "quiet / Maxime (female) / run 3": 2008,
+  "quiet / Hagrid (male) / run 1": 2009,
+  "quiet / Hagrid (male) / run 2": 2010,
+  "quiet / Hagrid (male) / run 3": 2011
+ },
+ "simulated": true,
+ "label": {
+  "git_commit": "a5de1ab",
+  "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8"
+ },
+ "subject": "Maxime (female) + Hagrid (male) in control and treatment boxes"
+}

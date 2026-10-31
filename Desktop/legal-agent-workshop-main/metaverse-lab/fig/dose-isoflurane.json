@@ -1,0 +1,46 @@
+{
+ "title": "isoflurane dose\u2013response per sex, simulated (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11,
+  12,
+  13
+ ],
+ "params": {
+  "substance": "isoflurane",
+  "doses": [
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "repeats": 3
+ },
+ "xlabel": "dose (unitless)",
+ "dose": "unitless",
+ "results": {
+  "isoflurane": {
+   "banc": -86.1,
+   "malecns": -89.9
+  }
+ },
+ "verdicts": {
+  "isoflurane": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 86% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.014) is 86.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 90% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.017) is 79.2\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  }
+ }
+}

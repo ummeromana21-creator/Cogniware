@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reset password · Fly Lab</title>
+<meta name="description" content="Get a password reset link or set a new Fly Lab password.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%234d5a3d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M19.5 4.5l-2 2M6.5 17.5l-2 2"/></symbol>
+</defs></svg>
+
+<div class="duo-hero" id="hero" data-light="day">
+  <header class="duo-top">
+    <div class="duo-brand">
+      <h1>Reset password</h1>
+      <p>Hagrid &amp; Maxime · Fly Lab</p>
+    </div>
+    <nav class="duo-nav" aria-label="Lab sections">
+      <a href="./"><svg class="duo-ic"><use href="#i-chev"/></svg><span>Back to the story</span></a>
+    </nav>
+    <div class="duo-topright">
+      <button class="duo-iconbtn" id="lightBtn" aria-label="Toggle day and dusk" aria-pressed="false"><svg class="duo-ic"><use href="#i-sun"/></svg></button>
+    </div>
+  </header>
+
+  <main class="duo-page duo-narrow">
+    <section class="duo-card" aria-label="Email a reset link">
+      <div class="duo-cardtop"><span class="duo-tag">Step 1 · Email link</span></div>
+      <h3 class="duo-serif">Forgot your password?</h3>
+      <p class="duo-dim">Enter your account email. If an email-based account
+      exists, a reset link is on its way — valid 30 minutes, single use.
+      (Provider sign-ins have no lab password to reset.)</p>
+      <form id="forgotForm" novalidate>
+        <label>Email
+          <input id="fgEmail" type="email" autocomplete="email" placeholder="you@lab.edu" required>
+        </label>
+        <p class="duo-autherr" id="fgError" role="alert" hidden></p>
+        <p class="duo-welcome" id="fgOk" hidden><svg class="duo-ic"><use href="#i-check"/></svg><span>If that email has an account, a reset link is on its way. Check your inbox (and spam).</span></p>
+        <button class="duo-go" id="fgSubmit" type="submit">Email me a reset link</button>
+      </form>
+    </section>
+
+    <section class="duo-card" aria-label="Set a new password">
+      <div class="duo-cardtop"><span class="duo-tag">Step 2 · New password</span></div>
+      <h3 class="duo-serif">Got a link? Set the password</h3>
+      <p class="duo-dim">Opening the email link fills the token for you — or
+      paste it below.</p>
+      <form id="resetForm" novalidate>
+        <label>Reset token
+          <input id="rsToken" type="text" autocomplete="off" placeholder="From your email link" required>
+        </label>
+        <label>New password
+          <input id="rsNew" type="password" autocomplete="new-password" required>
+        </label>
+        <ul class="duo-reqs" id="rsReqs" aria-label="Password requirements"></ul>
+        <label>Confirm new password
+          <input id="rsConfirm" type="password" autocomplete="new-password" required>
+        </label>
+        <p class="duo-autherr" id="rsError" role="alert" hidden></p>
+        <p class="duo-welcome" id="rsOk" hidden><svg class="duo-ic"><use href="#i-check"/></svg><span>Password set. <a href="index.html?signin=1">Sign in with it.</a></span></p>
+        <button class="duo-go" id="rsSubmit" type="submit">Set new password</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="duo-cite">
+    <strong>Password reset</strong> — Fly Lab accounts.
+    Back to: <a href="./">the story</a> · <a href="profile.html">your profile</a>.
+  </footer>
+</div>
+
+<script src="auth.js?v=3"></script>
+<script src="reset.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+ "title": "Time course before/during/washout per fly per box, simulated (3 repeats, base seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11,
+  12,
+  13,
+  14,
+  21,
+  22,
+  23,
+  24,
+  31,
+  32,
+  33,
+  34
+ ],
+ "params": {
+  "drug": "caffeine 0.5",
+  "window": 25,
+  "repeats": 3
+ },
+ "xlabel": "steps",
+ "dose": "unitless",
+ "verdicts": {
+  "banc": {
+   "verdict": "SUPPORTED",
+   "analysis": "Control box: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nDosed box: share of all neurons firing per step averaged 0.031 over 3 runs (from 0.031 to 0.031) \u2014 92% more than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.015) is 103.2\u00d7 the run-to-run wobble (0.000).\nVerdict for dosed box: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+   "control": [
+    0.016322398899796562,
+    0.016210398063236348,
+    0.01594867196065632
+   ],
+   "treatment": [
+    0.031135440366565473,
+    0.031058327893579398,
+    0.030995379906077106
+   ]
+  },
+  "malecns": {
+   "verdict": "SUPPORTED",
+   "analysis": "Control box: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nDosed box: share of all neurons firing per step averaged 0.028 over 3 runs (from 0.028 to 0.028) \u2014 47% more than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.009) is 69.0\u00d7 the run-to-run wobble (0.000).\nVerdict for dosed box: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+   "control": [
+    0.01939860527894421,
+    0.019130803839232154,
+    0.019422315536892623
+   ],
+   "treatment": [
+    0.02836763647270546,
+    0.028201934613077385,
+    0.02833404319136173
+   ]
+  }
+ }
+}

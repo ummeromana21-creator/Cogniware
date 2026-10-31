@@ -1,0 +1,239 @@
+{
+ "id": "exp-dose-rec-2026-10-30",
+ "date": "2026-10-30",
+ "seeds": [
+  11,
+  12,
+  13
+ ],
+ "simulated": true,
+ "substances": [
+  "caffeine",
+  "ethanol",
+  "isoflurane"
+ ],
+ "doses": [
+  0.0,
+  0.25,
+  0.5,
+  1.0,
+  2.0
+ ],
+ "runs": {
+  "caffeine": {
+   "banc": {
+    "0.0": [
+     0.016123478189227387,
+     0.016116586073807428,
+     0.01613556711811343
+    ],
+    "0.25": [
+     0.023820592690238226,
+     0.02367129521069276,
+     0.023848715689940358
+    ],
+    "0.5": [
+     0.030984051486478776,
+     0.030981674894954656,
+     0.03097541653727446
+    ],
+    "1.0": [
+     0.03799967044597532,
+     0.03791096020635152,
+     0.03796547921591492
+    ],
+    "2.0": [
+     0.0420770459284234,
+     0.04193105983306821,
+     0.042075825944774346
+    ]
+   },
+   "malecns": {
+    "0.0": [
+     0.019274145170965807,
+     0.01929529094181164,
+     0.01919247150569886
+    ],
+    "0.25": [
+     0.023602879424115177,
+     0.023621280743851232,
+     0.02357808938212357
+    ],
+    "0.5": [
+     0.028206463707258555,
+     0.02795241451709658,
+     0.028031223755248955
+    ],
+    "1.0": [
+     0.03283471805638872,
+     0.03272012597480504,
+     0.032837147570485906
+    ],
+    "2.0": [
+     0.03568300839832034,
+     0.03560389922015597,
+     0.035461067786442715
+    ]
+   }
+  },
+  "ethanol": {
+   "banc": {
+    "0.0": [
+     0.016123478189227387,
+     0.016116586073807428,
+     0.01613556711811343
+    ],
+    "0.25": [
+     0.015211358206212094,
+     0.014830659931934418,
+     0.01507099671079733
+    ],
+    "0.5": [
+     0.014104833036523459,
+     0.013893807553124742,
+     0.014125636134331291
+    ],
+    "1.0": [
+     0.013741293753049959,
+     0.013658429928575501,
+     0.01389219147088834
+    ],
+    "2.0": [
+     0.013714755147697242,
+     0.01372118778875587,
+     0.013888816710924084
+    ]
+   },
+   "malecns": {
+    "0.0": [
+     0.019274145170965807,
+     0.01929529094181164,
+     0.01919247150569886
+    ],
+    "0.25": [
+     0.015991571685662866,
+     0.016106913617276543,
+     0.016029634073185365
+    ],
+    "0.5": [
+     0.012690701859628076,
+     0.012748110377924416,
+     0.01284025194961008
+    ],
+    "1.0": [
+     0.010357513497300542,
+     0.010504679064187164,
+     0.010353479304139171
+    ],
+    "2.0": [
+     0.009600809838032394,
+     0.009740686862627475,
+     0.009610632873425314
+    ]
+   }
+  },
+  "isoflurane": {
+   "banc": {
+    "0.0": [
+     0.016123478189227387,
+     0.016116586073807428,
+     0.01613556711811343
+    ],
+    "0.25": [
+     0.010302239066094595,
+     0.01009894542712103,
+     0.010338363257261278
+    ],
+    "0.5": [
+     0.005361542946593235,
+     0.005342197491586865,
+     0.005858472390344067
+    ],
+    "1.0": [
+     0.0028389653271140573,
+     0.0027992445607741986,
+     0.003238074263731946
+    ],
+    "2.0": [
+     0.0021688457370285636,
+     0.002055767512310744,
+     0.002491174923473753
+    ]
+   },
+   "malecns": {
+    "0.0": [
+     0.019274145170965807,
+     0.01929529094181164,
+     0.01919247150569886
+    ],
+    "0.25": [
+     0.012525,
+     0.013050374925014995,
+     0.012849685062987403
+    ],
+    "0.5": [
+     0.006304274145170965,
+     0.00641508698260348,
+     0.006449730053989202
+    ],
+    "1.0": [
+     0.0028704859028194363,
+     0.0030443161367726458,
+     0.0031368476304739048
+    ],
+    "2.0": [
+     0.001642081583683263,
+     0.00194623575284943,
+     0.0022505548890221954
+    ]
+   }
+  }
+ },
+ "verdicts": {
+  "caffeine": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.042 over 3 runs (from 0.042 to 0.042) \u2014 161% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.026) is 433.6\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.036 over 3 runs (from 0.035 to 0.036) \u2014 85% more than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.016) is 184.9\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "higher"
+   }
+  },
+  "ethanol": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.014 over 3 runs (from 0.014 to 0.014) \u2014 15% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.002) is 33.5\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.010 over 3 runs (from 0.010 to 0.010) \u2014 50% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.010) is 142.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  },
+  "isoflurane": {
+   "banc": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 86% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.014) is 86.8\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   },
+   "malecns": {
+    "verdict": "SUPPORTED",
+    "analysis": "No drug: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nFull dose: share of all neurons firing per step averaged 0.002 over 3 runs (from 0.002 to 0.002) \u2014 90% less than no drug. 3 of 3 runs were on the predicted side of the no drug average; the gap (0.017) is 79.2\u00d7 the run-to-run wobble (0.000).\nVerdict for full dose: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+    "prediction": "lower"
+   }
+  }
+ },
+ "predictions": {
+  "caffeine": "higher",
+  "ethanol": "lower",
+  "isoflurane": "lower"
+ },
+ "label": {
+  "git_commit": "a5de1ab",
+  "dataset": "banc sha1:e0f7404c+malecns sha1:1430e3a8"
+ }
+}

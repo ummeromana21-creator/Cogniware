@@ -1,0 +1,594 @@
+{
+ "substance": "pmd",
+ "retrieved": "2026-10-30",
+ "records": {
+  "pubchem": {
+   "source": "pubchem",
+   "query": "pmd",
+   "parts": {
+    "compound": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/pmd/property/Title,MolecularFormula,IUPACName,CanonicalSMILES/JSON",
+     "data": {
+      "PropertyTable": {
+       "Properties": [
+        {
+         "CID": 446744,
+         "MolecularFormula": "C21H17N7",
+         "ConnectivitySMILES": "C1=CC=C2C(=C1)C=CC3=CC=CC=C3N2CC4=CN=C5C(=N4)C(=NC(=N5)N)N",
+         "IUPACName": "6-(benzo[b][1]benzazepin-11-ylmethyl)pteridine-2,4-diamine",
+         "Title": "[N-(2,4-Diaminopteridin-6-YL)-methyl]-dibenz[B,F]azepine"
+        }
+       ]
+      }
+     }
+    },
+    "description": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/pmd/description/JSON",
+     "data": {
+      "InformationList": {
+       "Information": [
+        {
+         "CID": 446744,
+         "Title": "[N-(2,4-Diaminopteridin-6-YL)-methyl]-dibenz[B,F]azepine"
+        }
+       ]
+      }
+     }
+    },
+    "assays": {
+     "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/pmd/assaysummary/JSON",
+     "data": {
+      "Table": {
+       "Columns": {
+        "Column": [
+         "AID",
+         "Panel Member ID",
+         "SID",
+         "CID",
+         "Activity Outcome",
+         "Target Accession",
+         "Target GeneID",
+         "Activity Value [uM]",
+         "Activity Name",
+         "Assay Name",
+         "Assay Type",
+         "PubMed ID",
+         "RNAi"
+        ]
+       },
+       "Row": [
+        {
+         "Cell": [
+          "55683",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "P0ABQ4",
+          "944790",
+          "2.6",
+          "IC50",
+          "In vitro inhibition of Pneumocystis carinii (Pc) dihydrofolate reductase.",
+          "Confirmatory",
+          "11754594",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "55683",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "P0ABQ4",
+          "86862560",
+          "2.6",
+          "IC50",
+          "In vitro inhibition of Pneumocystis carinii (Pc) dihydrofolate reductase.",
+          "Confirmatory",
+          "11754594",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "55693",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "P16184",
+          "",
+          "",
+          "",
+          "Selective index against Pneumocystis carinii versus rat DHFR",
+          "Other",
+          "11754594",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "55710",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q07422",
+          "",
+          "0.039",
+          "IC50",
+          "Concentration required to inhibit the Toxoplasma gondii Dihydrofolate reductase by 50% was determined; Range: 32-47",
+          "Confirmatory",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "55831",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "P16184",
+          "",
+          "0.21",
+          "IC50",
+          "Inhibitory activity against DHFR (Dihydrofolate reductase) from Pneumocystis carinii.",
+          "Confirmatory",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "56186",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q07422",
+          "",
+          "0.043",
+          "IC50",
+          "Inhibitory activity against Dihydrohydrofolate reductase(DHFR) of Toxoplasma gondii",
+          "Confirmatory",
+          "12699390",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "56315",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q07422",
+          "",
+          "0.043",
+          "IC50",
+          "Inhibitory activity against DHFR (Dihydrofolate reductase) from Toxoplasma gondii.",
+          "Confirmatory",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "57616",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "O30463",
+          "",
+          "0.012",
+          "IC50",
+          "Concentration required to inhibit the Mycobacterium avium Dihydrofolate reductase by 50% was determined; Range: 9.1-17",
+          "Confirmatory",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "57627",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "P16184",
+          "",
+          "0.079",
+          "IC50",
+          "Concentration required to inhibit the Pneumocystis carinii Dihydrofolate reductase by 50% was determined; Range: 58-110",
+          "Confirmatory",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "57806",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q920D2",
+          "24312",
+          "3",
+          "IC50",
+          "Concentration required to inhibit the rat liver Dihydrofolate reductase by 50% was determined; Range: 2500-3600",
+          "Confirmatory",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "57958",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "O30463",
+          "",
+          "0.012",
+          "IC50",
+          "Inhibitory activity against DHFR (Dihydrofolate reductase) from Mycobacterium avium",
+          "Confirmatory",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "57966",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q920D2",
+          "24312",
+          "4.4",
+          "IC50",
+          "Inhibitory activity against DHFR (Dihydrofolate reductase) from Rat liver",
+          "Confirmatory",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "58157",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selective index for Dihydrofolate reductase was determined by IC50(rat liver) / IC50(Toxoplasma gondii)",
+          "Other",
+          "12699390",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "232973",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Ratio of Dihydrofolate reductase inhibitory activity in rat to Mycobacterium avium",
+          "Other",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "232974",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Ratio of Dihydrofolate reductase inhibitory activity in rat to Pneumocystis carinii",
+          "Other",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "232975",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Ratio of Dihydrofolate reductase inhibitory activity in rat to Toxoplasma gondii",
+          "Other",
+          "10579848",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "235651",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index was determined by the ratio for IC50 of rat liver DHFR to the IC50 of Mycobacterium avium DHFR; Range: 150-400",
+          "Other",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "235666",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index was determined by the ratio for IC50 of rat liver DHFR to the IC50 of Pneumocystis carinii DHFR; Range: 23-62",
+          "Other",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "235790",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity index was determined by the ratio for IC50 of rat liver DHFR to the IC50 of Toxoplasma gondii DHFR; Range: 53-113",
+          "Other",
+          "15115391",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480925",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "P16184",
+          "",
+          "0.21",
+          "Activity",
+          "Inhibition of Pneumocystis carinii DHFR by continuous spectrophotometric assay",
+          "Confirmatory",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480926",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q07422",
+          "",
+          "0.043",
+          "Activity",
+          "Inhibition of Toxoplasma gondii DHFR by continuous spectrophotometric assay",
+          "Confirmatory",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480929",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "O30463",
+          "",
+          "0.012",
+          "Activity",
+          "Inhibition of Mycobacterium avium DHFR by continuous spectrophotometric assay",
+          "Confirmatory",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480931",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "21",
+          "Activity",
+          "Selectivity ratio of IC50 for rat liver DHFR to IC50 for Pneumocystis carinii DHFR",
+          "Confirmatory",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480932",
+          "",
+          "103230031",
+          "446744",
+          "Active",
+          "Q920D2",
+          "24312",
+          "4.4",
+          "Activity",
+          "Inhibition of rat liver DHFR by continuous spectrophotometric assay",
+          "Confirmatory",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480934",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity ratio of IC50 for rat liver DHFR to IC50 for Toxoplasma gondii DHFR",
+          "Other",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "480935",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Selectivity ratio of IC50 for rat liver DHFR to IC50 for Mycobacterium avium DHFR",
+          "Other",
+          "20363634",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "493017",
+          "",
+          "103855322",
+          "446744",
+          "Active",
+          "",
+          "1719",
+          "",
+          "",
+          "Wombat Data for BeliefDocking",
+          "Other",
+          "11754594",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "496824",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "IC50",
+          "Antimicrobial activity against Toxoplasma gondii",
+          "Confirmatory",
+          "20185316",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "497005",
+          "",
+          "103230031",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "IC50",
+          "Antimicrobial activity against Pneumocystis carinii",
+          "Confirmatory",
+          "20185316",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "1797737",
+          "",
+          "46518579",
+          "446744",
+          "Inactive",
+          "",
+          "",
+          "16.67",
+          "IC50",
+          "In Vitro Inhibition Assay from Article 10.1128/AAC.00386-06: \"Structure-activity relationships of Bacillus cereus and Bacillus anthracis dihydrofolate reductase: toward the identification of new potent drug leads.\"",
+          "Confirmatory",
+          "17005826",
+          ""
+         ]
+        },
+        {
+         "Cell": [
+          "2061330",
+          "",
+          "639806",
+          "446744",
+          "Unspecified",
+          "",
+          "",
+          "",
+          "",
+          "Opportunistic Infection Enzyme Data",
+          "Other",
+          "",
+          ""
+         ]
+        }
+       ]
+      }
+     }
+    }
+   }
+  }
+ }
+}

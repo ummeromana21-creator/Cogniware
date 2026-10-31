@@ -1,0 +1,249 @@
+{
+ "procedure": {
+  "specimens": {
+   "maxime": {
+    "subject": "banc",
+    "params": {}
+   },
+   "hagrid": {
+    "subject": "malecns",
+    "params": {}
+   },
+   "cross_a": {
+    "subject": "banc",
+    "params": {
+     "I_bg": 1.5
+    }
+   },
+   "cross_b": {
+    "subject": "malecns",
+    "params": {
+     "I_bg": 1.6
+    }
+   }
+  },
+  "settle_steps": 30,
+  "steps": 400,
+  "repeats": 3
+ },
+ "runs": [
+  {
+   "repeat": 0,
+   "specimen": "maxime",
+   "seed": 1000,
+   "metrics": {
+    "steps": 400,
+    "bananas": 1,
+    "activity": 0.07633831774964546,
+    "tortuosity": 2.9851979593160327,
+    "mean_abs_turn": 0.04389924203220289,
+    "firing_all": 0.01640334560710823,
+    "firing_peak": 0.026503748677030717,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 0,
+   "specimen": "hagrid",
+   "seed": 1001,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.1029600143555547,
+    "tortuosity": 4.671529950211137,
+    "mean_abs_turn": 0.04521805896307342,
+    "firing_all": 0.018950074985002993,
+    "firing_peak": 0.040305938812237554,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  },
+  {
+   "repeat": 0,
+   "specimen": "cross_a",
+   "seed": 1002,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.05563286684946605,
+    "tortuosity": 3.6972535347098057,
+    "mean_abs_turn": 0.030645063231931998,
+    "firing_all": 0.010934555007003027,
+    "firing_peak": 0.022289259707584178,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 0,
+   "specimen": "cross_b",
+   "seed": 1003,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.12537167757868706,
+    "tortuosity": 7.165001512542309,
+    "mean_abs_turn": 0.06160253647947684,
+    "firing_all": 0.023852084583083383,
+    "firing_peak": 0.04478104379124175,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  },
+  {
+   "repeat": 1,
+   "specimen": "maxime",
+   "seed": 1010,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.07501356850320313,
+    "tortuosity": 2.1623913075151,
+    "mean_abs_turn": 0.04270811116322875,
+    "firing_all": 0.016353088618344756,
+    "firing_peak": 0.02751142348325929,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 1,
+   "specimen": "hagrid",
+   "seed": 1011,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.10131784318970434,
+    "tortuosity": 7.6075837575280545,
+    "mean_abs_turn": 0.051791493181372064,
+    "firing_all": 0.018939457108578285,
+    "firing_peak": 0.03969406118776245,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  },
+  {
+   "repeat": 1,
+   "specimen": "cross_a",
+   "seed": 1012,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.06040244781399992,
+    "tortuosity": 2.515748886639714,
+    "mean_abs_turn": 0.0403228407795541,
+    "firing_all": 0.011107539182072263,
+    "firing_peak": 0.02206744449866594,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 1,
+   "specimen": "cross_b",
+   "seed": 1013,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.12358458890844409,
+    "tortuosity": 4.374156391184043,
+    "mean_abs_turn": 0.05251033510779962,
+    "firing_all": 0.023797525494901026,
+    "firing_peak": 0.03973005398920216,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  },
+  {
+   "repeat": 2,
+   "specimen": "maxime",
+   "seed": 1020,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.07517570562331548,
+    "tortuosity": 3.0854156806334734,
+    "mean_abs_turn": 0.04800637933949474,
+    "firing_all": 0.016211982457585764,
+    "firing_peak": 0.026529098986621376,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 2,
+   "specimen": "hagrid",
+   "seed": 1021,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.10226305388023745,
+    "tortuosity": 4.69634039908697,
+    "mean_abs_turn": 0.0529375095339492,
+    "firing_all": 0.019152069586082794,
+    "firing_peak": 0.03793641271745651,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  },
+  {
+   "repeat": 2,
+   "specimen": "cross_a",
+   "seed": 1022,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.05851431360800405,
+    "tortuosity": 3.4436361926059456,
+    "mean_abs_turn": 0.03481476243992802,
+    "firing_all": 0.01056315712755642,
+    "firing_peak": 0.026712888731153628,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 157789
+   }
+  },
+  {
+   "repeat": 2,
+   "specimen": "cross_b",
+   "seed": 1023,
+   "metrics": {
+    "steps": 400,
+    "bananas": 0,
+    "activity": 0.1254795015271092,
+    "tortuosity": 10.473693699249505,
+    "mean_abs_turn": 0.0591648284625262,
+    "firing_all": 0.023780578884223157,
+    "firing_peak": 0.03971205758848231,
+    "synchrony": 0.0,
+    "scrambled": false,
+    "neurons": 166700
+   }
+  }
+ ],
+ "elapsed_s": 32.5,
+ "date": "2026-10-30",
+ "verdicts": {
+  "cross_a_vs_maxime": {
+   "verdict": "SUPPORTED",
+   "analysis": "Maxime: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.016).\nCross_a: share of all neurons firing per step averaged 0.011 over 3 runs (from 0.011 to 0.011) \u2014 33% less than maxime. 3 of 3 runs were on the predicted side of the maxime average; the gap (0.005) is 26.1\u00d7 the run-to-run wobble (0.000).\nVerdict for cross_a: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+   "prediction": "different"
+  },
+  "cross_b_vs_hagrid": {
+   "verdict": "SUPPORTED",
+   "analysis": "Hagrid: share of all neurons firing per step averaged 0.019 over 3 runs (from 0.019 to 0.019).\nCross_b: share of all neurons firing per step averaged 0.024 over 3 runs (from 0.024 to 0.024) \u2014 25% more than hagrid. 3 of 3 runs were on the predicted side of the hagrid average; the gap (0.005) is 54.0\u00d7 the run-to-run wobble (0.000).\nVerdict for cross_b: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble.",
+   "prediction": "different"
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "title": "Regime map, simulated banc (seed 11)",
+ "simulated": true,
+ "git_commit": "a5de1ab",
+ "dataset": "banc fly.npz sha1:e0f7404c",
+ "date": "2026-10-30",
+ "seed": 11,
+ "seeds": [
+  11
+ ],
+ "params": {
+  "I_bg_grid": [
+   0.5,
+   2.5
+  ],
+  "noise_grid": [
+   0.1,
+   2.5
+  ],
+  "default": [
+   1.6,
+   0.5
+  ]
+ },
+ "xlabel": "noise (unitless)",
+ "dose": "unitless",
+ "results": {
+  "firing_min": 0.0006,
+  "firing_max": 0.0787,
+  "firing_at_default": 0.0097,
+  "burst_at_default": 0.025
+ }
+}
