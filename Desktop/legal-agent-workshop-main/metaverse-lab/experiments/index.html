@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment Atlas · Fly Lab</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%234d5a3d'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../vendor/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="../feather.css">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4"/><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  </defs>
+</svg>
+
+<div class="hero" id="hero" data-light="day">
+  <header id="navMount"></header>
+  <section id="atlasView">
+    <header class="top">
+      <div class="brand"><h1>Experiment Atlas</h1><p id="sub">Every experiment the lab can run — nothing invented.</p></div>
+      <div class="topsearch">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="q" type="text" placeholder="Search experiments, drugs, measures…" autocomplete="off" aria-label="Search experiments">
+      </div>
+      <button id="filterBtn" class="iconbtn" aria-label="Toggle filters"><svg class="ic"><use href="#i-filter"/></svg></button>
+      <button id="lightBtn" class="iconbtn" data-light-toggle aria-label="Toggle day and dusk" aria-pressed="false"><svg class="ic"><use href="#i-sun"/></svg></button>
+    </header>
+    <p id="counts" class="counts" aria-live="polite"></p>
+    <div class="wrap">
+      <aside class="filters" id="filterPanel" aria-label="filters">
+        <div class="grp"><span class="cap">Kind</span><div id="kinds" class="chips"></div></div>
+        <div class="grp"><span class="cap">Real flies</span><div id="reals" class="chips"></div></div>
+        <div class="grp"><span class="cap">Our lab</span><div id="labs" class="chips"></div></div>
+        <div class="grp"><span class="cap">Sort by</span>
+          <select id="sort" aria-label="Sort experiments">
+            <option value="name">Name A–Z</option>
+            <option value="kind">Kind, then name</option>
+            <option value="lab">Lab status, then name</option>
+          </select>
+        </div>
+        <p id="count" class="note"></p>
+      </aside>
+      <main><div id="grid" class="grid"></div></main>
+    </div>
+  </section>
+
+  <!-- ============ DETAIL VIEW ============ -->
+  <section id="detailView" hidden>
+    <div class="dtop">
+      <button id="backBtn" class="pillbtn"><svg class="ic"><use href="#i-back"/></svg>Atlas &amp; filters</button>
+      <div class="dtopright">
+        <button id="prevBtn" class="pillbtn" aria-label="Previous experiment">‹ Prev</button>
+        <button id="nextBtn" class="pillbtn" aria-label="Next experiment">Next ›</button>
+      </div>
+    </div>
+    <div class="dwrap">
+      <nav id="sibNav" class="sibs" aria-label="Experiments in this filter"></nav>
+      <div class="stagecol">
+        <figure id="dfig" class="dfig"></figure>
+        <p id="dcap" class="dcap"></p>
+      </div>
+      <aside class="info"><div class="card"><article id="detail" aria-live="polite"></article></div></aside>
+    </div>
+  </section>
+
+  <footer class="cite">
+    <strong>Data &amp; honesty.</strong> Every card is built from files in the lab:
+    the drug library (<span class="mono">substances.py</span>), the validation claims
+    (<span class="mono">validation.md</span> P1–P7), saved runs (<span class="mono">notebook/*.json</span>),
+    and the connectome comparison (<span class="mono">comparative/FINDINGS.md</span>).
+    Structures come from the Guide to Pharmacology (offline copy) and PubChem;
+    “structure not found” means neither had it. Rebuilt with
+    <span class="mono">experiments/build.py</span> — <span id="gen"></span>.
+  </footer>
+</div>
+
+<script src="../duo/auth.js"></script>
+<script src="../feather.js?v=2"></script>
+<script>Feather.topbar(document.getElementById('navMount'), { brand: 'Fly Lab', sub: 'Experiment Atlas', base: '../', current: 'experiments' }); Feather.init();</script>
+<script src="app.js?v=3"></script>
+</body>
+</html>

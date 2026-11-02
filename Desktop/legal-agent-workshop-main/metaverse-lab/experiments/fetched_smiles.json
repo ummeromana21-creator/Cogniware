@@ -1,0 +1,12 @@
+{
+ "pubchem:aldicarb": "CC(C)(C=NOC(=O)NC)SC",
+ "pubchem:deet": "CCN(CC)C(=O)C1=CC=CC(=C1)C",
+ "pubchem:imidacloprid": "C1CN(C(=N[N+](=O)[O-])N1)CC2=CN=C(C=C2)Cl",
+ "pubchem:limonene": "CC1=CCC(CC1)C(=C)C",
+ "pubchem:pentylenetetrazole": "C1CCC2=NN=NN2CC1",
+ "pubchem:permethrin": "CC1(C(C1C(=O)OCC2=CC(=CC=C2)OC3=CC=CC=C3)C=C(Cl)Cl)C",
+ "pubchem:picaridin": "CCC(C)OC(=O)N1CCCCC1CCO",
+ "pubchem:pmd": "CC1CCC(C(C1)O)C(C)(C)O",
+ "pubchem:sodium chloride": "[Na+].[Cl-]",
+ "pubchem:theobromine": "CN1C=NC2=C1C(=O)NC(=O)N2C"
+}

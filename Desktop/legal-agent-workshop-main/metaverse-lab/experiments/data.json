@@ -1,0 +1,1979 @@
+{
+ "generated": "2026-11-02",
+ "counts": {
+  "kind": {
+   "drug": 37,
+   "model check": 9,
+   "comparison": 4,
+   "new sense": 3,
+   "mutant": 12
+  },
+  "lab": {
+   "run": 36,
+   "ready": 23,
+   "cant_test": 4,
+   "needs_model": 2
+  },
+  "real": {
+   "already known": 33,
+   "partly known": 20,
+   "not yet tested": 8,
+   "can't test yet": 4
+  }
+ },
+ "cards": [
+  {
+   "key": "drug:aldicarb",
+   "kind": "drug",
+   "title": "Aldicarb",
+   "target": "firing.acetylcholine neurons",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in acetylcholine neurons \u2192 walking changes.",
+   "mechanism": "inhibits acetylcholinesterase, prolonging acetylcholine action at excitatory synapses",
+   "drug_class": "toxin",
+   "evidence": [
+    "Xu et al. (2007) Biomol Eng 24:253 - aldicarb inhibits recombinant Drosophila acetylcholinesterase",
+    "carbamates inactivate acetylcholinesterase in insects and mammals (established insecticide class)",
+    "ChEMBL 37 - no usable rows at all; potency unanchored"
+   ],
+   "real": "already known",
+   "real_source": "Xu et al. (2007) Biomol Eng 24:253 - aldicarb inhibits recombinant Drosophila acetylcholinesterase",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_150510_aldicarb-vs-control-firing-acetylcholine",
+     "title": "aldicarb vs control (firing.acetylcholine neurons + activity)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 15:05",
+     "measure": "firing.acetylcholine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === Target \u2014 aldicarb 0.5 vs control box: firing in the acetylcholine neurons averaged 0.022 over 5 runs (control 0.014 over 5): a big change up (59%; gap 0.008, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap, either side counts. Behaviour \u2014 aldicarb 0.5 vs control box: distance walked per step averaged 0.129 over 5 runs (control 0.075 over 5): a big change up (71%; gap 0.053, control spread 0.002). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 aldicarb 0.5 vs control box: share of all neurons firing per step averaged 0.026 over 5 runs (control 0.016 over 5): a big change up (63%; gap 0.010, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Aldicarb raised the acetylcholine neurons by 59%. The change carried all the way down the path. Biggest change: nerve cord (102% up). === Hagrid (male) === Target \u2014 aldicarb 0.5 vs control box: firing in the acetylcholine neurons averaged 0.027 over 5 runs (control 0.012 over 5): a big change up (120%; gap 0.015, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap, either side counts. Behaviour \u2014 aldicarb 0.5 vs control box: distance walked per step averaged 0.240 over 5 runs (control 0.102 over 5): a big change up (136%; gap 0.138, control spread 0.001). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 aldicarb 0.5 vs control box: share of all neurons firing per step averaged 0.040 over 5 runs (control 0.019 over 5): a big change up (110%; gap 0.021, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Aldicarb raised the acetylcholine neurons by 120%. The change carried all the way down the path. Biggest change: descending neurons (185% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "aldicarb at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment different \u2014 aldicarb raises distance walked per step.",
+      "measure": "firing in acetylcholine neurons; also watches walking (expects up), brain firing (expects up)"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim (Maxime and Hagrid, control vs treatment boxes), aldicarb raises firing in acetylcholine neurons vs control, and walking changes with it.",
+    "given": "aldicarb is encoded as prolonged acetylcholine action at excitatory synapses; no enzyme molecule and no clearance kinetics are modelled.",
+    "falsified": "cholinergic firing stays within the control wobble."
+   },
+   "structure": "img/aldicarb.svg",
+   "formula": "C7H14N2O2S"
+  },
+  {
+   "key": "drug:amphetamine",
+   "kind": "drug",
+   "title": "Amphetamine",
+   "target": "firing.dopamine neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in dopamine neurons \u2192 walking changes.",
+   "mechanism": "substrate of the dopamine transporter (dDAT): reverses transport and empties dopamine vesicles, raising dopamine release; weaker effect on the octopamine/tyramine transporter",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Freyberg et al. (2016) Nat Commun 7:10652 - amphetamine action watched on dopamine synaptic vesicles in the Drosophila brain",
+    "Pizzo et al. (2013) Mol Psychiatry 18:824 - dDAT is the site of amphetamine action in Drosophila",
+    "ChEMBL 37 - dopamine transporter: 1 row (960 nM); effectively unanchored"
+   ],
+   "real": "partly known",
+   "real_source": "Freyberg et al. (2016) Nat Commun 7:10652 - amphetamine action watched on dopamine synaptic vesicles in the Drosophila brain (established in Drosophila (dopamine); inferred (octopamine))",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_130551_amphetamine-vs-control-firing-dopamine-n",
+     "title": "amphetamine vs control (firing.dopamine neurons + activity)",
+     "verdict": "CAN'T TELL YET",
+     "date": "2026-11-02 13:06",
+     "measure": "firing.dopamine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === Target \u2014 amphetamine 0.5 vs control box: firing in the dopamine neurons averaged 0.020 over 5 runs (control 0.013 over 5): a big change up (58%; gap 0.007, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap, either side counts. Behaviour \u2014 amphetamine 0.5 vs control box: distance walked per step averaged 0.051 over 5 runs (control 0.051 over 5): no real change (1%; gap -0.001, control spread 0.001). Verdict: CAN'T TELL YET \u2014 the gap is smaller than the control box's own spread. Amphetamine raised the dopamine neurons by 58%. The change faded by the antennal lobe PNs (2%, no real change). Biggest change: dopamine neurons (58% up). Strongest regional effects: slopes (84% up), LAL (51% up), other (47% up). Suspects: too few repeats (5 per box; the rules default to 10); the change faded between stages: clear at the target, gone further down; the behaviour measure may miss how the target change reaches walking. === Hagrid (male) === Target \u2014 amphetamine 0.5 vs control box: firing in the dopamine neurons averaged 0.192 over 5 runs (control 0.132 over 5): a noticeable change up (46%; gap 0.061, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap, either side counts. Behaviour \u2014 amphetamine 0.5 vs control box: distance walked per step averaged 0.088 over 5 runs (control 0.086 over 5): no real change (1%; gap 0.001, control spread 0.004). Verdict: CAN'T TELL YET \u2014 the gap is smaller than the control box's own spread. Amphetamine raised the dopamine neurons by 46%. The change faded by the antennal lobe PNs (0%, no real change). Biggest change: mushroom body (47% up). Strongest regional effects: mushroom body (47% up), central complex (17% up), LAL (8% up). Suspects: too few repeats (5 per box; the rules default to 10); the change faded between stages: clear at the target, gone further down; the behaviour measure may miss how the target change reaches walking. Overall: CAN'T TELL YET \u2014 at least one sex gave no clear answer yet \u2014 more repeats would settle it.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "amphetamine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment different \u2014 amphetamine changes distance walked per step.",
+      "measure": "firing in dopamine neurons; also watches walking (expects different)"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, amphetamine changes walking and dopamine-neuron firing vs control.",
+    "given": "it is encoded as reversed dopamine transport plus emptied dopamine vesicles, so dopamine release rises; the octopamine-arm effect is weaker.",
+    "falsified": "both measures stay within the control wobble."
+   },
+   "structure": "img/amphetamine.svg",
+   "formula": "C9H13N"
+  },
+  {
+   "key": "drug:atropine",
+   "kind": "drug",
+   "title": "Atropine",
+   "target": "firing.acetylcholine neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in acetylcholine neurons \u2192 brain firing changes.",
+   "mechanism": "blocks muscarinic acetylcholine receptors, lowering cholinergic drive",
+   "drug_class": "modulator",
+   "evidence": [
+    "GtoPdb 2026.3.1 - antagonist rows at mammalian M1-M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+    "ChEMBL 37 - muscarinic receptor Ki median 0.80 nM (n=78; 3 unit-error rows dropped)"
+   ],
+   "real": "partly known",
+   "real_source": "GtoPdb 2026.3.1 - antagonist rows at mammalian M1-M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+   "lab": {
+    "status": "ready",
+    "ask": "does atropine change firing?"
+   },
+   "structure": "img/atropine.svg",
+   "formula": "C17H23NO3"
+  },
+  {
+   "key": "drug:bupropion",
+   "kind": "drug",
+   "title": "Bupropion",
+   "target": "firing.dopamine neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in dopamine neurons \u2192 brain firing changes.",
+   "mechanism": "inhibits the dopamine transporter (dDAT) and the noradrenaline-type transporter (octopamine in the fly), so released dopamine and octopamine act longer; also a non-competitive antagonist at nicotinic acetylcholine receptors",
+   "drug_class": "modulator",
+   "evidence": [
+    "Stahl et al. (2004) Prim Care Companion J Clin Psychiatry 6:159 - DAT/NET inhibition (mammalian)",
+    "Slemmer, Martin & Damaj (2000) J Pharmacol Exp Ther 295:321 - nicotinic receptor antagonism (mammalian)",
+    "Porzgen et al. (2001) Mol Pharmacol 59:83 - dDAT, the Drosophila dopamine transporter, is the fly counterpart",
+    "ChEMBL 37 - dopamine/noradrenaline transporter Ki+IC50 median 1.2 uM (n=30)"
+   ],
+   "real": "partly known",
+   "real_source": "Stahl et al. (2004) Prim Care Companion J Clin Psychiatry 6:159 - DAT/NET inhibition (mammalian)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_234607_bupropion-lifts-dopamine-firing-wired-da",
+     "title": "Bupropion lifts dopamine firing (wired DAT curve)",
+     "verdict": "NOT SUPPORTED",
+     "date": "2026-11-02 07:13",
+     "measure": "firing.dopamine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === bupropion 1.5 vs control box: firing in the dopamine neurons averaged 0.012 over 10 runs (control 0.013 over 10): a small change down (6%; gap -0.001, control spread 0.000). Verdict: NOT SUPPORTED \u2014 a clear gap on the opposite side. Bupropion quieted the dopamine neurons by 6%. The change faded by the nose (4%, no real change). Biggest change: antennal lobe PNs (31% down). Strongest regional effects: lateral horn (28% down), mushroom body (25% down), PLP (17% down). Suspects: the dose may be too low to move the target stage; or the drug acts somewhere this card does not look. === Hagrid (male) === bupropion 1.5 vs control box: firing in the dopamine neurons averaged 0.108 over 10 runs (control 0.132 over 10): a small change down (18%; gap -0.024, control spread 0.003). Verdict: NOT SUPPORTED \u2014 a clear gap on the opposite side. Bupropion quieted the dopamine neurons by 18%. The change faded by the nose (1%, no real change). Biggest change: legs (47% down). Strongest regional effects: AVLP (41% down), LAL (41% down), nerve cord (40% down). Suspects: the dose may be too low to move the target stage; or the drug acts somewhere this card does not look. Overall: NOT SUPPORTED \u2014 both sexes agree: not supported in either.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "bupropion at dose High 1.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Bupropion 1.5 raises dopamine-neuron firing via DAT/NET blockade.",
+      "measure": "firing in dopamine neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, bupropion raises firing in dopamine neurons vs control.",
+    "given": "it is encoded as blocked dopamine reuptake, so released dopamine acts longer; the nicotinic arm is noted, not modelled.",
+    "falsified": "dopamine-neuron firing stays within the control wobble."
+   },
+   "structure": "img/bupropion.svg",
+   "formula": "C13H18ClNO"
+  },
+  {
+   "key": "drug:caffeine",
+   "kind": "drug",
+   "title": "Caffeine",
+   "target": "firing_all",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect more walking.",
+   "mechanism": "removes a tonic brake on background excitatory drive",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Fredholm and Sandberg (1983) Br J Pharmacol 80:639 \u2014 methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+    "ChEMBL adenosine-receptor activity: median Ki 32.5 \u00b5M (n=104)"
+   ],
+   "real": "partly known",
+   "real_source": "Fredholm and Sandberg (1983) Br J Pharmacol 80:639 \u2014 methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_102830_caffeine-vs-control-firing-all",
+     "title": "caffeine vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 10:29",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === caffeine 0.5 vs control box: share of all neurons firing per step averaged 0.023 over 5 runs (control 0.010 over 5): a big change up (128%; gap 0.013, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Caffeine quieted the nose by 5%. The change carried all the way down the path. Biggest change: descending neurons (196% up). Strongest regional effects: AVLP (187% up), nerve cord (181% up), GNG (179% up). === Hagrid (male) === caffeine 0.5 vs control box: share of all neurons firing per step averaged 0.027 over 5 runs (control 0.020 over 5): a noticeable change up (38%; gap 0.007, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Caffeine raised the antennal lobe PNs by 13%. Further down, 53% remained at the legs. Biggest change: nerve cord (62% up). Strongest regional effects: lamina (145% up), GNG (65% up), nerve cord (62% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "caffeine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 caffeine raises share of all neurons firing per step.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, caffeine raises whole-brain firing and walking vs control, monotonically with dose.",
+    "given": "caffeine is encoded as a uniform lift of background drive (up to +25% at full Hill engagement, ec50 0.4); the AdoR tag is annotation-only, so every neuron is lifted equally.",
+    "falsified": "the treatment gap is flat or reversed across doses."
+   },
+   "structure": "img/caffeine.svg",
+   "formula": "C8H10N4O2"
+  },
+  {
+   "key": "drug:camphor",
+   "kind": "drug",
+   "title": "Camphor",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect more banana finding.",
+   "mechanism": "activates TRPV1 channels and inhibits TRPA1 channels on sensory neurons (mixed action)",
+   "drug_class": "smell",
+   "evidence": [
+    "Xu, Blair & Clapham (2005) J Neurosci 25:8924 - camphor activates TRPV1 and inhibits TRPA1 (mammalian)"
+   ],
+   "real": "partly known",
+   "real_source": "Xu, Blair & Clapham (2005) J Neurosci 25:8924 - camphor activates TRPV1 and inhibits TRPA1 (mammalian)",
+   "lab": {
+    "status": "ready",
+    "ask": "does camphor change near?"
+   },
+   "structure": "img/camphor.svg",
+   "formula": "C10H16O"
+  },
+  {
+   "key": "drug:cinnamaldehyde",
+   "kind": "drug",
+   "title": "Cinnamaldehyde",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect more banana finding.",
+   "mechanism": "activates TRPA1 channels on sensory neurons, adding odor-independent receptor drive",
+   "drug_class": "smell",
+   "evidence": [
+    "Bandell et al. (2004) Neuron 41:849 - cinnamaldehyde activates mammalian TRPA1",
+    "Kang et al. (2010) Nature 464:597 - fly dTRPA1 neurons respond to cinnamaldehyde (taste route)"
+   ],
+   "real": "partly known",
+   "real_source": "Bandell et al. (2004) Neuron 41:849 - cinnamaldehyde activates mammalian TRPA1",
+   "lab": {
+    "status": "ready",
+    "ask": "does cinnamaldehyde change near?"
+   },
+   "structure": "img/cinnamaldehyde.svg",
+   "formula": "C9H8O"
+  },
+  {
+   "key": "drug:citronellal",
+   "kind": "drug",
+   "title": "Citronellal",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect more banana finding.",
+   "mechanism": "activates TRPA1 channels and odorant receptors in olfactory receptor neurons regardless of the odour present (odour-independent receptor drive)",
+   "drug_class": "smell",
+   "evidence": [
+    "Kwon et al. (2010) Curr Biol 20:1672 - Drosophila TRPA1 in ORNs is required to avoid citronellal; citronellal excites ORNs via Or and TRPA1 pathways"
+   ],
+   "real": "already known",
+   "real_source": "Kwon et al. (2010) Curr Biol 20:1672 - Drosophila TRPA1 in ORNs is required to avoid citronellal; citronellal excites ORNs via Or and TRPA1 pathways",
+   "lab": {
+    "status": "ready",
+    "ask": "does citronellal change near?"
+   },
+   "structure": "img/citronellal.svg",
+   "formula": "C10H18O"
+  },
+  {
+   "key": "drug:cocaine",
+   "kind": "drug",
+   "title": "Cocaine",
+   "target": "firing.dopamine neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in dopamine neurons \u2192 walking changes.",
+   "mechanism": "blocks the dopamine transporter (dDAT), so released dopamine stays in the synapse longer",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Bainton et al. (2000) Curr Biol 10:187 - dopamine modulates cocaine responses in Drosophila",
+    "Porzgen et al. (2001) Mol Pharmacol 59:83 - cocaine-sensitive dDAT",
+    "ChEMBL 37 - dopamine transporter Ki median 285 nM (n=95)"
+   ],
+   "real": "already known",
+   "real_source": "Bainton et al. (2000) Curr Biol 10:187 - dopamine modulates cocaine responses in Drosophila",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_231325_cocaine-on-dat-nulls-does-it-add-anythin",
+     "title": "Cocaine on DAT nulls (does it add anything without the transporter?)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:15",
+     "measure": "firing.dopamine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === DAT null + cocaine vs DAT null: firing in the dopamine neurons averaged 0.024 over 10 runs (control 0.015 over 10): a big change up (59%; gap 0.009, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Cocaine raised the dopamine neurons by 59%. The change faded by the antennal lobe PNs (1%, no real change). Biggest change: dopamine neurons (59% up). Strongest regional effects: slopes (77% up), LAL (64% up), other (52% up). === Hagrid (male) === DAT null + cocaine vs DAT null: firing in the dopamine neurons averaged 0.224 over 10 runs (control 0.157 over 10): a noticeable change up (43%; gap 0.067, control spread 0.003). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Cocaine raised the dopamine neurons by 43%. The change faded by the nose (1%, no real change). Biggest change: mushroom body (43% up). Strongest regional effects: mushroom body (43% up), central complex (16% up), LAL (6% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "DAT null: both flies, raised as DAT_null mutants. Every result is measured against these two.",
+      "treatment": "cocaine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams) \u2014 with raised as DAT_null mutants",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Cocaine adds dopamine firing even without the transporter (model prediction; biology predicts occlusion).",
+      "measure": "firing in dopamine neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, cocaine changes walking and dopamine-neuron firing vs control.",
+    "given": "it is encoded as blocked dopamine reuptake, so released dopamine stays in the synapse longer.",
+    "falsified": "both measures stay within the control wobble."
+   },
+   "structure": "img/cocaine.svg",
+   "formula": "C17H21NO4"
+  },
+  {
+   "key": "drug:deet",
+   "kind": "drug",
+   "title": "Deet",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist",
+    "firing.taste neurons"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect less banana finding.",
+   "mechanism": "inhibits odorant-receptor (Orco-dependent) responses of olfactory receptor neurons to attractive odours; also detected by bitter-taste neurons on contact",
+   "drug_class": "smell",
+   "evidence": [
+    "Ditzen, Pellegrino & Vosshall (2008) Science 319:1838 - DEET inhibits Orco-dependent odorant receptor responses in Drosophila ORNs",
+    "Lee, Kim & Montell (2010) Curr Biol 20:1672 - DEET is sensed as bitter by Gr66a gustatory neurons in Drosophila",
+    "ChEMBL 37 - no usable rows at all; potency unanchored"
+   ],
+   "real": "already known",
+   "real_source": "Ditzen, Pellegrino & Vosshall (2008) Science 319:1838 - DEET inhibits Orco-dependent odorant receptor responses in Drosophila ORNs",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_231007_deet-vs-control-firing-nose-banana-dist",
+     "title": "deet vs control (firing.nose + banana_dist)",
+     "verdict": "CAN'T TELL YET",
+     "date": "2026-11-01 23:10",
+     "measure": "firing.nose",
+     "runs": 2,
+     "story": "=== Maxime (female) === Target \u2014 deet 0.5 vs control box: firing in the nose averaged 0.068 over 5 runs (control 0.145 over 5): a big change down (53%; gap -0.076, control spread 0.019). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 deet 0.5 vs control box: average distance to the nearest banana averaged 10.61 over 5 runs (control 7.55 over 5): a noticeable change up (41%; gap 3.07, control spread 2.87). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 deet 0.5 vs control box: firing in the taste neurons averaged 0.002 over 5 runs (control 0.008 over 5): a big change down (74%; gap -0.006, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. DEET quieted the nose by 53%. The change faded by the descending neurons (2%, no real change). Biggest change: nose (53% down). === Hagrid (male) === Target \u2014 deet 0.5 vs control box: firing in the nose averaged 0.086 over 5 runs (control 0.143 over 5): a noticeable change down (40%; gap -0.057, control spread 0.020). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 deet 0.5 vs control box: average distance to the nearest banana averaged 7.91 over 5 runs (control 9.49 over 5): a small change down (17%; gap -1.58, control spread 3.20). Verdict: CAN'T TELL YET \u2014 the gap is smaller than the control box's own spread. Behaviour \u2014 deet 0.5 vs control box: firing in the taste neurons averaged 0.014 over 5 runs (control 0.017 over 5): a small change down (14%; gap -0.002, control spread 0.006). Verdict: CAN'T TELL YET \u2014 the gap is smaller than the control box's own spread. DEET quieted the nose by 40%. The change faded by the antennal lobe PNs (2%, no real change). Biggest change: nose (40% down). Suspects: too few repeats (5 per box; the rules default to 10); the change faded between stages: clear at the target, gone further down; the behaviour measure may miss how the target change reaches walking. Overall: CAN'T TELL YET \u2014 at least one sex gave no clear answer yet \u2014 more repeats would settle it.",
+     "recipe": {
+      "control": "control box: both flies, set I_taste 2.0. Every result is measured against these two.",
+      "treatment": "deet at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams) \u2014 with set I_taste 2.0",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 deet lowers average distance to the nearest banana.",
+      "measure": "the smell centre; also watches banana finding (expects up), firing.taste neurons (expects down)"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, DEET quiets nose firing and pushes banana-finding down vs control.",
+    "given": "it is encoded as dulled Orco-dependent smell-receptor responses to attractive odours.",
+    "falsified": "nose firing and banana distance both stay within the control wobble."
+   },
+   "structure": "img/deet.svg",
+   "formula": "C12H17NO"
+  },
+  {
+   "key": "drug:dopamine",
+   "kind": "drug",
+   "title": "Dopamine",
+   "target": "firing.dopamine-receptor neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in dopamine-receptor neurons \u2192 expect more brain firing.",
+   "mechanism": "floods dopamine receptors, raising drive into receptor-expressing neurons (dosed transmitter itself; postsynaptic side since 2026-11-01, was presynaptic release gain)",
+   "drug_class": "modulator",
+   "evidence": [
+    "Bainton et al. (2000) Curr Biol 10:187 - dopamine signalling in Drosophila",
+    "Porzgen et al. (2001) Mol Pharmacol 59:83 - dDAT, the fly dopamine transporter",
+    "ChEMBL 37 - D1/D2/D3 Ki median 252 nM (n=90)"
+   ],
+   "real": "already known",
+   "real_source": "Bainton et al. (2000) Curr Biol 10:187 - dopamine signalling in Drosophila",
+   "lab": {
+    "status": "ready",
+    "ask": "does dopamine change firing?"
+   },
+   "structure": "img/dopamine.svg",
+   "formula": "C8H11NO2"
+  },
+  {
+   "key": "drug:ethanol",
+   "kind": "drug",
+   "title": "Ethanol",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 expect less walking.",
+   "mechanism": "potentiates GABA inhibition, depresses excitation, adds membrane noise",
+   "drug_class": "sedative",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261030_180825_ethanol-vs-control-firing-all",
+     "title": "ethanol vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-10-30 18:08",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === Control box: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.017). Ethanol 0.5: share of all neurons firing per step averaged 0.014 over 3 runs (from 0.014 to 0.014) \u2014 14% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.002) is 22.9\u00d7 the run-to-run wobble (0.000). Verdict for ethanol 0.5: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble. === Hagrid (male) === Control box: share of all neurons firing per step averaged 0.020 over 3 runs (from 0.019 to 0.020). Ethanol 0.5: share of all neurons firing per step averaged 0.012 over 3 runs (from 0.012 to 0.012) \u2014 39% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.008) is 28.8\u00d7 the run-to-run wobble (0.000). Verdict for ethanol 0.5: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble. Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "ethanol at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "3 repeats of 100 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 x",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, ethanol lowers walking vs control \u2014 sedation only, at every dose.",
+    "given": "it is encoded as potentiated GABA inhibition with depressed excitation and added membrane noise; there is no low-dose arousal arm.",
+    "falsified": "any dose raises walking above control, or the sedation gap falls inside the control wobble."
+   },
+   "structure": "img/ethanol.svg",
+   "formula": "C2H6O"
+  },
+  {
+   "key": "drug:eugenol",
+   "kind": "drug",
+   "title": "Eugenol",
+   "target": "firing.octopamine neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in octopamine neurons \u2192 brain firing changes.",
+   "mechanism": "activates octopamine receptors, raising octopaminergic drive",
+   "drug_class": "modulator",
+   "evidence": [
+    "Enan (2001) Comp Biochem Physiol C - eugenol acts via octopamine receptors in insects (PMID 11701389)"
+   ],
+   "real": "partly known",
+   "real_source": "Enan (2001) Comp Biochem Physiol C - eugenol acts via octopamine receptors in insects (PMID 11701389)",
+   "lab": {
+    "status": "ready",
+    "ask": "does eugenol change firing?"
+   },
+   "structure": "img/eugenol.svg",
+   "formula": "C10H12O2"
+  },
+  {
+   "key": "drug:imidacloprid",
+   "kind": "drug",
+   "title": "Imidacloprid",
+   "target": "firing.acetylcholine neurons",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in acetylcholine neurons \u2192 walking changes.",
+   "mechanism": "activates nicotinic acetylcholine receptors, then desensitises them at higher concentration (biphasic)",
+   "drug_class": "toxin",
+   "evidence": [
+    "PMID 15182942 - loop-C determinants of imidacloprid selectivity in Drosophila SAD/Dalpha2 hybrid receptors",
+    "Zhang et al. (2000) J Neurochem 75:1294 - imidacloprid IC50 2.3 nM at Drosophila AChR (ChEMBL 37)",
+    "Kagabu et al. (2000) J Med Chem 43:5003 - imidacloprid Ki 2.1 nM at Drosophila nAChR (ChEMBL 37)",
+    "ChEMBL 37 - nicotinic receptor IC50+Ki median 50 nM (n=19, mixed subunits)"
+   ],
+   "real": "partly known",
+   "real_source": "PMID 15182942 - loop-C determinants of imidacloprid selectivity in Drosophila SAD/Dalpha2 hybrid receptors",
+   "lab": {
+    "status": "ready",
+    "ask": "does imidacloprid change walk?"
+   },
+   "structure": "img/imidacloprid.svg",
+   "formula": "C9H10ClN5O2"
+  },
+  {
+   "key": "drug:isoflurane",
+   "kind": "drug",
+   "title": "Isoflurane",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 expect less walking.",
+   "mechanism": "potentiates GABA inhibition, reduces background drive",
+   "drug_class": "sedative",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "ready",
+    "ask": "does isoflurane change walk?"
+   },
+   "structure": "img/isoflurane.svg",
+   "formula": "C3H2ClF5O"
+  },
+  {
+   "key": "drug:limonene",
+   "kind": "drug",
+   "title": "Limonene",
+   "target": "firing.citrus ORNs",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in citrus ORNs \u2192 expect more brain firing.",
+   "mechanism": "inhibits acetylcholinesterase, prolonging acetylcholine action at excitatory synapses; excites citrus-sensing ORNs (OR19a -> DC1 route)",
+   "drug_class": "modulator",
+   "evidence": [
+    "Abdelgaleil, Mohamed, Badawy and El-arami (2009) J Chem Ecol 35:518-525 - monoterpene (incl. limonene) inhibition of grain-pest acetylcholinesterase (details via citing sources; primary not read)",
+    "Dweck et al. (2013) Curr Biol - limonene activates Or19a ai2A neurons targeting the DC1 glomerulus (oviposition cue, not long-range attraction)",
+    "ChEMBL 37 - no usable rows at all; potency unanchored"
+   ],
+   "real": "partly known",
+   "real_source": "Abdelgaleil, Mohamed, Badawy and El-arami (2009) J Chem Ecol 35:518-525 - monoterpene (incl. limonene) inhibition of grain-pest acetylcholinesterase (details via citing sources; primary not read)",
+   "lab": {
+    "status": "ready",
+    "ask": "does limonene change firing?"
+   },
+   "structure": "img/limonene.svg",
+   "formula": "C10H16"
+  },
+  {
+   "key": "drug:melatonin",
+   "kind": "drug",
+   "title": "Melatonin",
+   "target": "firing_all",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect less walking.",
+   "mechanism": "damps background excitatory drive (sleep signal)",
+   "drug_class": "sedative",
+   "evidence": [
+    "Farooqi, Ali and Amir (2022) Chronobiol Med 4:24-28 - mini-review: insects synthesise melatonin via the vertebrate serotonin pathway",
+    "ChEMBL 37 - MT1/MT2 Ki median 0.30 nM (n=127)"
+   ],
+   "real": "partly known",
+   "real_source": "Farooqi, Ali and Amir (2022) Chronobiol Med 4:24-28 - mini-review: insects synthesise melatonin via the vertebrate serotonin pathway",
+   "lab": {
+    "status": "ready",
+    "ask": "does melatonin change walk?"
+   },
+   "structure": "img/melatonin.svg",
+   "formula": "C13H16N2O2"
+  },
+  {
+   "key": "drug:morphine",
+   "kind": "drug",
+   "title": "Morphine",
+   "target": "",
+   "behavior": [],
+   "sentence": "No standing rule on file \u2014 target unknown.",
+   "mechanism": "opioid-receptor agonist in mammals; flies have no opioid receptors",
+   "drug_class": "opioid (mammalian)",
+   "evidence": [
+    "Alliance of Genome Resources 9.2.0 orthology: human OPRM1/OPRD1/OPRK1 -> Drosophila AstC-R2 (FBgn0036789), moderate confidence (5/9 methods); AstC-R2 is an allatostatin C receptor (SSTR2 family), not an opioid receptor",
+    "ChEMBL 37 - mu opioid Ki median 3.3 nM (n=93); data only, flies lack the receptor"
+   ],
+   "real": "can't test yet",
+   "real_source": "flies have no opioid receptors; closest Alliance hit for OPRM1 is AstC-R2 (FBgn0036789), an allatostatin/somatostatin-family GPCR at moderate confidence (5/9 methods) - distant similarity only, so morphine has no handle.",
+   "lab": {
+    "status": "cant_test",
+    "why": "flies have no opioid receptors; closest Alliance hit for OPRM1 is AstC-R2 (FBgn0036789), an allatostatin/somatostatin-family GPCR at moderate confidence (5/9 methods) - distant similarity only, so morphine has no handle."
+   },
+   "structure": "img/morphine.svg",
+   "formula": "C17H19NO3"
+  },
+  {
+   "key": "drug:muscarine",
+   "kind": "drug",
+   "title": "Muscarine",
+   "target": "firing.acetylcholine neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in acetylcholine neurons \u2192 brain firing changes.",
+   "mechanism": "activates muscarinic acetylcholine receptors, raising cholinergic drive",
+   "drug_class": "modulator",
+   "evidence": [
+    "muscarine is the defining muscarinic agonist (textbook pharmacology); fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+    "ChEMBL 37 - muscarinic receptor Ki median 73.5 nM (n=18)"
+   ],
+   "real": "partly known",
+   "real_source": "muscarine is the defining muscarinic agonist (textbook pharmacology); fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+   "lab": {
+    "status": "ready",
+    "ask": "does muscarine change firing?"
+   },
+   "structure": "img/muscarine.svg",
+   "formula": "C9H20NO2+"
+  },
+  {
+   "key": "drug:nicotine",
+   "kind": "drug",
+   "title": "Nicotine",
+   "target": "firing_all",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect more walking.",
+   "mechanism": "activates excitatory synapses, then desensitises them at higher concentration",
+   "drug_class": "stimulant",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "ready",
+    "ask": "does nicotine change walk?"
+   },
+   "structure": "img/nicotine.svg",
+   "formula": "C10H14N2"
+  },
+  {
+   "key": "drug:octopamine",
+   "kind": "drug",
+   "title": "Octopamine",
+   "target": "firing.octopamine neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in octopamine neurons \u2192 walking changes.",
+   "mechanism": "raises the fly's own octopamine drive (dose-the-transmitter-itself)",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Roeder (2005) Annu Rev Entomol 50:447 - octopamine as the insect arousal amine",
+    "ChEMBL 37 - TAAR1: 1 row (1.3 uM EC50); effectively unanchored"
+   ],
+   "real": "already known",
+   "real_source": "Roeder (2005) Annu Rev Entomol 50:447 - octopamine as the insect arousal amine",
+   "lab": {
+    "status": "ready",
+    "ask": "does octopamine change walk?"
+   },
+   "structure": "img/octopamine.svg",
+   "formula": "C8H11NO2"
+  },
+  {
+   "key": "drug:paraquat",
+   "kind": "drug",
+   "title": "Paraquat",
+   "target": "",
+   "behavior": [],
+   "sentence": "No standing rule on file \u2014 target unknown.",
+   "mechanism": "selectively destroys dopaminergic neurons through oxidative damage",
+   "drug_class": "herbicide (dopamine-neuron toxin)",
+   "evidence": [
+    "Chaudhuri et al. (2007) J Neurosci 27:2457 - paraquat replicates parkinsonian symptoms with dopaminergic neuron loss in Drosophila",
+    "CTD chemical-gene interactions in Drosophila (PMIDs 17440995, 23046578)"
+   ],
+   "real": "can't test yet",
+   "real_source": "per-type neuron loss: Maxime cannot lesion one transmitter class, so paraquat cannot be dosed (needs a Tier 2 lesion handle)",
+   "lab": {
+    "status": "cant_test",
+    "why": "per-type neuron loss: Maxime cannot lesion one transmitter class, so paraquat cannot be dosed (needs a Tier 2 lesion handle)"
+   },
+   "structure": "img/paraquat.svg",
+   "formula": "C12H14Cl2N2"
+  },
+  {
+   "key": "drug:pentylenetetrazole",
+   "kind": "drug",
+   "title": "Pentylenetetrazole",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 walking changes.",
+   "mechanism": "blocks GABA-A inhibition, releasing excitatory drive",
+   "drug_class": "toxin",
+   "evidence": [
+    "Mohammad, Singh & Sharma (2009) BMC Syst Biol 3:11 - Drosophila PTZ plasticity model",
+    "CTD chemical-gene interactions in Drosophila (PMID 21503142)"
+   ],
+   "real": "already known",
+   "real_source": "Mohammad, Singh & Sharma (2009) BMC Syst Biol 3:11 - Drosophila PTZ plasticity model",
+   "lab": {
+    "status": "ready",
+    "ask": "does pentylenetetrazole change walk?"
+   },
+   "structure": "img/pentylenetetrazole.svg",
+   "formula": "C6H10N4"
+  },
+  {
+   "key": "drug:permethrin",
+   "kind": "drug",
+   "title": "Permethrin",
+   "target": "firing_all",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect more walking.",
+   "mechanism": "holds voltage-gated sodium channels (para) open: prolonged depolarising current and repetitive firing; at high concentration a depolarising conduction block silences neurons",
+   "drug_class": "toxin",
+   "evidence": [
+    "Soderlund et al. (2002) Toxicology 171:3 - pyrethroid action on insect sodium channels",
+    "Pittendrigh et al. (1997) Mol Gen Genet 256:602 - para sodium-channel (kdr) mutations confer pyrethroid resistance in Drosophila"
+   ],
+   "real": "already known",
+   "real_source": "Soderlund et al. (2002) Toxicology 171:3 - pyrethroid action on insect sodium channels",
+   "lab": {
+    "status": "ready",
+    "ask": "does permethrin change walk?"
+   },
+   "structure": "img/permethrin.svg",
+   "formula": "C21H20Cl2O3"
+  },
+  {
+   "key": "drug:phenobarbital",
+   "kind": "drug",
+   "title": "Phenobarbital",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 walking changes.",
+   "mechanism": "potentiates GABA inhibition and damps background excitatory drive",
+   "drug_class": "sedative",
+   "evidence": [
+    "Misra et al. (2011) Genes Dev - CncC/Maf drives the fly transcriptional response to phenobarbital (PMID 21896655)",
+    "ChEMBL 37 - no usable GABA rows; potency unanchored"
+   ],
+   "real": "partly known",
+   "real_source": "Misra et al. (2011) Genes Dev - CncC/Maf drives the fly transcriptional response to phenobarbital (PMID 21896655)",
+   "lab": {
+    "status": "ready",
+    "ask": "does phenobarbital change walk?"
+   },
+   "structure": "img/phenobarbital.svg",
+   "formula": "C12H12N2O3"
+  },
+  {
+   "key": "drug:picaridin",
+   "kind": "drug",
+   "title": "Picaridin",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect less banana finding.",
+   "mechanism": "reduces odorant-receptor responses of olfactory receptor neurons to host/food odours",
+   "drug_class": "smell",
+   "evidence": [
+    "Bohbot & Dickens (2010) PLoS ONE 5:e12138 - picaridin and DEET modulate Aedes aegypti odorant receptors in oocytes",
+    "ChEMBL 37 - no usable rows at all; potency unanchored"
+   ],
+   "real": "partly known",
+   "real_source": "Bohbot & Dickens (2010) PLoS ONE 5:e12138 - picaridin and DEET modulate Aedes aegypti odorant receptors in oocytes",
+   "lab": {
+    "status": "ready",
+    "ask": "does picaridin change near?"
+   },
+   "structure": "img/picaridin.svg",
+   "formula": "C12H23NO3"
+  },
+  {
+   "key": "drug:picrotoxin",
+   "kind": "drug",
+   "title": "Picrotoxin",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 expect more walking.",
+   "mechanism": "blocks inhibitory transmission",
+   "drug_class": "toxin",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "ready",
+    "ask": "does picrotoxin change walk?"
+   },
+   "structure": "img/picrotoxin.svg",
+   "formula": "C30H34O13"
+  },
+  {
+   "key": "drug:piperine",
+   "kind": "drug",
+   "title": "Piperine",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect more banana finding.",
+   "mechanism": "activates TRPV1 and TRPA1 channels on sensory neurons, adding odor-independent receptor drive",
+   "drug_class": "smell",
+   "evidence": [
+    "TRP-mediation review (Molecules 2021, 26:1627) - piperine activates TRPV1 (capsaicin pocket) and TRPA1 (mammalian)"
+   ],
+   "real": "partly known",
+   "real_source": "TRP-mediation review (Molecules 2021, 26:1627) - piperine activates TRPV1 (capsaicin pocket) and TRPA1 (mammalian)",
+   "lab": {
+    "status": "ready",
+    "ask": "does piperine change near?"
+   },
+   "structure": "img/piperine.svg",
+   "formula": "C17H19NO3"
+  },
+  {
+   "key": "drug:pmd",
+   "kind": "drug",
+   "title": "Pmd",
+   "target": "firing.nose",
+   "behavior": [
+    "banana_dist"
+   ],
+   "sentence": "Acts on the smell centre \u2192 expect more banana finding.",
+   "mechanism": "excites olfactory receptor neurons independently of food odour (odorant-receptor and TRP-channel activation)",
+   "drug_class": "smell",
+   "evidence": [
+    "Drapeau et al. (2009) and mosquito electrophysiology: PMD activates ORNs and is avoided; direct Drosophila receptor work is thin"
+   ],
+   "real": "partly known",
+   "real_source": "Drapeau et al. (2009) and mosquito electrophysiology: PMD activates ORNs and is avoided; direct Drosophila receptor work is thin",
+   "lab": {
+    "status": "ready",
+    "ask": "does pmd change near?"
+   },
+   "structure": "img/pmd.svg",
+   "formula": "C10H20O2"
+  },
+  {
+   "key": "drug:scopolamine",
+   "kind": "drug",
+   "title": "Scopolamine",
+   "target": "firing.acetylcholine neurons",
+   "behavior": [
+    "firing_all"
+   ],
+   "sentence": "Acts on firing in acetylcholine neurons \u2192 brain firing changes.",
+   "mechanism": "blocks muscarinic acetylcholine receptors, lowering cholinergic drive",
+   "drug_class": "modulator",
+   "evidence": [
+    "GtoPdb 2026.3.1 - antagonist rows at mammalian M1-M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+    "ChEMBL 37 - muscarinic receptor Ki median 3.5 nM (n=15)"
+   ],
+   "real": "partly known",
+   "real_source": "GtoPdb 2026.3.1 - antagonist rows at mammalian M1-M5 receptors; fly counterpart: muscarinic DM1 receptor (ChEMBL 37 fly target record)",
+   "lab": {
+    "status": "ready",
+    "ask": "does scopolamine change firing?"
+   },
+   "structure": "img/scopolamine.svg",
+   "formula": "C17H21NO4"
+  },
+  {
+   "key": "drug:sodium chloride",
+   "kind": "drug",
+   "title": "Sodium Chloride",
+   "target": "",
+   "behavior": [],
+   "sentence": "No standing rule on file \u2014 target unknown.",
+   "mechanism": "low salt is attractive and high salt aversive through gustatory neurons (IR76b, Gr66a, ppk23 classes)",
+   "drug_class": "food/mineral",
+   "evidence": [
+    "Zhang, Ni & Montell (2013) Science 340:1334 - IR76b salt taste in Drosophila",
+    "Jaeger et al. (2018) eLife 7:e37167 - high-salt aversion circuits"
+   ],
+   "real": "can't test yet",
+   "real_source": "taste: gustatory neurons are wired but salt is a contact stimulus, not a dose. The lab cannot test salt as a dose",
+   "lab": {
+    "status": "cant_test",
+    "why": "taste: gustatory neurons are wired but salt is a contact stimulus, not a dose. The lab cannot test salt as a dose"
+   },
+   "structure": "img/sodium chloride.svg",
+   "formula": "ClNa"
+  },
+  {
+   "key": "drug:sucrose",
+   "kind": "drug",
+   "title": "Sucrose",
+   "target": "",
+   "behavior": [],
+   "sentence": "No standing rule on file \u2014 target unknown.",
+   "mechanism": "tasted by sweet gustatory receptor neurons (Gr5a, Gr64 family) on the legs and proboscis; feeds the fly",
+   "drug_class": "food",
+   "evidence": [
+    "Dahanukar et al. (2007) Neuron 56:503 - Gr5a/Gr64a sweet taste receptors in Drosophila"
+   ],
+   "real": "can't test yet",
+   "real_source": "taste and feeding: gustatory neurons are wired but sugar is a contact stimulus, not a dose. Sugar can only be used as the banana (the smell source), not as a dose",
+   "lab": {
+    "status": "cant_test",
+    "why": "taste and feeding: gustatory neurons are wired but sugar is a contact stimulus, not a dose. Sugar can only be used as the banana (the smell source), not as a dose"
+   },
+   "structure": "img/sucrose.svg",
+   "formula": "C12H22O11"
+  },
+  {
+   "key": "drug:tetanus_toxin",
+   "kind": "drug",
+   "title": "Tetanus Toxin",
+   "target": "firing.legs",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in legs \u2192 expect less walking.",
+   "mechanism": "motor neurons fire but release nothing onto muscle",
+   "drug_class": "toxin",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_124107_does-tetanus-toxin-stop-the-flies-walkin",
+     "title": "Does tetanus toxin stop the flies walking?",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 12:41",
+     "measure": "activity",
+     "runs": 2,
+     "story": "=== random fly (n/a) === tetanus 1.0 vs sober: distance walked per step averaged 0.003 over 5 runs (control 0.111 over 5): a big change down (97%; gap -0.108, control spread 0.003). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. No stage firing was recorded, so there is no pathway story. Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "sober: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "tetanus toxin at dose 1.0, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 120 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Tetanus toxin blocks the leg junctions, so Maxime walks much less.",
+      "measure": "activity"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, tetanus toxin collapses walking toward zero while whole-brain firing stays near control.",
+    "given": "it is encoded as silenced transmitter release at the muscle: motor neurons fire, the muscle hears nothing.",
+    "falsified": "walking survives, or brain firing collapses with it."
+   },
+   "structure": null,
+   "formula": null
+  },
+  {
+   "key": "drug:theobromine",
+   "kind": "drug",
+   "title": "Theobromine",
+   "target": "firing_all",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect more walking.",
+   "mechanism": "blocks adenosine receptors, lifting a tonic brake on background excitatory drive (weaker than caffeine)",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Fredholm & Sandberg (1983) Br J Pharmacol 80:639 - methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+    "Fredholm et al. (1982) Eur J Pharmacol - xanthine derivatives as adenosine receptor antagonists (mammalian)",
+    "ChEMBL 37 - theobromine A1+A2a Ki median 105 uM, n=3 (single study)"
+   ],
+   "real": "partly known",
+   "real_source": "Fredholm & Sandberg (1983) Br J Pharmacol 80:639 - methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_102952_theobromine-vs-control-firing-all",
+     "title": "theobromine vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 10:30",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === theobromine 0.5 vs control box: share of all neurons firing per step averaged 0.014 over 5 runs (control 0.010 over 5): a noticeable change up (36%; gap 0.004, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Theobromine raised the antennal lobe PNs by 21%. Further down, 45% remained at the legs. Biggest change: nerve cord (53% up). Strongest regional effects: LAL (57% up), AVLP (55% up), GNG (50% up). === Hagrid (male) === theobromine 0.5 vs control box: share of all neurons firing per step averaged 0.022 over 5 runs (control 0.020 over 5): a small change up (10%; gap 0.002, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Theobromine raised the central complex by 7%. Further down, 19% remained at the legs. Biggest change: legs (19% up). Strongest regional effects: lamina (26% up), nerve cord (17% up), medulla (17% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "theobromine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 theobromine raises share of all neurons firing per step.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, theobromine raises whole-brain firing and walking vs control, less than caffeine at the same dose.",
+    "given": "it is encoded as a uniform background-drive lift with the trio's weakest potency (ec50 1.3, ChEMBL-anchored against caffeine's 0.4).",
+    "falsified": "its gap matches or beats caffeine's, or vanishes into the control wobble."
+   },
+   "structure": "img/theobromine.svg",
+   "formula": "C7H8N4O2"
+  },
+  {
+   "key": "drug:theophylline",
+   "kind": "drug",
+   "title": "Theophylline",
+   "target": "firing_all",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect more walking.",
+   "mechanism": "blocks adenosine receptors at low doses (tonic brake off background drive, stronger than caffeine); inhibits cAMP phosphodiesterase at higher doses, boosting excitatory synaptic gain",
+   "drug_class": "stimulant",
+   "evidence": [
+    "Fredholm & Sandberg (1983) Br J Pharmacol 80:639 - methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+    "GtoPdb 2026.3.1 - theophylline rows at the adenosine A1 receptor (mammalian)",
+    "ChEMBL 37 - theophylline A1+A2a Ki median 8.5 uM (n=108); PDE IC50/Ki median 263 uM (n=20)"
+   ],
+   "real": "partly known",
+   "real_source": "Fredholm & Sandberg (1983) Br J Pharmacol 80:639 - methylxanthine adenosine antagonism, potency theophylline > caffeine > theobromine (mammalian)",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_102910_theophylline-vs-control-firing-all",
+     "title": "theophylline vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 10:29",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === theophylline 0.5 vs control box: share of all neurons firing per step averaged 0.033 over 5 runs (control 0.010 over 5): a big change up (226%; gap 0.023, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Theophylline raised the antennal lobe PNs by 125%. Further down, 353% remained at the legs. Biggest change: legs (353% up). Strongest regional effects: GNG (330% up), nerve cord (321% up), LAL (298% up). === Hagrid (male) === theophylline 0.5 vs control box: share of all neurons firing per step averaged 0.032 over 5 runs (control 0.019 over 5): a big change up (66%; gap 0.013, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Theophylline raised the nose by 17%. The change carried all the way down the path. Biggest change: legs (106% up). Strongest regional effects: lamina (323% up), nerve cord (106% up), GNG (103% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "theophylline at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 theophylline raises share of all neurons firing per step.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, theophylline raises whole-brain firing and walking vs control, more than caffeine at the same dose.",
+    "given": "it is encoded as a uniform background-drive lift with the trio's strongest potency (ec50 0.1, ChEMBL-anchored) plus a global high-dose PDE gain arm (ec50 3.1).",
+    "falsified": "its gap is smaller than caffeine\u2019s at Standard dose."
+   },
+   "structure": "img/theophylline.svg",
+   "formula": "C7H8N4O2"
+  },
+  {
+   "key": "drug:ttx",
+   "kind": "drug",
+   "title": "Ttx",
+   "target": "firing_all",
+   "behavior": [
+    "activity",
+    "firing_all"
+   ],
+   "sentence": "Acts on the whole brain \u2192 expect less walking.",
+   "mechanism": "blocks sodium channels so affected neurons cannot fire",
+   "drug_class": "toxin",
+   "evidence": [],
+   "real": "not yet tested",
+   "real_source": "no paper on file (assumption)",
+   "lab": {
+    "status": "ready",
+    "ask": "does ttx change walk?"
+   },
+   "structure": "img/ttx.svg",
+   "formula": "C11H17N3O8"
+  },
+  {
+   "key": "drug:vigabatrin",
+   "kind": "drug",
+   "title": "Vigabatrin",
+   "target": "firing.GABA (inhibitory) neurons",
+   "behavior": [
+    "activity"
+   ],
+   "sentence": "Acts on firing in GABA (inhibitory) neurons \u2192 walking changes.",
+   "mechanism": "raises synaptic GABA by irreversibly blocking its breakdown enzyme (GABA transaminase)",
+   "drug_class": "sedative",
+   "evidence": [
+    "Ben-Menachem (2011) Acta Neurol Scand Suppl 124(192):5 - vigabatrin irreversibly inhibits GABA transaminase (mammalian review)",
+    "CTD chemical-gene cotreatment rows in Drosophila (PMID 21503142)",
+    "ChEMBL 37 - GABA transaminase Ki+IC50 median 3.2 mM (n=9, thin)"
+   ],
+   "real": "partly known",
+   "real_source": "Ben-Menachem (2011) Acta Neurol Scand Suppl 124(192):5 - vigabatrin irreversibly inhibits GABA transaminase (mammalian review)",
+   "lab": {
+    "status": "ready",
+    "ask": "does vigabatrin change walk?"
+   },
+   "structure": "img/vigabatrin.svg",
+   "formula": "C6H11NO2"
+  },
+  {
+   "key": "check:P1",
+   "kind": "model check",
+   "title": "P1 \u2014 TTX silences brain and body",
+   "sentence": "Acts on whole-brain firing \u2192 expect less brain firing.",
+   "claim": "Tetrodotoxin blocks spikes: firing falls to ~0 and the fly stops.",
+   "recorded": "firing 4.91% \u2192 0.18%, activity 0.089 \u2192 0.045. Matches.",
+   "real": "partly known",
+   "real_source": "textbook pharmacology \u2014 no fly paper cited",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">firing_all</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "validation",
+     "id": null,
+     "title": "validation.md P1",
+     "verdict": "result stands",
+     "date": null,
+     "measure": "firing_all",
+     "runs": 0,
+     "note": "Ran during validation; no notebook record was saved."
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, TTX drives whole-brain firing toward zero and stops walking.",
+    "given": "TTX is encoded as blocked spiking.",
+    "falsified": "firing stays above 1%, or walking persists."
+   }
+  },
+  {
+   "key": "check:P2",
+   "kind": "model check",
+   "title": "P2 \u2014 Tetanus: brain lit, body frozen",
+   "sentence": "Acts on leg muscle input \u2192 expect less walking.",
+   "claim": "Tetanus toxin blocks transmitter release: firing stays, movement goes to ~0.",
+   "recorded": "firing 4.91% \u2192 4.72%, activity 0.089 \u2192 0.003. Matches.",
+   "real": "already known",
+   "real_source": "Sweeney et al. 1995, Neuron (Drosophila)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">leg muscle</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">input</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">activity</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_124107_does-tetanus-toxin-stop-the-flies-walkin",
+     "title": "Does tetanus toxin stop the flies walking?",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 12:41",
+     "measure": "activity",
+     "runs": 2,
+     "story": "=== random fly (n/a) === tetanus 1.0 vs sober: distance walked per step averaged 0.003 over 5 runs (control 0.111 over 5): a big change down (97%; gap -0.108, control spread 0.003). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. No stage firing was recorded, so there is no pathway story. Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "sober: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "tetanus toxin at dose 1.0, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 120 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Tetanus toxin blocks the leg junctions, so Maxime walks much less.",
+      "measure": "activity"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, tetanus toxin leaves whole-brain firing near control while walking falls toward zero.",
+    "given": "it is encoded as blocked transmitter release onto muscle.",
+    "falsified": "firing collapses, or walking survives."
+   }
+  },
+  {
+   "key": "check:P3",
+   "kind": "model check",
+   "title": "P3 \u2014 Anaesthesia is reversible",
+   "sentence": "Acts on whole-brain firing \u2192 expect less walking.",
+   "claim": "Isoflurane sedates dose-dependently and washes out again.",
+   "recorded": "activity 0.089 \u2192 0.050 \u2192 0.087. Reversibility matches.",
+   "real": "already known",
+   "real_source": "fly anaesthesia literature (see validation.md)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">activity</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "validation",
+     "id": null,
+     "title": "validation.md P3",
+     "verdict": "result stands",
+     "date": null,
+     "measure": "activity",
+     "runs": 0,
+     "note": "Ran during validation; no notebook record was saved."
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, isoflurane lowers walking dose-dependently, and washout restores it.",
+    "given": "it is encoded as potentiated inhibition plus reduced background drive, with a finite half-life.",
+    "falsified": "the effect is flat across doses, or washout fails to restore walking."
+   }
+  },
+  {
+   "key": "check:P4",
+   "kind": "model check",
+   "title": "P4 \u2014 Picrotoxin: the seizure that wasn\u2019t",
+   "sentence": "Acts on whole-brain firing \u2192 expect more brain firing.",
+   "claim": "Removing inhibition should cause synchronous bursting. Firing rises \u2014 bursting never comes.",
+   "recorded": "Firing +22% but synchrony ~0. Honest negative; needs the P4b model change.",
+   "real": "already known",
+   "real_source": "Drosophila seizure-model literature",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">firing_all</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "validation",
+     "id": null,
+     "title": "validation.md P4",
+     "verdict": "result stands",
+     "date": null,
+     "measure": "firing_all",
+     "runs": 0,
+     "note": "Ran during validation; no notebook record was saved."
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, picrotoxin raises whole-brain firing and produces synchronous bursting.",
+    "given": "it is encoded as removed inhibition.",
+    "falsified": "synchrony stays near zero."
+   }
+  },
+  {
+   "key": "check:P5",
+   "kind": "model check",
+   "title": "P5 \u2014 Caffeine raises activity",
+   "sentence": "Acts on whole-brain firing \u2192 expect more walking.",
+   "claim": "Caffeine raises locomotion, monotonically with dose.",
+   "recorded": "Monotonic 0.088 \u2192 0.117, washout restores. Matches (weak test).",
+   "real": "already known",
+   "real_source": "Shaw et al. 2000, Science; Hendricks et al. 2000, Neuron",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">activity</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261102_102830_caffeine-vs-control-firing-all",
+     "title": "caffeine vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-02 10:29",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === caffeine 0.5 vs control box: share of all neurons firing per step averaged 0.023 over 5 runs (control 0.010 over 5): a big change up (128%; gap 0.013, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Caffeine quieted the nose by 5%. The change carried all the way down the path. Biggest change: descending neurons (196% up). Strongest regional effects: AVLP (187% up), nerve cord (181% up), GNG (179% up). === Hagrid (male) === caffeine 0.5 vs control box: share of all neurons firing per step averaged 0.027 over 5 runs (control 0.020 over 5): a noticeable change up (38%; gap 0.007, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Caffeine raised the antennal lobe PNs by 13%. Further down, 53% remained at the legs. Biggest change: nerve cord (62% up). Strongest regional effects: lamina (145% up), GNG (65% up), nerve cord (62% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "caffeine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "5 repeats of 200 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 caffeine raises share of all neurons firing per step.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, caffeine raises walking monotonically with dose, and washout restores baseline.",
+    "given": "the uniform background-drive encoding: the direction nearly follows by construction, so this is a weak test.",
+    "falsified": "the dose curve is flat, non-monotonic, or irreversible."
+   }
+  },
+  {
+   "key": "check:P6",
+   "kind": "model check",
+   "title": "P6 \u2014 Ethanol: the missing buzz",
+   "sentence": "Acts on whole-brain firing \u2192 expect less walking.",
+   "claim": "Real flies go hyperactive on low ethanol; the single-mechanism model only sedates.",
+   "recorded": "Monotonic decrease. Expected mismatch; needs the P6b model change.",
+   "real": "already known",
+   "real_source": "Wolf et al. 2002, J Neurosci; Parr et al. 2001",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">activity</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261030_180825_ethanol-vs-control-firing-all",
+     "title": "ethanol vs control (firing_all)",
+     "verdict": "SUPPORTED",
+     "date": "2026-10-30 18:08",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === Control box: share of all neurons firing per step averaged 0.016 over 3 runs (from 0.016 to 0.017). Ethanol 0.5: share of all neurons firing per step averaged 0.014 over 3 runs (from 0.014 to 0.014) \u2014 14% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.002) is 22.9\u00d7 the run-to-run wobble (0.000). Verdict for ethanol 0.5: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble. === Hagrid (male) === Control box: share of all neurons firing per step averaged 0.020 over 3 runs (from 0.019 to 0.020). Ethanol 0.5: share of all neurons firing per step averaged 0.012 over 3 runs (from 0.012 to 0.012) \u2014 39% less than control box. 3 of 3 runs were on the predicted side of the control box average; the gap (0.008) is 28.8\u00d7 the run-to-run wobble (0.000). Verdict for ethanol 0.5: SUPPORTED \u2014 the direction held in almost every run and the gap is bigger than the wobble. Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "ethanol at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams)",
+      "effort": "3 repeats of 100 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 x",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim, ethanol only sedates: walking falls monotonically with dose, with no low-dose rise.",
+    "given": "the single-mechanism GABA encoding with no arousal arm.",
+    "falsified": "any low dose raises walking above control."
+   }
+  },
+  {
+   "key": "check:P7",
+   "kind": "model check",
+   "title": "P7 \u2014 Where the smell signal dies",
+   "sentence": "Acts on olfactory path l/r \u2192 expect less lateralisation index.",
+   "claim": "With real wiring, the left/right smell difference dies at the first synapse (PN saturation).",
+   "recorded": "ORNs +0.58, everything downstream ~0. Honest negative (stage_map.py). Nov 1 recalibration: bilateral (legs ipsi==contra exactly), klinotaxis (40-run CAN'T TELL), and wind lateralization all rejected \u2014 full autopsy in battery P7.",
+   "real": "already known",
+   "real_source": "Gaudry et al. 2013, Nature (fly ORN\u2192PN)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">olfactory path</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">L/R</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">lateralisation</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">index</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "analysis",
+     "id": null,
+     "title": "stage_map.py lateralisation analysis",
+     "verdict": "recorded negative",
+     "date": null,
+     "measure": "lateralisation index",
+     "runs": 0,
+     "note": "Not a notebook run; result stands in validation.md P7."
+    }
+   },
+   "hypothesis": {
+    "text": "In the sim with real wiring, a one-sided banana smell keeps a left/right difference at the nose but loses it by the first downstream relay.",
+    "given": "ORN\u2192PN convergence with saturating responses.",
+    "falsified": "downstream stages keep a lateralisation index clearly above zero."
+   }
+  },
+  {
+   "key": "check:P4b",
+   "kind": "model check",
+   "title": "P4b \u2014 Bursting with adaptation (needs model change)",
+   "sentence": "Acts on whole-brain synchrony \u2192 expect more seizure-like bursting.",
+   "claim": "FOLLOW-UP (not run): adaptation + a balanced recurrent pool should seize under picrotoxin.",
+   "recorded": "Not attempted within the hackathon window.",
+   "real": "already known",
+   "real_source": "Drosophila seizure-model literature",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">synchrony</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">synchrony</text></svg>",
+   "lab": {
+    "status": "needs_model",
+    "why": "Two populations: feed-forward sensorimotor path + balanced recurrent pool with adaptation."
+   }
+  },
+  {
+   "key": "check:P6b",
+   "kind": "model check",
+   "title": "P6b \u2014 Biphasic ethanol (needs model change)",
+   "sentence": "Acts on whole-brain firing \u2192 expect more walking.",
+   "claim": "FOLLOW-UP (not run): a global excitability gain (octopamine/dopamine tone) should restore the low-dose buzz.",
+   "recorded": "To be added only after the monotonic result stands.",
+   "real": "already known",
+   "real_source": "Wolf et al. 2002 (modulatory dependence)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">whole-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">activity</text></svg>",
+   "lab": {
+    "status": "needs_model",
+    "why": "One global gain raised at low ethanol concentration, labelled a second hypothesis."
+   }
+  },
+  {
+   "key": "comparison:C1",
+   "kind": "comparison",
+   "title": "C1 \u2014 Same parts?",
+   "sentence": "Acts on central-brain cell census \u2192 expect no change in cell counts by type.",
+   "claim": "Central-brain cell counts agree within 2% across all three connectomes; naming is the biggest noise source.",
+   "recorded": "57% of 2,909 shared types match in all three; 29% the two females disagree (mapping).",
+   "real": "already known",
+   "real_source": "FINDINGS.md \u00a71 (Oct 30, 2026)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">central-brain</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">cell census</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">cell counts by</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">type</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "finding",
+     "id": null,
+     "title": "comparative/FINDINGS.md \u00a71",
+     "verdict": "finding recorded",
+     "date": "2026-10-30",
+     "measure": "cell counts by type",
+     "runs": 0,
+     "note": "Connectome analysis, not a sim run."
+    }
+   },
+   "hypothesis": {
+    "text": "Across the three connectome brains, central-brain cell counts agree within 2%.",
+    "given": "counts are compared per shared cell type, with naming differences as the expected noise.",
+    "falsified": "the central-brain totals differ by more than 2%."
+   }
+  },
+  {
+   "key": "comparison:C2",
+   "kind": "comparison",
+   "title": "C2 \u2014 Male-only cells?",
+   "sentence": "Acts on sex-specific cell types \u2192 expect more cells per type in the male.",
+   "claim": "P1 courtship cluster and male mAL types appear in Hagrid as the literature says.",
+   "recorded": "P1: 10/12/156 (FlyWire/Maxime/Hagrid). Direction matches.",
+   "real": "already known",
+   "real_source": "FINDINGS.md \u00a72 + male-CNS literature",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">sex-specific</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">cell types</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">cells per type</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "finding",
+     "id": null,
+     "title": "comparative/FINDINGS.md \u00a72",
+     "verdict": "finding recorded",
+     "date": "2026-10-30",
+     "measure": "cells per type",
+     "runs": 0,
+     "note": "Connectome analysis, not a sim run."
+    }
+   },
+   "hypothesis": {
+    "text": "Hagrid carries the male-specific courtship cells (P1 cluster, male mAL types) nearly absent in the females.",
+    "given": "published male-CNS anatomy.",
+    "falsified": "P1-family counts are comparable across all three brains."
+   }
+  },
+  {
+   "key": "comparison:C3",
+   "kind": "comparison",
+   "title": "C3 \u2014 Left vs right",
+   "sentence": "Acts on left/right cell counts \u2192 expect no change in L/R symmetry.",
+   "claim": "Hagrid\u2019s left antenna is under-mapped; Maxime has her own lopsided types. Both are data gaps, not biology.",
+   "recorded": "Hagrid smell receptors 883 L / 1343 R; Maxime 26% of types lopsided >30%.",
+   "real": "not yet tested",
+   "real_source": "FINDINGS.md \u00a73 \u2014 mapping gaps, no literature claim",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">left/right cell</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">counts</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">L/R symmetry</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "finding",
+     "id": null,
+     "title": "comparative/FINDINGS.md \u00a73",
+     "verdict": "finding recorded",
+     "date": "2026-10-30",
+     "measure": "L/R symmetry",
+     "runs": 0,
+     "note": "Connectome analysis, not a sim run."
+    }
+   },
+   "hypothesis": {
+    "text": "Left/right count asymmetries are mapping gaps, not biology.",
+    "given": "symmetric organs should map symmetric counts.",
+    "falsified": "an asymmetry matches a known biological asymmetry."
+   }
+  },
+  {
+   "key": "comparison:C4",
+   "kind": "comparison",
+   "title": "C4 \u2014 Connection strength",
+   "sentence": "Acts on synapses per central neuron \u2192 expect no change in input-share similarity.",
+   "claim": "Synapse counts differ by machine; compared as shares, FlyWire\u2013Hagrid agree best (0.91). Raw counts must never be compared.",
+   "recorded": "540/167/787 synapses per neuron by machine; shares similar at 0.71\u20130.91.",
+   "real": "not yet tested",
+   "real_source": "FINDINGS.md \u00a74 \u2014 methodological finding",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">synapses per</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">central neuron</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">input-share</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">similarity</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "kind": "finding",
+     "id": null,
+     "title": "comparative/FINDINGS.md \u00a74",
+     "verdict": "finding recorded",
+     "date": "2026-10-30",
+     "measure": "input-share similarity",
+     "runs": 0,
+     "note": "Connectome analysis, not a sim run."
+    }
+   },
+   "hypothesis": {
+    "text": "Raw synapses-per-neuron differ by machine, but input-share profiles agree, FlyWire\u2013Hagrid best.",
+    "given": "each dataset counts synapses differently, so only shares are comparable.",
+    "falsified": "share-similarity is no better than raw-count similarity."
+   }
+  },
+  {
+   "key": "sense:S-co2",
+   "kind": "new sense",
+   "title": "CO2 avoidance",
+   "sentence": "Acts on co2 channel \u2192 expect response avoidance.",
+   "claim": "A CO2 puff should drive avoidance. Known in flies; the channel exists but is switched off by default.",
+   "real": "already known",
+   "real_source": "lab brief 2026-10-31 \u2014 needs a filed citation",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">CO2 channel</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">avoidance</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_232223_gr63a-nulls-are-co2-blind-co2-response-g",
+     "title": "Gr63a nulls are CO2-blind (CO2 response gone)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:24",
+     "measure": "firing.CO2 ORNs",
+     "runs": 2,
+     "story": "=== Maxime (female) === CO2, Gr63a null vs CO2: firing in the CO2 ORNs averaged 0.000 over 10 runs (control 0.051 over 10): a big change down (100%; gap -0.051, control spread 0.012). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the CO2 ORNs by 100%. The change faded by the nose (3%, no real change). Biggest change: CO2 ORNs (100% down). === Hagrid (male) === CO2, Gr63a null vs CO2: firing in the CO2 ORNs averaged 0.000 over 10 runs (control 0.043 over 10): a big change down (100%; gap -0.043, control spread 0.010). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the CO2 ORNs by 100%. The change faded by the antennal lobe PNs (2%, no real change). Biggest change: CO2 ORNs (100% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "CO2: both flies, set I_co2 2.0, stimulus co2 level 1.0. Every result is measured against these two.",
+      "treatment": "raised as Gr63a_ko mutants, both flies \u2014 with set I_co2 2.0, stimulus co2 level 1.0",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing CO2 ORNs kills the CO2 response.",
+      "measure": "firing in CO2 ORNs"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim with the CO2 channel switched on, a CO2 puff drives avoidance vs control.",
+    "given": "a dedicated CO2 channel exists but is off by default.",
+    "falsified": "CO2-side occupancy matches the control side."
+   }
+  },
+  {
+   "key": "sense:S-wind",
+   "kind": "new sense",
+   "title": "Wind-guided smell navigation",
+   "sentence": "Acts on wind + smell combined \u2192 expect more bananas found upwind.",
+   "claim": "P7\u2019s second hypothesis: with wind, smell navigation should work. Known in flies; off by default. Sim update Nov 1: the model rejects all three follow-ups (bilateral, klinotaxis, wind lateralization) \u2014 P7 stays a negative result; real flies still do it.",
+   "real": "already known",
+   "real_source": "\u00c1lvarez-Salvado et al. 2018, eLife (wind-guided odour navigation)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">wind + smell</text><text x=\"60\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">combined</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">bananas found</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">upwind</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_232459_nompc-nulls-are-wind-blind-wind-response",
+     "title": "nompC nulls are wind-blind (wind response gone)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:27",
+     "measure": "firing.wind sensors",
+     "runs": 2,
+     "story": "=== Maxime (female) === wind, nompC null vs wind: firing in the wind sensors averaged 0.000 over 10 runs (control 0.068 over 10): a big change down (100%; gap -0.068, control spread 0.006). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the wind sensors by 100%. The change faded by the antennal lobe PNs (1%, no real change). Biggest change: wind sensors (100% down). Strongest regional effects: other (41% down), nerve cord (37% down), GNG (34% down). === Hagrid (male) === wind, nompC null vs wind: firing in the wind sensors averaged 0.000 over 10 runs (control 0.023 over 10): a big change down (100%; gap -0.023, control spread 0.002). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the wind sensors by 100%. The change faded by the nose (1%, no real change). Biggest change: wind sensors (100% down). Strongest regional effects: GNG (61% down), nerve cord (16% down), AVLP (8% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "wind: both flies, set I_wind 2.0, stimulus wind level None. Every result is measured against these two.",
+      "treatment": "raised as nompC_ko mutants, both flies \u2014 with set I_wind 2.0, stimulus wind level None",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing wind sensors kills the wind response.",
+      "measure": "firing in wind sensors"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim with wind switched on, a banana smell plus wind steers the fly upwind toward the banana.",
+    "given": "wind-gated odour navigation \u2014 P7\u2019s second hypothesis.",
+    "falsified": "upwind banana-finding matches the no-wind control."
+   }
+  },
+  {
+   "key": "sense:S-taste",
+   "kind": "new sense",
+   "title": "Sugar-taste neurons switched on",
+   "sentence": "Acts on gustatory pool \u2192 expect more downstream firing.",
+   "claim": "Switching sugar-taste neurons on should light up their downstream cells. Known; off by default.",
+   "real": "already known",
+   "real_source": "Shiu et al. 2024 (per brief \u2014 verify exact claim)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gustatory pool</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">downstream</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">firing</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_224740_gr66a-nulls-are-bitter-blind-bitter-supp",
+     "title": "Gr66a nulls are bitter-blind (bitter suppression gone, sweet kept)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 22:50",
+     "measure": "firing.taste neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === bitter, Gr66a null vs bitter: firing in the taste neurons averaged 0.021 over 10 runs (control 0.005 over 10): a big change up (299%; gap 0.015, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the taste neurons by 299%. The change faded by the antennal lobe PNs (0%, no real change). Biggest change: taste neurons (299% up). Strongest regional effects: GNG (23% up), nerve cord (11% up). === Hagrid (male) === bitter, Gr66a null vs bitter: firing in the taste neurons averaged 0.023 over 10 runs (control 0.009 over 10): a big change up (166%; gap 0.014, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the taste neurons by 166%. The change faded by the nose (2%, no real change). Biggest change: taste neurons (166% up). Strongest regional effects: GNG (15% up), nerve cord (6% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "bitter: both flies, set I_taste 2.0, stimulus bitter level 1.0. Every result is measured against these two.",
+      "treatment": "raised as Gr66a_ko mutants, both flies \u2014 with set I_taste 2.0, stimulus bitter level 1.0",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Zeroing the bitter arm removes bitter suppression of taste firing.",
+      "measure": "firing in taste neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim with sugar-taste neurons switched on, their downstream cells light up above control.",
+    "given": "the gustatory pool exists but is off by default.",
+    "falsified": "downstream firing matches control."
+   }
+  },
+  {
+   "key": "mutant:DAT_null",
+   "kind": "mutant",
+   "title": "DAT null (no dopamine transporter)",
+   "sentence": "Perturbs gene DAT (FBgn0034136) \u2192 run it and watch brain firing and walking.",
+   "claim": "Without reuptake, released dopamine acts longer; read here as 1.5x dopamine release gain. Real DAT phenotypes (sleep, ethanol sensitivity) emerge only insofar as the network reproduces them.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0034136 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene DAT</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_231325_cocaine-on-dat-nulls-does-it-add-anythin",
+     "title": "Cocaine on DAT nulls (does it add anything without the transporter?)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:15",
+     "measure": "firing.dopamine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === DAT null + cocaine vs DAT null: firing in the dopamine neurons averaged 0.024 over 10 runs (control 0.015 over 10): a big change up (59%; gap 0.009, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Cocaine raised the dopamine neurons by 59%. The change faded by the antennal lobe PNs (1%, no real change). Biggest change: dopamine neurons (59% up). Strongest regional effects: slopes (77% up), LAL (64% up), other (52% up). === Hagrid (male) === DAT null + cocaine vs DAT null: firing in the dopamine neurons averaged 0.224 over 10 runs (control 0.157 over 10): a noticeable change up (43%; gap 0.067, control spread 0.003). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Cocaine raised the dopamine neurons by 43%. The change faded by the nose (1%, no real change). Biggest change: mushroom body (43% up). Strongest regional effects: mushroom body (43% up), central complex (16% up), LAL (6% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "DAT null: both flies, raised as DAT_null mutants. Every result is measured against these two.",
+      "treatment": "cocaine at dose Standard 0.5, both flies (a unitless knob on the sim, not milligrams) \u2014 with raised as DAT_null mutants",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Cocaine adds dopamine firing even without the transporter (model prediction; biology predicts occlusion).",
+      "measure": "firing in dopamine neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, DAT-null flies show raised dopamine-neuron firing vs control.",
+    "given": "no reuptake is read as 1.5\u00d7 dopamine release gain; sleep and ethanol phenotypes can only emerge via the network.",
+    "falsified": "dopamine firing matches control."
+   }
+  },
+  {
+   "key": "mutant:Gr5a_ko",
+   "kind": "mutant",
+   "title": "Gr5a null (sweet-blind: sweet arm silenced, bitter kept)",
+   "sentence": "Perturbs gene Gr5a (FBgn0003747) \u2192 run it and watch brain firing and walking.",
+   "claim": "Gr5a marks the sweet taste neurons (labellum, tarsi); nulls cannot taste sweet but taste bitter normally. The sim pools all gustatory neurons, so a lesion would wrongly kill bitter too: read here as sweet_gain 0. Adult expression: labellar/tarsal taste bristles, labellum, subesophageal zone.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0003747 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene Gr5a</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_232823_gr5a-nulls-are-sweet-blind-20-runs-sweet",
+     "title": "Gr5a nulls are sweet-blind, 20 runs (sweet gone, bitter kept)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:33",
+     "measure": "firing.taste neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === sweet, Gr5a null vs sweet: firing in the taste neurons averaged 0.000 over 20 runs (control 0.005 over 20): a big change down (96%; gap -0.005, control spread 0.005). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the taste neurons by 96%. The change faded by the antennal lobe PNs (1%, no real change). Biggest change: taste neurons (96% down). Strongest regional effects: GNG (9% down). === Hagrid (male) === sweet, Gr5a null vs sweet: firing in the taste neurons averaged 0.002 over 20 runs (control 0.009 over 20): a big change down (80%; gap -0.007, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the taste neurons by 80%. The change faded by the nose (0%, no real change). Biggest change: taste neurons (80% down). Strongest regional effects: GNG (10% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "sweet: both flies, set I_taste 2.0. Every result is measured against these two.",
+      "treatment": "raised as Gr5a_ko mutants, both flies \u2014 with set I_taste 2.0",
+      "effort": "20 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Zeroing the sweet arm removes the sweet lift of taste firing.",
+      "measure": "firing in taste neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, Gr5a-null flies lose sweet responses while bitter responses stay.",
+    "given": "the null is read as sweet_gain 0 with the bitter arm kept, because the sim pools all gustatory neurons.",
+    "falsified": "bitter responses also vanish, or sweet responses survive."
+   }
+  },
+  {
+   "key": "mutant:Gr63a_ko",
+   "kind": "mutant",
+   "title": "Gr63a null (CO2-blind: CO2 ORNs silenced)",
+   "sentence": "Perturbs gene Gr63a (FBgn0035468) \u2192 run it and watch brain firing and walking.",
+   "claim": "Gr21a/Gr63a is the CO2 receptor complex of ab1C neurons (glomerulus V); nulls cannot transduce CO2, read here as silenced CO2 ORNs. Adult expression: Gr21a/63a ORNs, antennal lobe glomerulus V, ab1 sensillum, antenna.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0035468 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene Gr63a</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_232223_gr63a-nulls-are-co2-blind-co2-response-g",
+     "title": "Gr63a nulls are CO2-blind (CO2 response gone)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:24",
+     "measure": "firing.CO2 ORNs",
+     "runs": 2,
+     "story": "=== Maxime (female) === CO2, Gr63a null vs CO2: firing in the CO2 ORNs averaged 0.000 over 10 runs (control 0.051 over 10): a big change down (100%; gap -0.051, control spread 0.012). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the CO2 ORNs by 100%. The change faded by the nose (3%, no real change). Biggest change: CO2 ORNs (100% down). === Hagrid (male) === CO2, Gr63a null vs CO2: firing in the CO2 ORNs averaged 0.000 over 10 runs (control 0.043 over 10): a big change down (100%; gap -0.043, control spread 0.010). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the CO2 ORNs by 100%. The change faded by the antennal lobe PNs (2%, no real change). Biggest change: CO2 ORNs (100% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "CO2: both flies, set I_co2 2.0, stimulus co2 level 1.0. Every result is measured against these two.",
+      "treatment": "raised as Gr63a_ko mutants, both flies \u2014 with set I_co2 2.0, stimulus co2 level 1.0",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing CO2 ORNs kills the CO2 response.",
+      "measure": "firing in CO2 ORNs"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, Gr63a-null flies lose CO2 responses vs control.",
+    "given": "the null is read as silenced CO2 ORNs (Gr21a/Gr63a complex, glomerulus V).",
+    "falsified": "CO2 responses survive."
+   }
+  },
+  {
+   "key": "mutant:Gr66a_ko",
+   "kind": "mutant",
+   "title": "Gr66a null (bitter-blind: bitter arm silenced, sweet kept)",
+   "sentence": "Perturbs gene Gr66a (FBgn0035870) \u2192 run it and watch brain firing and walking.",
+   "claim": "Gr66a marks the bitter taste neurons (labellum, tarsi); nulls cannot taste bitter but taste sweet normally. The sim pools all gustatory neurons, so a lesion would wrongly kill sweet too: read here as bitter_gain 0. Adult expression: labellar/tarsal taste bristles.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0035870 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene Gr66a</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_224740_gr66a-nulls-are-bitter-blind-bitter-supp",
+     "title": "Gr66a nulls are bitter-blind (bitter suppression gone, sweet kept)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 22:50",
+     "measure": "firing.taste neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === bitter, Gr66a null vs bitter: firing in the taste neurons averaged 0.021 over 10 runs (control 0.005 over 10): a big change up (299%; gap 0.015, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the taste neurons by 299%. The change faded by the antennal lobe PNs (0%, no real change). Biggest change: taste neurons (299% up). Strongest regional effects: GNG (23% up), nerve cord (11% up). === Hagrid (male) === bitter, Gr66a null vs bitter: firing in the taste neurons averaged 0.023 over 10 runs (control 0.009 over 10): a big change up (166%; gap 0.014, control spread 0.004). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the taste neurons by 166%. The change faded by the nose (2%, no real change). Biggest change: taste neurons (166% up). Strongest regional effects: GNG (15% up), nerve cord (6% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "bitter: both flies, set I_taste 2.0, stimulus bitter level 1.0. Every result is measured against these two.",
+      "treatment": "raised as Gr66a_ko mutants, both flies \u2014 with set I_taste 2.0, stimulus bitter level 1.0",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Zeroing the bitter arm removes bitter suppression of taste firing.",
+      "measure": "firing in taste neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, Gr66a-null flies lose bitter responses while sweet responses stay.",
+    "given": "the null is read as bitter_gain 0 with the sweet arm kept, because the sim pools all gustatory neurons.",
+    "falsified": "sweet responses also vanish, or bitter responses survive."
+   }
+  },
+  {
+   "key": "mutant:Orco_ko",
+   "kind": "mutant",
+   "title": "Orco null (anosmic: smell ORNs silenced)",
+   "sentence": "Perturbs gene Orco (FBgn0037324) \u2192 run it and watch brain firing and walking.",
+   "claim": "Orco is the obligate smell-receptor coreceptor; nulls are anosmic, read here as silenced nose ORNs. Only the simulable banana-ORN subset exists as a group, so the lesion covers that subset (stated, not the whole nose).",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0037324 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene Orco</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_164754_orco-nulls-are-anosmic-banana-response-g",
+     "title": "Orco nulls are anosmic (banana response gone)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 16:50",
+     "measure": "firing.nose",
+     "runs": 2,
+     "story": "=== Maxime (female) === banana, Orco null vs banana: firing in the nose averaged 0.000 over 10 runs (control 0.137 over 10): a big change down (100%; gap -0.137, control spread 0.018). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change faded by the central complex (4%, no real change). Biggest change: nose (100% down). === Hagrid (male) === banana, Orco null vs banana: firing in the nose averaged 0.000 over 10 runs (control 0.141 over 10): a big change down (100%; gap -0.141, control spread 0.009). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change faded by the antennal lobe PNs (4%, no real change). Biggest change: nose (100% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "banana: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "raised as Orco_ko mutants, both flies",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing nose ORNs kills the banana-smell response.",
+      "measure": "the smell centre"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, Orco-null flies lose banana-smell responses vs control.",
+    "given": "the null is read as silenced nose ORNs, covering only the simulable banana-ORN subset.",
+    "falsified": "banana responses survive."
+   }
+  },
+  {
+   "key": "mutant:Rdl",
+   "kind": "mutant",
+   "title": "Rdl (epilepsy proxy: half inhibitory gain)",
+   "sentence": "Perturbs gene Rdl (FBgn0004244) \u2192 run it and watch brain firing and walking.",
+   "claim": "Rdl encodes the fly GABA-A receptor; loss leaves the brain disinhibited, read here as half inhibitory gain. Firing rises; seizures themselves are not modelled.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0004244 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene Rdl</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_225028_rdl-disinhibits-the-brain-epilepsy-proxy",
+     "title": "Rdl disinhibits the brain (epilepsy proxy)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 22:53",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === Rdl vs control box: share of all neurons firing per step averaged 0.012 over 10 runs (control 0.010 over 10): a small change up (18%; gap 0.002, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the antennal lobe PNs by 24%. Further down, 30% remained at the legs. Biggest change: descending neurons (36% up). Strongest regional effects: LAL (39% up), AVLP (33% up), slopes (32% up). === Hagrid (male) === Rdl vs control box: share of all neurons firing per step averaged 0.043 over 10 runs (control 0.020 over 10): a big change up (119%; gap 0.023, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the nose by 30%. The change carried all the way down the path. Biggest change: legs (310% up). Strongest regional effects: AVLP (233% up), LAL (216% up), nerve cord (201% up). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "raised as Rdl mutants, both flies",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment up \u2014 Halving inhibitory gain raises whole-brain firing.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, Rdl-null flies show raised whole-brain firing vs control.",
+    "given": "the null is read as half inhibitory gain; seizures themselves are not modelled.",
+    "falsified": "firing matches control."
+   }
+  },
+  {
+   "key": "mutant:ninaE_ko",
+   "kind": "mutant",
+   "title": "ninaE null (blind: photoreceptors silenced)",
+   "sentence": "Perturbs gene ninaE (FBgn0002940) \u2192 run it and watch brain firing and walking.",
+   "claim": "ninaE encodes the R1-R6 rhodopsin; nulls cannot phototransduce, read here as silenced photoreceptors. Adult expression: photoreceptor / rhabdomere sites. The rest of the visual system is untouched.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0002940 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene ninaE</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_164527_ninae-nulls-are-blind-light-response-gon",
+     "title": "ninaE nulls are blind (light response gone)",
+     "verdict": "MIXED",
+     "date": "2026-11-01 16:47",
+     "measure": "firing.photoreceptors",
+     "runs": 2,
+     "story": "=== Maxime (female) === Target \u2014 lit, ninaE null vs lit: firing in the photoreceptors averaged 0.000 over 10 runs (control 0.090 over 10): a big change down (100%; gap -0.090, control spread 0.007). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 lit, ninaE null vs lit: firing in the visual targets averaged 0.055 over 10 runs (control 0.039 over 10): a noticeable change up (40%; gap 0.016, control spread 0.001). Verdict: NOT SUPPORTED \u2014 a clear gap on the opposite side. The treatment quieted the photoreceptors by 100%. The change faded by the optic lobes (1%, no real change). Biggest change: photoreceptors (100% down). Suspects: the change faded between stages: clear at the target, gone further down; the behaviour measure may miss how the target change reaches walking. === Hagrid (male) === Target \u2014 lit, ninaE null vs lit: firing in the photoreceptors averaged 0.000 over 10 runs (control 0.092 over 10): a big change down (100%; gap -0.092, control spread 0.002). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 lit, ninaE null vs lit: firing in the visual targets averaged 0.043 over 10 runs (control 0.068 over 10): a noticeable change down (36%; gap -0.025, control spread 0.001). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the photoreceptors by 100%. The change faded by the central complex (1%, no real change). Biggest change: photoreceptors (100% down). Overall: MIXED \u2014 each gap is clear but the sexes disagree: Maxime (female): NOT SUPPORTED; Hagrid (male): SUPPORTED.",
+     "recipe": {
+      "control": "lit: both flies, set I_bg 2.2, set I_vis 2.0, stimulus light level 1.0. Every result is measured against these two.",
+      "treatment": "raised as ninaE_ko mutants, both flies \u2014 with set I_bg 2.2, set I_vis 2.0, stimulus light level 1.0",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing photoreceptors kills the lit-vs-dark response.",
+      "measure": "firing in photoreceptors; also watches firing.visual targets (expects down)"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, ninaE-null flies lose light responses while the rest of the visual system stays intact.",
+    "given": "the null is read as silenced photoreceptors (R1\u2013R6 rhodopsin).",
+    "falsified": "light responses survive."
+   }
+  },
+  {
+   "key": "mutant:nompC_ko",
+   "kind": "mutant",
+   "title": "nompC null (wind-blind: mechanosensors silenced)",
+   "sentence": "Perturbs gene nompC (FBgn0016920) \u2192 run it and watch brain firing and walking.",
+   "claim": "nompC encodes a mechanotransduction channel of chordotonal and Johnston-organ neurons; nulls are deaf and uncoordinated, read here as silenced wind sensors. Hearing and coordination themselves are not modelled. Adult expression: JO neuron, chordotonal organs, mechanosensory neurons.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0016920 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene nompC</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_232459_nompc-nulls-are-wind-blind-wind-response",
+     "title": "nompC nulls are wind-blind (wind response gone)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:27",
+     "measure": "firing.wind sensors",
+     "runs": 2,
+     "story": "=== Maxime (female) === wind, nompC null vs wind: firing in the wind sensors averaged 0.000 over 10 runs (control 0.068 over 10): a big change down (100%; gap -0.068, control spread 0.006). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the wind sensors by 100%. The change faded by the antennal lobe PNs (1%, no real change). Biggest change: wind sensors (100% down). Strongest regional effects: other (41% down), nerve cord (37% down), GNG (34% down). === Hagrid (male) === wind, nompC null vs wind: firing in the wind sensors averaged 0.000 over 10 runs (control 0.023 over 10): a big change down (100%; gap -0.023, control spread 0.002). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the wind sensors by 100%. The change faded by the nose (1%, no real change). Biggest change: wind sensors (100% down). Strongest regional effects: GNG (61% down), nerve cord (16% down), AVLP (8% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "wind: both flies, set I_wind 2.0, stimulus wind level None. Every result is measured against these two.",
+      "treatment": "raised as nompC_ko mutants, both flies \u2014 with set I_wind 2.0, stimulus wind level None",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Silencing wind sensors kills the wind response.",
+      "measure": "firing in wind sensors"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, nompC-null flies lose wind responses vs control.",
+    "given": "the null is read as silenced wind sensors; hearing and coordination are not modelled.",
+    "falsified": "wind responses survive."
+   }
+  },
+  {
+   "key": "mutant:para_ko",
+   "kind": "mutant",
+   "title": "para null (unexcitable: the whole brain silenced)",
+   "sentence": "Perturbs gene para (FBgn0285944) \u2192 run it and watch brain firing and walking.",
+   "claim": "para encodes the sodium-channel pore; a null cannot spike anywhere. The null allele beside the para_ts hypomorph (+3 mV threshold) preset. Mapped from the adult-brain site; the eye site is noted but not used.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0285944 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene para</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_165024_para-allelic-series-hypomorph-vs-null",
+     "title": "para allelic series (hypomorph vs null)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 16:55",
+     "measure": "firing_all",
+     "runs": 3,
+     "story": "=== Maxime (female) === para_ts vs control box: share of all neurons firing per step averaged 0.004 over 10 runs (control 0.016 over 20): a big change down (75%; gap -0.012, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 14%. The change carried all the way down the path. Biggest change: legs (98% down). para null vs control box: share of all neurons firing per step averaged 0.000 over 10 runs (control 0.016 over 20): a big change down (100%; gap -0.016, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change carried all the way down the path. Biggest change: legs (100% down). === Hagrid (male) === para_ts vs control box: share of all neurons firing per step averaged 0.006 over 10 runs (control 0.019 over 20): a big change down (67%; gap -0.013, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 11%. The change carried all the way down the path. Biggest change: legs (98% down). para null vs control box: share of all neurons firing per step averaged 0.000 over 10 runs (control 0.019 over 20): a big change down (100%; gap -0.019, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change carried all the way down the path. Biggest change: legs (100% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "raised as para_ts mutants, both flies",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 para_ts quiets the brain and para null silences it.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, para-null flies go fully silent: no firing, no walking.",
+    "given": "a null para cannot spike anywhere.",
+    "falsified": "any firing or walking survives."
+   }
+  },
+  {
+   "key": "mutant:para_ts",
+   "kind": "mutant",
+   "title": "para (temperature-sensitive, at the restrictive temperature)",
+   "sentence": "Perturbs gene para (FBgn0285944) \u2192 run it and watch brain firing and walking.",
+   "claim": "para encodes the voltage-gated sodium channel pore; loss of function makes neurons harder to excite, read here as a +3 mV spike threshold. Bang-sensitivity and paralysis themselves are not modelled.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0285944 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene para</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_165024_para-allelic-series-hypomorph-vs-null",
+     "title": "para allelic series (hypomorph vs null)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 16:55",
+     "measure": "firing_all",
+     "runs": 3,
+     "story": "=== Maxime (female) === para_ts vs control box: share of all neurons firing per step averaged 0.004 over 10 runs (control 0.016 over 20): a big change down (75%; gap -0.012, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 14%. The change carried all the way down the path. Biggest change: legs (98% down). para null vs control box: share of all neurons firing per step averaged 0.000 over 10 runs (control 0.016 over 20): a big change down (100%; gap -0.016, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change carried all the way down the path. Biggest change: legs (100% down). === Hagrid (male) === para_ts vs control box: share of all neurons firing per step averaged 0.006 over 10 runs (control 0.019 over 20): a big change down (67%; gap -0.013, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 11%. The change carried all the way down the path. Biggest change: legs (98% down). para null vs control box: share of all neurons firing per step averaged 0.000 over 10 runs (control 0.019 over 20): a big change down (100%; gap -0.019, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the nose by 100%. The change carried all the way down the path. Biggest change: legs (100% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "raised as para_ts mutants, both flies",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 para_ts quiets the brain and para null silences it.",
+      "measure": "the whole brain"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim at the restrictive temperature, para flies show lowered firing and walking vs control.",
+    "given": "the hypomorph is read as a +3 mV spike threshold; paralysis itself is not modelled.",
+    "falsified": "firing matches control."
+   }
+  },
+  {
+   "key": "mutant:park",
+   "kind": "mutant",
+   "title": "park null (Parkinson proxy: half the dopamine neurons lost)",
+   "sentence": "Perturbs gene park (FBgn0041100) \u2192 run it and watch brain firing and walking.",
+   "claim": "park/Pink1 nulls progressively lose dopaminergic neurons; read here as a deterministic first-half lesion of the dopamine-neuron group. Which half is arbitrary and stated; no synuclein, mitochondria or tremor is modelled.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0041100 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene park</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_225404_park-nulls-lose-half-their-dopamine-firi",
+     "title": "park nulls lose half their dopamine firing (Parkinson proxy)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 22:56",
+     "measure": "firing.dopamine neurons",
+     "runs": 2,
+     "story": "=== Maxime (female) === park null vs control box: firing in the dopamine neurons averaged 0.005 over 10 runs (control 0.013 over 10): a big change down (58%; gap -0.007, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the dopamine neurons by 58%. The change faded by the nose (1%, no real change). Biggest change: dopamine neurons (58% down). Strongest regional effects: slopes (44% down), AVLP (20% down), lateral horn (20% down). === Hagrid (male) === park null vs control box: firing in the dopamine neurons averaged 0.057 over 10 runs (control 0.133 over 10): a big change down (57%; gap -0.076, control spread 0.003). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the dopamine neurons by 57%. The change faded by the nose (1%, no real change). Biggest change: dopamine neurons (57% down). Strongest regional effects: mushroom body (57% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "control box: both flies, nothing added. Every result is measured against these two.",
+      "treatment": "raised as park mutants, both flies",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Lesioning half the dopamine neurons halves dopamine firing.",
+      "measure": "firing in dopamine neurons"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, park-null flies show roughly halved dopamine-neuron firing vs control.",
+    "given": "the null is read as a deterministic first-half lesion of the dopamine group \u2014 which half is arbitrary and stated; no synuclein, mitochondria or tremor modelled.",
+    "falsified": "dopamine firing matches control."
+   }
+  },
+  {
+   "key": "mutant:per01",
+   "kind": "mutant",
+   "title": "per01 (arrhythmic clock)",
+   "sentence": "Perturbs gene per (FBgn0003068) \u2192 run it and watch brain firing and walking.",
+   "claim": "No functional PERIOD protein, so no circadian rhythm: forces the clock modulation amplitude to zero on any background.",
+   "real": "already known",
+   "real_source": "FlyBase FBgn0003068 \u2014 classic mutant (paper to file)",
+   "schematic": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 88\" role=\"img\"><rect x=\"4\" y=\"12\" width=\"112\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"60\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">SITE</text><text x=\"60\" y=\"52\" text-anchor=\"middle\" class=\"sch-word\">gene per</text><path d=\"M120 44 h16 m-6 -5 6 5 -6 5\" class=\"sch-arrow\"/><rect x=\"140\" y=\"12\" width=\"116\" height=\"64\" rx=\"8\" class=\"sch-box\"/><text x=\"198\" y=\"31\" text-anchor=\"middle\" class=\"sch-label\">MEASURE</text><text x=\"198\" y=\"46\" text-anchor=\"middle\" class=\"sch-word\">firing +</text><text x=\"198\" y=\"60\" text-anchor=\"middle\" class=\"sch-word\">walking</text></svg>",
+   "lab": {
+    "status": "run",
+    "record": {
+     "id": "20261101_233543_per01-misses-the-daylight-lift-clock-vs",
+     "title": "per01 misses the daylight lift (clock vs arrhythmic)",
+     "verdict": "SUPPORTED",
+     "date": "2026-11-01 23:38",
+     "measure": "firing_all",
+     "runs": 2,
+     "story": "=== Maxime (female) === Target \u2014 clock on, per01 vs clock on: share of all neurons firing per step averaged 0.010 over 10 runs (control 0.040 over 10): a big change down (75%; gap -0.030, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 clock on, per01 vs clock on: fraction of steps the brain is quiet (sleep proxy) averaged 0.546 over 10 runs (control 0.000 over 10): a change from nothing up (n/a; gap 0.546, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment raised the nose by 5%. The change carried all the way down the path. Biggest change: legs (85% down). Strongest regional effects: nerve cord (81% down), GNG (81% down), central complex (80% down). === Hagrid (male) === Target \u2014 clock on, per01 vs clock on: share of all neurons firing per step averaged 0.020 over 10 runs (control 0.036 over 10): a noticeable change down (46%; gap -0.016, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. Behaviour \u2014 clock on, per01 vs clock on: fraction of steps the brain is quiet (sleep proxy) averaged 0.023 over 10 runs (control 0.000 over 10): a change from nothing up (n/a; gap 0.023, control spread 0.000). Verdict: SUPPORTED \u2014 a clear gap on the predicted side. The treatment quieted the antennal lobe PNs by 18%. Further down, 61% remained at the legs. Biggest change: legs (61% down). Strongest regional effects: lamina (82% down), GNG (58% down), medulla (58% down). Overall: SUPPORTED \u2014 both sexes agree: supported in each.",
+     "recipe": {
+      "control": "clock on: both flies, set circa_amp 0.3. Every result is measured against these two.",
+      "treatment": "raised as per01 mutants, both flies \u2014 with set circa_amp 0.3",
+      "effort": "10 repeats of 400 steps \u2014 how much evidence the run collects (rule 2 needs at least 5 per side for a verdict).",
+      "prediction": "treatment down \u2014 Rhythmic WT averages more drive than per01 over a day-biased run.",
+      "measure": "the whole brain; also watches sleep (expects up)"
+     }
+    }
+   },
+   "hypothesis": {
+    "text": "In the 2\u00d72 sim, per01 flies lose clock-driven firing modulation (no daylight lift) vs control.",
+    "given": "the null forces clock modulation amplitude to zero on any background.",
+    "falsified": "day/night modulation survives."
+   }
+  }
+ ]
+}
